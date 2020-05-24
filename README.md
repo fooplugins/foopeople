@@ -1,2 +1,2 @@
 # foopeople
-People Management for WordPress
+People Management for WordPress s
