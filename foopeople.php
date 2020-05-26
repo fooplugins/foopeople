@@ -21,7 +21,7 @@ if ( ! defined( 'WPINC' ) ) {
 //define some FooPeople essentials
 if ( !defined('FOOPEOPLE_SLUG' ) ) {
 	define( 'FOOPEOPLE_SLUG', 'foopeople' );
-	define( 'FOOPEOPLE_NAMESPACE', 'FooPlugins\\FooPeople' );
+	define( 'FOOPEOPLE_NAMESPACE', 'FooPlugins\FooPeople' );
 	define( 'FOOPEOPLE_DIR', __DIR__ );
 	define( 'FOOPEOPLE_PATH', plugin_dir_path( __FILE__ ) );
 	define( 'FOOPEOPLE_URL', plugin_dir_url( __FILE__ ) );
@@ -55,8 +55,8 @@ if ( require_once FOOPEOPLE_PATH . 'includes/startup-checks.php' ) {
 	spl_autoload_register( 'foopeople_autoloader' );
 
 	//hook in activation
-	register_activation_hook( __FILE__, array( 'FooPlugins\\FooPeople\Activation', 'activate' ) );
+	register_activation_hook( __FILE__, array( 'FooPlugins\FooPeople\Activation', 'activate' ) );
 
 	//start the plugin!
-	new FooPlugins\\FooPeople\Init();
+	new FooPlugins\FooPeople\Init();
 }

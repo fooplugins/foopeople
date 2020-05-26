@@ -1,11 +1,11 @@
 <?php
-namespace FooPlugins\\FooPeople\Admin;
+namespace FooPlugins\FooPeople\Admin;
 
 /**
  * FooPeople Admin Settings Class
  */
 
-if ( !class_exists( 'FooPlugins\\FooPeople\Admin\Settings' ) ) {
+if ( !class_exists( 'FooPlugins\FooPeople\Admin\Settings' ) ) {
 
 	class Settings {
 

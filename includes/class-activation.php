@@ -1,12 +1,12 @@
 <?php
-namespace FooPlugins\\FooPeople;
+namespace FooPlugins\FooPeople;
 
 /**
  * FooPeople Activation Class
  * Contains the activate method that runs on register_activation_hook
  */
 
-if ( !class_exists( 'FooPlugins\\FooPeople\Activation' ) ) {
+if ( !class_exists( 'FooPlugins\FooPeople\Activation' ) ) {
 
 	class Activation {
 		/**

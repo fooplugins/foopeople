@@ -1,12 +1,12 @@
 <?php
-namespace FooPlugins\\FooPeople\Admin;
+namespace FooPlugins\FooPeople\Admin;
 
 /**
  * FooPeople Admin Update Class
  * Checks if the plugin was updated and fires an action, so other code can hook into plugin updates
  */
 
-if ( !class_exists( 'FooPlugins\\FooPeople\Admin\Updates' ) ) {
+if ( !class_exists( 'FooPlugins\FooPeople\Admin\Updates' ) ) {
 
 	class Updates {
 
@@ -26,7 +26,7 @@ if ( !class_exists( 'FooPlugins\\FooPeople\Admin\Updates' ) ) {
 				delete_site_transient( FOOPEOPLE_TRANSIENT_UPDATED );
 
 				//fire an action!
-				do_action( 'FooPlugins\\FooPeople\Admin\Updated', $update_data );
+				do_action( 'FooPlugins\FooPeople\Admin\Updated', $update_data );
 			}
 		}
 	}
