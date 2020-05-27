@@ -15,6 +15,7 @@ if ( !class_exists( 'FooPlugins\FooPeople\Admin\Init' ) ) {
 		 */
 		function __construct() {
 			new namespace\Updates();
+			new namespace\Dashboard();
 			new namespace\Settings();
 		}
 	}

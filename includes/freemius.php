@@ -34,8 +34,8 @@ if ( ! function_exists( 'foopeople_fs' ) ) {
 				),
 				'has_affiliation'     => 'selected',
 				'menu'                => array(
-					'slug'           => 'edit.php?post_type=foopeople-person',
-				),
+					'slug'           => 'foopeople',
+				)
 			) );
 		}
 
