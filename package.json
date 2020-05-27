@@ -1,6 +1,6 @@
 {
-  "name": "{slug}",
-  "description": "{name}",
+  "name": "foo-people",
+  "description": "People & Team Management for WordPress",
   "version": "1.0.0",
   "author": "{author}",
   "repository": {

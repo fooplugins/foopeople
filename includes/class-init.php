@@ -29,11 +29,11 @@ if ( !class_exists( 'FooPlugins\FooPeople\Init' ) ) {
 			}
 
 			//Check if the PRO version of FooPeople is running and run the PRO code
-			if ( foopeople_fs()->is__premium_only() ) {
-				if ( foopeople_fs()->can_use_premium_code() ) {
-					new FooPlugins\FooPeople\Pro\Init();
-				}
-			}
+			// if ( foopeople_fs()->is__premium_only() ) {
+			// 	if ( foopeople_fs()->can_use_premium_code() ) {
+			// 		new FooPlugins\FooPeople\Pro\Init();
+			// 	}
+			// }
 		}
 	}
 }

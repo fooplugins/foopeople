@@ -42,7 +42,7 @@ if ( function_exists( 'foopeople_fs' ) ) {
 	foopeople_fs()->set_basename( true, __FILE__ );
 } else {
 	if ( ! function_exists( 'foopeople_fs' ) ) {
-		require_once( FOOPEOPLE_PATH . 'includes/freemius.php' );
+		// require_once( FOOPEOPLE_PATH . 'includes/freemius.php' );
 	}
 }
 
