@@ -9,21 +9,33 @@ if ( ! function_exists( 'foopeople_fs' ) ) {
 		global $foopeople_fs;
 
 		if ( ! isset( $foopeople_fs ) ) {
+			// Activate multisite network integration.
+			if ( ! defined( 'WP_FS__PRODUCT_6209_MULTISITE' ) ) {
+				define( 'WP_FS__PRODUCT_6209_MULTISITE', true );
+			}
+
 			// Include Freemius SDK.
 			require_once FOOPEOPLE_PATH . '/freemius/start.php';
-
-			//You should replace the below code with your Freemius integration code
-			// from https://dashboard.freemius.com/#!/live/plugins/6209/integration/
-			// We assume your Freemius function name is foopeople_fs.
-			// If not, you will need to update it and all references to it.
 
 			$foopeople_fs = fs_dynamic_init( array(
 				'id'                  => '6209',
 				'slug'                => 'foopeople',
 				'type'                => 'plugin',
+				'public_key'          => 'pk_4f04cda091ea0fe0626e7894fc203',
 				'is_premium'          => true,
+				'premium_suffix'      => 'Pro',
+				// If your plugin is a serviceware, set this option to false.
+				'has_premium_version' => true,
 				'has_addons'          => false,
-				'has_paid_plans'      => true
+				'has_paid_plans'      => true,
+				'trial'               => array(
+					'days'               => 7,
+					'is_require_payment' => true,
+				),
+				'has_affiliation'     => 'selected',
+				'menu'                => array(
+					'slug'           => 'edit.php?post_type=foopeople-person',
+				),
 			) );
 		}
 
