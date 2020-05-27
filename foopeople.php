@@ -42,21 +42,22 @@ if ( function_exists( 'foopeople_fs' ) ) {
 	foopeople_fs()->set_basename( true, __FILE__ );
 } else {
 	if ( ! function_exists( 'foopeople_fs' ) ) {
-		// require_once( FOOPEOPLE_PATH . 'includes/freemius.php' );
+		require_once( FOOPEOPLE_PATH . 'includes/freemius.php' );
+	}
+
+	//check minimum requirements before loading the plugin
+	if ( require_once FOOPEOPLE_PATH . 'includes/startup-checks.php' ) {
+
+		//start autoloader
+		require_once( FOOPEOPLE_PATH . 'vendor/autoload.php' );
+
+		spl_autoload_register( 'foopeople_autoloader' );
+
+		//hook in activation
+		register_activation_hook( __FILE__, array( 'FooPlugins\FooPeople\Activation', 'activate' ) );
+
+		//start the plugin!
+		new namespace\Init();
 	}
 }
 
-//check minimum requirements before loading the plugin
-if ( require_once FOOPEOPLE_PATH . 'includes/startup-checks.php' ) {
-
-	//start autoloader
-	require_once( FOOPEOPLE_PATH . 'vendor/autoload.php' );
-
-	spl_autoload_register( 'foopeople_autoloader' );
-
-	//hook in activation
-	register_activation_hook( __FILE__, array( 'FooPlugins\FooPeople\Activation', 'activate' ) );
-
-	//start the plugin!
-	new FooPlugins\FooPeople\Init();
-}
