@@ -28,12 +28,20 @@ if ( !class_exists( 'FooPlugins\FooPeople\Init' ) ) {
 				new namespace\Admin\Init();
 			}
 
+			//register custom post types
+			new namespace\PostTypes\Person();
+
+			//register custom taxonomies
+			new namespace\Taxonomies\Team();
+			new namespace\Taxonomies\Location();
+			new namespace\Taxonomies\Skill();
+
 			//Check if the PRO version of FooPeople is running and run the PRO code
-			// if ( foopeople_fs()->is__premium_only() ) {
-			// 	if ( foopeople_fs()->can_use_premium_code() ) {
-			// 		new FooPlugins\FooPeople\Pro\Init();
-			// 	}
-			// }
+			if ( foopeople_fs()->is__premium_only() ) {
+				if ( foopeople_fs()->can_use_premium_code() ) {
+					new namespace\Pro\Init();
+				}
+			}
 		}
 	}
 }
