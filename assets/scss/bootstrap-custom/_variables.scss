@@ -1,0 +1,323 @@
+//
+// Variables
+// --------------------------------------------------
+
+
+// Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+
+$enable-caret:                                true;
+$enable-rounded:                              true;
+$enable-shadows:                              false;
+$enable-gradients:                            false;
+$enable-transitions:                          true;
+$enable-prefers-reduced-motion-media-query:   true;
+$enable-grid-classes:                         true;
+$enable-pointer-cursor-for-buttons:           true;
+$enable-print-styles:                         true;
+$enable-validation-icons:                     true;
+$enable-deprecation-messages:                 true;
+
+$wordpress-admin-bar-height: 32px;
+$wordpress-admin-bar-height-mobile: 46px;
+
+$transition : cubic-bezier(0.445, 0.050, 0.550, 0.950);
+
+
+// Body
+//
+// Settings for the `<body>` element.
+$body-bg:                   $white;
+$body-color:                $gray-600;
+
+// Fonts
+//
+// Font, line-height, and color for body text, headings, and more.
+$font-ubuntu: 				'Ubuntu', sans-serif;
+$font-family-base:            -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+$font-size-base:              .9rem; // Assumes the browser default, typically `16px`
+$font-size-lg:                $font-size-base * 1.5;
+$font-size-sm:                $font-size-base * .875;
+
+$font-weight-lighter:         lighter;
+$font-weight-light:           300;
+$font-weight-normal:          400;
+$font-weight-bold:            700;
+$font-weight-bolder:          bolder;
+
+$font-weight-base:            $font-weight-normal;
+$line-height-base:            1.5;
+
+
+$headings-font-family:			$font-family-base;
+$headings-font-family-alt:		$font-family-base;
+$buttons-font-family:			$font-family-base;
+$headings-font-weight:          normal;
+
+
+// Links
+//
+// Style anchor elements.
+
+$link-color:                $peach;
+$link-decoration:           none;
+$link-hover-color:          darken($link-color, 15%);
+$link-hover-decoration:     underline;
+
+
+
+
+// Components
+//
+// Define common padding and border radius sizes and more.
+
+$line-height-lg:              1.5;
+$line-height-sm:              1.5;
+
+$border-width:                1px;
+$border-color:                $light;
+
+$border-radius:               8px;
+$border-radius-lg:            20px;
+$border-radius-sm:            15px;
+
+$rounded-pill:                50rem;
+
+$box-shadow-sm:               0 .125rem .25rem rgba($black, .075);
+$box-shadow:                  0 .5rem 1rem rgba($black, .15);
+$box-shadow-lg:               0 1rem 3rem rgba($black, .175);
+$box-shadow-dropdown:         0 0.8rem 1rem rgba(0,0,0,.15);
+
+
+
+// Z-index master list
+//
+// Warning: Avoid customizing these values. They're used for a bird's eye view
+// of components dependent on the z-axis and are designed to all work together.
+$z-max:	2000;
+$z-min:	800;
+
+$zindex-modal:					$z-max;
+$zindex-modal-backdrop: 		1090;
+$zindex-tooltip:				1080;
+$zindex-dropdown:				1080;
+$zindex-dropdown-cart:			1079;
+$zindex-dropdown-search:		1078;
+
+$zindex-header:					1060;
+$zindex-popover:				1060;
+$zindex-navbar:					1050;
+$zindex-menu-overlay:			1040;
+$zindex-fixed:					1030;
+$zindex-sticky:					1020;
+
+$zindex-filters-wrapper: 	820;
+$zindex-filters-button: 	820;
+$zindex-filters-menu: 		810;
+$zindex-onsale-tag: 		$z-min;
+$zindex-carousel-button: 	$z-min;
+
+
+//== Grid
+//
+//##
+$grid-gutter-width:           20px;
+
+
+
+// Spacing
+//
+// Control the default styling of most Bootstrap elements by modifying these
+// variables. Mostly focused on spacing.
+// You can add more entries to the $spacers map, should you need more variation.
+
+// stylelint-disable
+$spacer: $grid-gutter-width;
+$spacers: ();
+$spacers: map-merge((
+    0: 0,
+    1: ($spacer * .25),
+    2: ($spacer * .5),
+    3: ($spacer * 1),
+    4: ($spacer * 2.5),
+    5: ($spacer * 3.5)
+), $spacers);
+
+$m-xs  : map-get($spacers, 2);
+$m-sm :  map-get($spacers, 3);
+$m-md  : map-get($spacers, 4);
+$m-lg  : map-get($spacers, 5);
+
+$headings-margin-bottom: $m-sm;
+
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 500px,
+    md: 800px,
+    lg: 1000px,
+    xl: 1200px
+);
+
+@include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+@include _assert-starts-at-zero($grid-breakpoints);
+
+
+
+
+
+//== Masthead Defaults
+//
+//##
+$masthead-default-bg :          $white;
+$masthead-default-border :      $border-color;
+
+$masthead-user-messaging-height: 	35px;
+
+$masthead-height:           		200px;
+$masthead-height-no-message: 		$masthead-height - $masthead-user-messaging-height;
+$masthead-height-reduced:  			140px;
+$masthead-height-reduced-no-message:  $masthead-height-reduced - $masthead-user-messaging-height;
+
+$masthead-logo-width:    	  		150px;
+$masthead-logo-width-reduced:  		100px;
+
+// Mobile
+$masthead-height-mobile:    		100px;
+$masthead-height-mobile-no-message: $masthead-height-mobile - $masthead-user-messaging-height;
+$masthead-logo-height-mobile:		30px;
+
+//== User messaging bar
+//
+//##
+$masthead-user-messaging-bg-color: 	    $gray-100;
+$masthead-user-messaging-text-color: 	$body-color;
+$masthead-user-messaging-link-color: 	$link-color;
+
+//== User details bar
+//
+//##
+$user-details-bg-color : 	$gray-100;
+$user-details-text-color : 	$body-color;
+$user-details-link-color : 	$link-color;
+
+
+//== Sidebar
+//
+//##
+$sidebar-width : 250px;
+
+
+//== Footer
+//
+//##
+$footer-height : 			400px;
+$footer-bg-color :     		$masthead-default-bg;
+$footer-text-color :     	$body-color;
+$footer-link-color :     	$body-color;
+
+
+
+
+//== Navbar
+//
+//##
+$navbar-height:                   30px;
+$navbar-speed-mobile:             400ms;
+$navbar-offset-mobile:            30vw;
+
+
+$navbar-margin-bottom:             40px;
+$navbar-border-radius:             0;
+$navbar-padding-horizontal:        $m-sm;
+$navbar-padding-vertical:          $m-xs;
+
+$navbar-color:             $body-color;
+$navbar-bg:                $white;
+$navbar-border:            $border-color;
+
+// Navbar links
+$navbar-link-color:                	$body-color;
+$navbar-link-bg:                	$navbar-bg;
+$navbar-link-hover-color:          	$primary;
+$navbar-link-hover-bg:             	$light;
+$navbar-link-height:             	44px;
+
+$navbar-link-active-color:         	$navbar-link-color;
+$navbar-link-active-bg:            	$light;
+
+$navbar-button-size:            	24px;
+
+$navbar-link-disabled-color:       	$gray-500;
+$navbar-link-disabled-bg:          	$gray-700;
+
+
+// Navbar toggle
+$navbar-toggle-bg:           		$navbar-bg;
+$navbar-toggle-hover-bg:           	$navbar-link-hover-bg;
+$navbar-toggle-icon-bar-bg:        	$white;
+
+
+//== Dropdown menus - cart, search
+//
+//##
+$dropdown-padding: 50px $m-sm $m-sm $m-sm;
+$dropdown-padding-mobile: $m-xs;
+$dropdown-color: $navbar-link-color;
+$dropdown-bg: $navbar-bg;
+$dropdown-border: darken($dropdown-bg, 10%);
+
+
+//== Slideshow Banner
+//
+//##
+$slideshow_height: 400px;
+$slideshow_height_mobile: 300px;
+$slideshow_pos_x: 60%;
+$slideshow_pos_y: $slideshow_height/2;
+
+
+//== Buttons
+//
+//##
+$btn-text-color: 			$white;
+$input-border-color: 		$gray-200;
+
+//== Modals
+//
+//##
+$modal-md: 700px;
+$modal-lg: $modal-md;
+$modal-inner-padding: $m-md $m-sm;
+$modal-header-padding: $m-sm;
+
+$modal-dialog-margin: 0;
+
+
+
+
+
+// Breadcrumbs
+//== Breadcrumbs
+//
+//##
+
+$breadcrumb-padding-y:			0;
+$breadcrumb-padding-x:			0;
+$breadcrumb-item-padding:		.5rem;
+
+$breadcrumb-margin-bottom:		$m-sm;
+
+$breadcrumb-bg:					transparent;
+$breadcrumb-divider-color:		$body-color;
+$breadcrumb-active-color:		$dark;
+$breadcrumb-divider:			quote("/");
+
+$breadcrumb-border-radius:		$border-radius;

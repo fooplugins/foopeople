@@ -1,0 +1,106 @@
+// Custom Utility classes
+// --------------------------------------------------
+
+// Floats
+// -------------------------
+.clear {
+  @include clearfix;
+}
+
+// Box styles
+// --------------------------------------------------
+.box-shaded {
+	background-color: $gray-200;
+}
+.box-rounded {
+	border-radius: $border-radius;
+}
+.box-white {
+	background: $white;
+}
+.box-gray {
+	background: $gray-800;
+}
+.box-gradient {
+	background-color: $primary;
+    background-image: linear-gradient(50deg, $primary 0%, $secondary 100%);
+}
+
+.is-error {
+	color : $red;
+}
+
+.dashicon:before {
+	font-family: dashicons;
+	display: inline-block;
+	line-height: 1;
+	font-weight: 400;
+	font-style: normal;
+	speak: none;
+	text-decoration: inherit;
+	text-transform: none;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	width: 20px;
+	height: 20px;
+	font-size: 20px;
+	vertical-align: top;
+	text-align: center;
+	transition: color .1s ease-in;
+}
+
+.mb-0 { margin-bottom: 0 !important;}
+.mb-1 { margin-bottom: 5px !important;}
+.mb-2 { margin-bottom: 10px !important;}
+.mb-3 { margin-bottom: 20px !important;}
+.mb-4 { margin-bottom: 50px !important;}
+.mb-4 { margin-bottom: 70px !important;}
+
+.mr-0 { margin-right: 0 !important;}
+.mr-1 { margin-right: 5px !important;}
+.mr-2 { margin-right: 10px !important;}
+.mr-3 { margin-right: 20px !important;}
+.mr-4 { margin-right: 50px !important;}
+.mr-4 { margin-right: 70px !important;}
+
+
+.flex {
+	display: flex;
+}
+
+.firework-spinner {
+	$box: 80px;
+	$spinner-color: $secondary;
+	display: none;
+	width: $box;
+	height: $box;
+
+	position: absolute;
+	top: calc(50% - #{$box / 2});
+	left: calc(50% - #{$box / 2});
+
+	&::before {
+		content: " ";
+		display: block;
+		width: $box - 16px;
+		height: $box - 16px;
+		margin: $box / 10;
+		border-radius: 50%;
+		border: 6px solid $spinner-color;
+		border-color: $spinner-color transparent $spinner-color transparent;
+		animation: lds-dual-ring 1.2s linear infinite;
+
+	}
+}
+
+
+
+@keyframes lds-dual-ring {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}

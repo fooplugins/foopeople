@@ -4,6 +4,11 @@
 node_modules/
 /node_modules/
 
+# Front End assets #
+############
+assets/css/
+assets/js/
+
 # Packages #
 ############
 *.7z
@@ -47,6 +52,7 @@ Thumbs.db
 !assets/js/vendor/
 wpcs/
 /vendor/
+composer.phar
 
 # Bower #
 ##########
@@ -69,7 +75,3 @@ assets/img/.DS_Store
 
 # Freemius #
 /fs-config.json
-
-
-# Composer #
-composer.phar
