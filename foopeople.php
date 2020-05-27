@@ -57,7 +57,7 @@ if ( function_exists( 'foopeople_fs' ) ) {
 		register_activation_hook( __FILE__, array( 'FooPlugins\FooPeople\Activation', 'activate' ) );
 
 		//start the plugin!
-		new namespace\Init();
+		new FooPlugins\FooPeople\Init();
 	}
 }
 
