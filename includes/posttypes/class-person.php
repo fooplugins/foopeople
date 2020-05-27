@@ -38,15 +38,15 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 					'labels'        => array(
 						'name'               => __( 'People', 'foopeople' ),
 						'singular_name'      => __( 'Person', 'foopeople' ),
-						'add_new'            => __( 'Add '.'Person', 'foopeople' ),
-						'add_new_item'       => __( 'Add New '.'Person', 'foopeople' ),
-						'edit_item'          => __( 'Edit '.'Person', 'foopeople' ),
-						'new_item'           => __( 'New '.'People', 'foopeople' ),
-						'view_item'          => __( 'View '.'People', 'foopeople' ),
-						'search_items'       => __( 'Search '.'People', 'foopeople' ),
+						'add_new'            => __( 'Add Person', 'foopeople' ),
+						'add_new_item'       => __( 'Add New Person', 'foopeople' ),
+						'edit_item'          => __( 'Edit Person', 'foopeople' ),
+						'new_item'           => __( 'New People', 'foopeople' ),
+						'view_item'          => __( 'View People', 'foopeople' ),
+						'search_items'       => __( 'Search People', 'foopeople' ),
 						'not_found'          => __( 'Nobody found', 'foopeople' ),
 						'not_found_in_trash' => __( 'Nobody found in Trash', 'foopeople' ),
-						'menu_name'          => __( 'FooPeople', 'foopeople' ),
+						'menu_name'          => __( 'People', 'foopeople' ),
 						'all_items'          => __( 'People', 'foopeople' )
 					),
 					'hierarchical'  => true,
@@ -78,16 +78,16 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 			$messages[FOOPEOPLE_CPT_PERSON] = apply_filters( 'FooPlugins\FooPeople\PostTypes\Person\UpdateMessages',
 				array(
 					0  => '',
-					1  => __( 'Person'.' updated.', 'foopeople' ),
-					2  => __( 'Person'.' custom field updated.', 'foopeople' ),
-					3  => __( 'Person'.' custom field deleted.', 'foopeople' ),
-					4  => __( 'Person'.' updated.', 'foopeople' ),
-					5  => isset($_GET['revision']) ? sprintf( __( 'Person'.' restored to revision from %s.', 'foopeople' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-					6  => __( 'Person'.' published.', 'foopeople' ),
-					7  => __( 'Person'.' saved.', 'foopeople' ),
-					8  => __( 'Person'.' submitted.', 'foopeople' ),
+					1  => __( 'Person updated.', 'foopeople' ),
+					2  => __( 'Person custom field updated.', 'foopeople' ),
+					3  => __( 'Person custom field deleted.', 'foopeople' ),
+					4  => __( 'Person updated.', 'foopeople' ),
+					5  => isset($_GET['revision']) ? sprintf( __( 'Person restored to revision from %s.', 'foopeople' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+					6  => __( 'Person published.', 'foopeople' ),
+					7  => __( 'Person saved.', 'foopeople' ),
+					8  => __( 'Person submitted.', 'foopeople' ),
 					9  => sprintf( __( 'People scheduled for: <strong>%1$s</strong>.', 'foopeople' ), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ) ),
-					10 => __( 'Person'.' draft updated.', 'foopeople' )
+					10 => __( 'Person draft updated.', 'foopeople' )
 				)
 			);
 
@@ -106,11 +106,11 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 
 			$bulk_messages[FOOPEOPLE_CPT_PERSON] = apply_filters( 'FooPlugins\FooPeople\PostTypes\Person\BulkMessages',
 				array(
-					'updated'   => _n( '%s '.'Person'.' updated.', '%s People updated.', $bulk_counts['updated'], 'foopeople' ),
-					'locked'    => _n( '%s '.'Person'.' not updated, somebody is editing it.', '%s '.'People'.' not updated, somebody is editing them.', $bulk_counts['locked'], 'foopeople' ),
-					'deleted'   => _n( '%s '.'Person'.' permanently deleted.', '%s '.'People'.' permanently deleted.', $bulk_counts['deleted'], 'foopeople' ),
-					'trashed'   => _n( '%s '.'Person'.' moved to the Trash.', '%s '.'People'.' moved to the Trash.', $bulk_counts['trashed'], 'foopeople' ),
-					'untrashed' => _n( '%s '.'Person'.' restored from the Trash.', '%s '.'People'.' restored from the Trash.', $bulk_counts['untrashed'], 'foopeople' ),
+					'updated'   => _n( '%s Person updated.', '%s People updated.', $bulk_counts['updated'], 'foopeople' ),
+					'locked'    => _n( '%s Person not updated, somebody is editing it.', '%s People not updated, somebody is editing them.', $bulk_counts['locked'], 'foopeople' ),
+					'deleted'   => _n( '%s Person permanently deleted.', '%s People permanently deleted.', $bulk_counts['deleted'], 'foopeople' ),
+					'trashed'   => _n( '%s Person moved to the Trash.', '%s People moved to the Trash.', $bulk_counts['trashed'], 'foopeople' ),
+					'untrashed' => _n( '%s Person restored from the Trash.', '%s People restored from the Trash.', $bulk_counts['untrashed'], 'foopeople' ),
 				)
 			);
 

@@ -1,13 +1,13 @@
 <?php
-namespace FooPlugins\FooPeople;
+namespace FooPlugins\FooPeople\PostTypes;
 
 /*
  * Policy Custom Post Type
  */
 
-if ( ! class_exists( 'PacePeople_Policy_PostType' ) ) {
+if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Policy' ) ) {
 
-	class PacePeople_Policy_PostType {
+	class Policy {
 
 		function __construct() {
 			//register the post types
@@ -21,22 +21,22 @@ if ( ! class_exists( 'PacePeople_Policy_PostType' ) ) {
 		}
 
 		function register() {
-			//allow extensions to override the people post type
-			$args = apply_filters( 'pacepeople_policy_posttype_register_args',
+			//allow extensions to override the policy post type
+			$args = apply_filters( 'FooPlugins\FooPeople\PostTypes\Policy\RegisterArgs',
 				array(
 					'labels'        => array(
-						'name'               => __( PACEPEOPLE_MULTIPLE_POLICY, 'pacepeople' ),
-						'singular_name'      => __( PACEPEOPLE_SINGULAR_POLICY, 'pacepeople' ),
-						'add_new'            => __( 'Add '.PACEPEOPLE_SINGULAR_POLICY, 'pacepeople' ),
-						'add_new_item'       => __( 'Add New '.PACEPEOPLE_SINGULAR_POLICY, 'pacepeople' ),
-						'edit_item'          => __( 'Edit '.PACEPEOPLE_SINGULAR_POLICY, 'pacepeople' ),
-						'new_item'           => __( 'New '.PACEPEOPLE_MULTIPLE_POLICY, 'pacepeople' ),
-						'view_item'          => __( 'View '.PACEPEOPLE_MULTIPLE_POLICY, 'pacepeople' ),
-						'search_items'       => __( 'Search '.PACEPEOPLE_MULTIPLE_POLICY, 'pacepeople' ),
-						'not_found'          => __( 'No '.PACEPEOPLE_MULTIPLE_POLICY.' found', 'pacepeople' ),
-						'not_found_in_trash' => __( 'No '.PACEPEOPLE_MULTIPLE_POLICY.' found in Trash', 'pacepeople' ),
-						'menu_name'          => __( PACEPEOPLE_MULTIPLE_POLICY, 'pacepeople' ),
-						'all_items'          => __( PACEPEOPLE_MULTIPLE_POLICY, 'pacepeople' )
+						'name'               => __( 'Policies', 'foopeople' ),
+						'singular_name'      => __( 'Policy', 'foopeople' ),
+						'add_new'            => __( 'Add Policy', 'foopeople' ),
+						'add_new_item'       => __( 'Add New Policy', 'foopeople' ),
+						'edit_item'          => __( 'Edit Policy', 'foopeople' ),
+						'new_item'           => __( 'New Policy', 'foopeople' ),
+						'view_item'          => __( 'View Policies', 'foopeople' ),
+						'search_items'       => __( 'Search Policies', 'foopeople' ),
+						'not_found'          => __( 'No Policies found', 'foopeople' ),
+						'not_found_in_trash' => __( 'No Policies found in Trash', 'foopeople' ),
+						'menu_name'          => __( 'Policies', 'foopeople' ),
+						'all_items'          => __( 'Policies', 'foopeople' )
 					),
 					'hierarchical'  => true,
 					'public'        => false,
@@ -48,7 +48,7 @@ if ( ! class_exists( 'PacePeople_Policy_PostType' ) ) {
 				)
 			);
 
-			register_post_type( PACEPEOPLE_CPT_POLICY, $args );
+			register_post_type( FOOPEOPLE_CPT_POLICY, $args );
 		}
 
 		/**
@@ -64,20 +64,20 @@ if ( ! class_exists( 'PacePeople_Policy_PostType' ) ) {
 
 			global $post;
 
-			// Add our people messages
-			$messages[PACEPEOPLE_CPT_POLICY] = apply_filters( 'pacepeople_policy_posttype_update_messages',
+			// Add our policy messages
+			$messages[FOOPEOPLE_CPT_POLICY] = apply_filters( 'FooPlugins\FooPeople\PostTypes\Policy\UpdateMessages',
 				array(
 					0  => '',
-					1  => __( PACEPEOPLE_SINGULAR_POLICY.' updated.', 'pacepeople' ),
-					2  => __( PACEPEOPLE_SINGULAR_POLICY.' custom field updated.', 'pacepeople' ),
-					3  => __( PACEPEOPLE_SINGULAR_POLICY.' custom field deleted.', 'pacepeople' ),
-					4  => __( PACEPEOPLE_SINGULAR_POLICY.' updated.', 'pacepeople' ),
-					5  => isset($_GET['revision']) ? sprintf( __( PACEPEOPLE_SINGULAR_POLICY.' restored to revision from %s.', 'pacepeople' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-					6  => __( PACEPEOPLE_SINGULAR_POLICY.' published.', 'pacepeople' ),
-					7  => __( PACEPEOPLE_SINGULAR_POLICY.' saved.', 'pacepeople' ),
-					8  => __( PACEPEOPLE_SINGULAR_POLICY.' submitted.', 'pacepeople' ),
-					9  => sprintf( __( 'People scheduled for: <strong>%1$s</strong>.', 'pacepeople' ), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ) ),
-					10 => __( PACEPEOPLE_SINGULAR_POLICY.' draft updated.', 'pacepeople' )
+					1  => __( 'Policy updated.', 'foopeople' ),
+					2  => __( 'Policy custom field updated.', 'foopeople' ),
+					3  => __( 'Policy custom field deleted.', 'foopeople' ),
+					4  => __( 'Policy updated.', 'foopeople' ),
+					5  => isset($_GET['revision']) ? sprintf( __( 'Policy restored to revision from %s.', 'foopeople' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+					6  => __( 'Policy published.', 'foopeople' ),
+					7  => __( 'Policy saved.', 'foopeople' ),
+					8  => __( 'Policy submitted.', 'foopeople' ),
+					9  => sprintf( __( 'Policies scheduled for: <strong>%1$s</strong>.', 'foopeople' ), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ) ),
+					10 => __( 'Policy draft updated.', 'foopeople' )
 				)
 			);
 
@@ -86,7 +86,7 @@ if ( ! class_exists( 'PacePeople_Policy_PostType' ) ) {
 		}
 
 		/**
-		 * Customize the bulk update messages for a people
+		 * Customize the bulk update messages for a policy
 		 *
 		 * @param array $bulk_messages Array of default bulk updated messages.
 		 * @param array $bulk_counts   Array containing count of posts involved in the action.
@@ -95,13 +95,13 @@ if ( ! class_exists( 'PacePeople_Policy_PostType' ) ) {
 		 */
 		function update_bulk_messages( $bulk_messages, $bulk_counts ) {
 
-			$bulk_messages[PACEPEOPLE_CPT_POLICY] = apply_filters( 'pacepeople_policy_posttype_bulk_update_messages',
+			$bulk_messages[FOOPEOPLE_CPT_POLICY] = apply_filters( 'FooPlugins\FooPeople\PostTypes\Policy\BulkMessages',
 				array(
-					'updated'   => _n( '%s '.PACEPEOPLE_SINGULAR_POLICY.' updated.', '%s People updated.', $bulk_counts['updated'], 'pacepeople' ),
-					'locked'    => _n( '%s '.PACEPEOPLE_SINGULAR_POLICY.' not updated, somebody is editing it.', '%s '.PACEPEOPLE_MULTIPLE_POLICY.' not updated, somebody is editing them.', $bulk_counts['locked'], 'pacepeople' ),
-					'deleted'   => _n( '%s '.PACEPEOPLE_SINGULAR_POLICY.' permanently deleted.', '%s '.PACEPEOPLE_MULTIPLE_POLICY.' permanently deleted.', $bulk_counts['deleted'], 'pacepeople' ),
-					'trashed'   => _n( '%s '.PACEPEOPLE_SINGULAR_POLICY.' moved to the Trash.', '%s '.PACEPEOPLE_MULTIPLE_POLICY.' moved to the Trash.', $bulk_counts['trashed'], 'pacepeople' ),
-					'untrashed' => _n( '%s '.PACEPEOPLE_SINGULAR_POLICY.' restored from the Trash.', '%s '.PACEPEOPLE_MULTIPLE_POLICY.' restored from the Trash.', $bulk_counts['untrashed'], 'pacepeople' ),
+					'updated'   => _n( '%s Policy updated.', '%s Policies updated.', $bulk_counts['updated'], 'foopeople' ),
+					'locked'    => _n( '%s Policy not updated, somebody is editing it.', '%s Policies not updated, somebody is editing them.', $bulk_counts['locked'], 'foopeople' ),
+					'deleted'   => _n( '%s Policy permanently deleted.', '%s Policies permanently deleted.', $bulk_counts['deleted'], 'foopeople' ),
+					'trashed'   => _n( '%s Policy moved to the Trash.', '%s Policies moved to the Trash.', $bulk_counts['trashed'], 'foopeople' ),
+					'untrashed' => _n( '%s Policy restored from the Trash.', '%s Policies restored from the Trash.', $bulk_counts['untrashed'], 'foopeople' ),
 				)
 			);
 
