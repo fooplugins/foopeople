@@ -1,0 +1,208 @@
+.pacepeople-settings {
+  &:after {
+	display: table;
+	content: "";
+	clear: both;
+  }
+} 
+
+.pacepeople-vertical-tabs {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 150px;
+  background-color: #fafafa;
+  border-right: solid 1px #eee;
+}
+
+.pacepeople-vertical-tab {
+  margin: 0;
+  padding: 10px;
+  display: block;
+  box-shadow: none;
+  text-decoration: none;
+  line-height: 20px;
+  border-bottom: 1px solid #eee;
+  color: #0073aa;
+  cursor: pointer;
+  &:hover {
+	color: #00a0d2;
+  }
+  &.pacepeople-tab-active {
+	color: #555;
+	background-color: #eee;
+  }
+  .dashicons {
+	$box: 20px;
+	font-weight: 400;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	margin-right: .618em;
+	font-size: $box;
+	width: $box;
+	height: $box;
+	vertical-align: middle;
+	margin-bottom: 4px;
+  }
+}
+
+.pacepeople-tab-contents {
+  display: block;
+  float: right;
+  width: calc(100% - 150px);
+  background-color: #FFF;
+  min-height: 400px;
+}
+
+.pacepeople-tab-content {
+  display: none;
+	&.pacepeople-tab-active {
+		display: block;
+	} 
+
+	// Taxonomy content boxes
+	.categorydiv {
+		padding: 0 10px;
+	}
+}
+
+// Padding for the portrait box in a tab content box
+.pacepeople-tab-content[data-name="_pacepeople_person_details-portrait"] {
+	padding: 10px 20px;
+
+	.postbox {
+		border: none;
+		min-width: 0;
+		box-shadow: none;
+	}
+
+	.hndle, .handlediv {
+		display: none;
+	}
+
+
+}
+
+
+@media only screen and (max-width: 900px) {
+  .pacepeople-vertical-tabs {
+	width: 50px;
+  }
+  .pacepeople-vertical-tab {
+	text-align: center;
+	.dashicons {
+	  margin-right: 0;
+	}
+  }
+  .pacepeople-tab-text {
+	display: none;
+  }
+  .pacepeople-tab-contents {
+	width: calc(100% - 50px);
+  }
+}
+
+.pacepeople-metabox-settings {
+  width: 100%;
+
+  tr {
+	border-bottom: solid 1px #EEE;
+  }
+}
+
+.pacepeople_metabox_field {
+  td {
+	width: 80%;
+	padding: 10px;
+  }
+  th {
+	width: 20%;
+	padding: 10px;
+	vertical-align: top;
+	text-align: left;
+  }
+  input[type="text"], input[type="password"], input[type="number"], input[type="search"], input[type="email"], input[type="url"], select {
+	width: 100%;
+	padding: 3px 5px;
+	resize: none;
+  }
+  textarea {
+	width: 100%;
+	min-height: 100px;
+  }
+  &.pacepeople_metabox_field_type-help {
+	border-bottom: none;
+	td {
+	  padding-bottom: 0;
+	}
+  }
+  &.pacepeople_metabox_field_type-icon td {
+	padding-bottom: 0;
+  }
+}
+
+.pacepeople_metabox_field-icon {
+  label {
+	display: inline-block;
+	margin-right: 10px;
+	border: solid 3px transparent;
+	background: #aaa;
+	border-radius: 3px;
+	padding: 5px;
+	line-height: 0;
+	margin-bottom: 10px;
+  }
+  input:checked + label {
+	border: solid 3px #444;
+	background: #888;
+  }
+  label:hover {
+	border: solid 3px #444;
+  }
+}
+
+.pacepeople_metabox_field.pacepeople_metabox_field_type-htmlicon td {
+  padding-bottom: 0;
+}
+
+.pacepeople_metabox_field-htmlicon {
+  label {
+	display: inline-block;
+	margin-right: 10px;
+	border: solid 3px transparent;
+	background: #aaa;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	padding: 5px;
+	line-height: 0;
+	margin-bottom: 10px;
+  }
+  input:checked + label {
+	border: solid 3px #444;
+	background: #888;
+  }
+  label:hover {
+	border: solid 3px #444;
+  }
+}
+
+.pacepeople_metabox_field-thumb_size {
+  label {
+	vertical-align: baseline;
+  }
+  input[type="number"] {
+	margin-right: 10px;
+	margin-left: 10px;
+  }
+}
+
+.pacepeople_metabox_field_type-text input.small-text {
+  width: 65px;
+  height: 28px;
+  line-height: 1;
+}

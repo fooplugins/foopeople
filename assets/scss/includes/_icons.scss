@@ -1,0 +1,132 @@
+$icomoon-font-path: "../icons" !default;
+
+$ppl_icon-close-thin: "\e90f";
+$ppl_icon-close-thick: "\e90e";
+$ppl_icon-minus-circle: "\e90c";
+$ppl_icon-minus: "\e90d";
+$ppl_icon-plus-circle: "\e900";
+$ppl_icon-plus: "\e901";
+$ppl_icon-phone: "\e902";
+$ppl_icon-sitemap: "\e903";
+$ppl_icon-map-marker: "\e904";
+$ppl_icon-group: "\e905";
+$ppl_icon-user: "\e906";
+$ppl_icon-tags: "\e907";
+$ppl_icon-tag: "\e908";
+$ppl_icon-envelope-o: "\e909";
+$ppl_icon-envelope-open: "\e90a";
+$ppl_icon-envelope: "\e90b";
+
+@font-face {
+  font-family: 'pacepeople';
+  src:
+    url('#{$icomoon-font-path}/pacepeople.ttf?s79s01') format('truetype'),
+    url('#{$icomoon-font-path}/pacepeople.woff?s79s01') format('woff'),
+    url('#{$icomoon-font-path}/pacepeople.svg?s79s01#pacepeople') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin icon() {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'pacepeople' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  font-size: 17px;
+  display: inline-block;
+  vertical-align: top;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="ppl_icon-"], [class*=" ppl_icon-"] {
+  @include icon(); 
+}
+
+.ppl_icon-close-thin {
+  &:before {
+    content: $ppl_icon-close-thin; 
+  }
+}
+.ppl_icon-close-thick {
+  &:before {
+    content: $ppl_icon-close-thick; 
+  }
+}
+.ppl_icon-minus-circle {
+  &:before {
+    content: $ppl_icon-minus-circle; 
+  }
+}
+.ppl_icon-minus {
+  &:before {
+    content: $ppl_icon-minus; 
+  }
+}
+.ppl_icon-plus-circle {
+  &:before {
+    content: $ppl_icon-plus-circle; 
+  }
+}
+.ppl_icon-plus {
+  &:before {
+    content: $ppl_icon-plus; 
+  }
+}
+.ppl_icon-phone {
+  &:before {
+    content: $ppl_icon-phone; 
+  }
+}
+.ppl_icon-sitemap {
+  &:before {
+    content: $ppl_icon-sitemap; 
+  }
+}
+.ppl_icon-map-marker {
+  &:before {
+    content: $ppl_icon-map-marker; 
+  }
+}
+.ppl_icon-group {
+  &:before {
+    content: $ppl_icon-group; 
+  }
+}
+.ppl_icon-user {
+  &:before {
+    content: $ppl_icon-user; 
+  }
+}
+.ppl_icon-tags {
+  &:before {
+    content: $ppl_icon-tags; 
+  }
+}
+.ppl_icon-tag {
+  &:before {
+    content: $ppl_icon-tag; 
+  }
+}
+.ppl_icon-envelope-o {
+  &:before {
+    content: $ppl_icon-envelope-o; 
+  }
+}
+.ppl_icon-envelope-open {
+  &:before {
+    content: $ppl_icon-envelope-open; 
+  }
+}
+.ppl_icon-envelope {
+  &:before {
+    content: $ppl_icon-envelope; 
+  }
+}
+
