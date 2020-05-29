@@ -1,9 +1,9 @@
 // Hide the default title meta box
 #titlediv,
 // Hide the taxonomy boxes. We move these into the vertical tabs system via JS
-#pacepeople_departmentdiv,
-#pacepeople_skilldiv,
-#pacepeople_locationdiv ,
+#foopeople-teamdiv,
+#foopeople-skilldiv,
+#foopeople-locationdiv ,
 #side-sortables #postimagediv
 {
 	display: none;
@@ -18,7 +18,7 @@
 
 	.ppl__card_details,
 	.ppl__card_portrait_wrapper {
-		transition: 500ms linear all;	
+		transition: 500ms linear all;
 	}
 
 	.ppl__card_portrait_wrapper {

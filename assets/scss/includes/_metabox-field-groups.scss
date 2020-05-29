@@ -1,12 +1,12 @@
-.pacepeople-settings {
+.foopeople-settings {
   &:after {
 	display: table;
 	content: "";
 	clear: both;
   }
-} 
+}
 
-.pacepeople-vertical-tabs {
+.foopeople-vertical-tabs {
   display: block;
   position: absolute;
   top: 0;
@@ -17,7 +17,7 @@
   border-right: solid 1px #eee;
 }
 
-.pacepeople-vertical-tab {
+.foopeople-vertical-tab {
   margin: 0;
   padding: 10px;
   display: block;
@@ -30,7 +30,7 @@
   &:hover {
 	color: #00a0d2;
   }
-  &.pacepeople-tab-active {
+  &.foopeople-tab-active {
 	color: #555;
 	background-color: #eee;
   }
@@ -50,7 +50,7 @@
   }
 }
 
-.pacepeople-tab-contents {
+.foopeople-tab-contents {
   display: block;
   float: right;
   width: calc(100% - 150px);
@@ -58,11 +58,11 @@
   min-height: 400px;
 }
 
-.pacepeople-tab-content {
+.foopeople-tab-content {
   display: none;
-	&.pacepeople-tab-active {
+	&.foopeople-tab-active {
 		display: block;
-	} 
+	}
 
 	// Taxonomy content boxes
 	.categorydiv {
@@ -71,7 +71,7 @@
 }
 
 // Padding for the portrait box in a tab content box
-.pacepeople-tab-content[data-name="_pacepeople_person_details-portrait"] {
+.foopeople-tab-content[data-name="_foopeople_person_details-portrait"] {
 	padding: 10px 20px;
 
 	.postbox {
@@ -89,24 +89,24 @@
 
 
 @media only screen and (max-width: 900px) {
-  .pacepeople-vertical-tabs {
+  .foopeople-vertical-tabs {
 	width: 50px;
   }
-  .pacepeople-vertical-tab {
+  .foopeople-vertical-tab {
 	text-align: center;
 	.dashicons {
 	  margin-right: 0;
 	}
   }
-  .pacepeople-tab-text {
+  .foopeople-tab-text {
 	display: none;
   }
-  .pacepeople-tab-contents {
+  .foopeople-tab-contents {
 	width: calc(100% - 50px);
   }
 }
 
-.pacepeople-metabox-settings {
+.foopeople-metabox-settings {
   width: 100%;
 
   tr {
@@ -114,7 +114,7 @@
   }
 }
 
-.pacepeople_metabox_field {
+.foopeople_metabox_field {
   td {
 	width: 80%;
 	padding: 10px;
@@ -134,18 +134,18 @@
 	width: 100%;
 	min-height: 100px;
   }
-  &.pacepeople_metabox_field_type-help {
+  &.foopeople_metabox_field_type-help {
 	border-bottom: none;
 	td {
 	  padding-bottom: 0;
 	}
   }
-  &.pacepeople_metabox_field_type-icon td {
+  &.foopeople_metabox_field_type-icon td {
 	padding-bottom: 0;
   }
 }
 
-.pacepeople_metabox_field-icon {
+.foopeople_metabox_field-icon {
   label {
 	display: inline-block;
 	margin-right: 10px;
@@ -165,11 +165,11 @@
   }
 }
 
-.pacepeople_metabox_field.pacepeople_metabox_field_type-htmlicon td {
+.foopeople_metabox_field.foopeople_metabox_field_type-htmlicon td {
   padding-bottom: 0;
 }
 
-.pacepeople_metabox_field-htmlicon {
+.foopeople_metabox_field-htmlicon {
   label {
 	display: inline-block;
 	margin-right: 10px;
@@ -191,7 +191,7 @@
   }
 }
 
-.pacepeople_metabox_field-thumb_size {
+.foopeople_metabox_field-thumb_size {
   label {
 	vertical-align: baseline;
   }
@@ -201,7 +201,7 @@
   }
 }
 
-.pacepeople_metabox_field_type-text input.small-text {
+.foopeople_metabox_field_type-text input.small-text {
   width: 65px;
   height: 28px;
   line-height: 1;

@@ -7,7 +7,6 @@ $skills = $person->skills();
 ?>
 <li class="ppl__listing-item" data-search="<?php echo $person->search_index; ?>">
 
-	<!-- <header class="ppl__card_header" style="background-image: url('http://127.0.0.1/pace-people/wp-content/plugins/pace-people/images/cover-photo-01.jpg')"></header> -->
 	<header class="ppl__card_header"></header>
 
 	<figure class="ppl__card_portrait_wrapper">

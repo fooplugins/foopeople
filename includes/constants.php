@@ -22,9 +22,9 @@ define ( 'FOOPEOPLE_CT_SKILL', 'foopeople-skill' );
 // Default person portrait image
 define( 'FOOPEOPLE_PORTRAIT_DEFAULT', 'http://gravatar.com/avatar/?d=mm&s=250' );
 
-// META details
-define( 'FOOPEOPLE_PERSON_META_DETAILS', '_pacepeople_person_details' );
-define( 'FOOPEOPLE_PERSON_META_SEARCH', '_pacepeople_person_search' );
+// META details - Person details tabs in single person edit
+define( 'FOOPEOPLE_PERSON_META_DETAILS', '_foopeople_person_details' );
+define( 'FOOPEOPLE_PERSON_META_SEARCH', '_foopeople_person_search' );
 
 
 /**

@@ -1,38 +1,39 @@
-(function (PACEPEOPLE, $, undefined) {
+( function( FOOPEOPLE, $, undefined ) {
 
-	PACEPEOPLE.moveTaxonomyBoxes = function() {
+	FOOPEOPLE.moveTaxonomyBoxes = function() {
 		var taxonomyBoxes = {
-			teams: 			$("#taxonomy-pacepeople_department"),
-			skills: 		$("#taxonomy-pacepeople_skill"),
-			locations: 		$("#taxonomy-pacepeople_location")
+			teams: 			$( '#taxonomy-foopeople-team' ),
+			skills: 		$( '#taxonomy-foopeople-skill' ),
+			locations: 		$( '#taxonomy-foopeople-location' )
 		};
 
-		$.each(taxonomyBoxes, function(key, array) {
-			if (array[0] === '') return false;
-			$(array[0]).detach().appendTo('.pacepeople-tab-content[data-name="_pacepeople_person_details-' + key + '"]'); 
+		$.each( taxonomyBoxes, function( key, array ) {
+			if ( '' === array[0] ) return false;
+			$( array[0]).detach().appendTo( '.foopeople-tab-content[data-name="_foopeople_person_details-' + key + '"]' );
 		});
 	};
 
-	PACEPEOPLE.bindAdminEvents = function() {
-		$("#poststuff").on("click", ".pacepeople-vertical-tab", function (e) {
+	FOOPEOPLE.bindAdminEvents = function() {
+		$( '#poststuff' ).on( 'click', '.foopeople-vertical-tab', function( e ) {
+			var $this 		= $( this ),
+				$settings 	= $this.closest( '.foopeople-fields-container' ),
+				name 		= $this.data( 'name' );
+
 			e.preventDefault();
-			var $this 		= $(this), 
-				$settings 	= $this.closest(".pacepeople-fields-container"), 
-				name 		= $this.data("name");
 
-			$settings.find(".pacepeople-tab-active").removeClass("pacepeople-tab-active");
-			$settings.find('[data-name="' + name + '"]').addClass("pacepeople-tab-active");
+			$settings.find( '.foopeople-tab-active' ).removeClass( 'foopeople-tab-active' );
+			$settings.find( '[data-name="' + name + '"]' ).addClass( 'foopeople-tab-active' );
 		});
 	};
 
-	PACEPEOPLE.movePortraitBox = function() {
-		$('#postimagediv').detach().appendTo('.pacepeople-tab-content[data-name="_pacepeople_person_details-portrait"]'); 
-	}; 
+	FOOPEOPLE.movePortraitBox = function() {
+		$( '#postimagediv' ).detach().appendTo( '.foopeople-tab-content[data-name="_foopeople_person_details-portrait"]' );
+	};
 
-	$(function () { //wait for ready
-		PACEPEOPLE.moveTaxonomyBoxes();
-		PACEPEOPLE.movePortraitBox();
-		PACEPEOPLE.bindAdminEvents();
+	$( function() { //wait for ready
+		FOOPEOPLE.moveTaxonomyBoxes();
+		FOOPEOPLE.movePortraitBox();
+		FOOPEOPLE.bindAdminEvents();
 	});
 
-}(window.PACEPEOPLE = window.PACEPEOPLE || {}, jQuery));
+}( window.FOOPEOPLE = window.FOOPEOPLE || {}, jQuery ) );

@@ -3,13 +3,15 @@ module.exports = {
     browser: true,
     commonjs: true,
     es6: true,
-    node: true
+    node: true,
+    jquery : true
   },
   extends: ["eslint:recommended", "wordpress"],
   parserOptions: {
     sourceType: "module"
   },
   rules: {
+    "no-console": "off",
     indent: ["error", "tab"],
     "linebreak-style": ["error", "unix"],
     quotes: ["error", "single"],
