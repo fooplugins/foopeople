@@ -20,11 +20,11 @@ if ( ! class_exists( 'Person_Columns' ) ) {
 		 */
 		public function person_custom_columns( $columns ) {
 			if ( array_key_exists( 'title', $columns ) ) {
-				$columns['title'] = __( 'Full Name', 'pacepeople' );
+				$columns['title'] = __( 'Full Name', FOOPEOPLE_SLUG );
 			}
 
 			if ( array_key_exists( 'date', $columns ) ) {
-				$columns['date'] = __( 'Status', 'pacepeople' );
+				$columns['date'] = __( 'Status', FOOPEOPLE_SLUG );
 			}
 
 			return $columns;

@@ -18,7 +18,7 @@ if ( ! class_exists( 'PacePeople_Admin_Menu' ) ) {
 		 */
 		function register_menu_items() {
 			//we rely on the register_post_type call to add our main menu items
-			$parent_slug = pacepeople_admin_menu_parent_slug();
+			$parent_slug = foopeople_admin_menu_parent_slug();
 
 			//allow extensions to add their own menu items beforehand
 			do_action( 'pacepeople_admin_menu_before' );
@@ -27,8 +27,8 @@ if ( ! class_exists( 'PacePeople_Admin_Menu' ) ) {
 
 			add_submenu_page(
                 $parent_slug,
-                sprintf( __( '%s Settings', 'pacepeople' ), pacepeople_plugin_name() ),
-                __( 'Settings', 'pacepeople' ),
+                sprintf( __( '%s Settings', FOOPEOPLE_SLUG ), foopeople_plugin_name() ),
+                __( 'Settings', FOOPEOPLE_SLUG ),
                 $capability,
                 'pacepeople-settings',
                 array( $this, 'pacepeople_settings' )
@@ -36,8 +36,8 @@ if ( ! class_exists( 'PacePeople_Admin_Menu' ) ) {
 
 			add_submenu_page(
                 $parent_slug,
-                sprintf( __( '%s Help', 'pacepeople' ), pacepeople_plugin_name() ),
-                __( 'Help', 'pacepeople' ),
+                sprintf( __( '%s Help', FOOPEOPLE_SLUG ), foopeople_plugin_name() ),
+                __( 'Help', FOOPEOPLE_SLUG ),
                 $capability,
                 'pacepeople-help',
                 array( $this, 'pacepeople_help' )
@@ -46,8 +46,8 @@ if ( ! class_exists( 'PacePeople_Admin_Menu' ) ) {
 			if ( current_user_can( 'activate_plugins' ) ) {
 				add_submenu_page(
                     $parent_slug,
-                    sprintf( __( '%s System Information', 'pacepeople' ), pacepeople_plugin_name() ),
-                    __( 'System Info', 'pacepeople' ),
+                    sprintf( __( '%s System Information', FOOPEOPLE_SLUG ), foopeople_plugin_name() ),
+                    __( 'System Info', FOOPEOPLE_SLUG ),
                     $capability,
                     'pacepeople-systeminfo',
                     array( $this, 'pacepeople_systeminfo' )
@@ -77,13 +77,13 @@ if ( ! class_exists( 'PacePeople_Admin_Menu' ) ) {
 				do_action( 'pacepeople_settings_reset' );
 				?>
 				<div id="message" class="updated">
-					<p><strong><?php printf( __( '%s settings reset to defaults.', 'pacepeople' ), pacepeople_plugin_name() ); ?></strong></p>
+					<p><strong><?php printf( __( '%s settings reset to defaults.', FOOPEOPLE_SLUG ), foopeople_plugin_name() ); ?></strong></p>
 				</div>
 			<?php } else if ( isset($_GET['settings-updated']) ) {
 				do_action( 'pacepeople_settings_updated' );
 				?>
 				<div id="message" class="updated">
-					<p><strong><?php printf( __( '%s settings updated.', 'pacepeople' ), pacepeople_plugin_name() ); ?></strong></p>
+					<p><strong><?php printf( __( '%s settings updated.', FOOPEOPLE_SLUG ), foopeople_plugin_name() ); ?></strong></p>
 				</div>
 			<?php }
 

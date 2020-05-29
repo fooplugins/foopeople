@@ -48,7 +48,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person_Metaboxes' ) ) {
 		public function add_meta_boxes( $post ) {
 			add_meta_box(
 				FOOPEOPLE_CPT_PERSON . '_details',
-				__( 'Person Details', 'pacepeople' ),
+				__( 'Person Details', FOOPEOPLE_SLUG ),
 				array( $this, 'render_person_details_metabox' ),
 				FOOPEOPLE_CPT_PERSON,
 				'normal',
@@ -108,18 +108,18 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person_Metaboxes' ) ) {
 				wp_verify_nonce( $_POST[FOOPEOPLE_CPT_PERSON . '_nonce'], plugin_basename( FOOPEOPLE_FILE ) ) ) {
 				//if we get here, we are dealing with the person custom post type
 
-				do_action( PACEPEOPLE_ACTION_ADMIN_PERSON_BEFORE_SAVE, $post_id, $_POST );
+				do_action( FOOPEOPLE_ACTION_ADMIN_PERSON_BEFORE_SAVE, $post_id, $_POST );
 
 				//save the person details
-				$details = isset( $_POST[PACEPEOPLE_PERSON_META_DETAILS] ) ? $_POST[PACEPEOPLE_PERSON_META_DETAILS] : array();
-                update_post_meta( $post_id, PACEPEOPLE_PERSON_META_DETAILS, $details );
+				$details = isset( $_POST[FOOPEOPLE_PERSON_META_DETAILS] ) ? $_POST[FOOPEOPLE_PERSON_META_DETAILS] : array();
+                update_post_meta( $post_id, FOOPEOPLE_PERSON_META_DETAILS, $details );
 
                 //update the search index after a person is saved
                 $person = Person::get_by_id( $post_id );
                 $search_index = $person->build_search_index();
-                update_post_meta( $post_id, PACEPEOPLE_PERSON_META_SEARCH, $search_index );
+                update_post_meta( $post_id, FOOPEOPLE_PERSON_META_SEARCH, $search_index );
 
-				do_action( PACEPEOPLE_ACTION_ADMIN_PERSON_AFTER_SAVE, $post_id, $_POST );
+				do_action( FOOPEOPLE_ACTION_ADMIN_PERSON_AFTER_SAVE, $post_id, $_POST );
 			}
 		}
 
@@ -137,7 +137,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person_Metaboxes' ) ) {
                 do_action( 'pacepeople_start_attach_people_to_post', $post_id );
 
 				//Clear any pacepeople usages that the post might have
-				delete_post_meta( $post_id, PACEPEOPLE_META_POST_USAGE );
+				delete_post_meta( $post_id, FOOPEOPLE_META_POST_USAGE );
 
 				//get all pacepeople shortcodes that are on the page/post
 				$people_shortcodes = pacepeople_extract_people_shortcodes( $post->post_content );
@@ -146,7 +146,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person_Metaboxes' ) ) {
 
                     foreach ( $people_shortcodes as $id => $shortcode ) {
                         //if the content contains the pacepeople shortcode then add a custom field
-                        add_post_meta( $post_id, PACEPEOPLE_META_POST_USAGE, $id, false );
+                        add_post_meta( $post_id, FOOPEOPLE_META_POST_USAGE, $id, false );
 
                         do_action( 'pacepeople_attach_people_to_post', $post_id, $id );
                     }
@@ -164,7 +164,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person_Metaboxes' ) ) {
 				<input type="text" id="pacepeople-copy-shortcode" size="<?php echo strlen( $shortcode ) + 2; ?>" value="<?php echo htmlspecialchars( $shortcode ); ?>" readonly="readonly" />
 			</p>
 			<p>
-				<?php _e( 'Paste the above shortcode into a post or page to show the people.', 'pacepeople' ); ?>
+				<?php _e( 'Paste the above shortcode into a post or page to show the people.', FOOPEOPLE_SLUG ); ?>
 			</p>
 			<script>
 				jQuery(function($) {
@@ -177,7 +177,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person_Metaboxes' ) ) {
 							document.execCommand('copy');
 							//show the copied message
 							$('.pacepeople-shortcode-message').remove();
-							$(shortcodeInput).after('<p class="pacepeople-shortcode-message"><?php _e( 'Shortcode copied to clipboard :)','pacepeople' ); ?></p>');
+							$(shortcodeInput).after('<p class="pacepeople-shortcode-message"><?php _e( 'Shortcode copied to clipboard :)',FOOPEOPLE_SLUG ); ?></p>');
 						} catch(err) {
 							console.log('Oops, unable to copy!');
 						}
@@ -192,27 +192,27 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person_Metaboxes' ) ) {
 			$posts = $people->find_usages();
 			if ( $posts && count( $posts ) > 0 ) { ?>
 				<p>
-					<?php _e( 'This people is used on the following posts or pages:', 'pacepeople' ); ?>
+					<?php _e( 'This people is used on the following posts or pages:', FOOPEOPLE_SLUG ); ?>
 				</p>
 				<ul class="ul-disc">
 				<?php foreach ( $posts as $post ) {
 					$url = get_permalink( $post->ID );
 					echo '<li>' . $post->post_title . '&nbsp;';
-					edit_post_link( __( 'Edit', 'pacepeople' ), '<span class="edit">', ' | </span>', $post->ID );
-					echo '<span class="view"><a href="' . esc_url( $url ) . '" target="_blank">' . __( 'View', 'pacepeople' ) . '</a></li>';
+					edit_post_link( __( 'Edit', FOOPEOPLE_SLUG ), '<span class="edit">', ' | </span>', $post->ID );
+					echo '<span class="view"><a href="' . esc_url( $url ) . '" target="_blank">' . __( 'View', FOOPEOPLE_SLUG ) . '</a></li>';
 				} ?>
 				</ul>
 			<?php } else { ?>
 				<p>
-					<?php _e( 'This people is not used on any pages or pages yet. Quickly create a page:', 'pacepeople' ); ?>
+					<?php _e( 'This people is not used on any pages or pages yet. Quickly create a page:', FOOPEOPLE_SLUG ); ?>
 				</p>
 				<div class="pacepeople_metabox_actions">
-					<button class="button button-primary button-large" id="pacepeople_create_page"><?php _e( 'Create People Page', 'pacepeople' ); ?></button>
+					<button class="button button-primary button-large" id="pacepeople_create_page"><?php _e( 'Create People Page', FOOPEOPLE_SLUG ); ?></button>
 					<span id="pacepeople_create_page_spinner" class="spinner"></span>
 					<?php wp_nonce_field( 'pacepeople_create_people_page', 'pacepeople_create_people_page_nonce', false ); ?>
 				</div>
 				<p>
-					<?php _e( 'A draft page will be created which includes the people shortcode in the content. The title of the page will be the same title as the people.', 'pacepeople' ); ?>
+					<?php _e( 'A draft page will be created which includes the people shortcode in the content. The title of the page will be the same title as the people.', FOOPEOPLE_SLUG ); ?>
 				</p>
 			<?php }
 		}
@@ -225,7 +225,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person_Metaboxes' ) ) {
 			}
 			?>
 			<p>
-				<?php _e('Change the way images are sorted within your people. By default, they are sorted in the order you see them.', 'pacepeople'); ?>
+				<?php _e('Change the way images are sorted within your people. By default, they are sorted in the order you see them.', FOOPEOPLE_SLUG); ?>
 			</p>
 			<?php
 			foreach ( $sorting_options as $sorting_key => $sorting_label ) { ?>
@@ -235,7 +235,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person_Metaboxes' ) ) {
 				</p><?php
 			} ?>
 			<p class="pacepeople-help">
-				<?php _e('PLEASE NOTE : sorting randomly will force HTML Caching for the people to be disabled.', 'pacepeople'); ?>
+				<?php _e('PLEASE NOTE : sorting randomly will force HTML Caching for the people to be disabled.', FOOPEOPLE_SLUG); ?>
 			</p>
 			<?php
 		}
@@ -248,7 +248,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person_Metaboxes' ) ) {
 			}
 			?>
 			<p>
-				<?php _e('Add retina support to this people by choosing the different pixel densities you want to enable.', 'pacepeople'); ?>
+				<?php _e('Add retina support to this people by choosing the different pixel densities you want to enable.', FOOPEOPLE_SLUG); ?>
 			</p>
 			<?php
 			foreach ( $retina_options as $retina_key => $retina_label ) {
@@ -260,7 +260,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person_Metaboxes' ) ) {
 				</p><?php
 			} ?>
 			<p class="pacepeople-help">
-				<?php _e('PLEASE NOTE : thumbnails will be generated for each of the pixel densities chosen, which will increase your website\'s storage space!', 'pacepeople'); ?>
+				<?php _e('PLEASE NOTE : thumbnails will be generated for each of the pixel densities chosen, which will increase your website\'s storage space!', FOOPEOPLE_SLUG); ?>
 			</p>
 			<?php
 		}
@@ -270,16 +270,16 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person_Metaboxes' ) ) {
 			$force_use_original_thumbs = get_post_meta( $post->ID, PACEPEOPLE_META_FORCE_ORIGINAL_THUMBS, true );
 			$checked = 'true' === $force_use_original_thumbs; ?>
 			<p>
-				<?php _e( 'Clear all the previously cached thumbnails that have been generated for this people.', 'pacepeople' ); ?>
+				<?php _e( 'Clear all the previously cached thumbnails that have been generated for this people.', FOOPEOPLE_SLUG ); ?>
 			</p>
 			<div class="pacepeople_metabox_actions">
-				<button class="button button-primary button-large" id="pacepeople_clear_thumb_cache"><?php _e( 'Clear Thumbnail Cache', 'pacepeople' ); ?></button>
+				<button class="button button-primary button-large" id="pacepeople_clear_thumb_cache"><?php _e( 'Clear Thumbnail Cache', FOOPEOPLE_SLUG ); ?></button>
 				<span id="pacepeople_clear_thumb_cache_spinner" class="spinner"></span>
 				<?php wp_nonce_field( 'pacepeople_clear_people_thumb_cache', 'pacepeople_clear_people_thumb_cache_nonce', false ); ?>
 			</div>
 			<p>
 				<input type="checkbox" value="true" <?php checked( $checked ); ?> id="PacePeopleSettings_ForceOriginalThumbs" name="<?php echo PACEPEOPLE_META_FORCE_ORIGINAL_THUMBS; ?>" />
-				<label for="PacePeopleSettings_ForceOriginalThumbs"><?php _e('Force Original Thumbs', 'pacepeople'); ?></label>
+				<label for="PacePeopleSettings_ForceOriginalThumbs"><?php _e('Force Original Thumbs', FOOPEOPLE_SLUG); ?></label>
 			</p>
 			<?php
 		}
@@ -325,7 +325,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person_Metaboxes' ) ) {
 			$example = '<code>#pacepeople-people-' . $post->ID . ' { }</code>';
 			?>
 			<p>
-				<?php printf( __( 'Add any custom CSS to target this specific people. For example %s', 'pacepeople' ), $example ); ?>
+				<?php printf( __( 'Add any custom CSS to target this specific people. For example %s', FOOPEOPLE_SLUG ), $example ); ?>
 			</p>
 			<table id="table_styling" class="form-table">
 				<tbody>
@@ -378,7 +378,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person_Metaboxes' ) ) {
 
 				ob_end_clean();
 
-				echo __( 'The thumbnail cache has been cleared!', 'pacepeople' );
+				echo __( 'The thumbnail cache has been cleared!', FOOPEOPLE_SLUG );
 			}
 
 			die();
@@ -414,8 +414,8 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person_Metaboxes' ) ) {
 
 				} else {
 					echo '<div style="padding:20px 50px 50px 50px; text-align: center">';
-					echo '<h3>' . __( 'Preview not available!', 'pacepeople' ) . '</h3>';
-					echo __('Sorry, but this people template does not support live previews. Please update the people in order to see what the people will look like.', 'pacepeople' );
+					echo '<h3>' . __( 'Preview not available!', FOOPEOPLE_SLUG ) . '</h3>';
+					echo __('Sorry, but this people template does not support live previews. Please update the people in order to see what the people will look like.', FOOPEOPLE_SLUG );
 					echo '</div>';
 				}
 			}

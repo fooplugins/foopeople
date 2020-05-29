@@ -24,8 +24,8 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person' ) ) {
 				$this->name = $post->post_title;
 				$this->author = $post->post_author;
 				$this->post_status = $post->post_status;
-                $this->details = get_post_meta( $this->ID, PACEPEOPLE_PERSON_META_DETAILS, true );
-				$this->search_index = get_post_meta( $this->ID, PACEPEOPLE_PERSON_META_SEARCH, true );
+                $this->details = get_post_meta( $this->ID, FOOPEOPLE_PERSON_META_DETAILS, true );
+				$this->search_index = get_post_meta( $this->ID, FOOPEOPLE_PERSON_META_SEARCH, true );
                 $this->jobtitle = $this->get_details( 'jobtitle', '' );
 				$this->email = $this->get_details( 'email', '' );
 				$this->phonenumber = $this->get_details( 'phonenumber', '' );
@@ -56,58 +56,58 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person' ) ) {
         function get_details_field_group() {
 
             return array(
-                'slug'   => PACEPEOPLE_PERSON_META_DETAILS,
+                'slug'   => FOOPEOPLE_PERSON_META_DETAILS,
                 'container_id' => 'pacepeople_person_details',
                 'sections' => array(
                     array(
                         'slug'  => 'personal',
-                        'label' => __('Personal', 'pacepeople'),
+                        'label' => __('Personal', FOOPEOPLE_SLUG),
                         'icon' => 'dashicons-admin-users',
                         'fields' => array(
                             array(
                                 'id'       => 'firstname',
-                                'title'    => __( 'First Name', 'pacepeople' ),
+                                'title'    => __( 'First Name', FOOPEOPLE_SLUG ),
                                 'required' => true,
                                 'type'     => 'text',
                                 'default'  => '',
                                 'value'    => $this->get_details('firstname', ''),
                                 'row_data'=> array(
-                                    'placeholder' => __( 'The first name of the person.', 'pacepeople' ),
+                                    'placeholder' => __( 'The first name of the person.', FOOPEOPLE_SLUG ),
                                 )
                             ),
                             array(
                                 'id'       => 'surname',
-                                'title'    => __( 'Last Name', 'pacepeople' ),
+                                'title'    => __( 'Last Name', FOOPEOPLE_SLUG ),
                                 'required' => true,
                                 'type'     => 'text',
                                 'default'  => '',
                                 'value'    => $this->get_details('surname', ''),
                                 'row_data'=> array(
-                                    'placeholder' => __( 'The last name/surname/family name of the person.', 'pacepeople' ),
+                                    'placeholder' => __( 'The last name/surname/family name of the person.', FOOPEOPLE_SLUG ),
                                 )
                             ),
                             array(
                                 'id'       => 'preferred',
-                                'title'    => __( 'Preferred Name', 'pacepeople' ),
-                                'desc'	   => __( 'You can override the full name for the person. Leave blank to default the full name to be "First Name + Last Name".', 'pacepeople' ),
+                                'title'    => __( 'Preferred Name', FOOPEOPLE_SLUG ),
+                                'desc'	   => __( 'You can override the full name for the person. Leave blank to default the full name to be "First Name + Last Name".', FOOPEOPLE_SLUG ),
                                 'required' => false,
                                 'type'     => 'text',
                                 'default'  => '',
                                 'value'    => $this->get_details('preferred', ''),
                                 'row_data'=> array(
-                                    'placeholder' => __( 'You can override what the full name for the person will be. Leave blank', 'pacepeople' ),
+                                    'placeholder' => __( 'You can override what the full name for the person will be. Leave blank', FOOPEOPLE_SLUG ),
                                 )
                             ),
                             array(
                                 'id'       => 'jobtitle',
-                                'title'    => __( 'Job Title', 'pacepeople' ),
-                                'desc'	   => __( '', 'pacepeople' ),
+                                'title'    => __( 'Job Title', FOOPEOPLE_SLUG ),
+                                'desc'	   => __( '', FOOPEOPLE_SLUG ),
                                 'required' => true,
                                 'type'     => 'text',
                                 'default'  => '',
                                 'value'    => $this->get_details('jobtitle', ''),
                                 'row_data'=> array(
-                                    'placeholder' => __( 'Job title', 'pacepeople' ),
+                                    'placeholder' => __( 'Job title', FOOPEOPLE_SLUG ),
                                 )
                             )
 
@@ -115,18 +115,18 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person' ) ) {
 					),
 					array(
                         'slug'  => 'portrait',
-                        'label' => __('Portrait', 'pacepeople'),
+                        'label' => __('Portrait', FOOPEOPLE_SLUG),
                         'icon' => 'dashicons-format-image',
                         'fields' => array()
                     ),
                     array(
                         'slug'  => 'contact',
-                        'label' => __('Contact', 'pacepeople'),
+                        'label' => __('Contact', FOOPEOPLE_SLUG),
                         'icon' => 'dashicons-phone',
                         'fields' => array(
                             array(
                                 'id'       => 'email',
-                                'title'    => __( 'Email', 'pacepeople' ),
+                                'title'    => __( 'Email', FOOPEOPLE_SLUG ),
                                 'required' => true,
                                 'type'     => 'text',
                                 'default'  => '',
@@ -134,7 +134,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person' ) ) {
                             ),
                             array(
                                 'id'       => 'phonenumber',
-                                'title'    => __( 'Phone Number', 'pacepeople' ),
+                                'title'    => __( 'Phone Number', FOOPEOPLE_SLUG ),
                                 'required' => true,
                                 'type'     => 'text',
                                 'default'  => '',
@@ -144,19 +144,19 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person' ) ) {
                     ),
                     array(
                         'slug'  => 'teams',
-                        'label' => __('Teams', 'pacepeople'),
+                        'label' => __('Teams', FOOPEOPLE_SLUG),
                         'icon' => 'dashicons-groups',
                         'fields' => array()
                     ),
                     array(
                         'slug'  => 'skills',
-                        'label' => __('Skills', 'pacepeople'),
+                        'label' => __('Skills', FOOPEOPLE_SLUG),
                         'icon' => 'dashicons-tag',
                         'fields' => array()
                     ),
                     array(
                         'slug'  => 'locations',
-                        'label' => __('Locations', 'pacepeople'),
+                        'label' => __('Locations', FOOPEOPLE_SLUG),
                         'icon' => 'dashicons-admin-site',
                         'fields' => array()
                     )

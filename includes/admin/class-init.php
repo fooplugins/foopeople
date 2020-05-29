@@ -35,9 +35,9 @@ if ( !class_exists( 'FooPlugins\FooPeople\Admin\Init' ) ) {
 		}
 
 		function admin_print_styles() {
-			// $page       = safe_get_from_request( 'page' );
-			// $pacepeople = PacePeople_Plugin::get_instance();
-			// $pacepeople->register_and_enqueue_css( 'admin-page-' . $page . '.css' );
+			$page       = safe_get_from_request( 'page' );
+			$foopeople = FOOPEOPLE_NAMESPACE::get_instance();
+			$foopeople->register_and_enqueue_css( 'admin-page-' . $page . '.css' );
 		}
 
 		function admin_print_scripts() {
@@ -53,9 +53,9 @@ if ( !class_exists( 'FooPlugins\FooPeople\Admin\Init' ) ) {
 		 */
 		function plugin_listing_links( $links ) {
 			// Add a 'Settings' link to the plugin listing
-			$links[] = '<a href="' . esc_url( pacepeople_admin_settings_url() ) . '"><b>' . __( 'Settings', 'pacepeople' ) . '</b></a>';
+			$links[] = '<a href="' . esc_url( pacepeople_admin_settings_url() ) . '"><b>' . __( 'Settings', FOOPEOPLE_SLUG ) . '</b></a>';
 
-			$links[] = '<a href="' . esc_url( pacepeople_admin_help_url() ) . '"><b>' . __( 'Help', 'pacepeople' ) . '</b></a>';
+			$links[] = '<a href="' . esc_url( pacepeople_admin_help_url() ) . '"><b>' . __( 'Help', FOOPEOPLE_SLUG ) . '</b></a>';
 
 			return $links;
 		}

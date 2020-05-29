@@ -114,7 +114,7 @@ if ( ! class_exists( 'PacePeople_MetaBox_Fields_Helper' ) ) {
 					continue; //skip help if the 'hide help' setting is turned on
 				}
 
-				$section_name = isset($field['section']) ? $field['section'] : __( 'General', 'pacepeople' );
+				$section_name = isset($field['section']) ? $field['section'] : __( 'General', FOOPEOPLE_SLUG );
 
 				$section_slug = strtolower( $section_name );
 

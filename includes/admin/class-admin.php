@@ -57,9 +57,9 @@ if ( ! class_exists( 'PacePeople_Admin' ) ) {
 		 */
 		function plugin_listing_links( $links ) {
 			// Add a 'Settings' link to the plugin listing
-			$links[] = '<a href="' . esc_url( pacepeople_admin_settings_url() ) . '"><b>' . __( 'Settings', 'pacepeople' ) . '</b></a>';
+			$links[] = '<a href="' . esc_url( pacepeople_admin_settings_url() ) . '"><b>' . __( 'Settings', FOOPEOPLE_SLUG ) . '</b></a>';
 
-			$links[] = '<a href="' . esc_url( pacepeople_admin_help_url() ) . '"><b>' . __( 'Help', 'pacepeople' ) . '</b></a>';
+			$links[] = '<a href="' . esc_url( pacepeople_admin_help_url() ) . '"><b>' . __( 'Help', FOOPEOPLE_SLUG ) . '</b></a>';
 
 			return $links;
 		}
