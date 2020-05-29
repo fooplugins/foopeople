@@ -1,4 +1,4 @@
-<?php 
+<?php
 if ( ! class_exists( 'PacePeople_Protoyping' ) ) {
 
 	/**
@@ -11,13 +11,13 @@ if ( ! class_exists( 'PacePeople_Protoyping' ) ) {
 		}
 
 		function load_person_single_template($template) {
-			global $wp_query, $post;			
-			if ($post->post_type == PACEPEOPLE_CPT_PERSON && $template !== locate_template(array("person-single.php"))){
+			global $wp_query, $post;
+			if ($post->post_type == FOOPEOPLE_CPT_PERSON && $template !== locate_template(array("person-single.php"))){
 				return plugin_dir_path( __FILE__ ) .  "../templates/person-single.php";
 			}
 			return $template;
 		}
 
-		
+
 	}
 }

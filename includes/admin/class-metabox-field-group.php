@@ -1,8 +1,10 @@
 <?php
 
-if ( ! class_exists( 'PacePeople_MetaBox_Field_Group' ) ) {
+namespace FooPlugins\FooPeople\Admin;
 
-    class PacePeople_MetaBox_Field_Group {
+if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metabox_Field_Group' ) ) {
+
+    class Metabox_Field_Group {
 
     	static function render_field_group( $field_group ) {
 			?>
@@ -75,7 +77,7 @@ if ( ! class_exists( 'PacePeople_MetaBox_Field_Group' ) ) {
 								<?php } ?>
 							</th>
 							<td>
-								<?php PacePeople_MetaBox_Field::render( $field, $group_name ); ?>
+								<?php Metabox_Field::render( $field, $group_name ); ?>
 							</td>
 						<?php } ?>
 					</tr>
@@ -90,8 +92,8 @@ if ( ! class_exists( 'PacePeople_MetaBox_Field_Group' ) ) {
          */
         static function enqueue_assets(){
 			// Register, enqueue scripts and styles here
-			wp_enqueue_script( 'pacepeople-metabox-field-groups', PACEPEOPLE_URL . 'js/metabox-field-groups.min.js', array('jquery'), PACEPEOPLE_VERSION );
-			wp_enqueue_style( 'pacepeople-metabox-field-groups', PACEPEOPLE_URL . 'css/metabox-field-groups.min.css', array(), PACEPEOPLE_VERSION );
+			wp_enqueue_script( 'pacepeople-metabox-field-groups', FOOPEOPLE_URL . 'js/metabox-field-groups.min.js', array('jquery'), FOOPEOPLE_VERSION );
+			wp_enqueue_style( 'pacepeople-metabox-field-groups', FOOPEOPLE_URL . 'css/metabox-field-groups.min.css', array(), FOOPEOPLE_VERSION );
         }
 
         static function extract_data_from_post( $field_group, $form_data ) {

@@ -1,8 +1,10 @@
 <?php
 
-if ( ! class_exists( 'PacePeople_MetaBox_Field' ) ) {
+namespace FooPlugins\FooPeople\Admin;
 
-	class PacePeople_MetaBox_Field {
+if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metabox_Field' ) ) {
+
+	class Metabox_Field {
 
 		/**
 		 * Renders a metabox field

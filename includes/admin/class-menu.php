@@ -92,11 +92,11 @@ if ( ! class_exists( 'PacePeople_Admin_Menu' ) ) {
 		}
 
 		function pacepeople_help() {
-			require_once PACEPEOPLE_PATH . 'includes/admin/view-help.php';
+			require_once FOOPEOPLE_PATH . 'includes/admin/view-help.php';
 		}
 
 		function pacepeople_systeminfo() {
-			require_once PACEPEOPLE_PATH . 'includes/admin/view-system-info.php';
+			require_once FOOPEOPLE_PATH . 'includes/admin/view-system-info.php';
 		}
 	}
 }

@@ -17,7 +17,7 @@ $show_tabs = apply_filters( 'pacepeople_admin_help_show_tabs', true );
 		position: absolute;
 		top: 15px;
 		right: 0;
-		background:url(<?php echo PACEPEOPLE_URL; ?>assets/logo.png) no-repeat;
+		background:url(<?php echo FOOPEOPLE_URL; ?>assets/logo.png) no-repeat;
 		width:200px;
 		height:200px;
 	}
@@ -60,7 +60,7 @@ $show_tabs = apply_filters( 'pacepeople_admin_help_show_tabs', true );
 
 		<div class="feature-section">
 
-			<img src="<?php echo PACEPEOPLE_URL . 'assets/screenshots/admin-edit-people.jpg'; ?>" class="pacepeople-help-screenshot"/>
+			<img src="<?php echo FOOPEOPLE_URL . 'assets/screenshots/admin-edit-people.jpg'; ?>" class="pacepeople-help-screenshot"/>
 
 			<h2><?php _e( 'Creating Your First People', 'pacepeople' );?></h2>
 
@@ -83,7 +83,7 @@ $show_tabs = apply_filters( 'pacepeople_admin_help_show_tabs', true );
 	<div class="changelog">
 
 		<div class="feature-section">
-			<img src="<?php echo PACEPEOPLE_URL . 'assets/screenshots/admin-insert-shortcode.jpg'; ?>" class="pacepeople-help-screenshot"/>
+			<img src="<?php echo FOOPEOPLE_URL . 'assets/screenshots/admin-insert-shortcode.jpg'; ?>" class="pacepeople-help-screenshot"/>
 
 			<h2><?php _e( 'Show Off Your People', 'pacepeople' );?></h2>
 

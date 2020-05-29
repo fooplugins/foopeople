@@ -1,16 +1,17 @@
 <?php
+namespace FooPlugins\FooPeople\Admin;
 
 /*
  * PacePeople Admin People MetaBoxes class
  */
 
-if ( ! class_exists( 'PacePeople_Person_MetaBoxes' ) ) {
+if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person_Metaboxes' ) ) {
 
-	class PacePeople_Person_MetaBoxes {
+	class Person_Metaboxes {
 
 		public function __construct() {
 			//add the metaboxes for a person
-			add_action( 'add_meta_boxes_' . PACEPEOPLE_CPT_PERSON, array( $this, 'add_meta_boxes' ) );
+			add_action( 'add_meta_boxes_' . FOOPEOPLE_CPT_PERSON, array( $this, 'add_meta_boxes' ) );
 
 			//enqueue assets needed for field groups
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
@@ -46,10 +47,10 @@ if ( ! class_exists( 'PacePeople_Person_MetaBoxes' ) ) {
 		 */
 		public function add_meta_boxes( $post ) {
 			add_meta_box(
-				PACEPEOPLE_CPT_PERSON . '_details',
+				FOOPEOPLE_CPT_PERSON . '_details',
 				__( 'Person Details', 'pacepeople' ),
 				array( $this, 'render_person_details_metabox' ),
-				PACEPEOPLE_CPT_PERSON,
+				FOOPEOPLE_CPT_PERSON,
 				'normal',
 				'high'
 			);
@@ -61,17 +62,17 @@ if ( ! class_exists( 'PacePeople_Person_MetaBoxes' ) ) {
 		 */
 		public function render_person_details_metabox( $post ) {
 			//get the person object
-			$person = new PacePeople_Person( $post );
+			$person = new Person( $post );
 
 			//build up the fields using the person instance
 			$field_group = $person->get_details_field_group();
 
-			PacePeople_MetaBox_Field_Group::render_field_group( $field_group );
+			Metabox_Field_Group::render_field_group( $field_group );
 
 			?>
-            <input type="hidden" name="<?php echo PACEPEOPLE_CPT_PERSON; ?>_nonce"
-                   id="<?php echo PACEPEOPLE_CPT_PERSON; ?>_nonce"
-                   value="<?php echo wp_create_nonce( plugin_basename( PACEPEOPLE_FILE ) ); ?>"/>
+            <input type="hidden" name="<?php echo FOOPEOPLE_CPT_PERSON; ?>_nonce"
+                   id="<?php echo FOOPEOPLE_CPT_PERSON; ?>_nonce"
+                   value="<?php echo wp_create_nonce( plugin_basename( FOOPEOPLE_FILE ) ); ?>"/>
             <?php
 		}
 
@@ -83,8 +84,8 @@ if ( ! class_exists( 'PacePeople_Person_MetaBoxes' ) ) {
 			if( in_array( $hook_suffix, array( 'post.php', 'post-new.php' ) ) ) {
 				$screen = get_current_screen();
 
-				if ( is_object( $screen ) && PACEPEOPLE_CPT_PERSON == $screen->post_type ){
-					PacePeople_MetaBox_Field_Group::enqueue_assets();
+				if ( is_object( $screen ) && FOOPEOPLE_CPT_PERSON == $screen->post_type ){
+					Metabox_Field_Group::enqueue_assets();
 				}
 			}
 		}
@@ -103,8 +104,8 @@ if ( ! class_exists( 'PacePeople_Person_MetaBoxes' ) ) {
 			}
 
 			// verify nonce
-			if ( array_key_exists( PACEPEOPLE_CPT_PERSON . '_nonce', $_POST ) &&
-				wp_verify_nonce( $_POST[PACEPEOPLE_CPT_PERSON . '_nonce'], plugin_basename( PACEPEOPLE_FILE ) ) ) {
+			if ( array_key_exists( FOOPEOPLE_CPT_PERSON . '_nonce', $_POST ) &&
+				wp_verify_nonce( $_POST[FOOPEOPLE_CPT_PERSON . '_nonce'], plugin_basename( FOOPEOPLE_FILE ) ) ) {
 				//if we get here, we are dealing with the person custom post type
 
 				do_action( PACEPEOPLE_ACTION_ADMIN_PERSON_BEFORE_SAVE, $post_id, $_POST );
@@ -114,7 +115,7 @@ if ( ! class_exists( 'PacePeople_Person_MetaBoxes' ) ) {
                 update_post_meta( $post_id, PACEPEOPLE_PERSON_META_DETAILS, $details );
 
                 //update the search index after a person is saved
-                $person = PacePeople_Person::get_by_id( $post_id );
+                $person = Person::get_by_id( $post_id );
                 $search_index = $person->build_search_index();
                 update_post_meta( $post_id, PACEPEOPLE_PERSON_META_SEARCH, $search_index );
 
@@ -287,8 +288,8 @@ if ( ! class_exists( 'PacePeople_Person_MetaBoxes' ) ) {
 			$screen_id = foo_current_screen_id();
 
 			//only include scripts if we on the pacepeople add/edit page
-			if ( PACEPEOPLE_CPT_PERSON === $screen_id ||
-			     'edit-' . PACEPEOPLE_CPT_PERSON === $screen_id ) {
+			if ( FOOPEOPLE_CPT_PERSON === $screen_id ||
+			     'edit-' . FOOPEOPLE_CPT_PERSON === $screen_id ) {
 
 				//enqueue any dependencies from extensions or people templates
 				do_action( 'pacepeople_enqueue_preview_dependencies' );
@@ -297,10 +298,10 @@ if ( ! class_exists( 'PacePeople_Person_MetaBoxes' ) ) {
 				pacepeople_enqueue_core_people_template_script();
 
 				//spectrum needed for the colorpicker field
-				$url = PACEPEOPLE_URL . 'lib/spectrum/spectrum.js';
-				wp_enqueue_script( 'pacepeople-spectrum', $url, array('jquery'), PACEPEOPLE_VERSION );
-				$url = PACEPEOPLE_URL . 'lib/spectrum/spectrum.css';
-				wp_enqueue_style( 'pacepeople-spectrum', $url, array(), PACEPEOPLE_VERSION );
+				$url = FOOPEOPLE_URL . 'lib/spectrum/spectrum.js';
+				wp_enqueue_script( 'pacepeople-spectrum', $url, array('jquery'), FOOPEOPLE_VERSION );
+				$url = FOOPEOPLE_URL . 'lib/spectrum/spectrum.css';
+				wp_enqueue_style( 'pacepeople-spectrum', $url, array(), FOOPEOPLE_VERSION );
 
 				//include any admin js required for the templates
 				foreach ( pacepeople_people_templates() as $template ) {
@@ -308,11 +309,11 @@ if ( ! class_exists( 'PacePeople_Person_MetaBoxes' ) ) {
 					if ( is_array( $admin_js ) ) {
 						//dealing with an array of js files to include
 						foreach( $admin_js as $admin_js_key => $admin_js_src ) {
-							wp_enqueue_script( 'pacepeople-people-admin-' . $template['slug'] . '-' . $admin_js_key, $admin_js_src, array('jquery', 'media-upload', 'jquery-ui-sortable'), PACEPEOPLE_VERSION );
+							wp_enqueue_script( 'pacepeople-people-admin-' . $template['slug'] . '-' . $admin_js_key, $admin_js_src, array('jquery', 'media-upload', 'jquery-ui-sortable'), FOOPEOPLE_VERSION );
 						}
 					} else {
 						//dealing with a single js file to include
-						wp_enqueue_script( 'pacepeople-people-admin-' . $template['slug'], $admin_js, array('jquery', 'media-upload', 'jquery-ui-sortable'), PACEPEOPLE_VERSION );
+						wp_enqueue_script( 'pacepeople-people-admin-' . $template['slug'], $admin_js, array('jquery', 'media-upload', 'jquery-ui-sortable'), FOOPEOPLE_VERSION );
 					}
 				}
 			}

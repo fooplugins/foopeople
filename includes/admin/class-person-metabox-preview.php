@@ -1,11 +1,13 @@
 <?php
+namespace FooPlugins\FooPeople\Admin;
+
 /**
  * Created by Andyf
  * Date: 26/12/2017
  *
  */
-if( ! class_exists( 'PacePeople_Admin_People_MetaBox_Preview' ) ) {
- 	class PacePeople_Admin_People_MetaBox_Preview {
+if( ! class_exists( 'Person_Metabox_Preview' ) ) {
+ 	class Person_Metabox_Preview {
 
 		function __construct() {
 			add_action( 'init', array( $this, 'init' ) );
@@ -15,7 +17,7 @@ if( ! class_exists( 'PacePeople_Admin_People_MetaBox_Preview' ) ) {
 		function is_pacepeople_admin_screen() {
 			$screen = get_current_screen();
 			if($screen) {
-				if($screen->post_type == PACEPEOPLE_CPT_PERSON && $screen->id == PACEPEOPLE_CPT_PERSON) {
+				if($screen->post_type == FOOPEOPLE_CPT_PERSON && $screen->id == FOOPEOPLE_CPT_PERSON) {
 					return true;
 				}
 			}
@@ -28,7 +30,7 @@ if( ! class_exists( 'PacePeople_Admin_People_MetaBox_Preview' ) ) {
 				wp_enqueue_style( 'pacepeople_preview_styles' );
 
 				wp_register_script( 'pacepeople_preview_scripts', plugin_dir_url(dirname( __FILE__ )) . '../js/pacepeople.admin.min.js', array( 'jquery' ), '', true );
-				wp_enqueue_script( 'pacepeople_preview_scripts' );			
+				wp_enqueue_script( 'pacepeople_preview_scripts' );
 			}
 		}
 
@@ -38,7 +40,7 @@ if( ! class_exists( 'PacePeople_Admin_People_MetaBox_Preview' ) ) {
 			$output = ob_get_contents();
 			ob_end_clean();
 			return $output;
-		}		
+		}
 
 		function pacepeople_admin_person_preview() {
 			if( $this->is_pacepeople_admin_screen() ) {
@@ -48,7 +50,7 @@ if( ! class_exists( 'PacePeople_Admin_People_MetaBox_Preview' ) ) {
 
 		function init() {
 			add_action( 'edit_form_after_title', array( $this, 'pacepeople_admin_person_preview') );
-			
+
 		}
 	}
 }
