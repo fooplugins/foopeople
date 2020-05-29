@@ -1,0 +1,25 @@
+
+// Theme options
+// ---------------------------------------
+.ppl-round-corners {
+	.ppl__listing-item {
+		border-radius: $border_radius;
+	}
+}
+
+.ppl-rounded-portraits {
+	.ppl__card_portrait_thumbnail {
+		border-radius: $portrait_radius;
+	}	
+}
+.ppl-circle-portraits {
+	.ppl__card_portrait_thumbnail {
+		border-radius: 50%;
+	}	
+}
+
+.ppl-shadows {
+	.ppl__card_portrait_thumbnail {
+		box-shadow: 0 0 10px 0px rgba($black, .5); 
+	}
+}

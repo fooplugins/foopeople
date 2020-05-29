@@ -16,54 +16,21 @@ module.exports = {
 	injectChanges: true,
 
 	// Style options.
-	styleDestination: './assets/css', // Default path to place the compiled CSS file. Default set to root folder.
+	styleSRC: './assets/scss/*.scss', // Path to main .scss file.
+	styleDestination: './assets/css', // Path to place the compiled CSS file. Default set to root folder.
 	outputStyle: 'compact', // Available options → 'compact' or 'compressed' or 'nested' or 'expanded'
 	errLogToConsole: true,
 	precision: 10,
 
-	// The following list is a set of SCSS/CSS files which you want to process and place it on a different folder.
-	// Please see README.md for usage.
-	styles: [
-		{
-			styleSRC: './assets/scss/admin.scss', // Path to .scss file.
-			styleDestination: './assets/css', // Path to place the compiled CSS file. Default set to root folder.
-		},
-		{
-			styleSRC: './assets/scss/foometafields.scss', // Path to .scss file.
-			styleDestination: './assets/css', // Path to place the compiled CSS file. Default set to root folder.
-		},
-	],
+	// JS Admin options.
+	jsAdminSRC: './assets/scripts/admin/*.js', // Path to JS admin folder.
+	jsAdminDestination: './assets/js/', // Path to place the compiled JS admins file.
+	jsAdminFile: 'admin', // Compiled JS admins file name. Default set to admins i.e. admins.js.
 
-	// Script options.
-	scriptDestination: './assets/js/',
-
-	scripts: [
-		{
-			scriptSRC: './assets/scripts/vendor/*.js', // Path to .js file.
-			scriptDestination: './assets/js/', // Path to place the compiled JS file.
-			scriptFile: 'vendor'
-		},
-		{
-			scriptSRC: './assets/scripts/custom/*.js', // Path to .js file.
-			scriptDestination: './assets/js/', // Path to place the compiled JS file.
-			scriptFile: 'custom'
-		},
-		{
-			scriptSRC: './assets/scripts/foometafields.js', // Path to .js file.
-			scriptDestination: './assets/js/', // Path to place the compiled JS file.
-			scriptFile: 'foometafields'
-		},
-	],
-
-	// JS Vendor options.
-	jsVendorSRC: './assets/scripts/vendor/*.js', // Path to JS vendor folder.
-	jsVendorDestination: './assets/js/', // Path to place the compiled JS vendors file.
-	jsVendorFile: 'vendor', // Compiled JS vendors file name. Default set to vendors i.e. vendors.js.
-
-	// JS Custom options.
-	jsCustomSRC: './assets/scripts/custom/*.js', // Path to JS custom scripts folder.
-	jsCustomDestination: './assets/js/', // Path to place the compiled JS custom scripts file.
-	jsCustomFile: 'custom', // Compiled JS custom file name. Default set to custom i.e. custom.js.
+	// JS Theme options.
+	jsThemeSRC: './assets/scripts/theme/*.js', // Path to JS custom scripts folder.
+	jsThemeDestination: './assets/js/', // Path to place the compiled JS custom scripts file.
+	jsThemeFile: 'theme', // Compiled JS custom file name. Default set to custom i.e. custom.js.
 
 	// Images options.
 	imgSRC: './assets/img/raw/**/*', // Source folder of images which should be optimized and watched. You can also specify types e.g. raw/**.{png,jpg,gif} in the glob.
@@ -71,7 +38,8 @@ module.exports = {
 
 	// Watch files paths.
 	watchStyles: './assets/scss/**/*.scss', // Path to all *.scss files inside css folder and inside them.
-	watchScripts: './assets/scripts/**/*.js', // Path to all *.js files inside scripts folder and inside them.
+	watchJsAdmin: './assets/scripts/admin/*.js', // Path to all vendor JS files.
+	watchJsTheme: './assets/scripts/theme/*.js', // Path to all custom JS files.
 	watchPhp: './**/*.php', // Path to all PHP files.
 
 	// Translation options.

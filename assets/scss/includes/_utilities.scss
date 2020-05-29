@@ -1,0 +1,31 @@
+// Utility styles
+// -------------------------------------------
+
+// Delimiters
+.ppl__item_delimiter {
+	// white-space: nowrap;
+	&:after {
+		content: ' , ';
+		display: inline-block;
+	}
+	&:last-of-type:after {
+		content: '';
+	}
+}
+
+.ppl__item_pipe {
+	// white-space: nowrap;
+	&:after { 
+		content: ' | ';
+		display: inline-block;
+		color: silver;
+	}
+	&:last-of-type:after {
+		content: '';
+	}
+}
+
+// Text styles		
+.ppl_text_captitalize { 
+	text-transform: capitalize; 
+}

@@ -129,7 +129,7 @@ function processStyle( gulpStream, processOptions = {} ) {
 		.pipe( sourcemaps.write({ includeContent: false }) )
 		.pipe( sourcemaps.init({ loadMaps: true }) )
 		.pipe( autoprefixer( config.BROWSERS_LIST ) )
-		.pipe( sourcemaps.write( './' ) )
+		.pipe( sourcemaps.write( './maps' ) )
 		.pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
 		.pipe( gulp.dest( processOptions.styleDestination ) )
 		.pipe( filter( '**/*.css' ) ) // Filtering stream to only css files.
@@ -327,7 +327,7 @@ function processScript( gulpStream, processOptions = {} ) {
 }
 
 /**
- * Task: `vendorsJS`.
+ * Task: `themeJS`.
  *
  * Concatenate and uglify vendor JS scripts.
  *
@@ -337,9 +337,9 @@ function processScript( gulpStream, processOptions = {} ) {
  *     3. Renames the JS file with suffix .min.js
  *     4. Uglifes/Minifies the JS file and generates vendors.min.js
  */
-gulp.task( 'vendorsJS_old', () => {
+gulp.task( 'themeJS', () => {
 	return gulp
-		.src( config.jsVendorSRC, { since: gulp.lastRun( 'vendorsJS' ) }) // Only run on changed files.
+		.src( config.jsThemeSRC, { since: gulp.lastRun( 'themeJS' ) }) // Only run on changed files.
 		.pipe( plumber( errorHandler ) )
 		.pipe(
 			babel({
@@ -353,24 +353,24 @@ gulp.task( 'vendorsJS_old', () => {
 				]
 			})
 		)
-		.pipe( remember( config.jsVendorSRC ) ) // Bring all files back to stream.
-		.pipe( concat( config.jsVendorFile + '.js' ) )
+		.pipe( remember( config.jsThemeSRC ) ) // Bring all files back to stream.
+		.pipe( concat( config.jsThemeFile + '.js' ) )
 		.pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
-		.pipe( gulp.dest( config.jsVendorDestination ) )
+		.pipe( gulp.dest( config.jsThemeDestination ) )
 		.pipe(
 			rename({
-				basename: config.jsVendorFile,
+				basename: config.jsThemeFile,
 				suffix: '.min'
 			})
 		)
 		.pipe( uglify() )
 		.pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
-		.pipe( gulp.dest( config.jsVendorDestination ) )
-		.pipe( notify({ message: '\n\n✅  ===> VENDOR JS — completed!\n', onLast: true }) );
+		.pipe( gulp.dest( config.jsThemeDestination ) )
+		.pipe( notify({ message: '\n\n✅  ===> THEME JS — completed!\n', onLast: true }) );
 });
 
 /**
- * Task: `customJS`.
+ * Task: `adminJS`.
  *
  * Concatenate and uglify custom JS scripts.
  *
@@ -380,9 +380,9 @@ gulp.task( 'vendorsJS_old', () => {
  *     3. Renames the JS file with suffix .min.js
  *     4. Uglifes/Minifies the JS file and generates custom.min.js
  */
-gulp.task( 'customJS_old', () => {
+gulp.task( 'adminJS', () => {
 	return gulp
-		.src( config.jsCustomSRC, { since: gulp.lastRun( 'customJS' ) }) // Only run on changed files.
+		.src( config.jsAdminSRC, { since: gulp.lastRun( 'adminJS' ) }) // Only run on changed files.
 		.pipe( plumber( errorHandler ) )
 		.pipe(
 			babel({
@@ -396,20 +396,20 @@ gulp.task( 'customJS_old', () => {
 				]
 			})
 		)
-		.pipe( remember( config.jsCustomSRC ) ) // Bring all files back to stream.
-		.pipe( concat( config.jsCustomFile + '.js' ) )
+		.pipe( remember( config.jsAdminSRC ) ) // Bring all files back to stream.
+		.pipe( concat( config.jsAdminFile + '.js' ) )
 		.pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
-		.pipe( gulp.dest( config.jsCustomDestination ) )
+		.pipe( gulp.dest( config.jsAdminDestination ) )
 		.pipe(
 			rename({
-				basename: config.jsCustomFile,
+				basename: config.jsAdminFile,
 				suffix: '.min'
 			})
 		)
 		.pipe( uglify() )
 		.pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
-		.pipe( gulp.dest( config.jsCustomDestination ) )
-		.pipe( notify({ message: '\n\n✅  ===> CUSTOM JS — completed!\n', onLast: true }) );
+		.pipe( gulp.dest( config.jsAdminDestination ) )
+		.pipe( notify({ message: '\n\n✅  ===> ADMIN JS — completed!\n', onLast: true }) );
 });
 
 /**
@@ -490,11 +490,12 @@ gulp.task( 'translate', () => {
  */
 gulp.task(
 	'default',
-	gulp.parallel( 'styles', 'scripts', 'images', browsersync, () => {
+	gulp.parallel( 'styles', 'themeJS', 'adminJS', 'images', browsersync, () => {
 		gulp.watch( config.watchPhp, reload ); // Reload on PHP file changes.
 		gulp.watch( config.watchStyles, gulp.parallel( 'styles' ) ); // Reload on SCSS file changes.
-		gulp.watch( config.watchScripts, gulp.series( 'scripts', reload ) ); // Reload on script file changes.
-		gulp.watch( config.imgSRC, gulp.series( 'images', reload ) ); // Reload on image file changes.
+		gulp.watch( config.watchJsTheme, gulp.series( 'themeJS', reload ) ); // Reload on themeJS file changes.
+		gulp.watch( config.watchJsAdmin, gulp.series( 'adminJS', reload ) ); // Reload on adminJS file changes.
+		gulp.watch( config.imgSRC, gulp.series( 'images', reload ) ); // Reload on adminJS file changes.
 	})
 );
 
@@ -538,5 +539,5 @@ require( 'gulp-freemius-deploy' )( gulp, {
 	zip_name: fileName + '.v' + fileVersion + '.zip',
 	zip_path: 'dist/',
 	add_contributor: true
-} );
+});
 
