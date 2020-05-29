@@ -18,3 +18,6 @@ define ( 'FOOPEOPLE_CPT_POLICY', 'foopeople-policy' );
 define ( 'FOOPEOPLE_CT_TEAM', 'foopeople-team' );
 define ( 'FOOPEOPLE_CT_LOCATION', 'foopeople-location' );
 define ( 'FOOPEOPLE_CT_SKILL', 'foopeople-skill' );
+
+//post meta
+define ( 'FOOPEOPLE_META_PERSON_MAIN', '_foopeople_person_main' );

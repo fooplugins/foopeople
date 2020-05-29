@@ -17,6 +17,8 @@ if ( !class_exists( 'FooPlugins\FooPeople\Admin\Init' ) ) {
 			new namespace\Updates();
 			new namespace\Dashboard();
 			new namespace\Settings();
+
+			new namespace\Metaboxes\Person\MainDetails();
 		}
 	}
 }

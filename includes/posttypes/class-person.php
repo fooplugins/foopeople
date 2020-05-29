@@ -50,7 +50,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 						'all_items'          => __( 'People', 'foopeople' )
 					),
 					'hierarchical'  => true,
-					'public'        => true,
+					'public'        => false,
 					'show_ui'       => true,
 					'show_in_menu'  => true,
 					'menu_icon'     => 'dashicons-groups',
