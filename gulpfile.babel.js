@@ -128,7 +128,7 @@ gulp.task( 'styles', () => {
 		.pipe( sourcemaps.write({ includeContent: false }) )
 		.pipe( sourcemaps.init({ loadMaps: true }) )
 		.pipe( autoprefixer( config.BROWSERS_LIST ) )
-		.pipe( sourcemaps.write( './' ) )
+		.pipe( sourcemaps.write( './maps' ) )
 		.pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
 		.pipe( gulp.dest( config.styleDestination ) )
 		.pipe( filter( '**/*.css' ) ) // Filtering stream to only css files.

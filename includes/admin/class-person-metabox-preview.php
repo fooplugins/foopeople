@@ -14,7 +14,7 @@ if( ! class_exists( 'Person_Metabox_Preview' ) ) {
 			add_action( 'admin_enqueue_scripts', array( $this, 'init_stylesheets_and_scripts' ) );
 		}
 
-		function is_pacepeople_admin_screen() {
+		function is_foopeople_admin_screen() {
 			$screen = get_current_screen();
 			if($screen) {
 				if($screen->post_type == FOOPEOPLE_CPT_PERSON && $screen->id == FOOPEOPLE_CPT_PERSON) {
@@ -25,12 +25,12 @@ if( ! class_exists( 'Person_Metabox_Preview' ) ) {
 		}
 
 		function init_stylesheets_and_scripts() {
-			if( $this->is_pacepeople_admin_screen() ) {
-				wp_register_style( 'pacepeople_preview_styles', plugin_dir_url(dirname( __FILE__ )) . '../css/pacepeople.admin.min.css', array(), '' );
-				wp_enqueue_style( 'pacepeople_preview_styles' );
+			if( $this->is_foopeople_admin_screen() ) {
+				wp_register_style( 'foopeople_preview_styles', plugin_dir_url(dirname( __FILE__ )) . '../assets/css/foopeople.admin.min.css', array(), '' );
+				wp_enqueue_style( 'foopeople_preview_styles' );
 
-				wp_register_script( 'pacepeople_preview_scripts', plugin_dir_url(dirname( __FILE__ )) . '../js/pacepeople.admin.min.js', array( 'jquery' ), '', true );
-				wp_enqueue_script( 'pacepeople_preview_scripts' );
+				wp_register_script( 'foopeople_preview_scripts', plugin_dir_url(dirname( __FILE__ )) . '../assets/js/foopeople.admin.min.js', array( 'jquery' ), '', true );
+				wp_enqueue_script( 'foopeople_preview_scripts' );
 			}
 		}
 
@@ -43,7 +43,7 @@ if( ! class_exists( 'Person_Metabox_Preview' ) ) {
 		}
 
 		function pacepeople_admin_person_preview() {
-			if( $this->is_pacepeople_admin_screen() ) {
+			if( $this->is_foopeople_admin_screen() ) {
 				echo $this->render_preview_template('person-single-item');
 			}
 		}

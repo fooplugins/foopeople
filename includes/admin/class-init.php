@@ -28,8 +28,8 @@ if ( !class_exists( 'FooPlugins\FooPeople\Admin\Init' ) ) {
 
 		function init() {
 			// add_filter( 'pacepeople_admin_has_settings_page', '__return_false' );
-			add_action( 'pacepeople_admin_print_styles', array( $this, 'admin_print_styles' ) );
-			add_action( 'pacepeople_admin_print_scripts', array( $this, 'admin_print_scripts' ) );
+			// add_action( 'pacepeople_admin_print_styles', array( $this, 'admin_print_styles' ) );
+			// add_action( 'pacepeople_admin_print_scripts', array( $this, 'admin_print_scripts' ) );
 			// Add a links to the plugin listing
 			// add_filter( 'pacepeople_admin_plugin_action_links', array( $this, 'plugin_listing_links' ) );
 		}
@@ -41,9 +41,9 @@ if ( !class_exists( 'FooPlugins\FooPeople\Admin\Init' ) ) {
 		}
 
 		function admin_print_scripts() {
-			// $page       = safe_get_from_request( 'page' );
-			// $pacepeople = PacePeople_Plugin::get_instance();
-			// $pacepeople->register_and_enqueue_js( 'admin-page-' . $page . '.js' );
+			$page       = safe_get_from_request( 'page' );
+			$foopeople = FOOPEOPLE_NAMESPACE::get_instance();
+			$foopeople->register_and_enqueue_js( 'admin-page-' . $page . '.js' );
 		}
 
 		/**

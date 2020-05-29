@@ -19,6 +19,12 @@ define ( 'FOOPEOPLE_CT_TEAM', 'foopeople-team' );
 define ( 'FOOPEOPLE_CT_LOCATION', 'foopeople-location' );
 define ( 'FOOPEOPLE_CT_SKILL', 'foopeople-skill' );
 
+// Default person portrait image
+define( 'FOOPEOPLE_PORTRAIT_DEFAULT', 'http://gravatar.com/avatar/?d=mm&s=250' );
+
+// META details
+define( 'FOOPEOPLE_PERSON_META_DETAILS', '_pacepeople_person_details' );
+define( 'FOOPEOPLE_PERSON_META_SEARCH', '_pacepeople_person_search' );
 
 
 /**
@@ -39,9 +45,4 @@ define( 'PACEPEOPLE_ADMIN_MENU_HELP_SLUG', 'pacepeople-help' );
 define( 'PACEPEOPLE_ADMIN_MENU_SETTINGS_SLUG', 'pacepeople-settings' );
 define( 'PACEPEOPLE_ADMIN_MENU_SYSTEMINFO_SLUG', 'pacepeople-systeminfo' );
 
-// Default person portrait image
-define( 'FOOPEOPLE_PORTRAIT_DEFAULT', 'http://gravatar.com/avatar/?d=mm&s=250' );
 
-
-define( 'FOOPEOPLE_PERSON_META_DETAILS', '_pacepeople_person_details' );
-define( 'FOOPEOPLE_PERSON_META_SEARCH', '_pacepeople_person_search' );
