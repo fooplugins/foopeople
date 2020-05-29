@@ -90,11 +90,11 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metabox_Field_Group' ) ) {
         /***
          * Enqueue any assets needed by field groups
          */
-        static function enqueue_assets(){
-			// Register, enqueue scripts and styles here
-			wp_enqueue_script( 'foopeople-metabox-field-groups', FOOPEOPLE_URL . '/assets/js/metabox-field-groups.min.js', array('jquery'), FOOPEOPLE_VERSION );
-			wp_enqueue_style( 'foopeople-metabox-field-groups', FOOPEOPLE_URL . '/assets/css/metabox-field-groups.min.css', array(), FOOPEOPLE_VERSION );
-        }
+        // static function enqueue_assets(){
+		// 	// Register, enqueue scripts and styles here
+		// 	wp_enqueue_script( 'foopeople-metabox-field-groups', FOOPEOPLE_URL . '/assets/js/metabox-field-groups.min.js', array('jquery'), FOOPEOPLE_VERSION );
+		// 	wp_enqueue_style( 'foopeople-metabox-field-groups', FOOPEOPLE_URL . '/assets/css/metabox-field-groups.min.css', array(), FOOPEOPLE_VERSION );
+        // }
 
         static function extract_data_from_post( $field_group, $form_data ) {
 

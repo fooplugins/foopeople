@@ -14,7 +14,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person_Metaboxes' ) ) {
 			add_action( 'add_meta_boxes_' . FOOPEOPLE_CPT_PERSON, array( $this, 'add_meta_boxes' ) );
 
 			//enqueue assets needed for field groups
-			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
+			// add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
 
 			//save extra post data for a person
 			add_action( 'save_post', array( $this, 'save_person' ) );
@@ -80,15 +80,15 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person_Metaboxes' ) ) {
 		 * Enqueue the assets needed by the settings
 		 * @param $hook_suffix
 		 */
-		function enqueue_assets( $hook_suffix ){
-			if( in_array( $hook_suffix, array( 'post.php', 'post-new.php' ) ) ) {
-				$screen = get_current_screen();
+		// function enqueue_assets( $hook_suffix ){
+		// 	if( in_array( $hook_suffix, array( 'post.php', 'post-new.php' ) ) ) {
+		// 		$screen = get_current_screen();
 
-				if ( is_object( $screen ) && FOOPEOPLE_CPT_PERSON == $screen->post_type ){
-					Metabox_Field_Group::enqueue_assets();
-				}
-			}
-		}
+		// 		if ( is_object( $screen ) && FOOPEOPLE_CPT_PERSON == $screen->post_type ){
+		// 			Metabox_Field_Group::enqueue_assets();
+		// 		}
+		// 	}
+		// }
 
 		/**
 		 * Hook into the save post and save the fields

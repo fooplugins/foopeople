@@ -27,11 +27,21 @@ if ( !class_exists( 'FooPlugins\FooPeople\Admin\Init' ) ) {
 		}
 
 		function init() {
+			add_action( 'admin_enqueue_scripts', array( $this, 'init_stylesheets_and_scripts' ) );
 			// add_filter( 'pacepeople_admin_has_settings_page', '__return_false' );
 			// add_action( 'pacepeople_admin_print_styles', array( $this, 'admin_print_styles' ) );
 			// add_action( 'pacepeople_admin_print_scripts', array( $this, 'admin_print_scripts' ) );
 			// Add a links to the plugin listing
 			// add_filter( 'pacepeople_admin_plugin_action_links', array( $this, 'plugin_listing_links' ) );
+		}
+
+
+		function init_stylesheets_and_scripts() {
+			wp_register_style( 'foopeople_preview_styles', plugin_dir_url(dirname( __FILE__ )) . '../assets/css/foopeople.admin.min.css', array(), '' );
+			wp_enqueue_style( 'foopeople_preview_styles' );
+
+			wp_register_script( 'foopeople_preview_scripts', plugin_dir_url(dirname( __FILE__ )) . '../assets/js/admin.min.js', array( 'jquery' ), '', true );
+			wp_enqueue_script( 'foopeople_preview_scripts' );
 		}
 
 		// function admin_print_styles() {
