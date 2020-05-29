@@ -34,17 +34,17 @@ if ( !class_exists( 'FooPlugins\FooPeople\Admin\Init' ) ) {
 			// add_filter( 'pacepeople_admin_plugin_action_links', array( $this, 'plugin_listing_links' ) );
 		}
 
-		function admin_print_styles() {
-			$page       = safe_get_from_request( 'page' );
-			$foopeople = FOOPEOPLE_NAMESPACE::get_instance();
-			$foopeople->register_and_enqueue_css( 'admin-page-' . $page . '.css' );
-		}
+		// function admin_print_styles() {
+		// 	$page       = safe_get_from_request( 'page' );
+		// 	$foopeople = FOOPEOPLE_NAMESPACE::get_instance();
+		// 	$foopeople->register_and_enqueue_css( 'admin-page-' . $page . '.css' );
+		// }
 
-		function admin_print_scripts() {
-			$page       = safe_get_from_request( 'page' );
-			$foopeople = FOOPEOPLE_NAMESPACE::get_instance();
-			$foopeople->register_and_enqueue_js( 'admin-page-' . $page . '.js' );
-		}
+		// function admin_print_scripts() {
+		// 	$page       = safe_get_from_request( 'page' );
+		// 	$foopeople = FOOPEOPLE_NAMESPACE::get_instance();
+		// 	$foopeople->register_and_enqueue_js( 'admin-page-' . $page . '.js' );
+		// }
 
 		/**
 		 * @param $links

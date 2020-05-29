@@ -22,15 +22,15 @@ module.exports = {
 	errLogToConsole: true,
 	precision: 10,
 
-	// JS Vendor options.
-	jsVendorSRC: './assets/scripts/vendor/*.js', // Path to JS vendor folder.
-	jsVendorDestination: './assets/js/', // Path to place the compiled JS vendors file.
-	jsVendorFile: 'vendor', // Compiled JS vendors file name. Default set to vendors i.e. vendors.js.
+	// JS Admin options.
+	jsAdminSRC: './assets/scripts/admin/*.js', // Path to JS admin folder.
+	jsAdminDestination: './assets/js/', // Path to place the compiled JS admins file.
+	jsAdminFile: 'admin', // Compiled JS admins file name. Default set to admins i.e. admins.js.
 
-	// JS Custom options.
-	jsCustomSRC: './assets/scripts/custom/*.js', // Path to JS custom scripts folder.
-	jsCustomDestination: './assets/js/', // Path to place the compiled JS custom scripts file.
-	jsCustomFile: 'custom', // Compiled JS custom file name. Default set to custom i.e. custom.js.
+	// JS Theme options.
+	jsThemeSRC: './assets/scripts/theme/*.js', // Path to JS custom scripts folder.
+	jsThemeDestination: './assets/js/', // Path to place the compiled JS custom scripts file.
+	jsThemeFile: 'theme', // Compiled JS custom file name. Default set to custom i.e. custom.js.
 
 	// Images options.
 	imgSRC: './assets/img/raw/**/*', // Source folder of images which should be optimized and watched. You can also specify types e.g. raw/**.{png,jpg,gif} in the glob.
@@ -38,8 +38,8 @@ module.exports = {
 
 	// Watch files paths.
 	watchStyles: './assets/scss/**/*.scss', // Path to all *.scss files inside css folder and inside them.
-	watchJsVendor: './assets/scripts/vendor/*.js', // Path to all vendor JS files.
-	watchJsCustom: './assets/scripts/custom/*.js', // Path to all custom JS files.
+	watchJsAdmin: './assets/scripts/admin/*.js', // Path to all vendor JS files.
+	watchJsTheme: './assets/scripts/theme/*.js', // Path to all custom JS files.
 	watchPhp: './**/*.php', // Path to all PHP files.
 
 	// Translation options.
