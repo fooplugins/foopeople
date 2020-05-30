@@ -27,7 +27,7 @@
 	};
 
 	FOOPEOPLE.movePortraitBox = function() {
-		$('#postimagediv').detach().appendTo('.foometafields-content[data-name="foopeople-person-details-portrait"]');
+		$( '#postimagediv' ).detach().appendTo( '.foometafields-content[data-name="foopeople-person-details-portrait"]' );
 	};
 
 	$( function() { //wait for ready
