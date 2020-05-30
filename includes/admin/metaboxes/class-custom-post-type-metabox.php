@@ -50,12 +50,10 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 		 * @param $post
 		 */
 		public function render_metabox( $post ) {
-			//get the person object
-			//$person = new PacePeople_Person( $post );
-
-			//TODO : set the state from the post
-
 			$full_id = $this->build_id();
+
+			//get the state from the post meta
+			$state = get_post_meta( $post->ID, $this->metabox['meta_key'], true );
 
 			//render the nonce used to validate when saving the metabox fields
 			?><input type="hidden" name="<?php echo $full_id; ?>_nonce"
@@ -63,7 +61,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 				   value="<?php echo wp_create_nonce( $full_id ); ?>"/><?php
 
 			//render the tab field group
-			FieldRenderer::render_tabs( $this->field_group, $full_id );
+			FieldRenderer::render_tabs( $this->field_group, $full_id, $state );
 		}
 
 		/**
@@ -84,9 +82,12 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 			// verify nonce
 			if ( array_key_exists( $full_id . '_nonce', $_POST ) &&
 			     wp_verify_nonce( $_POST[$full_id . '_nonce'], $full_id ) ) {
+
 				//if we get here, we are dealing with the metabox fields
 
-				do_action( "FooPlugins\FooPeople\Admin\Metaboxes\{$this->metabox['post_type']}\{$this->metabox['metabox_id']}\PreSave" , $post_id, $_POST );
+				$action = 'FooPlugins\FooPeople\Admin\Metaboxes\\' . $this->metabox['post_type'] . '\\' . $this->metabox['metabox_id'] . '\\';
+
+				do_action( $action . 'PreSave' , $post_id, $_POST );
 
 				//save the state
 				$state = isset( $_POST[$full_id] ) ? $_POST[$full_id] : array();
@@ -97,7 +98,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 //				$search_index = $person->build_search_index();
 //				update_post_meta( $post_id, PACEPEOPLE_PERSON_META_SEARCH, $search_index );
 
-				do_action( "FooPlugins\FooPeople\Admin\Metaboxes\{$this->metabox['post_type']}\{$this->metabox['metabox_id']}\PostSave" , $post_id, $_POST );
+				do_action( $action . 'PostSave' , $post_id, $_POST );
 			}
 		}
 
