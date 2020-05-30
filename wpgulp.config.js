@@ -18,19 +18,39 @@ module.exports = {
 	// Style options.
 	styleSRC: './assets/scss/*.scss', // Path to main .scss file.
 	styleDestination: './assets/css', // Path to place the compiled CSS file. Default set to root folder.
+	scriptDestination: './assets/js/',
 	outputStyle: 'compact', // Available options → 'compact' or 'compressed' or 'nested' or 'expanded'
 	errLogToConsole: true,
 	precision: 10,
 
-	// JS Admin options.
-	jsAdminSRC: './assets/scripts/admin/*.js', // Path to JS admin folder.
-	jsAdminDestination: './assets/js/', // Path to place the compiled JS admins file.
-	jsAdminFile: 'admin', // Compiled JS admins file name. Default set to admins i.e. admins.js.
-
-	// JS Theme options.
-	jsThemeSRC: './assets/scripts/theme/*.js', // Path to JS custom scripts folder.
-	jsThemeDestination: './assets/js/', // Path to place the compiled JS custom scripts file.
-	jsThemeFile: 'theme', // Compiled JS custom file name. Default set to custom i.e. custom.js.
+	styles: [
+		{
+			styleSRC: './assets/scss/foopeople.admin.scss'
+		},
+		{
+			styleSRC: './assets/scss/foopeople.customizer.scss'
+		},
+		{
+			styleSRC: './assets/scss/foopeople.theme.scss'
+		},
+		{
+			styleSRC: './assets/scss/foometafields.scss'
+		}
+	],
+	scripts: [
+		{
+			scriptSRC: './assets/scripts/admin/*.js',
+			scriptFile: 'admin'
+		},
+		{
+			scriptSRC: './assets/scripts/theme/*.js',
+			scriptFile: 'theme'
+		},
+		{
+			scriptSRC: './assets/scripts/foometafields.js',
+			scriptFile: 'foometafields'
+		}
+	],
 
 	// Images options.
 	imgSRC: './assets/img/raw/**/*', // Source folder of images which should be optimized and watched. You can also specify types e.g. raw/**.{png,jpg,gif} in the glob.
@@ -38,8 +58,7 @@ module.exports = {
 
 	// Watch files paths.
 	watchStyles: './assets/scss/**/*.scss', // Path to all *.scss files inside css folder and inside them.
-	watchJsAdmin: './assets/scripts/admin/*.js', // Path to all vendor JS files.
-	watchJsTheme: './assets/scripts/theme/*.js', // Path to all custom JS files.
+	watchScripts: './assets/scripts/**/*.js', // Path to all *.js files inside scripts folder and inside them.
 	watchPhp: './**/*.php', // Path to all PHP files.
 
 	// Translation options.

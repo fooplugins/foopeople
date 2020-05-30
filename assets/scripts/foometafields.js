@@ -1,6 +1,6 @@
-(function (PACEPEOPLE, $, undefined) {
+( function( FOOPEOPLE, $, undefined ) {
 
-	// PACEPEOPLE.moveTaxonomyBoxes = function() {
+	// FOOPEOPLE.moveTaxonomyBoxes = function() {
 	// 	var taxonomyBoxes = {
 	// 		teams: 			$("#taxonomy-pacepeople_department"),
 	// 		skills: 		$("#taxonomy-pacepeople_skill"),
@@ -13,26 +13,27 @@
 	// 	});
 	// };
 
-	PACEPEOPLE.bindAdminEvents = function() {
-		$("#poststuff").on("click", ".foometafields-tab", function (e) {
-			e.preventDefault();
-			var $this 		= $(this),
-				$settings 	= $this.closest(".foometafields-container"),
-				name 		= $this.data("name");
+	FOOPEOPLE.bindAdminEvents = function() {
+		$( '#poststuff' ).on( 'click', '.foometafields-tab', function( e ) {
+			var $this 		= $( this ),
+				$settings 	= $this.closest( '.foometafields-container' ),
+				name 		= $this.data( 'name' );
 
-			$settings.find(".foometafields-active").removeClass("foometafields-active");
-			$settings.find('[data-name="' + name + '"]').addClass("foometafields-active");
+			e.preventDefault();
+
+			$settings.find( '.foometafields-active' ).removeClass( 'foometafields-active' );
+			$settings.find( '[data-name="' + name + '"]' ).addClass( 'foometafields-active' );
 		});
 	};
 
-	// PACEPEOPLE.movePortraitBox = function() {
+	// FOOPEOPLE.movePortraitBox = function() {
 	// 	$('#postimagediv').detach().appendTo('.pacepeople-tab-content[data-name="_pacepeople_person_details-portrait"]');
 	// };
 
-	$(function () { //wait for ready
-		//PACEPEOPLE.moveTaxonomyBoxes();
-		//PACEPEOPLE.movePortraitBox();
-		PACEPEOPLE.bindAdminEvents();
+	$( function() { //wait for ready
+		//FOOPEOPLE.moveTaxonomyBoxes();
+		//FOOPEOPLE.movePortraitBox();
+		FOOPEOPLE.bindAdminEvents();
 	});
 
-}(window.PACEPEOPLE = window.PACEPEOPLE || {}, jQuery));
+}( window.FOOPEOPLE = window.FOOPEOPLE || {}, jQuery ) );

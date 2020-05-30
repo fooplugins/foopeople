@@ -113,7 +113,7 @@ const reload = done => {
 function processStyle( gulpStream, processOptions = {} ) {
 	processOptions = defaults( processOptions, {
 		styleDestination: config.styleDestination,
-	} );
+	});
 
 	return gulpStream
 		.pipe( plumber( errorHandler ) )
@@ -140,8 +140,7 @@ function processStyle( gulpStream, processOptions = {} ) {
 		.pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
 		.pipe( gulp.dest( processOptions.styleDestination ) )
 		.pipe( filter( '**/*.css' ) ) // Filtering stream to only css files.
-		.pipe( browserSync.stream() ) // Reloads .min.css if that is enqueued.
-		;
+		.pipe( browserSync.stream() ); // Reloads .min.css if that is enqueued.
 }
 
 /**
@@ -158,7 +157,7 @@ function processStyle( gulpStream, processOptions = {} ) {
 function processStyleRTL( gulpStream, processOptions = {} ) {
 	processOptions = defaults( processOptions, {
 		styleDestination: config.styleDestination,
-	} );
+	});
 
 	return gulpStream
 		.pipe( plumber( errorHandler ) )
@@ -187,8 +186,7 @@ function processStyleRTL( gulpStream, processOptions = {} ) {
 		.pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
 		.pipe( gulp.dest( processOptions.styleDestination ) )
 		.pipe( filter( '**/*.css' ) ) // Filtering stream to only css files.
-		.pipe( browserSync.stream() ) // Reloads .css or -rtl.css, if that is enqueued.
-		;
+		.pipe( browserSync.stream() ); // Reloads .css or -rtl.css, if that is enqueued.
 }
 
 
@@ -207,20 +205,19 @@ function processStyleRTL( gulpStream, processOptions = {} ) {
  *    7. Injects CSS or reloads the browser via browserSync
  */
 gulp.task( 'styles', ( done ) => {
-	// Exit task when no styles
-	if ( config.styles.length === 0 ) {
-		return done();
+	if ( 0 === config.styles.length ) {
+		return done(); // Exit task when no styles
 	}
 
 	// Process each addon style
-	var tasks = config.styles.map( function ( style ) {
+	let tasks = config.styles.map( function( style ) {
 
 		return processStyle(
 			gulp.src( style.styleSRC, { allowEmpty: true }),
-			{ styleDestination: style.styleDestination }
+			{ styleDestination: config.styleDestination }
 		).pipe( notify({ message: '\n\n✅  ===> STYLES — completed!\n', onLast: true }) );
 
-	} );
+	});
 
 	return merge( tasks );
 });
@@ -241,20 +238,19 @@ gulp.task( 'styles', ( done ) => {
  *    9. Injects CSS or reloads the browser via browserSync
  */
 gulp.task( 'stylesRTL', ( done ) => {
-	// Exit task when no styles
-	if ( config.styles.length === 0 ) {
-		return done();
+	if ( 0 === config.styles.length ) {
+		return done(); // Exit task when no styles
 	}
 
 	// Process each addon style
-	var tasks = config.styles.map( function ( style ) {
+	let tasks = config.styles.map( function( style ) {
 
 		return	processStyleRTL(
 			gulp.src( style.styleSRC, { allowEmpty: true }),
-			{ styleDestination: style.styleDestination }
+			{ styleDestination: config.styleDestination }
 		).pipe( notify({ message: '\n\n✅  ===> STYLES RTL — completed!\n', onLast: true }) );
 
-	} );
+	});
 
 	return merge( tasks );
 });
@@ -274,20 +270,19 @@ gulp.task( 'stylesRTL', ( done ) => {
  *    7. Injects CSS or reloads the browser via browserSync
  */
 gulp.task( 'scripts', ( done ) => {
-	// Exit task when no scripts
-	if ( config.scripts.length === 0 ) {
-		return done();
+	if ( 0 === config.scripts.length ) {
+		return done(); // Exit task when no scripts
 	}
 
 	// Process each addon style
-	var tasks = config.scripts.map( function ( script ) {
+	let tasks = config.scripts.map( function( script ) {
 
 		return processScript(
 			gulp.src( script.scriptSRC, { allowEmpty: true }),
-			{ scriptSRC: script.scriptSRC, scriptDestination: script.scriptDestination, scriptFile: script.scriptFile }
+			{ scriptSRC: script.scriptSRC, scriptDestination: config.scriptDestination, scriptFile: script.scriptFile }
 		).pipe( notify({ message: '\n\n✅  ===> SCRIPTS — completed!\n', onLast: true }) );
 
-	} );
+	});
 
 	return merge( tasks );
 });
@@ -295,7 +290,7 @@ gulp.task( 'scripts', ( done ) => {
 function processScript( gulpStream, processOptions = {} ) {
 	processOptions = defaults( processOptions, {
 		scriptDestination: config.scriptDestination,
-	} );
+	});
 
 	return gulpStream
 		.pipe( plumber( errorHandler ) )
@@ -325,92 +320,6 @@ function processScript( gulpStream, processOptions = {} ) {
 		.pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
 		.pipe( gulp.dest( processOptions.scriptDestination ) );
 }
-
-/**
- * Task: `themeJS`.
- *
- * Concatenate and uglify vendor JS scripts.
- *
- * This task does the following:
- *     1. Gets the source folder for JS vendor files
- *     2. Concatenates all the files and generates vendors.js
- *     3. Renames the JS file with suffix .min.js
- *     4. Uglifes/Minifies the JS file and generates vendors.min.js
- */
-gulp.task( 'themeJS', () => {
-	return gulp
-		.src( config.jsThemeSRC, { since: gulp.lastRun( 'themeJS' ) }) // Only run on changed files.
-		.pipe( plumber( errorHandler ) )
-		.pipe(
-			babel({
-				presets: [
-					[
-						'@babel/preset-env', // Preset to compile your modern JS to ES5.
-						{
-							targets: { browsers: config.BROWSERS_LIST } // Target browser list to support.
-						}
-					]
-				]
-			})
-		)
-		.pipe( remember( config.jsThemeSRC ) ) // Bring all files back to stream.
-		.pipe( concat( config.jsThemeFile + '.js' ) )
-		.pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
-		.pipe( gulp.dest( config.jsThemeDestination ) )
-		.pipe(
-			rename({
-				basename: config.jsThemeFile,
-				suffix: '.min'
-			})
-		)
-		.pipe( uglify() )
-		.pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
-		.pipe( gulp.dest( config.jsThemeDestination ) )
-		.pipe( notify({ message: '\n\n✅  ===> THEME JS — completed!\n', onLast: true }) );
-});
-
-/**
- * Task: `adminJS`.
- *
- * Concatenate and uglify custom JS scripts.
- *
- * This task does the following:
- *     1. Gets the source folder for JS custom files
- *     2. Concatenates all the files and generates custom.js
- *     3. Renames the JS file with suffix .min.js
- *     4. Uglifes/Minifies the JS file and generates custom.min.js
- */
-gulp.task( 'adminJS', () => {
-	return gulp
-		.src( config.jsAdminSRC, { since: gulp.lastRun( 'adminJS' ) }) // Only run on changed files.
-		.pipe( plumber( errorHandler ) )
-		.pipe(
-			babel({
-				presets: [
-					[
-						'@babel/preset-env', // Preset to compile your modern JS to ES5.
-						{
-							targets: { browsers: config.BROWSERS_LIST } // Target browser list to support.
-						}
-					]
-				]
-			})
-		)
-		.pipe( remember( config.jsAdminSRC ) ) // Bring all files back to stream.
-		.pipe( concat( config.jsAdminFile + '.js' ) )
-		.pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
-		.pipe( gulp.dest( config.jsAdminDestination ) )
-		.pipe(
-			rename({
-				basename: config.jsAdminFile,
-				suffix: '.min'
-			})
-		)
-		.pipe( uglify() )
-		.pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
-		.pipe( gulp.dest( config.jsAdminDestination ) )
-		.pipe( notify({ message: '\n\n✅  ===> ADMIN JS — completed!\n', onLast: true }) );
-});
 
 /**
  * Task: `images`.
@@ -490,11 +399,10 @@ gulp.task( 'translate', () => {
  */
 gulp.task(
 	'default',
-	gulp.parallel( 'styles', 'themeJS', 'adminJS', 'images', browsersync, () => {
+	gulp.parallel( 'styles', 'scripts', 'images', browsersync, () => {
 		gulp.watch( config.watchPhp, reload ); // Reload on PHP file changes.
 		gulp.watch( config.watchStyles, gulp.parallel( 'styles' ) ); // Reload on SCSS file changes.
-		gulp.watch( config.watchJsTheme, gulp.series( 'themeJS', reload ) ); // Reload on themeJS file changes.
-		gulp.watch( config.watchJsAdmin, gulp.series( 'adminJS', reload ) ); // Reload on adminJS file changes.
+		gulp.watch( config.watchScripts, gulp.series( 'scripts', reload ) ); // Reload on themeJS file changes.
 		gulp.watch( config.imgSRC, gulp.series( 'images', reload ) ); // Reload on adminJS file changes.
 	})
 );
@@ -540,4 +448,3 @@ require( 'gulp-freemius-deploy' )( gulp, {
 	zip_path: 'dist/',
 	add_contributor: true
 });
-
