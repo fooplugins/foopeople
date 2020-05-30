@@ -1,155 +1,169 @@
+$white : #ffffff;
+$gray-100 : #fafafa;
+$gray-200 : #eee;
+$gray-300 : #555;
+$blue: #0073aa;
+$blue-hover : #00a0d2;
+
 .foometafields-container {
-  > div {
-	&:after {
-	  display: table;
-	  content: "";
-	  clear: both;
+	> div {
+		&:after {
+			display: table;
+			content: "";
+			clear: both;
+		}
 	}
-  }
 }
 
 .foometafields-tabs {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 150px;
-  background-color: #fafafa;
-  border-right: solid 1px #eee;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 150px;
+	background-color: $gray-100;
+	border-right: solid 1px $gray-200;
 }
 
 .foometafields-tab {
-  margin: 0;
-  padding: 10px;
-  display: block;
-  box-shadow: none;
-  text-decoration: none;
-  line-height: 20px;
-  border-bottom: 1px solid #eee;
-  color: #0073aa;
-  cursor: pointer;
+	margin: 0;
+	padding: 10px;
+	display: block;
+	box-shadow: none;
+	text-decoration: none;
+	line-height: 20px;
+	border-bottom: 1px solid $gray-200;
+	color: $blue;
+	cursor: pointer;
 
-  &:hover {
-	color: #00a0d2;
-  }
+	&:hover {
+		color: $blue-hover;
+	}
 
-  &.foometafields-active {
-	color: #555;
-	background-color: #eee;
-  }
+	&.foometafields-active {
+		color: $gray-300;
+		background-color: $gray-200;
+	}
 
-  .dashicons {
-	$box: 20px;
-	font-weight: 400;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-	-webkit-font-smoothing: antialiased;
-	margin-right: .618em;
-	font-size: $box;
-	width: $box;
-	height: $box;
-	vertical-align: middle;
-	margin-bottom: 4px;
-  }
+	.dashicons {
+		$box: 20px;
+		font-weight: 400;
+		font-variant: normal;
+		text-transform: none;
+		line-height: 1;
+		-webkit-font-smoothing: antialiased;
+		margin-right: .618em;
+		font-size: $box;
+		width: $box;
+		height: $box;
+		vertical-align: middle;
+		margin-bottom: 4px;
+	}
 }
 
 .foometafields-contents {
-  display: block;
-  float: right;
-  width: calc(100% - 150px);
-  background-color: #FFF;
-  min-height: 400px;
+	display: block;
+	float: right;
+	width: calc(100% - 150px);
+	background-color: $white;
+	min-height: 400px;
 }
 
 .foometafields-content {
-  display: none;
+	display: none;
 
-  &.foometafields-active {
-	display: block;
-  }
+	&.foometafields-active {
+		display: block;
+	}
 
-  // Taxonomy content boxes
-  .categorydiv {
-	padding: 0 10px;
-  }
+	// Taxonomy content boxes
+	.categorydiv {
+		padding: 0 10px;
+	}
 }
+
 
 @media only screen and (max-width: 900px) {
-  .foometafields-tabs {
-	width: 50px;
-  }
-  .foometafields-tab {
-	text-align: center;
+	.foometafields-tabs {
+		width: 50px;
+	}
+	.foometafields-tab {
+		text-align: center;
 
 	.dashicons {
-	  margin-right: 0;
+		margin-right: 0;
 	}
-  }
-  .foometafields-tab-text {
-	display: none;
-  }
-  .foometafields-contents {
-	width: calc(100% - 50px);
-  }
+	}
+	.foometafields-tab-text {
+		display: none;
+	}
+	.foometafields-contents {
+		width: calc(100% - 50px);
+	}
 }
 
-.pacepeople-metabox-settings {
-  width: 100%;
+.foopeople-metabox-settings {
+	width: 100%;
 
-  tr {
-	border-bottom: solid 1px #EEE;
-  }
+	tr {
+		border-bottom: solid 1px $gray-200;
+	}
 }
 
-.pacepeople_metabox_field {
-  td {
-	width: 80%;
-	padding: 10px;
-  }
-  th {
-	width: 20%;
-	padding: 10px;
-	vertical-align: top;
-	text-align: left;
-  }
-  input[type="text"], input[type="password"], input[type="number"], input[type="search"], input[type="email"], input[type="url"], select {
-	width: 100%;
-	padding: 3px 5px;
-	resize: none;
-  }
-  textarea {
-	width: 100%;
-	min-height: 100px;
-  }
-  &.pacepeople_metabox_field_type-help {
-	border-bottom: none;
+
+.foometafields-content {
+	table {
+		width: 100%;
+	}
+}
+
+.foometafields-field {
+	$padding: 5px 10px;
+	$padding-field: 3px 10px;
+
 	td {
-	  padding-bottom: 0;
+		width: 70%;
+		padding: $padding;
 	}
-  }
-  &.pacepeople_metabox_field_type-icon td {
-	padding-bottom: 0;
-  }
+	th {
+		width: 30%;
+		padding: $padding;
+		vertical-align: middle;
+		text-align: left;
+	}
+	input[type="text"],
+	input[type="password"],
+	input[type="number"],
+	input[type="search"],
+	input[type="email"],
+	input[type="url"],
+	select,
+	textarea {
+		width: 100%;
+		padding: $padding-field;
+	}
+	textarea {
+		min-height: 100px;
+	}
 }
 
-.pacepeople_metabox_field-icon {
-  label {
-	display: inline-block;
-	margin-right: 10px;
-	border: solid 3px transparent;
-	background: #aaa;
-	border-radius: 3px;
-	padding: 5px;
-	line-height: 0;
-	margin-bottom: 10px;
-  }
-  input:checked + label {
-	border: solid 3px #444;
-	background: #888;
-  }
-  label:hover {
-	border: solid 3px #444;
-  }
-}
+// .foometafields-field-icon {
+// 	label {
+// 		display: inline-block;
+// 		margin-right: 10px;
+// 		border: solid 3px transparent;
+// 		background: #aaa;
+// 		border-radius: 3px;
+// 		padding: 5px;
+// 		line-height: 0;
+// 		margin-bottom: 10px;
+// 	}
+// 	input:checked + label {
+// 		border: solid 3px #444;
+// 		background: #888;
+// 	}
+// 	label:hover {
+// 		border: solid 3px #444;
+// 	}
+// }
