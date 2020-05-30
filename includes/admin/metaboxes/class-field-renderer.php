@@ -10,8 +10,9 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 		 *
 		 * @param array $field_group
 		 * @param string $id
+		 * @param array $state
 		 */
-		static function render_tabs( $field_group, $id ) {
+		static function render_tabs( $field_group, $id, $state ) {
     		$classes[] = 'foometafields-container';
 			$classes[] = 'foometafields-container-' . $id;
 
@@ -44,7 +45,7 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 						foreach ( $field_group['tabs'] as $tab ) { ?>
 							<div class="foometafields-content <?php echo $tab_active; ?>"
 								 data-name="<?php echo $id . '-' . $tab['id']; ?>">
-								<?php self::render_fields( $tab['fields'], $id ); ?>
+								<?php self::render_fields( $tab['fields'], $id, $state ); ?>
 							</div>
 							<?php
 							$tab_active = '';
@@ -60,14 +61,15 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 		 *
 		 * @param array $fields
 		 * @param string $id
+		 * @param array $state
 		 */
-		static function render_fields( $fields, $id ) {
+		static function render_fields( $fields, $id, $state ) {
 			?>
 			<table>
 				<tbody>
 				<?php
 				foreach ( $fields as $field ) {
-					$field_type          = isset( $field['type'] ) ? $field['type'] : 'unknown';
+					$field_type      = isset( $field['type'] ) ? $field['type'] : 'unknown';
 					$field_classes[] = 'foometafields-field';
 					$field_classes[] = "foometafields-field-{$field_type}";
 					$field_classes[] = "foometafields-field-{$field['id']}";
@@ -77,6 +79,10 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 						foreach ( $field_row_data as $field_row_data_name => $field_row_data_value ) {
 							$field_row_data_html .= " $field_row_data_name=" . '"' . $field_row_data_value . '"';
 						}
+					}
+					//get the value of the field from the state
+					if ( is_array( $state ) && array_key_exists( $field['id'], $state ) ) {
+						$field['value'] = $state[ $field['id'] ];
 					}
 					?>
 					<tr class="<?php echo implode(' ', $field_classes ); ?>"<?php echo $field_row_data_html; ?>>
