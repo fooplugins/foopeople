@@ -8,8 +8,9 @@
 	<div class="ppl__card_details">
 
 		<h1 class="ppl__card_name / ppl__heading" data-pace-people-value="name">
-			<span data-pace-people-value="firstname">Firstname</span>
+			<span data-pace-people-value="firstname">Name</span>
 			<span data-pace-people-value="surname">Surname</span>
+			<span data-pace-people-value="preferred"></span>
 		</h1>
 
 		<span class="ppl__card_work_title / ppl__heading" data-pace-people-value="name">
@@ -17,8 +18,6 @@
 				Work title
 			</span>
 		</span>
-
-
 
 		<div class="ppl__card_particulars">
 			<div class="ppl__card_manager">

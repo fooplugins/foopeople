@@ -61,12 +61,9 @@
 		};
 
 		FOOPEOPLE.cache.$textFields.each( function() {
-			var $el = $( this ),
-				value = '',
-				name = '';
-
-			value = $el[0].value;
-			name = $el[0].name;
+			var $el 	= $( this ),
+				name 	= $el.attr( 'name' ),
+				value 	= $el.val();
 
 			switch ( name ) {
 			case 'foopeople-person-details[firstname]':

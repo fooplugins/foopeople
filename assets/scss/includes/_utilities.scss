@@ -15,7 +15,7 @@
 
 .ppl__item_pipe {
 	// white-space: nowrap;
-	&:after { 
+	&:after {
 		content: ' | ';
 		display: inline-block;
 		color: silver;
@@ -25,7 +25,7 @@
 	}
 }
 
-// Text styles		
-.ppl_text_captitalize { 
-	text-transform: capitalize; 
+// Text styles
+.ppl_text_captitalize {
+	text-transform: capitalize;
 }
