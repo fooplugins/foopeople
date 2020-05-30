@@ -21,9 +21,6 @@ if ( !class_exists( 'FooPlugins\FooPeople\Admin\Init' ) ) {
 			new namespace\Settings();
 
 			new namespace\Metaboxes\Person\MainDetails();
-			// new namespace\Person();
-			// new namespace\Person_Metaboxes();
-			// new namespace\Person_Columns();
 			new namespace\Person_Metabox_Preview();
 		}
 
