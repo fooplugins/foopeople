@@ -1,7 +1,8 @@
 $white : #ffffff;
 $gray-100 : #fafafa;
 $gray-200 : #eee;
-$gray-300 : #555;
+$gray-300 : #fafafa;
+$gray-400 : #555;
 $blue: #0073aa;
 $blue-hover : #00a0d2;
 
@@ -39,11 +40,14 @@ $blue-hover : #00a0d2;
 
 	&:hover {
 		color: $blue-hover;
+		background-color: $gray-300;
 	}
 
 	&.foometafields-active {
-		color: $gray-300;
-		background-color: $gray-200;
+		color: $gray-400;
+		background-color: $white;
+		margin-right: -1px;
+		cursor: default;
 	}
 
 	.dashicons {
@@ -116,6 +120,29 @@ $blue-hover : #00a0d2;
 	table {
 		width: 100%;
 	}
+
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+
+	// Reset Wordpress panel styling when we move the meta boxes into a FooMetaField
+	.handlediv,
+	h2.ui-sortable-handle {
+		display: none !important;
+	}
+	.postbox {
+		border: none;
+		box-shadow: none;
+		background: transparent;
+	}
+
+	// Reset featured thumbnail styling
+	#set-post-thumbnail {
+		.attachment-post-thumbnail {
+			max-width: 250px;
+		}
+	}
 }
 
 .foometafields-field {
@@ -123,11 +150,10 @@ $blue-hover : #00a0d2;
 	$padding-field: 3px 10px;
 
 	td {
-		width: 70%;
 		padding: $padding;
 	}
 	th {
-		width: 30%;
+		width: 150px;
 		padding: $padding;
 		vertical-align: middle;
 		text-align: left;

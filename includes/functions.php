@@ -4,6 +4,37 @@
  */
 
 /**
+ * If we are on a FooPeople admin screen
+ *
+ * @return boolean
+ */
+function is_foopeople_admin_screen() {
+	$screen = get_current_screen();
+	if($screen) {
+		if($screen->post_type == FOOPEOPLE_CPT_PERSON && $screen->id == FOOPEOPLE_CPT_PERSON) {
+			return true;
+		}
+	}
+	return false;
+}
+
+/**
+ * If we are on a FooPeople admin screen
+ *
+ * @return string
+ */
+function render_template($path, $filename) {
+	ob_start();
+	load_template(FOOPEOPLE_PATH.'includes/templates/'.$path.'/'.$filename.'.php');
+	$output = ob_get_contents();
+	ob_end_clean();
+	return $output;
+}
+
+
+
+
+/**
  * Custom Autoloader used throughout FooPeople
  *
  * @param $class
@@ -94,7 +125,7 @@ function foopeople_safe_get_from_request( $key ) {
  * @since 0.0.1
  */
 function foopeople_plugin_name() {
-	return apply_filters( FOOPEOPLE_FILTER_PLUGIN_NAME, 'FooPeople' );
+	return apply_filters( FOOPEOPLE_FILTER_PLUGIN_NAME, 'foopeople' );
 }
 
 /**

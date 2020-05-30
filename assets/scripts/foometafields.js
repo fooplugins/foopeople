@@ -26,13 +26,13 @@
 		});
 	};
 
-	// FOOPEOPLE.movePortraitBox = function() {
-	// 	$('#postimagediv').detach().appendTo('.pacepeople-tab-content[data-name="_pacepeople_person_details-portrait"]');
-	// };
+	FOOPEOPLE.movePortraitBox = function() {
+		$('#postimagediv').detach().appendTo('.foometafields-content[data-name="foopeople-person-details-portrait"]');
+	};
 
 	$( function() { //wait for ready
 		//FOOPEOPLE.moveTaxonomyBoxes();
-		//FOOPEOPLE.movePortraitBox();
+		FOOPEOPLE.movePortraitBox();
 		FOOPEOPLE.bindAdminEvents();
 	});
 

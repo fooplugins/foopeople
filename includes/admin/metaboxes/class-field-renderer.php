@@ -20,7 +20,6 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 			<style>
 				#<?php echo $id; ?> .inside {
 					margin: 0;
-					padding: 0;
 				}
 			</style>
 			<div class="<?php echo implode( ' ', $classes ); ?>">

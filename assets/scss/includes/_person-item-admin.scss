@@ -1,10 +1,10 @@
 // Hide the default title meta box
-#titlediv
+#titlediv,
 // // Hide the taxonomy boxes. We move these into the vertical tabs system via JS
 // #foopeople-teamdiv,
 // #foopeople-skilldiv,
 // #foopeople-locationdiv ,
-// #side-sortables #postimagediv
+#side-sortables #postimagediv
 {
 	display: none;
 }
