@@ -1,64 +1,64 @@
-(function (PACEPEOPLE, $, undefined) {
+( function( FOOPEOPLE, $, undefined ) {
 
-	PACEPEOPLE.updateCache = function () {
-		PACEPEOPLE.cache = {
-            wrapper : $('.js-pacepeople'),
-            listing : $('.ppl_listing')
+	FOOPEOPLE.updateCache = function() {
+		FOOPEOPLE.cache = {
+			wrapper: $( '.js-pacepeople' ),
+			listing: $( '.ppl_listing' )
 		};
-    };    
-    
-    PACEPEOPLE.init = function() {
-        orginal_url = window.location.pathname;
-    };
+	};
 
-    PACEPEOPLE.bindEvents = function() {
-        PACEPEOPLE.cache.wrapper.on('click', '.ppl__listing-item', function() {
-            var $el = $(this),
-                url = $el.find('.ppl__card_details').data('url');
+	FOOPEOPLE.init = function() {
+		orginal_url = window.location.pathname;
+	};
 
-            $el.siblings().removeClass('is-active');
+	FOOPEOPLE.bindEvents = function() {
+		FOOPEOPLE.cache.wrapper.on( 'click', '.ppl__listing-item', function() {
+			var $el = $( this ),
+				url = $el.find( '.ppl__card_details' ).data( 'url' );
 
-            if($el.hasClass('is-active')) {
-                $el.removeClass('is-active');
-                history.replaceState(null, null, orginal_url);
-            } else {
-                $el.addClass('is-active');
-                history.replaceState(null, null, url);
-            }
-        });
+			$el.siblings().removeClass( 'is-active' );
 
-        PACEPEOPLE.cache.wrapper.on('input', '.js-pacepeople-search', function() {
-            var $el = $(this),
-                value = $el.val().toLowerCase();
+			if ( $el.hasClass( 'is-active' ) ) {
+				$el.removeClass( 'is-active' );
+				history.replaceState( null, null, orginal_url );
+			} else {
+				$el.addClass( 'is-active' );
+				history.replaceState( null, null, url );
+			}
+		});
 
-            if(value.length >= 3) {
-                $('.ppl__listing-item').addClass('is-hidden');
-                PACEPEOPLE.cache.listing.find('.ppl__listing-item').each( function() {
-                    var $el = $(this), 
-                        searchString = $el.data('search');
+		FOOPEOPLE.cache.wrapper.on( 'input', '.js-pacepeople-search', function() {
+			var $el = $( this ),
+				value = $el.val().toLowerCase();
 
-                    if( searchString.indexOf(value) !== -1 ) {
-                        $el.removeClass('is-hidden')
-                    }
-                });
-            } else {
-                $('.ppl__listing-item').removeClass('is-hidden');
-            }
-        });
+			if ( 3 <= value.length ) {
+				$( '.ppl__listing-item' ).addClass( 'is-hidden' );
+				FOOPEOPLE.cache.listing.find( '.ppl__listing-item' ).each( function() {
+					var $el = $( this ),
+						searchString = $el.data( 'search' );
+
+					if ( -1 !== searchString.indexOf( value ) ) {
+						$el.removeClass( 'is-hidden' );
+					}
+				});
+			} else {
+				$( '.ppl__listing-item' ).removeClass( 'is-hidden' );
+			}
+		});
 
 
-    };
+	};
 
-    $(function () { //wait for ready
+	$( function() { //wait for ready
 
-        PACEPEOPLE.updateCache();
-        PACEPEOPLE.init();
-        PACEPEOPLE.bindEvents();
+		FOOPEOPLE.updateCache();
+		FOOPEOPLE.init();
+		FOOPEOPLE.bindEvents();
 
-        $("#ppl__org-chart").jOrgChart({
-            chartElement: '#chart'
-        });
+		$( '#ppl__org-chart' ).jOrgChart({
+			chartElement: '#chart'
+		});
 
 	});
 
-}(window.PACEPEOPLE = window.PACEPEOPLE || {}, jQuery));
+}( window.FOOPEOPLE = window.FOOPEOPLE || {}, jQuery ) );
