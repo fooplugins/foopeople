@@ -63,6 +63,11 @@ assets/bower_components/*
 *.codekit
 **.codekit-cache/*
 
+# VS Code
+##########
+.vscode/
+
+
 # Compiled Files and Build Dirs #
 ##########
 /README.html
@@ -74,3 +79,4 @@ assets/img/.DS_Store
 
 # Freemius #
 /fs-config.json
+

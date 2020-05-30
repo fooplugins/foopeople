@@ -21,10 +21,9 @@
 
 	FOOPEOPLE.updateCheckboxValues = function() {
 		FOOPEOPLE.taxonomyFields = {
-			department: [],
+			team: [],
 			location: [],
-			skills: [],
-			employeetype: []
+			skills: []
 		};
 
 		FOOPEOPLE.cache.$checkboxes.each( function() {
@@ -38,13 +37,13 @@
 				name = $el[0].name;
 
 				switch ( name ) {
-				case 'tax_input[foopeople_department][]':
-					FOOPEOPLE.taxonomyFields.department.push( value );
+				case 'tax_input[foopeople-team][]':
+					FOOPEOPLE.taxonomyFields.team.push( value );
 					break;
-				case 'tax_input[foopeople_location][]':
+				case 'tax_input[foopeople-location][]':
 					FOOPEOPLE.taxonomyFields.location.push( value );
 					break;
-				case 'tax_input[foopeople_skill][]':
+				case 'tax_input[foopeople-skill][]':
 					FOOPEOPLE.taxonomyFields.skills.push( value );
 					break;
 				}
