@@ -1,19 +1,20 @@
 ( function( FOOPEOPLE, $, undefined ) {
 
+
 	FOOPEOPLE.updateCache = function() {
 		FOOPEOPLE.cache = {
 			$checkboxes: $( '#poststuff input[name^=\'tax_input\']' ),
-			$textFields : $( '#foopeople_person_details input[name^=\'_foopeople_person_details\']' ),
+			$textFields: $( '#foopeople-person-details input[name^=\'foopeople-person-details\']' ),
 			$nodes: $( '[data-pace-people-value]' ),
 			$portrait: $( '#set-post-thumbnail' ),
-			$removePortrait : $( '#remove-post-thumbnail' ),
+			$removePortrait: $( '#remove-post-thumbnail' ),
 			portraitDefault: $( '#ppl__portrait_thumbnail' ).data( 'defaultSrc' )
 		};
 	};
 
 	FOOPEOPLE.updatePortrait = function() {
 		var $img = FOOPEOPLE.cache.$portrait.children( 'img' );
-		if( 0 < $img.length ) {
+		if ( 0 < $img.length ) {
 			$( '#ppl__portrait_thumbnail' ).attr( 'src', $img.attr( 'src' ) );
 		}
 	};
@@ -69,22 +70,22 @@
 			name = $el[0].name;
 
 			switch ( name ) {
-			case '_foopeople_person_details[firstname]':
+			case 'foopeople-person-details[firstname]':
 				FOOPEOPLE.textFields.firstname.push( value );
 				break;
-			case '_foopeople_person_details[surname]':
+			case 'foopeople-person-details[surname]':
 				FOOPEOPLE.textFields.surname.push( value );
 				break;
-			case '_foopeople_person_details[preferred]':
+			case 'foopeople-person-details[preferred]':
 				FOOPEOPLE.textFields.preferred.push( value );
 				break;
-			case '_foopeople_person_details[jobtitle]':
+			case 'foopeople-person-details[jobtitle]':
 				FOOPEOPLE.textFields.jobtitle.push( value );
 				break;
-			case '_foopeople_person_details[phonenumber]':
+			case 'foopeople-person-details[phonenumber]':
 				FOOPEOPLE.textFields.phonenumber.push( value );
 				break;
-			case '_foopeople_person_details[email]':
+			case 'foopeople-person-details[email]':
 				FOOPEOPLE.textFields.email.push( value );
 				break;
 			}
@@ -97,7 +98,7 @@
 		$.each( values, function( key, array ) {
 			var text = '';
 
-			if( '' === array[0] ) return false;
+			if ( '' === array[0] ) return false;
 
 			if ( 0 !== array.length ) {
 				$( array ).each( function( index, property ) {
