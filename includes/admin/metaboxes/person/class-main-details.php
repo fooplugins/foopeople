@@ -70,7 +70,8 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\Person\MainDetails' )
 							'id'     => 'portrait',
 							'label'  => __( 'Portrait', 'foopeople' ),
 							'icon'   => 'dashicons-format-image',
-							'fields' => array()
+							'fields' => array(),
+							'featuredImage' => true
 						),
 						array(
 							'id'     => 'contact',
@@ -99,19 +100,22 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\Person\MainDetails' )
 							'id'     => 'teams',
 							'label'  => __( 'Teams', 'foopeople' ),
 							'icon'   => 'dashicons-groups',
-							'fields' => array()
+							'fields' => array(),
+							'taxonomy' => FOOPEOPLE_CT_TEAM
 						),
 						array(
 							'id'     => 'skills',
 							'label'  => __( 'Skills', 'foopeople' ),
 							'icon'   => 'dashicons-tag',
-							'fields' => array()
+							'fields' => array(),
+							'taxonomy' => FOOPEOPLE_CT_SKILL
 						),
 						array(
 							'id'     => 'locations',
 							'label'  => __( 'Locations', 'foopeople' ),
 							'icon'   => 'dashicons-admin-site',
-							'fields' => array()
+							'fields' => array(),
+							'taxonomy' => FOOPEOPLE_CT_LOCATION
 						)
 					)
 				) );

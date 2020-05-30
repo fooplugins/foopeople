@@ -13,6 +13,7 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 		 * @param array $state
 		 */
 		static function render_tabs( $field_group, $id, $state ) {
+
     		$classes[] = 'foometafields-container';
 			$classes[] = 'foometafields-container-' . $id;
 
@@ -27,9 +28,18 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 					<div class="foometafields-tabs">
 						<?php
 						$tab_active = 'foometafields-active';
-						foreach ( $field_group['tabs'] as $tab ) { ?>
+						foreach ( $field_group['tabs'] as $tab ) {
+							$taxonomy = '';
+							if (  isset($tab['taxonomy']) ) {
+								$taxonomy = ' data-taxonomy="taxonomy-';
+								$taxonomy .= $tab['taxonomy'];
+								$taxonomy .= '"';
+							}
+							?>
 							<div class="foometafields-tab <?php echo $tab_active; ?>"
-								 data-name="<?php echo $id . '-' . $tab['id']; ?>">
+								 data-name="<?php echo $id . '-' . $tab['id']; ?>"
+								 <?php echo $taxonomy ?>
+								 >
 								<span class="dashicons <?php echo $tab['icon']; ?>"></span>
 								<span class="foometafields-tab-text"><?php echo $tab['label']; ?></span>
 							</div>
@@ -41,9 +51,37 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 					<div class="foometafields-contents">
 						<?php
 						$tab_active = 'foometafields-active';
-						foreach ( $field_group['tabs'] as $tab ) { ?>
+						foreach ( $field_group['tabs'] as $tab ) {
+							$featuredImage = '';
+							if( isset( $tab['featuredImage'] )) :
+								$featuredImage = ' data-feature-image="true"';
+							?>
+							<style>
+								#adv-settings label[for="postimagediv-hide"] {
+									display: none !important;
+								}
+							</style>
+							<?php endif; ?>
+
 							<div class="foometafields-content <?php echo $tab_active; ?>"
-								 data-name="<?php echo $id . '-' . $tab['id']; ?>">
+								 data-name="<?php echo $id . '-' . $tab['id']; ?>"
+								 <?php echo $featuredImage ?>
+								 >
+
+								 <?php	if (  isset($tab['taxonomy']) ) :
+									$panel = $tab['taxonomy'].'div';
+								?>
+									<style>
+										/* Hide taxonomy boxes in sidebar and screen options show/hide checkbox labels */
+										<?php echo '#'.$panel; ?>,
+										#adv-settings label[for="<?php echo $panel ?>-hide"]
+										{
+											display: none !important;
+										}
+									</style>
+								<?php endif; ?>
+
+
 								<?php self::render_fields( $tab['fields'], $id, $state ); ?>
 							</div>
 							<?php

@@ -1,17 +1,29 @@
 ( function( FOOPEOPLE, $, undefined ) {
 
-	// FOOPEOPLE.moveTaxonomyBoxes = function() {
-	// 	var taxonomyBoxes = {
-	// 		teams: 			$("#taxonomy-pacepeople_department"),
-	// 		skills: 		$("#taxonomy-pacepeople_skill"),
-	// 		locations: 		$("#taxonomy-pacepeople_location")
-	// 	};
-	//
-	// 	$.each(taxonomyBoxes, function(key, array) {
-	// 		if (array[0] === '') return false;
-	// 		$(array[0]).detach().appendTo('.pacepeople-tab-content[data-name="_pacepeople_person_details-' + key + '"]');
-	// 	});
-	// };
+	FOOPEOPLE.moveTaxonomyBoxes = function() {
+		var taxonomyBoxes = FOOPEOPLE.getTaxonomyMetaBoxes();
+
+		$.each( taxonomyBoxes, function( key, value ) {
+			$( value.metabox ).detach().appendTo( '.foometafields-content[data-name="' + value.panel + '"]' );
+		});
+	};
+
+	FOOPEOPLE.getTaxonomyMetaBoxes = function() {
+		var taxonomies = [];
+
+		$( '#poststuff' ).find( '.foometafields-tab[data-taxonomy]' ).each( function() {
+			var $el = $( this ),
+				data = $el.data(),
+				item = new Object();
+
+			item.panel = data.name;
+			item.metabox = '#' + data.taxonomy;
+
+			taxonomies.push( item );
+		});
+
+		return taxonomies;
+	};
 
 	FOOPEOPLE.bindAdminEvents = function() {
 		$( '#poststuff' ).on( 'click', '.foometafields-tab', function( e ) {
@@ -27,11 +39,13 @@
 	};
 
 	FOOPEOPLE.movePortraitBox = function() {
-		$( '#postimagediv' ).detach().appendTo( '.foometafields-content[data-name="foopeople-person-details-portrait"]' );
+		$( '#poststuff' ).find( '.foometafields-content[data-feature-image]' ).each( function() {
+			$( '#postimagediv' ).detach().appendTo( this );
+		});
 	};
 
 	$( function() { //wait for ready
-		//FOOPEOPLE.moveTaxonomyBoxes();
+		FOOPEOPLE.moveTaxonomyBoxes();
 		FOOPEOPLE.movePortraitBox();
 		FOOPEOPLE.bindAdminEvents();
 	});
