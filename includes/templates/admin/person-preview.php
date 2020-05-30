@@ -3,7 +3,6 @@
 
 		<header class="ppl__card_header"></header>
 
-
 		<figure class="ppl__card_portrait_wrapper">
 			<img id="ppl__portrait_thumbnail" class="ppl__card_portrait_thumbnail" data-default-src="<?php echo FOOPEOPLE_PORTRAIT_DEFAULT ?>" src="<?php echo FOOPEOPLE_PORTRAIT_DEFAULT ?>0">
 		</figure>
