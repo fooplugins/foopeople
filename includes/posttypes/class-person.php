@@ -13,22 +13,11 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 			//register the post types
 			add_action( 'init', array( $this, 'register' ) );
 
-			// Change the 'Featured image' text to 'Profile Picture'
-			// TODO : do we want to use Portrait or Avatar?
-			//add_filter( 'admin_post_thumbnail_html', array( $this, 'rename_featured_image_text') );
-
 			//update post type messages
 			add_filter( 'post_updated_messages', array( $this, 'update_messages' ) );
 
 			//update post bulk messages
 			add_filter( 'bulk_post_updated_messages', array( $this, 'update_bulk_messages' ), 10, 2 );
-		}
-
-		function rename_featured_image_text( $content ) {
-			$content = str_replace( __( 'Set featured image' ), __( 'Set Portrait' ), $content);
-			$content = str_replace( __( 'Remove featured image' ), __( 'Remove Portrait' ), $content);
-
-			return $content;
 		}
 
 		function register() {
@@ -47,14 +36,18 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 						'not_found'          => __( 'Nobody found', 'foopeople' ),
 						'not_found_in_trash' => __( 'Nobody found in Trash', 'foopeople' ),
 						'menu_name'          => __( 'People', 'foopeople' ),
-						'all_items'          => __( 'People', 'foopeople' )
+						'all_items'          => __( 'People', 'foopeople' ),
+						'featured_image'        => __( 'Portrait', 'foopeople' ),
+						'set_featured_image'    => __( 'Set Portrait', 'foopeople' ),
+						'remove_featured_image' => _x( 'Remove Portrait', 'foopeople' ),
+						'use_featured_image'    => _x( 'Use as Portrait', 'foopeople' ),
 					),
 					'hierarchical'  => true,
 					'public'        => false,
 					'show_ui'       => true,
 					'show_in_menu'  => true,
 					'menu_icon'     => 'dashicons-groups',
-					'supports'      => array( 'thumbnail', 'revisions', 'title', 'revisions', 'page-attributes' ),
+					'supports'      => array( 'thumbnail', 'title' ),
 				)
 			);
 

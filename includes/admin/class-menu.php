@@ -27,8 +27,8 @@ if ( ! class_exists( 'PacePeople_Admin_Menu' ) ) {
 
 			add_submenu_page(
                 $parent_slug,
-                sprintf( __( '%s Settings', FOOPEOPLE_SLUG ), foopeople_plugin_name() ),
-                __( 'Settings', FOOPEOPLE_SLUG ),
+                sprintf( __( '%s Settings', 'foopeople' ), foopeople_plugin_name() ),
+                __( 'Settings', 'foopeople' ),
                 $capability,
                 'pacepeople-settings',
                 array( $this, 'pacepeople_settings' )
@@ -36,8 +36,8 @@ if ( ! class_exists( 'PacePeople_Admin_Menu' ) ) {
 
 			add_submenu_page(
                 $parent_slug,
-                sprintf( __( '%s Help', FOOPEOPLE_SLUG ), foopeople_plugin_name() ),
-                __( 'Help', FOOPEOPLE_SLUG ),
+                sprintf( __( '%s Help', 'foopeople' ), foopeople_plugin_name() ),
+                __( 'Help', 'foopeople' ),
                 $capability,
                 'pacepeople-help',
                 array( $this, 'pacepeople_help' )
@@ -46,8 +46,8 @@ if ( ! class_exists( 'PacePeople_Admin_Menu' ) ) {
 			if ( current_user_can( 'activate_plugins' ) ) {
 				add_submenu_page(
                     $parent_slug,
-                    sprintf( __( '%s System Information', FOOPEOPLE_SLUG ), foopeople_plugin_name() ),
-                    __( 'System Info', FOOPEOPLE_SLUG ),
+                    sprintf( __( '%s System Information', 'foopeople' ), foopeople_plugin_name() ),
+                    __( 'System Info', 'foopeople' ),
                     $capability,
                     'pacepeople-systeminfo',
                     array( $this, 'pacepeople_systeminfo' )
@@ -77,13 +77,13 @@ if ( ! class_exists( 'PacePeople_Admin_Menu' ) ) {
 				do_action( 'pacepeople_settings_reset' );
 				?>
 				<div id="message" class="updated">
-					<p><strong><?php printf( __( '%s settings reset to defaults.', FOOPEOPLE_SLUG ), foopeople_plugin_name() ); ?></strong></p>
+					<p><strong><?php printf( __( '%s settings reset to defaults.', 'foopeople' ), foopeople_plugin_name() ); ?></strong></p>
 				</div>
 			<?php } else if ( isset($_GET['settings-updated']) ) {
 				do_action( 'pacepeople_settings_updated' );
 				?>
 				<div id="message" class="updated">
-					<p><strong><?php printf( __( '%s settings updated.', FOOPEOPLE_SLUG ), foopeople_plugin_name() ); ?></strong></p>
+					<p><strong><?php printf( __( '%s settings updated.', 'foopeople' ), foopeople_plugin_name() ); ?></strong></p>
 				</div>
 			<?php }
 

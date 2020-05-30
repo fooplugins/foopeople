@@ -18,18 +18,18 @@ $ppl_icon-envelope-open: "\e90a";
 $ppl_icon-envelope: "\e90b";
 
 @font-face {
-  font-family: 'pacepeople';
+  font-family: 'foopeople';
   src:
-    url('#{$icomoon-font-path}/pacepeople.ttf?s79s01') format('truetype'),
-    url('#{$icomoon-font-path}/pacepeople.woff?s79s01') format('woff'),
-    url('#{$icomoon-font-path}/pacepeople.svg?s79s01#pacepeople') format('svg');
+    url('#{$icomoon-font-path}/foopeople.ttf?s79s01') format('truetype'),
+    url('#{$icomoon-font-path}/foopeople.woff?s79s01') format('woff'),
+    url('#{$icomoon-font-path}/foopeople.svg?s79s01#foopeople') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 @mixin icon() {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'pacepeople' !important;
+  font-family: 'foopeople' !important;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -46,87 +46,87 @@ $ppl_icon-envelope: "\e90b";
 }
 
 [class^="ppl_icon-"], [class*=" ppl_icon-"] {
-  @include icon(); 
+  @include icon();
 }
 
 .ppl_icon-close-thin {
   &:before {
-    content: $ppl_icon-close-thin; 
+    content: $ppl_icon-close-thin;
   }
 }
 .ppl_icon-close-thick {
   &:before {
-    content: $ppl_icon-close-thick; 
+    content: $ppl_icon-close-thick;
   }
 }
 .ppl_icon-minus-circle {
   &:before {
-    content: $ppl_icon-minus-circle; 
+    content: $ppl_icon-minus-circle;
   }
 }
 .ppl_icon-minus {
   &:before {
-    content: $ppl_icon-minus; 
+    content: $ppl_icon-minus;
   }
 }
 .ppl_icon-plus-circle {
   &:before {
-    content: $ppl_icon-plus-circle; 
+    content: $ppl_icon-plus-circle;
   }
 }
 .ppl_icon-plus {
   &:before {
-    content: $ppl_icon-plus; 
+    content: $ppl_icon-plus;
   }
 }
 .ppl_icon-phone {
   &:before {
-    content: $ppl_icon-phone; 
+    content: $ppl_icon-phone;
   }
 }
 .ppl_icon-sitemap {
   &:before {
-    content: $ppl_icon-sitemap; 
+    content: $ppl_icon-sitemap;
   }
 }
 .ppl_icon-map-marker {
   &:before {
-    content: $ppl_icon-map-marker; 
+    content: $ppl_icon-map-marker;
   }
 }
 .ppl_icon-group {
   &:before {
-    content: $ppl_icon-group; 
+    content: $ppl_icon-group;
   }
 }
 .ppl_icon-user {
   &:before {
-    content: $ppl_icon-user; 
+    content: $ppl_icon-user;
   }
 }
 .ppl_icon-tags {
   &:before {
-    content: $ppl_icon-tags; 
+    content: $ppl_icon-tags;
   }
 }
 .ppl_icon-tag {
   &:before {
-    content: $ppl_icon-tag; 
+    content: $ppl_icon-tag;
   }
 }
 .ppl_icon-envelope-o {
   &:before {
-    content: $ppl_icon-envelope-o; 
+    content: $ppl_icon-envelope-o;
   }
 }
 .ppl_icon-envelope-open {
   &:before {
-    content: $ppl_icon-envelope-open; 
+    content: $ppl_icon-envelope-open;
   }
 }
 .ppl_icon-envelope {
   &:before {
-    content: $ppl_icon-envelope; 
+    content: $ppl_icon-envelope;
   }
 }
 
