@@ -37,12 +37,6 @@ require_once( FOOPEOPLE_PATH . 'includes/constants.php' );
 //include common global FooPeople functions
 require_once( FOOPEOPLE_PATH . 'includes/functions.php' );
 
-//include common global FooPeople actions
-require_once( FOOPEOPLE_PATH . 'includes/actions.php' );
-
-//include common global FooPeople filters
-require_once( FOOPEOPLE_PATH . 'includes/filters.php' );
-
 //do a check to see if either free/pro version of the plugin is already running
 if ( function_exists( 'foopeople_fs' ) ) {
 	foopeople_fs()->set_basename( true, __FILE__ );
