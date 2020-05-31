@@ -57,6 +57,9 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 								$featuredImage = ' data-feature-image="true"';
 							?>
 							<style>
+								#postimagediv {
+									display: block !important;
+								}
 								#adv-settings label[for="postimagediv-hide"] {
 									display: none !important;
 								}
