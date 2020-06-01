@@ -90,7 +90,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 				do_action( $action . 'PreSave' , $post_id, $_POST );
 
 				//save the state
-				$state = isset( $_POST[$full_id] ) ? $_POST[$full_id] : array();
+				$state = foopeople_safe_get_from_post( $full_id, array() );
 				update_post_meta( $post_id, $this->metabox['meta_key'], $state );
 
 				//TODO : update the search index after a person is saved
