@@ -32,7 +32,8 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 							$tab_type = isset( $tab['type'] ) ? $tab['type'] : 'normal';
 							$taxonomy = '';
 							if ( $tab_type === 'taxonomy' && isset( $tab['taxonomy'] ) ) {
-								$taxonomy = ' data-taxonomy="taxonomy-';
+								$taxonomy = ' data-taxonomy="';
+								$taxonomy .= is_taxonomy_hierarchical( $tab['taxonomy'] ) ? 'taxonomy-' : '';
 								$taxonomy .= $tab['taxonomy'];
 								$taxonomy .= '"';
 							}
@@ -72,7 +73,7 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 								 >
 
 								 <?php	if (  isset($tab['taxonomy']) ) :
-									$panel = $tab['taxonomy'].'div';
+									$panel = is_taxonomy_hierarchical( $tab['taxonomy'] ) ? $tab['taxonomy'] . 'div' : 'tagsdiv-' . $tab['taxonomy'];
 								?>
 									<style>
 										/* Hide taxonomy boxes in sidebar and screen options show/hide checkbox labels */
@@ -80,6 +81,14 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 										#adv-settings label[for="<?php echo $panel ?>-hide"]
 										{
 											display: none !important;
+										}
+
+										#taxonomy-<?php echo esc_html( $tab['taxonomy'] ); ?> .category-tabs {
+											display: none !important;
+										}
+
+										#taxonomy-<?php echo esc_html( $tab['taxonomy'] ); ?> .tabs-panel {
+											border: none !important;
 										}
 									</style>
 								<?php endif; ?>
