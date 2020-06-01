@@ -23,7 +23,6 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\Person\MainDetails' )
 									'required' => true,
 									'type'     => 'text',
 									'default'  => '',
-									//'value'    => $this->get_details( 'firstname', '' ),
 									'row_data' => array(
 										'placeholder' => __( 'The first name of the person.', 'foopeople' ),
 									)
@@ -34,7 +33,6 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\Person\MainDetails' )
 									'required' => true,
 									'type'     => 'text',
 									'default'  => '',
-									//'value'    => $this->get_details( 'surname', '' ),
 									'row_data' => array(
 										'placeholder' => __( 'The last name/surname/family name of the person.', 'foopeople' ),
 									)
@@ -46,7 +44,6 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\Person\MainDetails' )
 									'required' => false,
 									'type'     => 'text',
 									'default'  => '',
-									//'value'    => $this->get_details( 'preferred', '' ),
 									'row_data' => array(
 										'placeholder' => __( 'You can override what the full name for the person will be', 'foopeople' ),
 									)
@@ -58,7 +55,6 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\Person\MainDetails' )
 									'required' => true,
 									'type'     => 'text',
 									'default'  => '',
-									//'value'    => $this->get_details( 'jobtitle', '' ),
 									'row_data' => array(
 										'placeholder' => __( 'Job title', 'foopeople' ),
 									)
@@ -84,7 +80,6 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\Person\MainDetails' )
 									'required' => true,
 									'type'     => 'text',
 									'default'  => '',
-									//'value'    => $this->get_details( 'email', '' ),
 								),
 								array(
 									'id'       => 'phonenumber',
@@ -92,7 +87,6 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\Person\MainDetails' )
 									'required' => true,
 									'type'     => 'text',
 									'default'  => '',
-									//'value'    => $this->get_details( 'phonenumber', '' ),
 								),
 							)
 						),
