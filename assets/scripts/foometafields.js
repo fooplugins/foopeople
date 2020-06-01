@@ -40,7 +40,7 @@
 
 	FOOPEOPLE.movePortraitBox = function() {
 		$( '#poststuff' ).find( '.foometafields-content[data-feature-image]' ).each( function() {
-			$( '#postimagediv' ).detach().appendTo( this );
+			$( '#postimagediv' ).removeClass('closed').detach().appendTo( this );
 		});
 	};
 
