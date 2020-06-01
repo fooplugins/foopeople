@@ -121,15 +121,29 @@ function foopeople_clean( $var ) {
  * Safe way to get value from the request object
  *
  * @param $key
- *
  * @param null $default
+ * @param bool $clean
  *
  * @return mixed
  */
-function foopeople_safe_get_from_post( $key, $default = null ) {
+function foopeople_safe_get_from_post( $key, $default = null, $clean = true ) {
 	if ( isset( $_POST[$key] ) ) {
-		return foopeople_clean( wp_unslash( $_POST[$key] ) );
+		$value = wp_unslash( $_POST[$key] );
+		if ( $clean ) {
+			return foopeople_clean( $value );
+		}
+		return $value;
 	}
 
 	return $default;
+}
+
+/**
+ * Run foopeople_clean over posted textarea but maintain line breaks.
+ *
+ * @param  string $var Data to sanitize.
+ * @return string
+ */
+function foopeople_sanitize_textarea( $var ) {
+	return implode( "\n", array_map( 'foopeople_clean', explode( "\n", $var ) ) );
 }
