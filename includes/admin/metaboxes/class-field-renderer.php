@@ -192,17 +192,17 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 //					}
 
 					$checked = 'on' === $field['value'] ? ' checked="checked"' : '';
-					echo '<input' . $field_class . ' type="checkbox" id="' . $input_id . '" name="' . $input_name . '" value="on"' . $checked . ' />';
+					echo '<input' . $field_class . ' type="checkbox" id="' . esc_attr( $input_id ) . '" name="' . esc_attr( $input_name ) . '" value="on"' . $checked . ' />';
 					break;
 
 				case 'select':
-					echo '<select' . $field_class . ' id="' . $input_id . '" name="' . $input_name . '">';
+					echo '<select' . $field_class . ' id="' . esc_attr( $input_id ) . '" name="' . esc_attr( $input_name ) . '">';
 					foreach ( $choices as $value => $label ) {
 						$selected = '';
 						if ( $field['value'] == $value ) {
 							$selected = ' selected="selected"';
 						}
-						echo '<option ' . $selected . ' value="' . $value . '">' . $label . '</option>';
+						echo '<option ' . $selected . ' value="' . esc_attr( $value ) . '">' . esc_html( $label ) . '</option>';
 					}
 
 					echo '</select>';
@@ -216,7 +216,7 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 						if ( $field['value'] == $value ) {
 							$selected = ' checked="checked"';
 						}
-						echo '<input' . $field_class . $selected . ' type="radio" name="' . $input_name . '"  id="' . $input_id . $i . '" value="' . $value . '"> <label for="' . $input_id . $i . '">' . $label . '</label>';
+						echo '<input' . $field_class . $selected . ' type="radio" name="' . esc_attr( $input_name ) . '"  id="' . esc_attr( $input_id . $i ) . '" value="' . esc_attr( $value ) . '"> <label for="' . esc_attr( $input_id . $i ) . '">' . esc_html( $label ) . '</label>';
 						if ( $i < count( $choices ) - 1 ) {
 							echo $spacer;
 						}
@@ -225,12 +225,12 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 					break;
 
 				case 'textarea':
-					echo '<textarea' . $field_class . ' id="' . $input_id . '" name="' . $input_name . '" placeholder="' . $placeholder . '">' . esc_attr( $field['value'] ) . '</textarea>';
+					echo '<textarea' . $field_class . ' id="' . esc_attr( $input_id ) . '" name="' . esc_attr( $input_name ) . '" placeholder="' . esc_attr( $placeholder ) . '">' . esc_textarea( $field['value'] ) . '</textarea>';
 
 					break;
 
 				case 'text':
-					echo '<input' . $field_class . ' type="text" id="' . $input_id . '" name="' . $input_name . '" value="' . esc_attr( $field['value'] ) . '" />';
+					echo '<input' . $field_class . ' type="text" id="' . esc_attr( $input_id ) . '" name="' . esc_attr( $input_name ) . '" value="' . esc_attr( $field['value'] ) . '" />';
 
 					break;
 
@@ -238,14 +238,14 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 
 					$opacity_attribute = empty($opacity) ? '' : ' data-show-alpha="true"';
 
-					echo '<input ' . $opacity_attribute . ' class="colorpicker" type="text" id="' . $input_id . '" name="' . $input_name . '" value="' . esc_attr( $field['value'] ) . '" />';
+					echo '<input ' . $opacity_attribute . ' class="colorpicker" type="text" id="' . esc_attr( $input_id ) . '" name="' . esc_attr( $input_name ) . '" value="' . esc_attr( $field['value'] ) . '" />';
 
 					break;
 
 				case 'number':
 					$min = isset($min) ? $min : 0;
 					$step = isset($step) ? $step : 1;
-					echo '<input class="regular-text ' . $class . '" type="number" step="' . $step . '" min="' . $min .'" id="' . $input_id . '" name="' . $input_name . '" placeholder="' . $placeholder . '" value="' . esc_attr( $field['value'] ) . '" />';
+					echo '<input class="regular-text ' . esc_attr( $class ) . '" type="number" step="' . esc_attr( $step ) . '" min="' . esc_attr( $min ) .'" id="' . esc_attr( $input_id ) . '" name="' . esc_attr( $input_name ) . '" placeholder="' . esc_attr( $placeholder ) . '" value="' . esc_attr( $field['value'] ) . '" />';
 
 					break;
 
@@ -258,7 +258,7 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 							$checked = 'checked="checked"';
 						}
 
-						echo '<input' . $field_class . ' ' . $checked . ' type="checkbox" name="' . $input_name . '[' . $value . ']" id="' . $input_id . $i . '" value="' . $value . '" data-value="' . $value . '"> <label for="' . $input_id . $i . '">' . $label . '</label>';
+						echo '<input' . $field_class . ' ' . $checked . ' type="checkbox" name="' . esc_attr( $input_name ) . '[' . esc_attr( $value ) . ']" id="' . esc_attr( $input_id . $i ) . '" value="' . esc_attr( $value ) . '" data-value="' . esc_attr( $value ) . '"> <label for="' . esc_attr( $input_id . $i ) . '">' . esc_html( $label ) . '</label>';
 						if ( $i < count( $choices ) - 1 ) {
 							echo '<br />';
 						}
@@ -272,10 +272,10 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 					$icon_html = '';
 					foreach ( $choices as $value => $icon ) {
 						$selected = ( $field['value'] == $value ) ? ' checked="checked"' : '';
-						$icon_html .= '<input style="display:none" name="' . $input_name. '" id="' . $input_id . $i . '" ' . $selected . ' type="radio" value="' . $value . '" tabindex="' . $i . '"/>';
+						$icon_html .= '<input style="display:none" name="' . esc_attr( $input_name ). '" id="' . esc_attr( $input_id . $i ) . '" ' . $selected . ' type="radio" value="' . esc_attr( $value ) . '" tabindex="' . $i . '"/>';
 						$title = $icon['label'];
 						$img = $icon['img'];
-						$icon_html .= '<label for="' . $input_id . $i . '" data-balloon-length="small" data-balloon-pos="down" data-balloon="' . $title . '"><img src="' . $img . '" /></label>';
+						$icon_html .= '<label for="' . esc_attr( $input_id . $i ) . '" data-balloon-length="small" data-balloon-pos="down" data-balloon="' . esc_attr( $title ). '"><img src="' . esc_attr( $img ) . '" /></label>';
 						$i++;
 					}
 					echo $icon_html;
@@ -287,10 +287,10 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 					$icon_html = '';
 					foreach ( $choices as $value => $icon ) {
 						$selected = ( $field['value'] == $value ) ? ' checked="checked"' : '';
-						$icon_html .= '<input style="display:none" name="' . $input_name. '" id="' . $input_id . $i . '" ' . $selected . ' type="radio" value="' . $value . '" tabindex="' . $i . '"/>';
+						$icon_html .= '<input style="display:none" name="' . esc_attr( $input_name ) . '" id="' . esc_attr( $input_id . $i ) . '" ' . $selected . ' type="radio" value="' . esc_attr( $value ) . '" tabindex="' . $i . '"/>';
 						$title = $icon['label'];
 						$html = $icon['html'];
-						$icon_html .= '<label for="' . $input_id . $i . '" data-balloon-length="small" data-balloon-pos="down" data-balloon="' . $title . '">' . $html . '</label>';
+						$icon_html .= '<label for="' . esc_attr( $input_id . $i ) . '" data-balloon-length="small" data-balloon-pos="down" data-balloon="' . esc_attr( $title ) . '">' . esc_html( $html ) . '</label>';
 						$i++;
 					}
 					echo $icon_html;
