@@ -29,15 +29,15 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 						<?php
 						$tab_active = 'foometafields-active';
 						foreach ( $field_group['tabs'] as $tab ) {
+							$tab_type = isset( $tab['type'] ) ? $tab['type'] : 'normal';
 							$taxonomy = '';
-							if (  isset($tab['taxonomy']) ) {
+							if ( $tab_type === 'taxonomy' && isset( $tab['taxonomy'] ) ) {
 								$taxonomy = ' data-taxonomy="taxonomy-';
 								$taxonomy .= $tab['taxonomy'];
 								$taxonomy .= '"';
 							}
 							?>
-							<div class="foometafields-tab <?php echo $tab_active; ?>"
-								 data-name="<?php echo $id . '-' . $tab['id']; ?>"
+							<div class="foometafields-tab <?php echo $tab_active; ?>" data-name="<?php echo $id . '-' . $tab['id']; ?>"
 								 <?php echo $taxonomy ?>
 								 >
 								<span class="dashicons <?php echo $tab['icon']; ?>"></span>
@@ -164,7 +164,9 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 
 			extract( $field );
 
-			$field_class = empty($class) ? '' : ' class="' . $class . '"';
+			$type = sanitize_title( isset( $field['type'] ) ? $field['type'] : 'text' );
+
+			$field_class = empty($class) ? '' : ' class="' . esc_attr( $class ) . '"';
 
 			if ( !isset( $field['value'] ) ) {
 				$field['value'] = '';
@@ -183,13 +185,6 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 					break;
 
 				case 'checkbox':
-//					if ( isset($people->settings[$id]) && $people->settings[$id] == 'on' ) {
-//						$field['value'] = 'on';
-//					} else if ( ! isset($people->settings) && $default == 'on' ) {
-//						$field['value'] = 'on';
-//					} else {
-//						$field['value'] = '';
-//					}
 
 					$checked = 'on' === $field['value'] ? ' checked="checked"' : '';
 					echo '<input' . $field_class . ' type="checkbox" id="' . esc_attr( $input_id ) . '" name="' . esc_attr( $input_name ) . '" value="on"' . $checked . ' />';
@@ -266,39 +261,27 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 					}
 
 					break;
-				case 'icon':
-					$i = 0;
-					$input_name = $meta_key . '[' . $id . ']';
-					$icon_html = '';
-					foreach ( $choices as $value => $icon ) {
-						$selected = ( $field['value'] == $value ) ? ' checked="checked"' : '';
-						$icon_html .= '<input style="display:none" name="' . esc_attr( $input_name ). '" id="' . esc_attr( $input_id . $i ) . '" ' . $selected . ' type="radio" value="' . esc_attr( $value ) . '" tabindex="' . $i . '"/>';
-						$title = $icon['label'];
-						$img = $icon['img'];
-						$icon_html .= '<label for="' . esc_attr( $input_id . $i ) . '" data-balloon-length="small" data-balloon-pos="down" data-balloon="' . esc_attr( $title ). '"><img src="' . esc_attr( $img ) . '" /></label>';
-						$i++;
-					}
-					echo $icon_html;
-					break;
 
-				case 'htmlicon':
+				case 'htmllist':
 					$i = 0;
 					$input_name = $meta_key . '[' . $id . ']';
 					$icon_html = '';
-					foreach ( $choices as $value => $icon ) {
+					foreach ( $choices as $value => $item ) {
 						$selected = ( $field['value'] == $value ) ? ' checked="checked"' : '';
 						$icon_html .= '<input style="display:none" name="' . esc_attr( $input_name ) . '" id="' . esc_attr( $input_id . $i ) . '" ' . $selected . ' type="radio" value="' . esc_attr( $value ) . '" tabindex="' . $i . '"/>';
-						$title = $icon['label'];
-						$html = $icon['html'];
-						$icon_html .= '<label for="' . esc_attr( $input_id . $i ) . '" data-balloon-length="small" data-balloon-pos="down" data-balloon="' . esc_attr( $title ) . '">' . esc_html( $html ) . '</label>';
+						$title = $item['label'];
+						$html = wp_kses_post( $item['html'] );
+						$icon_html .= '<label for="' . esc_attr( $input_id . $i ) . '" data-balloon-length="small" data-balloon-pos="down" data-balloon="' . esc_attr( $title ) . '">' . $html . '</label>';
 						$i++;
 					}
 					echo $icon_html;
 					break;
 
 				default:
-					do_action( 'fooplugins_metabox_field_' . $meta_key, $type, $field );
-					do_action( 'fooplugins_metabox_field_' . $meta_key . '-' . $type, $field );
+					//the field type is not natively supported
+					if ( isset( $field['function'] ) ) {
+						call_user_func( $field['function'], $field, $meta_key );
+					}
 					break;
 			}
 
