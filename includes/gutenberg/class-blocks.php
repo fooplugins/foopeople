@@ -15,7 +15,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Blocks' ) ) {
 
 		function __construct() {
 			//Backend editor block assets.
-			// add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_editor_assets' ) );
+			add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_editor_assets' ) );
 
 			add_action( 'init', array( $this, 'php_block_init' ) );
 
@@ -37,27 +37,22 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Blocks' ) ) {
 				return;
 			}
 
-			//enqueue foogallery dependencies
-			wp_enqueue_script( 'masonry' );
-			foogallery_enqueue_core_gallery_template_script();
-			foogallery_enqueue_core_gallery_template_style();
-
 			$deps = array(
 				'wp-blocks',
 				'wp-i18n',
 				'wp-element',
-				'foogallery-core',
 				'wp-components',
 				'wp-editor',
 				'underscore'
 			);
 
-			$js_url = plugins_url( 'gutenberg/dist/blocks.build.js', dirname( __FILE__ ) );
+
+
 
 			// Scripts.
 			wp_enqueue_script(
-				'foogallery-block-js', // Handle.
-				$js_url, // Block.build.js: We register the block here. Built with Webpack.
+				'foopeople-block-js', // Handle.
+				FOOPEOPLE_URL . '/assets/js/blocks.min.js', // Block.build.js: We register the block here. Built with Webpack.
 				$deps, // Dependencies, defined above.
 				// filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
 				true // Enqueue the script in the footer.
@@ -65,39 +60,39 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Blocks' ) ) {
 
 			// Styles.
 			wp_enqueue_style(
-				'foogallery-block-editor-css', // Handle.
-				plugins_url( 'gutenberg/dist/blocks.editor.build.css', dirname( __FILE__ ) ), // Block editor CSS.
+				'foopeople-block-editor-css', // Handle.
+				FOOPEOPLE_URL . '/assets/css/foopeople.blocks.min.css', // Block editor CSS.
 				array( 'wp-edit-blocks', 'foogallery-core' ) // Dependency to include the CSS after it.
 				// filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: filemtime — Gets file modification time.
 			);
 
-			$local_data = false;
+			// $local_data = false;
 
-			if ( function_exists( 'wp_get_jed_locale_data' ) ) {
-				$local_data = wp_get_jed_locale_data( 'foogallery' );
-			} else if ( function_exists( 'gutenberg_get_jed_locale_data' ) ) {
-				$local_data = gutenberg_get_jed_locale_data( 'foogallery' );
-			}
+			// if ( function_exists( 'wp_get_jed_locale_data' ) ) {
+			// 	$local_data = wp_get_jed_locale_data( 'foogallery' );
+			// } else if ( function_exists( 'gutenberg_get_jed_locale_data' ) ) {
+			// 	$local_data = gutenberg_get_jed_locale_data( 'foogallery' );
+			// }
 
-			$block_js_data = apply_filters('foogallery_gutenberg_block_js_data', array(
-				"editGalleryUrl" => $this->get_edit_gallery_url()
-			));
+			// $block_js_data = apply_filters('foogallery_gutenberg_block_js_data', array(
+			// 	"editGalleryUrl" => $this->get_edit_gallery_url()
+			// ));
 
-			$inline_script = 'window.FOOGALLERY_BLOCK = ' . json_encode( $block_js_data ) . ';';
-			if ( false !== $local_data ) {
-				/*
-				 * Pass already loaded translations to our JavaScript.
-				 *
-				 * This happens _before_ our JavaScript runs, afterwards it's too late.
-				 */
-				$inline_script .= PHP_EOL . 'wp.i18n.setLocaleData( ' . json_encode( $local_data ) . ', "foogallery" );';
-			}
+			// $inline_script = 'window.FOOGALLERY_BLOCK = ' . json_encode( $block_js_data ) . ';';
+			// if ( false !== $local_data ) {
+			// 	/*
+			// 	 * Pass already loaded translations to our JavaScript.
+			// 	 *
+			// 	 * This happens _before_ our JavaScript runs, afterwards it's too late.
+			// 	 */
+			// 	$inline_script .= PHP_EOL . 'wp.i18n.setLocaleData( ' . json_encode( $local_data ) . ', "foogallery" );';
+			// }
 
-			wp_add_inline_script(
-				'foogallery-block-js',
-				$inline_script,
-				'before'
-			);
+			// wp_add_inline_script(
+			// 	'foopeople-block-js',
+			// 	$inline_script,
+			// 	'before'
+			// );
 		}
 
 		function get_edit_gallery_url() {

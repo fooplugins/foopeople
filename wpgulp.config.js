@@ -28,6 +28,9 @@ module.exports = {
 			styleSRC: './assets/scss/foopeople.admin.scss'
 		},
 		{
+			styleSRC: './assets/scss/foopeople.blocks.scss'
+		},
+		{
 			styleSRC: './assets/scss/foopeople.customizer.scss'
 		},
 		{
