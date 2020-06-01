@@ -90,7 +90,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 				do_action( $action . 'PreSave' , $post_id, $_POST );
 
 				//save the state
-				$state = foopeople_safe_get_from_post( $full_id, array() );
+				$state = $this->get_posted_data();
 				update_post_meta( $post_id, $this->metabox['meta_key'], $state );
 
 				//TODO : update the search index after a person is saved
@@ -100,6 +100,51 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 
 				do_action( $action . 'PostSave' , $post_id, $_POST );
 			}
+		}
+
+		/**
+		 * Get the sanitized posted data for the metabox
+		 *
+		 * @return mixed|void
+		 */
+		private function get_posted_data() {
+			$full_id = $this->build_id();
+
+			$sanitized_data = foopeople_safe_get_from_post( $full_id, array(), false );
+
+			$data = array();
+
+			//for some fields, we need to do special sanitization
+			foreach ( $this->field_group['tabs'] as $tab ) {
+				foreach ( $tab['fields'] as $field ) {
+
+					if ( !array_key_exists( $field['id'], $sanitized_data ) ) {
+						//the field had no posted value, check for a default
+						if ( isset( $field['default'] ) ) {
+							$data[ $field['id'] ] = $field['default'];
+						}
+					} else {
+						$value = $sanitized_data[ $field['id'] ];
+
+						$type = sanitize_title( isset( $field['type'] ) ? $field['type'] : 'text' );
+
+						//textareas need some special attention
+						if ( 'textarea' === $type ) {
+							$value = foopeople_sanitize_textarea( $value );
+						} else {
+							$value = foopeople_clean( $value );
+						}
+
+						$data[ $field['id'] ] = $value;
+					}
+				}
+			}
+
+			$filter = 'FooPlugins\FooPeople\Admin\Metaboxes\\' . $this->metabox['post_type'] . '\\' . $this->metabox['metabox_id'] . '\GetPostedData';
+
+			$data = apply_filters( $filter, $data, $this );
+
+			return $data;
 		}
 
 		/***
