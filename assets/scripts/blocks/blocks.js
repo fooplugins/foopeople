@@ -4,7 +4,6 @@
  * Registering a basic FooPeople block with Gutenberg.
  */
 
-// import FooPeopleEdit from './edit';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
@@ -58,8 +57,7 @@ registerBlockType( 'fooplugins/foopeople', {
 	 */
 
 	edit(props) {
-
-		// return (<FooPeopleEdit {...props}/>)
+		return null;
 	},
 
 
