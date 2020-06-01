@@ -103,12 +103,33 @@ function foopeople_safe_get_from_array( $key, $array, $default ) {
 }
 
 /**
+ * Clean variables using sanitize_text_field. Arrays are cleaned recursively.
+ * Non-scalar values are ignored.
+ *
+ * @param string|array $var Data to sanitize.
+ * @return string|array
+ */
+function foopeople_clean( $var ) {
+	if ( is_array( $var ) ) {
+		return array_map( 'foopeople_clean', $var );
+	} else {
+		return is_scalar( $var ) ? sanitize_text_field( $var ) : $var;
+	}
+}
+
+/**
  * Safe way to get value from the request object
  *
  * @param $key
  *
+ * @param null $default
+ *
  * @return mixed
  */
-function foopeople_safe_get_from_request( $key ) {
-	return foopeople_safe_get_from_array( $key, $_REQUEST, null );
+function foopeople_safe_get_from_post( $key, $default = null ) {
+	if ( isset( $_POST[$key] ) ) {
+		return foopeople_clean( wp_unslash( $_POST[$key] ) );
+	}
+
+	return $default;
 }
