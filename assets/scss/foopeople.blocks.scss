@@ -1,0 +1,18 @@
+// Gutenberg Block Styles
+// ---------------------------------------
+// General
+// ---------------------------------------
+@import "includes/reset";
+@import "includes/variables";
+@import "includes/breakpoints";
+@import "includes/icons";
+@import "includes/utilities";
+
+// Pace People styles
+// ---------------------------------------
+@import "includes/person-item";
+
+
+// Block Styles
+// ---------------------------------------
+@import "blocks/blocks";

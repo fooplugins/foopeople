@@ -26,6 +26,7 @@ if ( !class_exists( 'FooPlugins\FooPeople\Init' ) ) {
 
 			if ( is_admin() ) {
 				new namespace\Admin\Init();
+				new namespace\Gutenberg\Init();
 			}
 
 			//register custom post types
