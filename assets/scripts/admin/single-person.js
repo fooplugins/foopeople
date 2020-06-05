@@ -94,8 +94,6 @@
 		$.each( values, function( key, array ) {
 			var text = '';
 
-			if ( '' === array[0] ) return false;
-
 			if ( 0 !== array.length ) {
 				$( array ).each( function( index, property ) {
 					text += '<span class="ppl__item_delimiter">' + property + '</span> ';
@@ -104,6 +102,7 @@
 				text = '<span class="ppl__item_delimiter ppl_text_captitalize">' + key + '</span> ';
 			}
 			$( '[data-pace-people-value="' + key + '"]' ).html( text );
+
 		});
 	};
 
