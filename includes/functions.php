@@ -121,15 +121,55 @@ function foopeople_clean( $var ) {
  * Safe way to get value from the request object
  *
  * @param $key
- *
  * @param null $default
+ * @param bool $clean
  *
  * @return mixed
  */
-function foopeople_safe_get_from_post( $key, $default = null ) {
+function foopeople_safe_get_from_post( $key, $default = null, $clean = true ) {
 	if ( isset( $_POST[$key] ) ) {
-		return foopeople_clean( wp_unslash( $_POST[$key] ) );
+		$value = wp_unslash( $_POST[$key] );
+		if ( $clean ) {
+			return foopeople_clean( $value );
+		}
+		return $value;
 	}
 
 	return $default;
+}
+
+/**
+ * Run foopeople_clean over posted textarea but maintain line breaks.
+ *
+ * @param  string $var Data to sanitize.
+ * @return string
+ */
+function foopeople_sanitize_textarea( $var ) {
+	return implode( "\n", array_map( 'foopeople_clean', explode( "\n", $var ) ) );
+}
+
+/**
+ * Return a sanitized and unslashed key from $_GET
+ * @param $key
+ *
+ * @return string|null
+ */
+function foopeople_sanitize_key( $key ) {
+	if ( isset( $_GET[$key] ) ) {
+		return sanitize_key( wp_unslash( $_GET[ $key ] ) );
+	}
+	return null;
+}
+
+/**
+ * Return a sanitized and unslashed value from $_GET
+ * @param $key
+ *
+ * @return string|null
+ */
+function foopeople_sanitize_text( $key ) {
+	if ( isset( $_GET[$key] ) ) {
+		return sanitize_text_field( wp_unslash( $_GET[ $key ] ) );
+	}
+	return null;
 }

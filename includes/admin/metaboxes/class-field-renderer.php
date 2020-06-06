@@ -1,4 +1,5 @@
 <?php
+
 namespace FooPlugins\FooPeople\Admin\Metaboxes;
 
 if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
@@ -14,85 +15,98 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 		 */
 		static function render_tabs( $field_group, $id, $state ) {
 
-    		$classes[] = 'foometafields-container';
+			$classes[] = 'foometafields-container';
 			$classes[] = 'foometafields-container-' . $id;
 
 			?>
 			<style>
-				#<?php echo $id; ?> .inside {
+				#
+				<?php echo $id; ?>
+				.inside {
 					margin: 0;
 				}
 			</style>
-			<div class="<?php echo implode( ' ', $classes ); ?>">
-				<div>
-					<div class="foometafields-tabs">
-						<?php
-						$tab_active = 'foometafields-active';
-						foreach ( $field_group['tabs'] as $tab ) {
-							$taxonomy = '';
-							if (  isset($tab['taxonomy']) ) {
-								$taxonomy = ' data-taxonomy="taxonomy-';
-								$taxonomy .= $tab['taxonomy'];
-								$taxonomy .= '"';
-							}
-							?>
-							<div class="foometafields-tab <?php echo $tab_active; ?>"
-								 data-name="<?php echo $id . '-' . $tab['id']; ?>"
-								 <?php echo $taxonomy ?>
-								 >
-								<span class="dashicons <?php echo $tab['icon']; ?>"></span>
-								<span class="foometafields-tab-text"><?php echo $tab['label']; ?></span>
-							</div>
-							<?php
-							$tab_active = '';
+		<div class="<?php echo implode( ' ', $classes ); ?>">
+			<div>
+				<div class="foometafields-tabs">
+					<?php
+					$tab_active = 'foometafields-active';
+					foreach ( $field_group['tabs'] as $tab ) {
+						$tab_type = isset( $tab['type'] ) ? $tab['type'] : 'normal';
+						$taxonomy = '';
+						if ( $tab_type === 'taxonomy' && isset( $tab['taxonomy'] ) ) {
+							$taxonomy = ' data-taxonomy="';
+							$taxonomy .= is_taxonomy_hierarchical( $tab['taxonomy'] ) ? 'taxonomy-' : '';
+							$taxonomy .= $tab['taxonomy'];
+							$taxonomy .= '"';
 						}
 						?>
-					</div>
-					<div class="foometafields-contents">
+						<div class="foometafields-tab <?php echo $tab_active; ?>"
+							 data-name="<?php echo $id . '-' . $tab['id']; ?>"
+								<?php echo $taxonomy ?>
+						>
+							<span class="dashicons <?php echo $tab['icon']; ?>"></span>
+							<span class="foometafields-tab-text"><?php echo $tab['label']; ?></span>
+						</div>
 						<?php
-						$tab_active = 'foometafields-active';
-						foreach ( $field_group['tabs'] as $tab ) {
-							$featuredImage = '';
-							if( isset( $tab['featuredImage'] )) :
-								$featuredImage = ' data-feature-image="true"';
+						$tab_active = '';
+					}
+					?>
+				</div>
+				<div class="foometafields-contents">
+					<?php
+					$tab_active = 'foometafields-active';
+					foreach ( $field_group['tabs'] as $tab ) {
+						$featuredImage = '';
+						if ( isset( $tab['featuredImage'] ) ) :
+							$featuredImage = ' data-feature-image="true"';
 							?>
 							<style>
 								#postimagediv {
 									display: block !important;
 								}
+
 								#adv-settings label[for="postimagediv-hide"] {
 									display: none !important;
 								}
 							</style>
+						<?php endif; ?>
+
+						<div class="foometafields-content <?php echo $tab_active; ?>"
+							 data-name="<?php echo $id . '-' . $tab['id']; ?>"
+								<?php echo $featuredImage ?>
+						>
+
+							<?php if ( isset( $tab['taxonomy'] ) ) :
+								$panel = is_taxonomy_hierarchical( $tab['taxonomy'] ) ? $tab['taxonomy'] . 'div' : 'tagsdiv-' . $tab['taxonomy'];
+								?>
+								<style>
+									/* Hide taxonomy boxes in sidebar and screen options show/hide checkbox labels */
+									<?php echo '#'.$panel; ?>
+									,
+									#adv-settings label[for="<?php echo $panel ?>-hide"] {
+										display: none !important;
+									}
+
+									#taxonomy-<?php echo esc_html( $tab['taxonomy'] ); ?> .category-tabs {
+										display: none !important;
+									}
+
+									#taxonomy-<?php echo esc_html( $tab['taxonomy'] ); ?> .tabs-panel {
+										border: none !important;
+									}
+								</style>
 							<?php endif; ?>
 
-							<div class="foometafields-content <?php echo $tab_active; ?>"
-								 data-name="<?php echo $id . '-' . $tab['id']; ?>"
-								 <?php echo $featuredImage ?>
-								 >
 
-								 <?php	if (  isset($tab['taxonomy']) ) :
-									$panel = $tab['taxonomy'].'div';
-								?>
-									<style>
-										/* Hide taxonomy boxes in sidebar and screen options show/hide checkbox labels */
-										<?php echo '#'.$panel; ?>,
-										#adv-settings label[for="<?php echo $panel ?>-hide"]
-										{
-											display: none !important;
-										}
-									</style>
-								<?php endif; ?>
-
-
-								<?php self::render_fields( $tab['fields'], $id, $state ); ?>
-							</div>
-							<?php
-							$tab_active = '';
-						}
-						?>
-					</div>
+							<?php self::render_fields( $tab['fields'], $id, $state ); ?>
+						</div>
+						<?php
+						$tab_active = '';
+					}
+					?>
 				</div>
+			</div>
 			</div><?php
 		}
 
@@ -109,10 +123,17 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 				<tbody>
 				<?php
 				foreach ( $fields as $field ) {
-					$field_type      = isset( $field['type'] ) ? $field['type'] : 'unknown';
-					$field_classes[] = 'foometafields-field';
-					$field_classes[] = "foometafields-field-{$field_type}";
-					$field_classes[] = "foometafields-field-{$field['id']}";
+					$field_type                     = isset( $field['type'] ) ? $field['type'] : 'unknown';
+					$field_single_column            = isset( $field['single_column'] ) ? $field['single_column'] : false;
+					$single_column_class            = '';
+					$field_single_column_show_title = $field_single_column_show_desc = true;
+					$field_classes                  = array();
+					$field_classes[]                = 'foometafields-field';
+					$field_classes[]                = "foometafields-field-{$field_type}";
+					$field_classes[]                = "foometafields-field-{$field['id']}";
+					if ( ! $field_single_column && isset( $field['class'] ) ) {
+						$field_classes[] = $field['class'];
+					}
 					$field_row_data_html = '';
 					if ( isset( $field['row_data'] ) ) {
 						$field_row_data = array_map( 'esc_attr', $field['row_data'] );
@@ -124,19 +145,42 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 					if ( is_array( $state ) && array_key_exists( $field['id'], $state ) ) {
 						$field['value'] = $state[ $field['id'] ];
 					}
+
+					//check for any special non-editable field types
+					if ( 'help' === $field_type ) {
+						$field_single_column            = true;
+						$single_column_class            = 'foometafields-single-column-icon foometafields-single-column-icon-help';
+						$field_single_column_show_title = false;
+						$field_single_column_show_desc  = true;
+					} else if ( 'section' === $field_type ) {
+						$field_single_column            = true;
+						$field_single_column_show_title = true;
+						$field_single_column_show_desc  = false;
+					} else if ( 'singlecolumn' === $field_type ) {
+						$field_single_column = true;
+						$single_column_class = isset( $field['class'] ) ? $field['class'] : '';
+					}
 					?>
-					<tr class="<?php echo implode(' ', $field_classes ); ?>"<?php echo $field_row_data_html; ?>>
-						<?php if ( 'help' == $field_type ) { ?>
-							<td colspan="2">
-								<div>
-									<?php echo $field['desc']; ?>
-								</div>
+					<tr class="<?php echo implode( ' ', $field_classes ); ?>"<?php echo $field_row_data_html; ?>>
+						<?php if ( $field_single_column ) { ?>
+							<td colspan="2" class="foometafields-single-column">
+								<?php if ( $field_single_column_show_title && isset( $field['title'] ) ) { ?>
+									<h3 class="<?php echo esc_attr( $single_column_class ); ?>">
+										<?php echo esc_html( $field['title'] ); ?>
+									</h3>
+								<?php } ?>
+								<?php if ( $field_single_column_show_desc && isset( $field['desc'] ) ) { ?>
+									<p class="<?php echo esc_attr( $single_column_class ); ?>">
+										<?php echo esc_html( $field['desc'] ); ?>
+									</p>
+								<?php } ?>
 							</td>
 						<?php } else { ?>
 							<th>
 								<label for="fooplugins_metabox_field_<?php echo $id . '_' . $field['id']; ?>"><?php echo $field['title']; ?></label>
-								<?php if ( ! empty( $field['desc'] ) ) { ?>
-									<span data-balloon-length="large" data-balloon-pos="right" data-balloon="<?php echo esc_attr( $field['desc'] ); ?>">
+								<?php if ( ! empty( $field['tooltip'] ) ) { ?>
+									<span data-balloon-length="large" data-balloon-pos="right"
+										  data-balloon="<?php echo esc_attr( $field['desc'] ); ?>">
 										<i class="dashicons dashicons-editor-help"></i>
 									</span>
 								<?php } ?>
@@ -164,16 +208,18 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 
 			extract( $field );
 
-			$field_class = empty($class) ? '' : ' class="' . $class . '"';
+			$type = sanitize_title( isset( $field['type'] ) ? $field['type'] : 'text' );
 
-			if ( !isset( $field['value'] ) ) {
+			$field_class = empty( $class ) ? '' : ' class="' . esc_attr( $class ) . '"';
+
+			if ( ! isset( $field['value'] ) ) {
 				$field['value'] = '';
 			}
 
-			$input_id = 'fooplugins_metabox_field_' . $meta_key . '_' . $id;
+			$input_id   = 'fooplugins_metabox_field_' . $meta_key . '_' . $id;
 			$input_name = $meta_key . '[' . $id . ']';
 
-			echo '<div class="fooplugins_metabox_field-' . $type . '">';
+			echo '<div class="foometafields-field-input-' . esc_attr( $type ) . '">';
 
 			switch ( $type ) {
 
@@ -183,13 +229,6 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 					break;
 
 				case 'checkbox':
-//					if ( isset($people->settings[$id]) && $people->settings[$id] == 'on' ) {
-//						$field['value'] = 'on';
-//					} else if ( ! isset($people->settings) && $default == 'on' ) {
-//						$field['value'] = 'on';
-//					} else {
-//						$field['value'] = '';
-//					}
 
 					$checked = 'on' === $field['value'] ? ' checked="checked"' : '';
 					echo '<input' . $field_class . ' type="checkbox" id="' . esc_attr( $input_id ) . '" name="' . esc_attr( $input_name ) . '" value="on"' . $checked . ' />';
@@ -209,8 +248,8 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 					break;
 
 				case 'radio':
-					$i = 0;
-					$spacer = isset($spacer) ? $spacer : '<br />';
+					$i      = 0;
+					$spacer = isset( $spacer ) ? $spacer : '<br />';
 					foreach ( $choices as $value => $label ) {
 						$selected = '';
 						if ( $field['value'] == $value ) {
@@ -220,7 +259,7 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 						if ( $i < count( $choices ) - 1 ) {
 							echo $spacer;
 						}
-						$i++;
+						$i ++;
 					}
 					break;
 
@@ -230,22 +269,118 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 					break;
 
 				case 'text':
-					echo '<input' . $field_class . ' type="text" id="' . esc_attr( $input_id ) . '" name="' . esc_attr( $input_name ) . '" value="' . esc_attr( $field['value'] ) . '" />';
+					echo '<input' . $field_class . ' type="text" id="' . esc_attr( $input_id ) . '" name="' . esc_attr( $input_name ) . '" value="' . esc_attr( $field['value'] ) . '" placeholder="' . esc_attr( $placeholder ) . '"/>';
+
+					break;
+
+				case 'suggest':
+					$action = isset( $field['action'] ) ? $field['action'] : 'foometafield_suggest';
+					$query  = build_query( array(
+							'action'     => $action,
+							'nonce'      => wp_create_nonce( $action ),
+							'query_type' => isset( $field['query_type'] ) ? $field['query_type'] : 'post',
+							'query_data' => isset( $field['query_data'] ) ? $field['query_data'] : 'page'
+					) );
+
+					self::render_html_tag( 'input', array(
+							'type'                   => 'text',
+							'id'                     => $input_id,
+							'name'                   => $input_name,
+							'value'                  => $field['value'],
+							'placeholder'            => $placeholder,
+							'data-suggest',
+							'data-suggest-query'     => $query,
+							'data-suggest-multiple'  => isset( $field['multiple'] ) ? $field['multiple'] : 'false',
+							'data-suggest-separator' => isset( $field['separator'] ) ? $field['separator'] : ','
+					) );
+
+					break;
+
+				case 'selectize':
+					$action = isset( $field['action'] ) ? $field['action'] : 'foometafield_selectize';
+					$query  = build_query( array(
+							'action'     => $action,
+							'nonce'      => wp_create_nonce( $action ),
+							'query_type' => isset( $field['query_type'] ) ? $field['query_type'] : 'post',
+							'query_data' => isset( $field['query_data'] ) ? $field['query_data'] : 'page'
+					) );
+
+					$value = ( isset( $field['value'] ) && is_array( $field['value'] ) ) ? $field['value'] : array(
+							'value'   => '',
+							'display' => ''
+					);
+
+					self::render_html_tag( 'input', array(
+							'type'  => 'hidden',
+							'id'    => $input_id . '_display',
+							'name'  => $input_name . '[display]',
+							'value' => $value['display']
+					) );
+
+					$inner = '';
+
+					if ( isset( $value['value'] ) ) {
+						$inner = '<option value="' . esc_attr( $value['value'] ) . '" selected="selected">' . esc_html( $value['display'] ) . '</option>';
+					}
+
+					self::render_html_tag( 'select', array(
+							'id'                     => $input_id,
+							'name'                   => $input_name . '[value]',
+							'value'                  => $value['value'],
+							'placeholder'            => $placeholder,
+							'data-selectize-instance',
+							'data-selectize-query'   => $query,
+							'data-selectize-display' => $input_id . '_display'
+					), $inner, true, false );
+
+					break;
+
+				case 'select2':
+					$action = isset( $field['action'] ) ? $field['action'] : 'foometafield_select2';
+					$inner  = '';
+
+					self::render_html_tag( 'select', array(
+							'id'                      => $input_id,
+							'name'                    => $input_name,
+							'value'                   => $field['value'],
+							'placeholder'             => $placeholder,
+							'data-select2-instance',
+							'data-select2-action'     => $action,
+							'data-select2-nonce'      => wp_create_nonce( $action ),
+							'data-select2-query-type' => isset( $field['query_type'] ) ? $field['query_type'] : 'post',
+							'data-select2-query-data' => isset( $field['query_data'] ) ? $field['query_data'] : 'page',
+					), $inner );
+
+					break;
+
+				case 'color':
+
+					self::render_html_tag( 'input', array(
+							'type'  => 'color',
+							'id'    => $input_id,
+							'name'  => $input_name,
+							'value' => $field['value']
+					) );
 
 					break;
 
 				case 'colorpicker':
 
-					$opacity_attribute = empty($opacity) ? '' : ' data-show-alpha="true"';
-
-					echo '<input ' . $opacity_attribute . ' class="colorpicker" type="text" id="' . esc_attr( $input_id ) . '" name="' . esc_attr( $input_name ) . '" value="' . esc_attr( $field['value'] ) . '" />';
+					self::render_html_tag( 'input', array(
+							'type'  => 'text',
+							'id'    => $input_id,
+							'name'  => $input_name,
+							'data-wp-color-picker',
+							'value' => $field['value']
+					) );
 
 					break;
 
+
 				case 'number':
-					$min = isset($min) ? $min : 0;
-					$step = isset($step) ? $step : 1;
-					echo '<input class="regular-text ' . esc_attr( $class ) . '" type="number" step="' . esc_attr( $step ) . '" min="' . esc_attr( $min ) .'" id="' . esc_attr( $input_id ) . '" name="' . esc_attr( $input_name ) . '" placeholder="' . esc_attr( $placeholder ) . '" value="' . esc_attr( $field['value'] ) . '" />';
+					$min  = isset( $min ) ? $min : 0;
+					$step = isset( $step ) ? $step : 1;
+					echo '<input class="regular-text ' . esc_attr( $class ) . '" type="number" step="' . esc_attr( $step ) . '" min="' . esc_attr( $min ) . '" id="' . esc_attr( $input_id ) . '" name="' . esc_attr( $input_name ) . '" placeholder="' . esc_attr( $placeholder ) . '" value="' . esc_attr( $field['value'] ) . '" />';
 
 					break;
 
@@ -254,7 +389,7 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 					foreach ( $choices as $value => $label ) {
 
 						$checked = '';
-						if ( isset($field['value'][$value]) && $field['value'][$value] == $value ) {
+						if ( isset( $field['value'][ $value ] ) && $field['value'][ $value ] == $value ) {
 							$checked = 'checked="checked"';
 						}
 
@@ -262,51 +397,77 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 						if ( $i < count( $choices ) - 1 ) {
 							echo '<br />';
 						}
-						$i++;
+						$i ++;
 					}
 
 					break;
-				case 'icon':
-					$i = 0;
-					$input_name = $meta_key . '[' . $id . ']';
-					$icon_html = '';
-					foreach ( $choices as $value => $icon ) {
-						$selected = ( $field['value'] == $value ) ? ' checked="checked"' : '';
-						$icon_html .= '<input style="display:none" name="' . esc_attr( $input_name ). '" id="' . esc_attr( $input_id . $i ) . '" ' . $selected . ' type="radio" value="' . esc_attr( $value ) . '" tabindex="' . $i . '"/>';
-						$title = $icon['label'];
-						$img = $icon['img'];
-						$icon_html .= '<label for="' . esc_attr( $input_id . $i ) . '" data-balloon-length="small" data-balloon-pos="down" data-balloon="' . esc_attr( $title ). '"><img src="' . esc_attr( $img ) . '" /></label>';
-						$i++;
-					}
-					echo $icon_html;
-					break;
 
-				case 'htmlicon':
-					$i = 0;
+				case 'htmllist':
+					$i          = 0;
 					$input_name = $meta_key . '[' . $id . ']';
-					$icon_html = '';
-					foreach ( $choices as $value => $icon ) {
-						$selected = ( $field['value'] == $value ) ? ' checked="checked"' : '';
+					$icon_html  = '';
+					foreach ( $choices as $value => $item ) {
+						$selected  = ( $field['value'] == $value ) ? ' checked="checked"' : '';
 						$icon_html .= '<input style="display:none" name="' . esc_attr( $input_name ) . '" id="' . esc_attr( $input_id . $i ) . '" ' . $selected . ' type="radio" value="' . esc_attr( $value ) . '" tabindex="' . $i . '"/>';
-						$title = $icon['label'];
-						$html = $icon['html'];
-						$icon_html .= '<label for="' . esc_attr( $input_id . $i ) . '" data-balloon-length="small" data-balloon-pos="down" data-balloon="' . esc_attr( $title ) . '">' . esc_html( $html ) . '</label>';
-						$i++;
+						$title     = $item['label'];
+						$html      = wp_kses_post( $item['html'] );
+						$icon_html .= '<label for="' . esc_attr( $input_id . $i ) . '" data-balloon-length="small" data-balloon-pos="down" data-balloon="' . esc_attr( $title ) . '">' . $html . '</label>';
+						$i ++;
 					}
 					echo $icon_html;
 					break;
 
 				default:
-					do_action( 'fooplugins_metabox_field_' . $meta_key, $type, $field );
-					do_action( 'fooplugins_metabox_field_' . $meta_key . '-' . $type, $field );
+					//the field type is not natively supported
+					if ( isset( $field['function'] ) ) {
+						call_user_func( $field['function'], $field, $meta_key );
+					}
 					break;
 			}
 
-			if ( !empty( $suffix ) ) {
-				echo $suffix;
-			}
-
 			echo '</div>';
+
+			if ( ! empty( $field['desc'] ) ) {
+				self::render_html_tag( 'span', array(
+						'class' => 'foometafields-field-description'
+				), $field['desc'] );
+			}
 		}
-    }
+
+		/**
+		 * Safely renders an HTML tag
+		 *
+		 * @param $tag
+		 * @param $attributes
+		 * @param string $inner
+		 * @param bool $close
+		 * @param bool $escape_inner
+		 */
+		static function render_html_tag( $tag, $attributes, $inner = '', $close = true, $escape_inner = true ) {
+			echo '<' . $tag . ' ';
+			//make sure all attributes are escaped
+			$attributes     = array_map( 'esc_attr', $attributes );
+			$attributePairs = [];
+			foreach ( $attributes as $key => $val ) {
+				if ( is_int( $key ) ) {
+					$attributePairs[] = esc_attr( $val );
+				} else {
+					$val              = esc_attr( $val );
+					$attributePairs[] = "{$key}=\"{$val}\"";
+				}
+			}
+			echo implode( ' ', $attributePairs );
+			echo '>';
+			if ( isset( $inner ) ) {
+				if ( $escape_inner ) {
+					echo esc_html( $inner );
+				} else {
+					echo $inner;
+				}
+			}
+			if ( $close ) {
+				echo '</' . $tag . '>';
+			}
+		}
+	}
 }

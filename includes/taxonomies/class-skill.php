@@ -24,7 +24,7 @@ if( ! class_exists( 'FooPlugins\FooPeople\Taxonomies\Skill' ) ) {
 						'new_item_name'     => __( 'New Skill Name', 'foopeople' ),
 						'menu_name'         => __( 'Skills', 'foopeople' ),
 					),
-					'hierarchical' 		=> true,
+					'hierarchical' 		=> false,
 					'show_ui'           => true,
 					'show_admin_column' => true,
 					'query_var'         => true,
