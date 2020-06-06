@@ -28,6 +28,9 @@ module.exports = {
 			styleSRC: './assets/scss/foopeople.admin.scss'
 		},
 		{
+			styleSRC: './assets/scss/foopeople.blocks.scss'
+		},
+		{
 			styleSRC: './assets/scss/foopeople.customizer.scss'
 		},
 		{
@@ -47,7 +50,11 @@ module.exports = {
 			scriptFile: 'theme'
 		},
 		{
-			scriptSRC: './assets/scripts/foometafields/*.js',
+			scriptSRC: './assets/scripts/blocks/*.js',
+			scriptFile: 'blocks'
+		},
+		{
+			scriptSRC: './assets/scripts/foometafields.js',
 			scriptFile: 'foometafields'
 		}
 	],

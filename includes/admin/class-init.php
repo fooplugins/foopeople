@@ -30,10 +30,10 @@ if ( !class_exists( 'FooPlugins\FooPeople\Admin\Init' ) ) {
 
 
 		function init_stylesheets_and_scripts() {
-			wp_register_style( 'foopeople_preview_styles', plugin_dir_url(dirname( __FILE__ )) . '../assets/css/foopeople.admin.min.css', array(), '' );
+			wp_register_style( 'foopeople_preview_styles', FOOPEOPLE_URL . '/assets/css/foopeople.admin.min.css', array(), '' );
 			wp_enqueue_style( 'foopeople_preview_styles' );
 
-			wp_register_script( 'foopeople_preview_scripts', plugin_dir_url(dirname( __FILE__ )) . '../assets/js/admin.min.js', array( 'jquery' ), '', true );
+			wp_register_script( 'foopeople_preview_scripts', FOOPEOPLE_URL . '/assets/js/admin.min.js', array( 'jquery' ), '', true );
 			wp_enqueue_script( 'foopeople_preview_scripts' );
 		}
 

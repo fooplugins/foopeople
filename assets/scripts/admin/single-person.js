@@ -94,16 +94,19 @@
 		$.each( values, function( key, array ) {
 			var text = '';
 
-			if ( '' === array[0] ) return false;
-
 			if ( 0 !== array.length ) {
 				$( array ).each( function( index, property ) {
+					if ( 'preferred' === key &&  0 < property.length ) { // Add Brackets for preferred name / nickname
+						property = '(' + property + ')';
+					}
 					text += '<span class="ppl__item_delimiter">' + property + '</span> ';
 				});
 			} else {
 				text = '<span class="ppl__item_delimiter ppl_text_captitalize">' + key + '</span> ';
 			}
+
 			$( '[data-pace-people-value="' + key + '"]' ).html( text );
+
 		});
 	};
 
@@ -119,10 +122,10 @@
 	};
 
 	FOOPEOPLE.setThumbnailFromAjax = function( event, xhr, settings ) {
-		if ( typeof settings.data === 'string'
-			&& /action=get-post-thumbnail-html/.test( settings.data )
-			&& xhr.responseJSON
-			&& typeof xhr.responseJSON.data === 'string'
+		if ( 'string' === typeof settings.data &&
+			/action=get-post-thumbnail-html/.test( settings.data ) &&
+			xhr.responseJSON &&
+			'string' === typeof xhr.responseJSON.data
 		) {
 			FOOPEOPLE.updateCache(); // Update our cache, to handle newly created elements ie Thumbnail image
 			FOOPEOPLE.updatePortrait();
