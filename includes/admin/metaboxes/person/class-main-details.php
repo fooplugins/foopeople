@@ -56,7 +56,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\Person\MainDetails' )
 									'title'    => __( 'Line Manager', 'foopeople' ),
 									'desc'     => __( '', 'foopeople' ),
 									'required' => true,
-									'type'     => 'suggest',
+									'type'     => 'selectize',
 									'default'  => '',
 									'placeholder' => __( 'Start typing the manager name', 'foopeople' ),
 									'query_type' => 'post',
@@ -239,6 +239,14 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\Person\MainDetails' )
 									'title'    => __( 'Suggest Field (autocomplete without a key)', 'foopeople' ),
 									'type'     => 'suggest',
 									'default'  => '',
+									'placeholder' => __( 'Start typing', 'foopeople' ),
+									'query_type' => 'post',
+									'query_data' => FOOPEOPLE_CPT_PERSON
+								),
+								array(
+									'id'       => 'selectize',
+									'title'    => __( 'selectize Field (autocomplete with a key)', 'foopeople' ),
+									'type'     => 'Selectize',
 									'placeholder' => __( 'Start typing', 'foopeople' ),
 									'query_type' => 'post',
 									'query_data' => FOOPEOPLE_CPT_PERSON
