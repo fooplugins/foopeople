@@ -24,6 +24,129 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 
 			//handle ajax auto suggest fields
 			add_action( 'wp_ajax_foometafield_suggest', array( $this, 'ajax_handle_autosuggest' ) );
+
+			//handle ajax select2 fields
+			add_action( 'wp_ajax_foometafield_select2', array( $this, 'ajax_handle_select2' ) );
+
+			//handle ajax selectize fields
+			add_action( 'wp_ajax_foometafield_selectize', array( $this, 'ajax_handle_selectize' ) );
+
+		}
+
+		/**
+		 * Ajax handler for selectize fields
+		 */
+		function ajax_handle_selectize() {
+			if ( wp_verify_nonce( foopeople_sanitize_key( 'nonce' ), 'foometafield_selectize' ) ) {
+				$s     = foopeople_sanitize_text( 'q' );
+				$s = trim( $s );
+
+				$results = array();
+
+				$query_type = foopeople_sanitize_key( 'query_type' );
+				$query_data = foopeople_sanitize_key( 'query_data' );
+
+				if ( 'post' === $query_type ) {
+
+					$posts = get_posts(
+							array(
+									's'              => $s,
+									'posts_per_page' => 5,
+									'post_type'      => $query_data
+							)
+					);
+
+					foreach ( $posts as $post ) {
+						$results[] = array(
+								'id' => $post->ID,
+								'text' => $post->post_title
+						);
+					}
+
+				} else if ( 'taxonomy' == $query_type ) {
+
+					$terms = get_terms(
+							array(
+									'search'         => $s,
+									'taxonomy'       => $query_data,
+									'hide_empty'     => false
+							)
+					);
+
+					foreach ( $terms as $term ) {
+						$results[] = array(
+								'id' => $term->ID,
+								'text' => $term->name
+						);
+					}
+				}
+
+				wp_send_json( array(
+						'results' => $results
+				) );
+
+				return;
+			}
+
+			wp_die();
+		}
+
+		/**
+		 * Ajax handler for select2 fields
+		 */
+		function ajax_handle_select2() {
+			if ( wp_verify_nonce( foopeople_sanitize_key( 'nonce' ), 'foometafield_select2' ) ) {
+				$s     = foopeople_sanitize_text( 'q' );
+				$s = trim( $s );
+
+				$results = array();
+
+				$query_type = foopeople_sanitize_key( 'query_type' );
+				$query_data = foopeople_sanitize_key( 'query_data' );
+
+				if ( 'post' === $query_type ) {
+
+					$posts = get_posts(
+							array(
+									's'              => $s,
+									'posts_per_page' => 5,
+									'post_type'      => $query_data
+							)
+					);
+
+					foreach ( $posts as $post ) {
+						$results[] = array(
+							'id' => $post->ID,
+							'text' => $post->post_title
+						);
+					}
+
+				} else if ( 'taxonomy' == $query_type ) {
+
+					$terms = get_terms(
+							array(
+									'search'         => $s,
+									'taxonomy'       => $query_data,
+									'hide_empty'     => false
+							)
+					);
+
+					foreach ( $terms as $term ) {
+						$results[] = array(
+							'id' => $term->ID,
+							'text' => $term->name
+						);
+					}
+				}
+
+				wp_send_json( array(
+					'results' => $results
+				) );
+
+				return;
+			}
+
+			wp_die();
 		}
 
 		/**
