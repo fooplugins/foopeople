@@ -147,3 +147,29 @@ function foopeople_safe_get_from_post( $key, $default = null, $clean = true ) {
 function foopeople_sanitize_textarea( $var ) {
 	return implode( "\n", array_map( 'foopeople_clean', explode( "\n", $var ) ) );
 }
+
+/**
+ * Return a sanitized and unslashed key from $_GET
+ * @param $key
+ *
+ * @return string|null
+ */
+function foopeople_sanitize_key( $key ) {
+	if ( isset( $_GET[$key] ) ) {
+		return sanitize_key( wp_unslash( $_GET[ $key ] ) );
+	}
+	return null;
+}
+
+/**
+ * Return a sanitized and unslashed value from $_GET
+ * @param $key
+ *
+ * @return string|null
+ */
+function foopeople_sanitize_text( $key ) {
+	if ( isset( $_GET[$key] ) ) {
+		return sanitize_text_field( wp_unslash( $_GET[ $key ] ) );
+	}
+	return null;
+}
