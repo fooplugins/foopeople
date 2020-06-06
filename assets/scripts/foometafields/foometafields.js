@@ -55,6 +55,68 @@
 		});
 	};
 
+	FOOMETAFIELDS.setupSelectizeFields = function() {
+		$( '#poststuff' ).find( '[data-selectize-instance]' ).each( function() {
+			var $this = $( this ),
+				$display = $( '#' + $this.data( 'selectize-display' ) );
+
+			$this.selectize({
+				valueField: 'id',
+				labelField: 'text',
+				searchField: 'text',
+				maxItems: 1,
+				options: [],
+				create: false,
+				onChange: function( value ) {
+					var instance = $this[0].selectize,
+						selection = instance.getItem( value );
+					$display.val( selection.text() );
+				},
+				load: function( query, callback ) {
+					if ( ! query.length ) {
+						return callback();
+					}
+					$.ajax({
+						url: window.ajaxurl + '?' + $this.data( 'selectize-query' ),
+						type: 'GET',
+						data: {
+							q: query
+						},
+						error: function() {
+							callback();
+						},
+						success: function( res ) {
+							console.log( res.results );
+							callback( res.results );
+						}
+					});
+				}
+			});
+		});
+	};
+
+	FOOMETAFIELDS.setupSelect2Fields = function() {
+		$( '#poststuff' ).find( 'select[data-select2-instance]' ).each( function() {
+			var $this = $( this );
+			$this.selectWoo({
+				ajax: {
+					url: window.ajaxurl,
+					data: function( params ) {
+						return {
+							q: params.term,
+							action: $this.data( 'select2-action' ),
+							nonce: $this.data( 'select2-nonce' ),
+							// eslint-disable-next-line camelcase
+							query_type: $this.data( 'select2-query-type' ),
+							// eslint-disable-next-line camelcase
+							query_data: $this.data( 'select2-query-data' )
+						};
+					}
+				}
+			});
+		});
+	};
+
 	FOOMETAFIELDS.setupColorpickerFields = function() {
 		$( '#poststuff input[data-wp-color-picker]' ).wpColorPicker();
 	};
@@ -64,6 +126,7 @@
 		FOOMETAFIELDS.movePortraitBox();
 		FOOMETAFIELDS.bindTabEvents();
 		FOOMETAFIELDS.setupAutoSuggestFields();
+		FOOMETAFIELDS.setupSelectizeFields();
 		FOOMETAFIELDS.setupColorpickerFields();
 	});
 
