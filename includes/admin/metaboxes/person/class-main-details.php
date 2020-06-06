@@ -23,9 +23,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\Person\MainDetails' )
 									'required' => true,
 									'type'     => 'text',
 									'default'  => '',
-									'row_data' => array(
-										'placeholder' => __( 'The first name of the person.', 'foopeople' ),
-									)
+									'placeholder' => __( 'The first name of the person.', 'foopeople' ),
 								),
 								array(
 									'id'       => 'surname',
@@ -33,9 +31,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\Person\MainDetails' )
 									'required' => true,
 									'type'     => 'text',
 									'default'  => '',
-									'row_data' => array(
-										'placeholder' => __( 'The last name/surname/family name of the person.', 'foopeople' ),
-									)
+									'placeholder' => __( 'The last name/surname/family name of the person.', 'foopeople' ),
 								),
 								array(
 									'id'       => 'preferred',
@@ -44,9 +40,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\Person\MainDetails' )
 									'required' => false,
 									'type'     => 'text',
 									'default'  => '',
-									'row_data' => array(
-										'placeholder' => __( 'You can override what the full name for the person will be', 'foopeople' ),
-									)
+									'placeholder' => __( 'This could be a nickname or a shortened name', 'foopeople' ),
 								),
 								array(
 									'id'       => 'jobtitle',
@@ -55,20 +49,18 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\Person\MainDetails' )
 									'required' => true,
 									'type'     => 'text',
 									'default'  => '',
-									'row_data' => array(
-										'placeholder' => __( 'Job title', 'foopeople' ),
-									)
+									'placeholder' => __( 'Job title', 'foopeople' ),
 								),
 								array(
 									'id'       => 'manager',
 									'title'    => __( 'Line Manager', 'foopeople' ),
 									'desc'     => __( '', 'foopeople' ),
 									'required' => true,
-									'type'     => 'post_relationship',
+									'type'     => 'suggest',
 									'default'  => '',
-									'row_data' => array(
-										'placeholder' => __( 'Job title', 'foopeople' ),
-									)
+									'placeholder' => __( 'Start typing the manager name', 'foopeople' ),
+									'query_type' => 'post',
+									'query_data' => FOOPEOPLE_CPT_PERSON
 								)
 							)
 						),
@@ -131,6 +123,30 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\Person\MainDetails' )
 							'icon'   => 'dashicons-universal-access-alt',
 							'fields' => array(
 								array(
+									'id'       => 'help',
+									'title'    => __( 'Help Field', 'foopeople' ),
+									'desc'     => __( 'This tab shows all the available fields. This is a help field.', 'foopeople' ),
+									'type'     => 'help',
+								),
+								array(
+									'id'       => 'section',
+									'title'    => __( 'Section Field', 'foopeople' ),
+									'desc'     => __( 'This desc will not be shown for a section.', 'foopeople' ),
+									'type'     => 'section',
+								),
+								array(
+									'id'       => 'singlecolumn',
+									'title'    => __( 'Single Column Field', 'foopeople' ),
+									'desc'     => __( 'A single column field can show a title and description.', 'foopeople' ),
+									'type'     => 'singlecolumn',
+								),
+								array(
+									'id'       => 'singlecolumn',
+									'desc'     => __( 'Another single column field with no title set, and a class of foometafields-single-column-icon foometafields-single-column-icon-promo', 'foopeople' ),
+									'class'    => 'foometafields-single-column-icon foometafields-single-column-icon-promo',
+									'type'     => 'singlecolumn',
+								),
+								array(
 									'id'       => 'text',
 									'title'    => __( 'Text Field', 'foopeople' ),
 									'desc'     => __( 'A test text field', 'foopeople' ),
@@ -191,9 +207,15 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\Person\MainDetails' )
 									)
 								),
 								array(
+									'id'       => 'color',
+									'title'    => __( 'Color Field', 'foopeople' ),
+									'desc'     => __( 'A test HTML5 color input field', 'foopeople' ),
+									'type'     => 'color',
+								),
+								array(
 									'id'       => 'colorpicker',
 									'title'    => __( 'Colorpicker Field', 'foopeople' ),
-									'desc'     => __( 'A test colorpicker field', 'foopeople' ),
+									'desc'     => __( 'A test colorpicker field using the colorpicker built into WP', 'foopeople' ),
 									'type'     => 'colorpicker',
 								),
 								array(
@@ -212,6 +234,15 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\Person\MainDetails' )
 										)
 									)
 								),
+								array(
+									'id'       => 'suggest',
+									'title'    => __( 'Suggest Field (autocomplete without a key)', 'foopeople' ),
+									'type'     => 'suggest',
+									'default'  => '',
+									'placeholder' => __( 'Start typing', 'foopeople' ),
+									'query_type' => 'post',
+									'query_data' => FOOPEOPLE_CPT_PERSON
+								)
 							)
 						),
 					)

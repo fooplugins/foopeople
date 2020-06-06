@@ -119,9 +119,16 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 				<?php
 				foreach ( $fields as $field ) {
 					$field_type      = isset( $field['type'] ) ? $field['type'] : 'unknown';
+					$field_single_column = isset( $field['single_column'] ) ? $field['single_column'] : false;
+					$single_column_class = '';
+					$field_single_column_show_title = $field_single_column_show_desc = true;
+					$field_classes = array();
 					$field_classes[] = 'foometafields-field';
 					$field_classes[] = "foometafields-field-{$field_type}";
 					$field_classes[] = "foometafields-field-{$field['id']}";
+					if ( !$field_single_column && isset( $field['class'] ) ) {
+						$field_classes[] = $field['class'];
+					}
 					$field_row_data_html = '';
 					if ( isset( $field['row_data'] ) ) {
 						$field_row_data = array_map( 'esc_attr', $field['row_data'] );
@@ -133,18 +140,40 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 					if ( is_array( $state ) && array_key_exists( $field['id'], $state ) ) {
 						$field['value'] = $state[ $field['id'] ];
 					}
+
+					//check for any special non-editable field types
+					if ( 'help' === $field_type ) {
+						$field_single_column = true;
+						$single_column_class = 'foometafields-single-column-icon foometafields-single-column-icon-help';
+						$field_single_column_show_title = false;
+						$field_single_column_show_desc = true;
+					} else if ( 'section' === $field_type ) {
+						$field_single_column = true;
+						$field_single_column_show_title = true;
+						$field_single_column_show_desc = false;
+					} else if ( 'singlecolumn' === $field_type ) {
+						$field_single_column = true;
+						$single_column_class = isset( $field['class'] ) ? $field['class'] : '';
+					}
 					?>
 					<tr class="<?php echo implode(' ', $field_classes ); ?>"<?php echo $field_row_data_html; ?>>
-						<?php if ( 'help' == $field_type ) { ?>
-							<td colspan="2">
-								<div>
-									<?php echo $field['desc']; ?>
-								</div>
+						<?php if ( $field_single_column ) { ?>
+							<td colspan="2" class="foometafields-single-column">
+								<?php if ( $field_single_column_show_title && isset( $field['title'] ) ) { ?>
+								<h3 class="<?php echo esc_attr( $single_column_class ); ?>">
+									<?php echo esc_html( $field['title'] ); ?>
+								</h3>
+								<?php } ?>
+								<?php if ( $field_single_column_show_desc  && isset( $field['desc'] ) ) { ?>
+								<p class="<?php echo esc_attr( $single_column_class ); ?>">
+									<?php echo esc_html( $field['desc'] ); ?>
+								</p>
+								<?php } ?>
 							</td>
 						<?php } else { ?>
 							<th>
 								<label for="fooplugins_metabox_field_<?php echo $id . '_' . $field['id']; ?>"><?php echo $field['title']; ?></label>
-								<?php if ( ! empty( $field['desc'] ) ) { ?>
+								<?php if ( ! empty( $field['tooltip'] ) ) { ?>
 									<span data-balloon-length="large" data-balloon-pos="right" data-balloon="<?php echo esc_attr( $field['desc'] ); ?>">
 										<i class="dashicons dashicons-editor-help"></i>
 									</span>
@@ -184,7 +213,7 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 			$input_id = 'fooplugins_metabox_field_' . $meta_key . '_' . $id;
 			$input_name = $meta_key . '[' . $id . ']';
 
-			echo '<div class="fooplugins_metabox_field-' . $type . '">';
+			echo '<div class="foometafields-field-input-' . esc_attr( $type ) . '">';
 
 			switch ( $type ) {
 
@@ -234,17 +263,56 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 					break;
 
 				case 'text':
-					echo '<input' . $field_class . ' type="text" id="' . esc_attr( $input_id ) . '" name="' . esc_attr( $input_name ) . '" value="' . esc_attr( $field['value'] ) . '" />';
+					echo '<input' . $field_class . ' type="text" id="' . esc_attr( $input_id ) . '" name="' . esc_attr( $input_name ) . '" value="' . esc_attr( $field['value'] ) . '" placeholder="' . esc_attr( $placeholder ) . '"/>';
+
+					break;
+
+				case 'suggest':
+					$action = isset( $field['action'] ) ? $field['action'] : 'foometafield_suggest';
+					$query = build_query( array(
+						'action' => $action,
+						'nonce' => wp_create_nonce( $action ),
+						'query_type' => isset( $field['query_type'] ) ? $field['query_type'] : 'post',
+						'query_data' => isset( $field['query_data'] ) ? $field['query_data'] : 'page'
+					) );
+
+					self::render_html_tag( 'input', array(
+						'type' => 'text',
+						'id' => $input_id,
+						'name' => $input_name,
+						'value' => $field['value'],
+						'placeholder' => $placeholder,
+						'data-suggest',
+						'data-suggest-query' => $query,
+						'data-suggest-multiple' => isset( $field['multiple'] ) ? $field['multiple'] : 'false',
+						'data-suggest-separator' => isset( $field['separator'] ) ? $field['separator'] : ','
+					));
+
+					break;
+
+				case 'color':
+
+					self::render_html_tag( 'input', array(
+							'type' => 'color',
+							'id' => $input_id,
+							'name' => $input_name,
+							'value' => $field['value']
+					));
 
 					break;
 
 				case 'colorpicker':
 
-					$opacity_attribute = empty($opacity) ? '' : ' data-show-alpha="true"';
-
-					echo '<input ' . $opacity_attribute . ' class="colorpicker" type="text" id="' . esc_attr( $input_id ) . '" name="' . esc_attr( $input_name ) . '" value="' . esc_attr( $field['value'] ) . '" />';
+					self::render_html_tag( 'input', array(
+							'type' => 'text',
+							'id' => $input_id,
+							'name' => $input_name,
+							'data-wp-color-picker',
+							'value' => $field['value']
+					));
 
 					break;
+
 
 				case 'number':
 					$min = isset($min) ? $min : 0;
@@ -294,11 +362,36 @@ if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRender
 					break;
 			}
 
-			if ( !empty( $suffix ) ) {
-				echo $suffix;
-			}
-
 			echo '</div>';
+
+			if ( ! empty( $field['desc'] ) ) {
+				self::render_html_tag( 'span', array(
+						'class' => 'foometafields-field-description'
+				), $field['desc'] );
+			}
+		}
+
+		static function render_html_tag( $tag, $attributes, $inner = '', $close = true ) {
+			echo '<' . $tag . ' ';
+			//make sure all attributes are escaped
+			$attributes = array_map( 'esc_attr', $attributes );
+			$attributePairs = [];
+			foreach ( $attributes as $key => $val ) {
+				if ( is_int ( $key ) ) {
+					$attributePairs[] = esc_attr( $val );
+				} else {
+					$val = esc_attr( $val );
+					$attributePairs[] = "{$key}=\"{$val}\"";
+				}
+			}
+			echo implode( ' ', $attributePairs );
+			echo '>';
+			if ( isset( $inner ) ) {
+				echo esc_html( $inner );
+			}
+			if ( $close ) {
+				echo '</' . $tag . '>';
+			}
 		}
     }
 }

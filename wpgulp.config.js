@@ -47,7 +47,7 @@ module.exports = {
 			scriptFile: 'theme'
 		},
 		{
-			scriptSRC: './assets/scripts/foometafields.js',
+			scriptSRC: './assets/scripts/foometafields/*.js',
 			scriptFile: 'foometafields'
 		}
 	],
