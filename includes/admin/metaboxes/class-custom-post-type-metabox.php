@@ -278,12 +278,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 				$state = $this->get_posted_data();
 				update_post_meta( $post_id, $this->metabox['meta_key'], $state );
 
-				//TODO : update the search index after a person is saved
-//				$person = PacePeople_Person::get_by_id( $post_id );
-//				$search_index = $person->build_search_index();
-//				update_post_meta( $post_id, PACEPEOPLE_PERSON_META_SEARCH, $search_index );
-
-				do_action( $action . 'PostSave', $post_id, $_POST );
+				do_action( $action . 'PostSave', $post_id, $_POST, $state );
 			}
 		}
 
