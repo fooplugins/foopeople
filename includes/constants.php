@@ -21,9 +21,5 @@ define ( 'FOOPEOPLE_CT_SKILL', 'foopeople-skill' );
 
 // post meta
 define ( 'FOOPEOPLE_META_PERSON_MAIN', '_foopeople_person_main' );
-// Default person portrait image
-define( 'FOOPEOPLE_PORTRAIT_DEFAULT', 'http://gravatar.com/avatar/?d=mm&s=250' );
+define ( 'FOOPEOPLE_META_PERSON_SEARCH', '_foopeople_person_search' );
 
-// META details - Person details tabs in single person edit
-define( 'FOOPEOPLE_PERSON_META_DETAILS', '_foopeople_person_details' );
-define( 'FOOPEOPLE_PERSON_META_SEARCH', '_foopeople_person_search' );
