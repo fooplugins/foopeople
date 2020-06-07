@@ -10,17 +10,13 @@ if( ! class_exists( 'Person_Metabox_Preview' ) ) {
  	class Person_Metabox_Preview {
 
 		function __construct() {
-			add_action( 'init', array( $this, 'init' ) );
+			add_action( 'edit_form_after_title', array( $this, 'person_preview') );
 		}
 
 		function person_preview() {
-			if( is_foopeople_admin_screen() ) {
-				echo render_template('admin', 'person-preview');
+			if ( foopeople_is_admin_screen( FOOPEOPLE_CPT_PERSON ) ) {
+				echo foopeople_render_template( 'admin', 'person-preview' );
 			}
-		}
-
-		function init() {
-			add_action( 'edit_form_after_title', array( $this, 'person_preview') );
 		}
 	}
 }

@@ -6,12 +6,14 @@
 /**
  * If we are on a FooPeople admin screen
  *
+ * @param $custom_post_type
+ *
  * @return boolean
  */
-function is_foopeople_admin_screen() {
+function foopeople_is_admin_screen( $custom_post_type ) {
 	$screen = get_current_screen();
-	if($screen) {
-		if($screen->post_type == FOOPEOPLE_CPT_PERSON && $screen->id == FOOPEOPLE_CPT_PERSON) {
+	if ( $screen ) {
+		if ( $screen->post_type === $custom_post_type && $screen->id === $custom_post_type ) {
 			return true;
 		}
 	}
@@ -19,22 +21,25 @@ function is_foopeople_admin_screen() {
 }
 
 /**
- * If we are on a FooPeople admin screen
+ * Renders a template
  *
  * @param $path
  * @param $filename
- * @return string
+ * @param bool $echo
+ *
+ * @return string|void
  */
-function render_template($path, $filename) {
+function foopeople_render_template( $path, $filename, $echo = true ) {
 	ob_start();
 	load_template(FOOPEOPLE_PATH.'includes/templates/'.$path.'/'.$filename.'.php');
 	$output = ob_get_contents();
 	ob_end_clean();
-	return $output;
+	if ( $echo ) {
+		echo $output;
+	} else {
+		return $output;
+	}
 }
-
-
-
 
 /**
  * Custom Autoloader used throughout FooPeople
