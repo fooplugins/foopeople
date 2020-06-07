@@ -11,31 +11,23 @@ if ( !class_exists( 'FooPlugins\FooPeople\Admin\Init' ) ) {
 	class Init {
 
 		/**
-		 * Init constructor.
+		 * constructor.
 		 */
 		function __construct() {
-			add_action( 'init', array( $this, 'init' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
 
 			new namespace\Updates();
 			new namespace\Dashboard();
 			new namespace\Settings();
 
-			new namespace\Metaboxes\Person\MainDetails();
-			new namespace\Person_Metabox_Preview();
+			new namespace\Person\PostSave();
+			new namespace\Person\MetaboxMainDetails();
+			new namespace\Person\MetaboxPersonPreview();
 		}
 
-		function init() {
-			add_action( 'admin_enqueue_scripts', array( $this, 'init_stylesheets_and_scripts' ) );
+		function enqueue() {
+			wp_enqueue_style( 'foopeople_preview_styles', FOOPEOPLE_URL . '/assets/css/foopeople.admin.min.css', array(), FOOPEOPLE_VERSION );
+			wp_enqueue_script( 'foopeople_preview_scripts', FOOPEOPLE_URL . '/assets/js/admin.min.js', array( 'jquery' ), FOOPEOPLE_VERSION, true );
 		}
-
-
-		function init_stylesheets_and_scripts() {
-			wp_register_style( 'foopeople_preview_styles', FOOPEOPLE_URL . '/assets/css/foopeople.admin.min.css', array(), '' );
-			wp_enqueue_style( 'foopeople_preview_styles' );
-
-			wp_register_script( 'foopeople_preview_scripts', FOOPEOPLE_URL . '/assets/js/admin.min.js', array( 'jquery' ), '', true );
-			wp_enqueue_script( 'foopeople_preview_scripts' );
-		}
-
 	}
 }

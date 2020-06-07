@@ -274,20 +274,29 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 
 				do_action( $action . 'PreSave', $post_id, $_POST );
 
-				//save the state
-				$state = $this->get_posted_data();
+				//build up the state
+				$state = $this->get_posted_data( $post_id );
+
 				update_post_meta( $post_id, $this->metabox['meta_key'], $state );
 
+				// unhook this function so it doesn't loop infinitely
+				remove_action( 'save_post', array( $this, 'save_post' ) );
+
 				do_action( $action . 'PostSave', $post_id, $_POST, $state );
+
+				// re-hook this function
+				add_action( 'save_post', array( $this, 'save_post' ) );
 			}
 		}
 
 		/**
 		 * Get the sanitized posted data for the metabox
 		 *
+		 * @param $post_id
+		 *
 		 * @return mixed|void
 		 */
-		private function get_posted_data() {
+		private function get_posted_data( $post_id ) {
 			$full_id = $this->build_id();
 
 			$sanitized_data = foopeople_safe_get_from_post( $full_id, array(), false );
@@ -322,7 +331,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 
 			$filter = 'FooPlugins\FooPeople\Admin\Metaboxes\\' . $this->metabox['post_type'] . '\\' . $this->metabox['metabox_id'] . '\GetPostedData';
 
-			$data = apply_filters( $filter, $data, $this );
+			$data = apply_filters( $filter, $data, $this, $post_id );
 
 			return $data;
 		}

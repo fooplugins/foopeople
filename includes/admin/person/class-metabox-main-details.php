@@ -1,12 +1,12 @@
 <?php
 
-namespace FooPlugins\FooPeople\Admin\Metaboxes\Person;
+namespace FooPlugins\FooPeople\Admin\Person;
 
 use FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox;
 
-if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\Person\MainDetails' ) ) {
+if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) {
 
-	class MainDetails extends CustomPostTypeMetabox {
+	class MetaboxMainDetails extends CustomPostTypeMetabox {
 
 		function __construct() {
 			$field_group = apply_filters( 'FooPlugins\FooPeople\Admin\Metaboxes\Person\TabFieldGroup',

@@ -1,12 +1,12 @@
 <?php
-namespace FooPlugins\FooPeople;
+namespace FooPlugins\FooPeople\Objects;
 
 use stdClass;
 
 /**
  * The main Person class
  */
-if ( ! class_exists( 'FooPlugins\FooPeople\Person' ) ) {
+if ( ! class_exists( 'FooPlugins\FooPeople\Objects\Person' ) ) {
 
 	class Person extends stdClass {
 		private $_post;
@@ -28,7 +28,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Person' ) ) {
 				$this->post_status = $post->post_status;
 				$this->main_details = get_post_meta( $this->ID, FOOPEOPLE_META_PERSON_MAIN, true );
 
-				do_action( 'FooPlugins\FooPeople\Person\Loaded', $this );
+				do_action( 'FooPlugins\FooPeople\Objects\Person\Loaded', $this );
 			}
 		}
 
