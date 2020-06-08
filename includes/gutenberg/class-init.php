@@ -11,40 +11,71 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 	class Init {
 
 		function __construct() {
-			new namespace\Blocks();
-
-			add_action( 'attach_people_to_post', array( $this, 'attach_people_to_post' ), 10, 2 );
+			add_action( 'init',  array( $this, 'block_assets') );
 		}
 
-		/**
-		 * Use the built-in Block Parser to "attach" people to a post
-		 *
-		 * @param $post_id
-		 * @param $post
-		 */
-		function attach_people_to_post( $post_id, $post ) {
-			if ( !class_exists( 'WP_Block_Parser' ) ) {
-				return;
-			}
 
-			if ( !is_object( $post ) ) {
-				return;
-			}
+		function block_assets() { // phpcs:ignore
+			// Register block styles for both frontend + backend.
+			wp_register_style(
+				'foopeople-block-style-css', // Handle.
+				FOOPEOPLE_URL . '/assets/css/foopeople.blocks.min.css', // Block style CSS.
+				is_admin() ? array( 'wp-editor' ) : null, // Dependency to include the CSS after it.
+				null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: File modification time.
+			);
 
-			$parser = new WP_Block_Parser();
-			$blocks = $parser->parse( $post->post_content );
+			// Register block editor script for backend.
+			wp_register_script(
+				'foopeople-block-js', // Handle.
+				FOOPEOPLE_URL . '/assets/js/blocks.min.js', // Block.build.js: We register the block here. Built with Webpack.
+				array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ), // Dependencies, defined above.
+				null, // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
+				true // Enqueue the script in the footer.
+			);
 
-			var_dump($blocks);
 
-			// foreach ( $blocks as $block ) {
-			// 	if ( array_key_exists( 'id', $block['attrs'] ) ) {
-			// 		$gallery_id = $block['attrs']['id'];
+			// Register block editor styles for backend.
+			wp_register_style(
+				'foopeople-block-editor-css', // Handle.
+				FOOPEOPLE_URL . '/assets/css/foopeople.blocks.admin.min.css', // Block editor CSS.
+				array( 'wp-edit-blocks' ), // Dependency to include the CSS after it.
+				null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: File modification time.
+			);
 
-			// 		add_post_meta( $post_id, FOOGALLERY_META_POST_USAGE, $gallery_id, false );
+			// WP Localized globals. Use dynamic PHP stuff in JavaScript via `cgbGlobal` object.
+			wp_localize_script(
+				'foopeople-block-js',
+				'cgbGlobal', // Array containing dynamic data for a JS Global.
+				[
+					'pluginDirPath' => plugin_dir_path( __DIR__ ),
+					'pluginDirUrl'  => plugin_dir_url( __DIR__ ),
+					// Add more data here that you want to access from `cgbGlobal` object.
+				]
+			);
 
-			// 		do_action( 'attach_people_to_post', $post_id, $gallery_id );
-			// 	}
-			// }
+			/**
+			 * Register Gutenberg block on server-side.
+			 *
+			 * Register the block on server-side to ensure that the block
+			 * scripts and styles for both frontend and backend are
+			 * enqueued when the editor loads.
+			 *
+			 * @link https://wordpress.org/gutenberg/handbook/blocks/writing-your-first-block-type#enqueuing-block-scripts
+			 * @since 1.16.0
+			 */
+			register_block_type(
+				'fooplugins/foopeople', array(
+					// Enqueue on both frontend & backend.
+					'style'         => 'foopeople-block-style-css',
+					// Enqueue in the editor only.
+					'editor_script' => 'foopeople-block-js',
+					// Enqueue in the editor only.
+					'editor_style'  => 'foopeople-block-editor-css',
+				)
+			);
 		}
+
+
+
 	}
 }
