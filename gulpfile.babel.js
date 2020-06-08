@@ -302,6 +302,11 @@ function processScript( gulpStream, processOptions = {} ) {
 						{
 							targets: { browsers: config.BROWSERS_LIST } // Target browser list to support.
 						}
+					], [
+						'@babel/preset-react', // Handle React and JSX
+						{
+							targets: { browsers: config.BROWSERS_LIST } // Target browser list to support.
+						}
 					]
 				]
 			})
