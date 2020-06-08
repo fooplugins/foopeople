@@ -14,8 +14,23 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 			add_action( 'init',  array( $this, 'block_assets') );
 		}
 
+		/**
+		 * Enqueue Gutenberg block assets for backend editor.
+		 *
+		 * `wp-blocks`: includes block type registration and related functions.
+		 * `wp-element`: includes the WordPress Element abstraction for describing the structure of your blocks.
+		 * `wp-i18n`: To internationalize the block's text.
+		 *
+		 * @since 1.0.0
+		 */
 
 		function block_assets() { // phpcs:ignore
+
+			//get out quickly if no Gutenberg
+			if ( !function_exists( 'register_block_type' ) ) {
+				return;
+			}
+
 			// Register block styles for both frontend + backend.
 			wp_register_style(
 				'foopeople-block-style-css', // Handle.
@@ -32,6 +47,8 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 				null, // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
 				true // Enqueue the script in the footer.
 			);
+
+			wp_enqueue_script( 'foopeople_front_scripts', FOOPEOPLE_URL . '/assets/js/theme.min.js', array( 'jquery' ), FOOPEOPLE_VERSION, true );
 
 
 			// Register block editor styles for backend.
@@ -65,6 +82,25 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 			 */
 			register_block_type(
 				'fooplugins/foopeople', array(
+					'render_callback' => array( $this, 'render_block' ),
+					'attributes' => array(
+						'id' => array(
+							'type' => 'number',
+							'default' => 0
+						),
+						'className' => array(
+							'type' => 'string'
+						),
+						'team' => array(
+							'type' => 'string',
+							'default' => 'andy'
+						),
+						'team_id' => array(
+							'type' => 'number',
+							'default' => 1
+						),
+					),
+
 					// Enqueue on both frontend & backend.
 					'style'         => 'foopeople-block-style-css',
 					// Enqueue in the editor only.
@@ -73,9 +109,20 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 					'editor_style'  => 'foopeople-block-editor-css',
 				)
 			);
+
 		}
 
-
-
+		/**
+		 * Render the contents of the block
+		 *
+		 * @param $attributes
+		 *
+		 * @return false|string|null
+		 */
+		function render_block( $attributes, $content ) {
+			// var_dump($attributes);
+			$output_string = foopeople_render_template('', 'person-listing', false, $attributes );
+			return !empty($output_string) ? $output_string : null;
+		}
 	}
 }

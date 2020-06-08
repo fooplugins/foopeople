@@ -29,17 +29,25 @@ function foopeople_is_admin_screen( $custom_post_type ) {
  *
  * @return string|void
  */
-function foopeople_render_template( $path, $filename, $echo = true ) {
+function foopeople_render_template( $path = '', $filename, $echo = true, $data = array() ) {
+	if( $path ) {
+		$path.='/';
+	}
+
 	ob_start();
-	load_template(FOOPEOPLE_PATH.'includes/templates/'.$path.'/'.$filename.'.php');
+	extract( $data, EXTR_SKIP );
+	// load_template(FOOPEOPLE_PATH.'includes/templates/'.$path.$filename.'.php');
+	include FOOPEOPLE_PATH.'includes/templates/'.$path.$filename.'.php';
 	$output = ob_get_contents();
 	ob_end_clean();
+
 	if ( $echo ) {
 		echo $output;
 	} else {
 		return $output;
 	}
 }
+
 
 /**
  * Custom Autoloader used throughout FooPeople

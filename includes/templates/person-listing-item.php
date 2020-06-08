@@ -1,29 +1,31 @@
 <?php
-if ( !isset( $person ) ) return;
+// var_dump($post);
+$meta = get_post_meta($post->ID);
+$search = $meta['_foopeople_person_search'][0];
+$meta = unserialize( $meta['_foopeople_person_main'][0] );
 
-$departments = $person->departments();
-$locations = $person->locations();
-$skills = $person->skills();
+// var_dump($meta);
 ?>
-<li class="ppl__listing-item" data-search="<?php echo $person->search_index; ?>">
+
+<li class="ppl__listing-item" data-search="<?php echo $search; ?>">
 
 	<header class="ppl__card_header"></header>
 
 	<figure class="ppl__card_portrait_wrapper">
-		<?php echo get_the_post_thumbnail( $person->ID, 'thumbnail', array('class' => 'ppl__card_portrait_thumbnail') ); ?>
+		<?php echo get_the_post_thumbnail( $post->ID, 'thumbnail', array('class' => 'ppl__card_portrait_thumbnail') ); ?>
 	</figure>
 
 	<div class="ppl__card_details">
 
 		<h2 class="ppl__card_name / ppl__heading">
-			<?php echo $person->name; ?>
+			<?php echo $post->post_title; ?>
 		</h2>
 
 		<div class="ppl__card_particulars">
-			<?php if ( isset( $person->jobtitle ) ) : ?>
+			<?php if ( isset( $meta['jobtitle'] ) ) : ?>
 			<div class="ppl__card_work_title">
 				<i class="ppl_icon-user"></i>
-				<?php echo $person->jobtitle; ?>
+				<?php echo $meta['jobtitle']; ?>
 			</div>
 			<?php endif; ?>
 
@@ -62,20 +64,20 @@ $skills = $person->skills();
 				<?php endif; ?>
 
 				<div class="ppl__card_particulars">
-					<?php if ( isset( $person->email ) ) : ?>
+					<?php if ( isset( $meta['email'] ) ) : ?>
 					<span class="ppl__card_email / ppl__item_pipe">
-						<a href="mailto:<?php echo $person->email; ?>">
+						<a href="mailto:<?php echo $meta['email']; ?>">
 							<i class="ppl_icon-envelope "></i>
-							<?php echo $person->email; ?>
+							<?php echo $meta['email']; ?>
 						</a>
 					</span>
 					<?php endif; ?>
 
-					<?php if ( isset( $person->phonenumber ) ) : ?>
+					<?php if ( isset( $meta['phonenumber'] ) ) : ?>
 					<span class="ppl__card_contactnumber / ppl__item_pipe">
-						<a href="tel:<?php echo $person->phonenumber; ?>">
+						<a href="tel:<?php echo $meta['phonenumber']; ?>">
 							<i class="ppl_icon-phone"></i>
-							<?php echo $person->phonenumber; ?>
+							<?php echo $meta['phonenumber']; ?>
 						</a>
 					</span>
 					<?php endif; ?>

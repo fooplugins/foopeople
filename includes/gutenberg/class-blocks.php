@@ -125,17 +125,18 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Blocks' ) ) {
 			// Register our block, and explicitly define the attributes we accept.
 			register_block_type(
 				'fooplugins/foopeople', array(
-				'attributes' => array(
-					'id' => array(
-						'type' => 'number',
-						'default' => 0
+					'attributes' => array(
+						'id' => array(
+							'type' => 'number',
+							'default' => 0
+						),
+						'className' => array(
+							'type' => 'string'
+						),
 					),
-					'className' => array(
-						'type' => 'string'
-					),
-				),
-				'render_callback' => array( $this, 'render_block' ),
-			));
+					'render_callback' => array( $this, 'render_block' ),
+				)
+			);
 		}
 
 		/**
@@ -146,8 +147,6 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Blocks' ) ) {
 		 * @return false|string|null
 		 */
 		function render_block( $attributes ) {
-
-			return 'template loaded here';
 
 			//create new instance of template engine
 			// $engine = new FooGallery_Template_Loader();
