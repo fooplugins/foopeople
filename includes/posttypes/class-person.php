@@ -47,7 +47,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 					'show_ui'       => true,
 					'show_in_menu'  => true,
 					'menu_icon'     => 'dashicons-groups',
-					'supports'      => array( 'thumbnail', 'title' ),
+					'supports'      => array( 'thumbnail', 'title', 'comments' ),
 				)
 			);
 
