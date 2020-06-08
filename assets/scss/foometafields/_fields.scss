@@ -1,9 +1,14 @@
 .foometafields-field {
-  $padding: 5px 10px;
+  $padding: 5px 10px 10px 10px;
   $padding-field: 3px 10px;
+  $padding-th: 12px 10px 5px 10px;
 
   .foometafields-field-description {
 	font-style: italic;
+	padding: $padding;
+	margin-top: 4px;
+	display: block;
+	background-color: $yellow;
   }
 
   td {
@@ -11,9 +16,9 @@
   }
   th {
 	width: 150px;
-	padding: $padding;
-	vertical-align: middle;
-	text-align: left;
+	padding: $padding-th;
+	vertical-align: top;
+	text-align: right;
   }
   input[type="text"],
   input[type="password"],
