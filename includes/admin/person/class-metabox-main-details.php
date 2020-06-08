@@ -9,7 +9,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 	class MetaboxMainDetails extends CustomPostTypeMetabox {
 
 		function __construct() {
-			$field_group = apply_filters( 'FooPlugins\FooPeople\Admin\Metaboxes\Person\TabFieldGroup',
+			$field_group = apply_filters( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails\FieldGroup',
 				array(
 					'tabs' => array(
 						array(
@@ -24,6 +24,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 									'type'     => 'text',
 									'default'  => '',
 									'placeholder' => __( 'The first name of the person.', 'foopeople' ),
+									'search_index' => true,
 								),
 								array(
 									'id'       => 'surname',
