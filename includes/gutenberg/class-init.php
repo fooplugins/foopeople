@@ -41,13 +41,25 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 
 			// Register block editor script for backend.
 			wp_register_script(
-				'foopeople-block-js', // Handle.
-				FOOPEOPLE_URL . '/assets/js/blocks.min.js', // Block.build.js: We register the block here. Built with Webpack.
+				'foopeople-block-listing-js', // Handle.
+				FOOPEOPLE_URL . '/assets/js/block-listing.min.js', // Block.build.js: We register the block here. Built with Webpack.
 				array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ), // Dependencies, defined above.
 				null, // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
 				true // Enqueue the script in the footer.
 			);
 
+			// Register block editor script for backend.
+			wp_register_script(
+				'foopeople-block-single-js', // Handle.
+				FOOPEOPLE_URL . '/assets/js/block-single.min.js', // Block.build.js: We register the block here. Built with Webpack.
+				array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ), // Dependencies, defined above.
+				null, // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
+				true // Enqueue the script in the footer.
+			);
+
+
+
+			// Front End Script
 			wp_enqueue_script( 'foopeople_front_scripts', FOOPEOPLE_URL . '/assets/js/theme.min.js', array( 'jquery' ), FOOPEOPLE_VERSION, true );
 
 
@@ -59,14 +71,25 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 				null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: File modification time.
 			);
 
-			// WP Localized globals. Use dynamic PHP stuff in JavaScript via `cgbGlobal` object.
+			// WP Localized globals. Use dynamic PHP stuff in JavaScript via `foopeople` object.
 			wp_localize_script(
-				'foopeople-block-js',
-				'cgbGlobal', // Array containing dynamic data for a JS Global.
+				'foopeople-block-single-js',
+				'foopeople-person', // Array containing dynamic data for a JS Global.
 				[
 					'pluginDirPath' => plugin_dir_path( __DIR__ ),
 					'pluginDirUrl'  => plugin_dir_url( __DIR__ ),
-					// Add more data here that you want to access from `cgbGlobal` object.
+					// Add more data here that you want to access from `foopeople` object.
+				]
+			);
+
+			// WP Localized globals. Use dynamic PHP stuff in JavaScript via `foopeople` object.
+			wp_localize_script(
+				'foopeople-block-listing-js',
+				'foopeople-people', // Array containing dynamic data for a JS Global.
+				[
+					'pluginDirPath' => plugin_dir_path( __DIR__ ),
+					'pluginDirUrl'  => plugin_dir_url( __DIR__ ),
+					// Add more data here that you want to access from `foopeople` object.
 				]
 			);
 
@@ -81,8 +104,30 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 			 * @since 1.16.0
 			 */
 			register_block_type(
-				'fooplugins/foopeople', array(
-					'render_callback' => array( $this, 'render_block' ),
+				'fooplugins/foopeople-single', array(
+					'render_callback' => array( $this, 'render_block_single' ),
+					'attributes' => array(
+						'id' => array(
+							'type' => 'number',
+							'default' => 0
+						),
+						'className' => array(
+							'type' => 'string'
+						)
+					),
+
+					// Enqueue on both frontend & backend.
+					'style'         => 'foopeople-block-style-css',
+					// Enqueue in the editor only.
+					'editor_script' => 'foopeople-block-single-js',
+					// Enqueue in the editor only.
+					'editor_style'  => 'foopeople-block-editor-css',
+				)
+			);
+
+			register_block_type(
+				'fooplugins/foopeople-listing', array(
+					'render_callback' => array( $this, 'render_block_listing' ),
 					'attributes' => array(
 						'id' => array(
 							'type' => 'number',
@@ -104,7 +149,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 					// Enqueue on both frontend & backend.
 					'style'         => 'foopeople-block-style-css',
 					// Enqueue in the editor only.
-					'editor_script' => 'foopeople-block-js',
+					'editor_script' => 'foopeople-block-listing-js',
 					// Enqueue in the editor only.
 					'editor_style'  => 'foopeople-block-editor-css',
 				)
@@ -113,13 +158,26 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 		}
 
 		/**
-		 * Render the contents of the block
+		 * Render the contents of the person block
 		 *
 		 * @param $attributes
 		 *
 		 * @return false|string|null
 		 */
-		function render_block( $attributes, $content ) {
+		function render_block_single( $attributes, $content ) {
+			// var_dump($attributes);
+			$output_string = foopeople_render_template('', 'person-single', false, $attributes );
+			return !empty($output_string) ? $output_string : null;
+		}
+
+		/**
+		 * Render the contents of the people block
+		 *
+		 * @param $attributes
+		 *
+		 * @return false|string|null
+		 */
+		function render_block_listing( $attributes, $content ) {
 			// var_dump($attributes);
 			$output_string = foopeople_render_template('', 'person-listing', false, $attributes );
 			return !empty($output_string) ? $output_string : null;
