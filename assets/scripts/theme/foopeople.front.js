@@ -53,9 +53,9 @@
 		FOOPEOPLE.updateCache();
 		FOOPEOPLE.bindEvents();
 
-		// $( '#ppl__org-chart' ).jOrgChart({
-		// 	chartElement: '#chart'
-		// });
+		$( '#ppl__org-chart' ).jOrgChart({
+			chartElement: '#chart'
+		});
 
 	});
 

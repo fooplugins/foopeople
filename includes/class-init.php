@@ -31,6 +31,10 @@ if ( !class_exists( 'FooPlugins\FooPeople\Init' ) ) {
 			// Kick off the 'ol Gutenberg stuffs ekse
 			new namespace\Gutenberg\Init();
 
+			//register WP Customizer stuff
+			require_once( FOOPEOPLE_PATH . 'includes/customizer/class-customizer.php' );
+			new \Customizer();
+
 			//register custom post types
 			new namespace\PostTypes\Person();
 			new namespace\PostTypes\Policy();

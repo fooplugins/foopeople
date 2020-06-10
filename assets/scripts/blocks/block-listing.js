@@ -21,17 +21,17 @@ const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.b
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType( 'fooplugins/foopeople', {
+registerBlockType( 'fooplugins/foopeople-listing', {
 
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
-	title: __( 'FooPeople' ), // Block title.
+	title: __( 'FooPeople Team Listing' ), // Block title.
 	description: __( 'Insert a FooPeople listing into your content' ),
 	icon: 'groups', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
 	category: 'common', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
 	keywords: [
 		__( 'foopeople' ),
 		__( 'people' ),
-		__( 'person' )
+		__( 'listing' )
 	],
 	supports: {
 		multiple: true,
@@ -44,6 +44,17 @@ registerBlockType( 'fooplugins/foopeople', {
 		},
 		className: {
 			type: 'string'
+		},
+		team : {
+			type: 'string',
+			default: ''
+		},
+		team_id : {
+			type: 'number'
+		},
+		show_search : {
+			type: 'boolean',
+			default : true
 		}
 	},
 

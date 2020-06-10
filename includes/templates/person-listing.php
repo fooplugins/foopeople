@@ -1,38 +1,28 @@
-<?php
-$people = new WP_Query( array(
-	'post_type' => array(
-		FOOPEOPLE_CPT_PERSON,
-	),
-	'post_status' => array( // (string | array) - use post status. Retrieves posts by Post Status, default value i'publish'.
-		'publish'
-	),
-	'posts_per_page' => -1,
-	'orderby' => 'title'
-) );
-wp_reset_postdata();
-
-?>
-
+<?php $people = foopeople_get_people($data['team']); ?>
 
 <div id="foopeople" class="foopeople js-foopeople">
 
+	<?php if($data['show_search']) : ?>
 	<div class="ppl_search-wrapper">
 		<input id="ppl__search" type="search" class="ppl_search-field js-foopeople-search" placeholder="<?php _e('Search for people by name, team or skill...', 'foopeople'); ?>">
 	</div>
+	<?php endif; ?>
 
+
+	<?php if($data['team']) : ?>
 	<h2 class="ppl__heading">
 		<?php _e('Showing all people in ', 'foopeople'); ?>
-		<?php echo '"'.ucwords($data['team']).'"'; ?>
+		<?php echo '"'.foopeople_get_taxonomy_name( $data['team'], FOOPEOPLE_CT_TEAM ).'"';	?>
 	</h2>
+	<?php endif; ?>
+
 <?php if ( $people->have_posts() ) : ?>
-	<ol class="ppl_listing">
+	<ol class="ppl_listing" data-ppl-columns="<?php echo foopeople_get_setting('listing_columns', '3'); ?>">
 <?php while ( $people->have_posts() ) : $people->the_post(); ?>
-		<?php
-		// global $post;
-		// $person = new FooPlugins\FooPeople\objects\Person($post);
-		// echo foopeople_render_template('', 'person-listing-item', false, $person );?>
 		<?php  load_template( FOOPEOPLE_PATH.'includes/templates/person-listing-item.php', false );?>
 <?php endwhile; ?>
 	</ol>
-<?php endif; ?>
+<?php endif;
+wp_reset_postdata();
+?>
 </div>

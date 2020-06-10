@@ -1,40 +1,26 @@
 .ppl__single-person {
-	position: relative;
 	$portrait_box: 150px;
+	position: relative;
 
 	.ppl__card_header {
-		min-height: $cover_photo_height * 2;
-		margin-bottom: $m-sm;
-	}
-
-	.ppl_icon-spacer {
-		width: 40px;
-		text-align: center;
-	}
-
-	.ppl__card_name,
-	.ppl__card_work_title {
-		position: absolute;
-		left: 70px + $portrait_box;
-		padding: 0;
+		min-height: $portrait_box;
 	}
 
 	.ppl__card_name {
 		font-size: 40px;
-		top: 60px;
 		font-weight: bold;
 	}
 
 	.ppl__card_work_title {
+		display: block;
 		font-size: 20px;
-		top: 110px;
 		font-weight: normal;
+		margin-bottom: 20px;
 	}
 
-	.ppl__card_portrait_wrapper  {
-		position: absolute;
-		top: $cover_photo_height;
-		left: 40px;
+	.ppl_icon-spacer {
+		width: 30px;
+		text-align: center;
 	}
 
 	.ppl__card_portrait_thumbnail {
@@ -43,10 +29,7 @@
 		width: $portrait_box;
 	}
 
-
-	.ppl__card_details {
-		padding-left: 60px + $portrait_box;
-		padding-bottom: 20px;
+	.ppl__card_details-single {
+		text-align: center;
 	}
-
 }

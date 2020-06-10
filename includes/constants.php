@@ -23,3 +23,6 @@ define ( 'FOOPEOPLE_CT_SKILL', 'foopeople-skill' );
 define ( 'FOOPEOPLE_META_PERSON_MAIN', '_foopeople_person_main' );
 define ( 'FOOPEOPLE_META_PERSON_SEARCH', '_foopeople_person_search' );
 
+// Customizer
+define ( 'FOOPEOPLE_CUSTOMIZER_PREFIX', 'ppl_setting' );
+

@@ -12,6 +12,9 @@
 
 		<h2 class="ppl__card_name / ppl__heading">
 			<?php echo $person->name; ?>
+			<?php if ( !empty( $person->main_details['preferred'] ) ) : ?>
+				<?php echo '('.$person->main_details['preferred'].')'; ?>
+			<?php endif; ?>
 		</h2>
 
 		<div class="ppl__card_particulars">
@@ -23,7 +26,7 @@
 			<?php endif; ?>
 
 			<?php if( !empty($person->teams()) ) : ?>
-			<div class="ppl__card_work_department">
+			<div class="ppl__card_work_team">
 				<i class="ppl_icon-group"></i>
 				<?php
 					foreach ($person->teams() as $team) {

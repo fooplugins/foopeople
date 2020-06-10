@@ -186,3 +186,81 @@ function foopeople_sanitize_text( $key ) {
 	}
 	return null;
 }
+
+
+
+
+/**
+ * Returns all FooPeople in a team
+ *
+ * @param string|integer $team Taxonomy Team we want to show
+ * @param array $excludes People we dont like
+ * @return FooePeople[] array of FooPeople
+ */
+function foopeople_get_people( $team = '', $excludes = false ) {
+	$args = array(
+		'post_type'     => FOOPEOPLE_CPT_PERSON,
+		'post_status'	=> array( 'publish' ),
+		'cache_results' => false,
+		'nopaging'      => true,
+		'posts_per_page' => -1,
+		'orderby' => 'title',
+	);
+
+	if ( is_array( $excludes ) ) {
+		$args['post__not_in'] = $excludes;
+	}
+	if ( $team ) {
+		$field = '';
+
+		if( is_string($team) ) $field = 'slug';
+		if( is_int($team) ) $field = 'term_id';
+
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' => FOOPEOPLE_CT_TEAM,
+				'field' => $field,
+				'terms' => $team,
+			)
+		);
+	}
+
+	return new WP_Query($args);
+}
+
+
+
+/**
+ * Returns Taxonomy Name
+ *
+ * @param string|integer $term slug or ID of item
+ * @param string $taxonomy taxonomy we want to target
+ * @return string Name of Taxonomy
+ */
+function foopeople_get_taxonomy_name( $term = '', $taxonomy = '' ) {
+	if($term && $taxonomy) {
+		if( is_string($term) ) $field = 'slug';
+		if( is_int($term) ) $field = 'term_id';
+
+		return get_term_by($field, $term, $taxonomy )->name;
+	};
+}
+
+
+
+/**
+ * Returns a FooPeople Customizer theme option
+ *
+ * @param string $option Theme option name
+ * @param string $default Default value to return if no option found
+ * @return string Theme option value
+ */
+function foopeople_get_setting( $option, $default = '' ) {
+	$setting = get_option( FOOPEOPLE_CUSTOMIZER_PREFIX );
+
+	if( isset($setting[$option] ) ) {
+		return $setting[$option];
+	} else {
+		return $default;
+	}
+}
