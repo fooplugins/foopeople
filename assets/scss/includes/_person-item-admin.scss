@@ -3,8 +3,6 @@
 	display: none;
 }
 
-
-
 // Person Preview
 .ppl__card_wrapper {
 	background: white;
@@ -29,37 +27,16 @@
 			transform: translateY(-40px);
 		}
 	}
-	.ppl__card_name {
-		font-size: 40px;
-		font-weight: bold;
-	}
 
-	.ppl__card_work_title {
-		display: block;
-		font-size: 20px;
-		font-weight: normal;
-		margin-bottom: 20px;
-	}
 
-	.ppl_icon-spacer {
-		width: 30px;
-		text-align: center;
-	}
-
+	// Style the preview
 	.ppl__card_portrait_wrapper  {
 		position: absolute;
 		top: 90px;
 		left: 20px;
 	}
-
-	.ppl__card_portrait_thumbnail {
-		margin-top: -$portrait_box/2;
-		margin-bottom: $m-sm;
-		width: $portrait_box;
-	}
-
-	.ppl__card_details {
-		padding-left: 50px + $portrait_box;
+	.ppl__card_details-preview {
+		padding-left: 70px + $portrait_box;
 		padding-bottom: 20px;
 	}
 }

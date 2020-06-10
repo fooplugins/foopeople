@@ -129,7 +129,15 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 						),
 						'className' => array(
 							'type' => 'string'
-						)
+						),
+						'person' => array(
+							'type' => 'string',
+							'default' => ''
+						),
+						'person_id' => array(
+							'type' => 'number',
+							'default' => 98
+						),
 					),
 
 					// Enqueue on both frontend & backend.

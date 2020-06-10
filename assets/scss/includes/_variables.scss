@@ -1,6 +1,6 @@
 // Animation
 // ----------------------------------------------------------------------------
-$transition : cubic-bezier(0.445, 0.050, 0.550, 0.950); 
+$transition : cubic-bezier(0.445, 0.050, 0.550, 0.950);
 
 // Colors
 // ----------------------------------------------------------------------------
@@ -53,11 +53,11 @@ $light-blue: 	    lighten($blue, 10%);
 $light-teal: 	    lighten($teal, 10%);
 
 $primary:           $navy;
-$primary-alt:       $dark-blue; 
+$primary-alt:       $dark-blue;
 
 $secondary:         $orange;
-$secondary-alt: 	$dark-orange; 
- 
+$secondary-alt: 	$dark-orange;
+
 $success:         $green;
 $info:            $teal;
 $warning:         $yellow;
@@ -103,8 +103,8 @@ $cover_photo_bg_color: $light;
 
 $border_radius: 5px;
 
-$portrait_radius: 20px; 
-$portrait_border: 2px; 
+$portrait_radius: 20px;
+$portrait_border: 2px;
 $portrait_box: $cover_photo_height*1.3;
 
 

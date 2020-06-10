@@ -191,7 +191,7 @@ function foopeople_sanitize_text( $key ) {
 
 
 /**
- * Returns all FooPeople
+ * Returns all FooPeople in a team
  *
  * @param string|integer $team Taxonomy Team we want to show
  * @param array $excludes People we dont like
