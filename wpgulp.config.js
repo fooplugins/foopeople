@@ -54,7 +54,7 @@ module.exports = {
 			scriptFile: 'blocks'
 		},
 		{
-			scriptSRC: './assets/scripts/foometafields.js',
+			scriptSRC: './assets/scripts/foometafields/*.js',
 			scriptFile: 'foometafields'
 		}
 	],
