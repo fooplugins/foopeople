@@ -195,7 +195,7 @@ function foopeople_sanitize_text( $key ) {
  *
  * @param string|integer $team Taxonomy Team we want to show
  * @param array $excludes People we dont like
- * @return PacePeople[] array of FooPeople
+ * @return FooePeople[] array of FooPeople
  */
 function foopeople_get_people( $team = '', $excludes = false ) {
 	$args = array(
@@ -248,3 +248,19 @@ function foopeople_get_taxonomy_name( $term = '', $taxonomy = '' ) {
 
 
 
+/**
+ * Returns a FooPeople Customizer theme option
+ *
+ * @param string $option Theme option name
+ * @param string $default Default value to return if no option found
+ * @return string Theme option value
+ */
+function foopeople_get_setting( $option, $default = '' ) {
+	$setting = get_option( FOOPEOPLE_CUSTOMIZER_PREFIX );
+
+	if( isset($setting[$option] ) ) {
+		return $setting[$option];
+	} else {
+		return $default;
+	}
+}
