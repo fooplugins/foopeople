@@ -39,6 +39,8 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 				null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: File modification time.
 			);
 
+
+
 			// Register block editor script for backend.
 			wp_register_script(
 				'foopeople-block-listing-js', // Handle.
@@ -47,8 +49,6 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 				null, // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
 				true // Enqueue the script in the footer.
 			);
-
-			// Register block editor script for backend.
 			wp_register_script(
 				'foopeople-block-single-js', // Handle.
 				FOOPEOPLE_URL . '/assets/js/block-single.min.js', // Block.build.js: We register the block here. Built with Webpack.
@@ -56,11 +56,13 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 				null, // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
 				true // Enqueue the script in the footer.
 			);
-
-
-
-			// Front End Script
-			wp_enqueue_script( 'foopeople_front_scripts', FOOPEOPLE_URL . '/assets/js/theme.min.js', array( 'jquery' ), FOOPEOPLE_VERSION, true );
+			wp_register_script(
+				'foopeople-block-organogram-js', // Handle.
+				FOOPEOPLE_URL . '/assets/js/block-organogram.min.js', // Block.build.js: We register the block here. Built with Webpack.
+				array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ), // Dependencies, defined above.
+				null, // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
+				true // Enqueue the script in the footer.
+			);
 
 
 			// Register block editor styles for backend.
@@ -71,21 +73,35 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 				null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: File modification time.
 			);
 
+
+
+			// Register Front End Script
+			wp_enqueue_script( 'foopeople_front_scripts', FOOPEOPLE_URL . '/assets/js/theme.min.js', array( 'jquery' ), FOOPEOPLE_VERSION, true );
+
+
+
 			// WP Localized globals. Use dynamic PHP stuff in JavaScript via `foopeople` object.
 			wp_localize_script(
 				'foopeople-block-single-js',
-				'foopeople-person', // Array containing dynamic data for a JS Global.
+				'foopeople-single', // Array containing dynamic data for a JS Global.
 				[
 					'pluginDirPath' => plugin_dir_path( __DIR__ ),
 					'pluginDirUrl'  => plugin_dir_url( __DIR__ ),
 					// Add more data here that you want to access from `foopeople` object.
 				]
 			);
-
-			// WP Localized globals. Use dynamic PHP stuff in JavaScript via `foopeople` object.
 			wp_localize_script(
 				'foopeople-block-listing-js',
-				'foopeople-people', // Array containing dynamic data for a JS Global.
+				'foopeople-listing', // Array containing dynamic data for a JS Global.
+				[
+					'pluginDirPath' => plugin_dir_path( __DIR__ ),
+					'pluginDirUrl'  => plugin_dir_url( __DIR__ ),
+					// Add more data here that you want to access from `foopeople` object.
+				]
+			);
+			wp_localize_script(
+				'foopeople-block-organogram-js',
+				'foopeople-organogram', // Array containing dynamic data for a JS Global.
 				[
 					'pluginDirPath' => plugin_dir_path( __DIR__ ),
 					'pluginDirUrl'  => plugin_dir_url( __DIR__ ),
@@ -155,6 +171,28 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 				)
 			);
 
+			register_block_type(
+				'fooplugins/foopeople-organogram', array(
+					'render_callback' => array( $this, 'render_block_organogram' ),
+					'attributes' => array(
+						'id' => array(
+							'type' => 'number',
+							'default' => 0
+						),
+						'className' => array(
+							'type' => 'string'
+						)
+					),
+
+					// Enqueue on both frontend & backend.
+					'style'         => 'foopeople-block-style-css',
+					// Enqueue in the editor only.
+					'editor_script' => 'foopeople-block-organogram-js',
+					// Enqueue in the editor only.
+					'editor_style'  => 'foopeople-block-editor-css',
+				)
+			);
+
 		}
 
 		/**
@@ -180,6 +218,19 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 		function render_block_listing( $attributes, $content ) {
 			// var_dump($attributes);
 			$output_string = foopeople_render_template('', 'person-listing', false, $attributes );
+			return !empty($output_string) ? $output_string : null;
+		}
+
+		/**
+		 * Render the contents of the organogram
+		 *
+		 * @param $attributes
+		 *
+		 * @return false|string|null
+		 */
+		function render_block_organogram( $attributes, $content ) {
+
+			$output_string = foopeople_render_template('', 'people-organogram', false, $attributes );
 			return !empty($output_string) ? $output_string : null;
 		}
 	}

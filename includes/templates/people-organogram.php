@@ -1,31 +1,30 @@
 
-
 <div id="foopeople" class="foopeople">
     <ul id="ppl__org-chart" style="display:none">
         <li>
-            <?php include('person-organogram-item.php'); ?>
+            <?php include('people-organogram-item.php'); ?>
             <ul>
 
                 <li class="collapsed">
-                     <?php include('person-organogram-item.php'); ?>
+                     <?php include('people-organogram-item.php'); ?>
                     <ul>
                         <li>
-                            <?php include('person-organogram-item.php'); ?>
+                            <?php include('people-organogram-item.php'); ?>
                         </li>
                         <li>
-                            <?php include('person-organogram-item.php'); ?>
+                            <?php include('people-organogram-item.php'); ?>
                         </li>
                     </ul>
                 </li>
 
                 <li>
-                    <?php include('person-organogram-item.php'); ?>
+                    <?php include('people-organogram-item.php'); ?>
                     <ul>
                         <li>
-                            <?php include('person-organogram-item.php'); ?>
+                            <?php include('people-organogram-item.php'); ?>
                             <ul>
                                 <li>
-                                    <?php include('person-organogram-item.php'); ?>
+                                    <?php include('people-organogram-item.php'); ?>
                                 </li>
                             </ul>
                         </li>
@@ -34,31 +33,31 @@
                 </li>
 
                 <li>
-                    <?php include('person-organogram-item.php'); ?>
+                    <?php include('people-organogram-item.php'); ?>
                     <ul>
                         <li>
-                            <?php include('person-organogram-item.php'); ?>
+                            <?php include('people-organogram-item.php'); ?>
                             <ul>
                                 <li>
-                                    <?php include('person-organogram-item.php'); ?>
+                                    <?php include('people-organogram-item.php'); ?>
                                 </li>
                             </ul>
                         </li>
 
                         <li>
-                            <?php include('person-organogram-item.php'); ?>
+                            <?php include('people-organogram-item.php'); ?>
                             <ul>
                                 <li>
-                                    <?php include('person-organogram-item.php'); ?>
+                                    <?php include('people-organogram-item.php'); ?>
                                 </li>
                                 <li>
-                                    <?php include('person-organogram-item.php'); ?>
+                                    <?php include('people-organogram-item.php'); ?>
                                 </li>
                                 <li>
-                                    <?php include('person-organogram-item.php'); ?>
+                                    <?php include('people-organogram-item.php'); ?>
                                     <ul>
                                         <li>
-                                            <?php include('person-organogram-item.php'); ?>
+                                            <?php include('people-organogram-item.php'); ?>
                                         </li>
                                     </ul>
                                 </li>

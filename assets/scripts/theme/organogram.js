@@ -5,7 +5,7 @@
  * http://twitter.com/wesnolte
  *
  * Based on the work of Mark Lee
- * http://www.capricasoftware.co.uk 
+ * http://www.capricasoftware.co.uk
  *
  * Copyright (c) 2011 Wesley Nolte
  * Dual licensed under the MIT and GPL licenses.
@@ -21,12 +21,12 @@
       tableClass    = 'ppl__table-organogram',
       trClass       = 'ppl__tr-cells',
       tdClass       = 'ppl__td-cell';
- 
+
 
   $.fn.jOrgChart = function(options) {
     var opts      = $.extend({}, $.fn.jOrgChart.defaults, options),
         $appendTo = $(opts.chartElement),
-        containerWidth, 
+        containerWidth,
         tableWidth,
         $this     = $(this),
         $container = $("<div class='" + opts.chartClass + "'/>");
@@ -57,9 +57,9 @@
   };
 
   function resizeTable($container, tableWidth) {
-    containerWidth = $container[0].clientWidth,
-    containerHeight = $container[0].clientHeight,
-    zoomLevel = containerWidth / tableWidth;
+    var containerWidth = $container[0].clientWidth,
+        containerHeight = $container[0].clientHeight,
+        zoomLevel = containerWidth / tableWidth;
 
     $('.'+tableClass).css("transform", "scale("+zoomLevel+")");
     $container.css('height', containerHeight*zoomLevel);
@@ -70,7 +70,7 @@
     var $table = $("<table/>");
     var $tbody = $("<tbody/>");
     if(nodeCount === 0) {
-        $table.addClass(tableClass); 
+        $table.addClass(tableClass);
     }
 
     // Construct the node container(s)
@@ -78,14 +78,14 @@
     var $nodeCell = $("<td/>").addClass(tdClass).attr("colspan", 2);
     var $childNodes = $node.children("ul:first").children("li");
     var $nodeDiv;
-    
+
     if($childNodes.length > 1) {
       $nodeCell.attr("colspan", $childNodes.length * 2);
     }
     // Draw the node
     // Get the contents - any markup except li and ul allowed
     var $nodeContent = $node.clone().children("ul,li").remove().end().html();
-	
+
       //Increaments the node count which is used to link the source list and the org chart
   	nodeCount++;
   	$node.data("tree-node", nodeCount);
@@ -114,7 +114,7 @@
           }
         });
     }
-    
+
     $nodeCell.append($nodeDiv);
     $nodeRow.append($nodeCell);
     $tbody.append($nodeRow);
@@ -122,15 +122,15 @@
     if($childNodes.length > 0) {
       // if it can be expanded then change the cursor
       $nodeDiv.addClass('ppl__expand-up').removeClass('ppl__expand-down');
-    
+
       // recurse until leaves found (-1) or to the level specified
-      if(opts.depth == -1 || (level+1 < opts.depth)) { 
+      if(opts.depth == -1 || (level+1 < opts.depth)) {
         var $downLineRow = $("<tr/>");
         var $downLineCell = $("<td/>").attr("colspan", $childNodes.length*2);
         $downLineRow.append($downLineCell);
-        
-        // draw the connecting line from the parent node to the horizontal line 
-        $downLine = $("<div></div>").addClass("line down");
+
+        // draw the connecting line from the parent node to the horizontal line
+        var $downLine = $("<div></div>").addClass("line down");
         $downLineCell.append($downLine);
         $tbody.append($downLineRow);
 
@@ -178,7 +178,7 @@
 
     $table.append($tbody);
     $appendTo.append($table);
-    
+
     /* Prevent trees collapsing if a link inside a node is clicked */
     $nodeDiv.children('a').click(function(e){
         console.log(e);

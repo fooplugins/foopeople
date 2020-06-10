@@ -3,8 +3,8 @@
 
 	<figure class="ppl__card_portrait_wrapper">
 		<img id="ppl__portrait_thumbnail" class="ppl__card_portrait_thumbnail"
-			 data-default-src="<?php echo FOOPEOPLE_URL ?>/assets/img/default_person_portait.png"
-			 src="<?php echo FOOPEOPLE_URL ?>/assets/img/default_person_portait.png">
+			 data-default-src="<?php echo FOOPEOPLE_URL ?>/assets/img/default_person_portrait.png"
+			 src="<?php echo FOOPEOPLE_URL ?>/assets/img/default_person_portrait.png">
 	</figure>
 
 	<div class="ppl__card_details">
