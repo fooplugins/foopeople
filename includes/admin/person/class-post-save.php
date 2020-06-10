@@ -51,11 +51,8 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\PostSave' ) ) {
 			//get the person object from the database
 			$person = Person::get_by_id( $post_id );
 
-			//get the line manager
-			$manager_id = intval( foopeople_safe_get_from_array( 'value', $person->get_main_detail( 'manager' ), 0 ) );
-
 			//make sure we do not set the parent to itself
-			if ( $post_id === $manager_id ) {
+			if ( $post_id === $person->manager_id ) {
 				$manager_id = 0;
 			}
 
@@ -63,7 +60,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\PostSave' ) ) {
 			wp_update_post(
 				array(
 					'ID' => $post_id,
-					'post_parent' => $manager_id
+					'post_parent' => $person->manager_id
 				)
 			);
 
