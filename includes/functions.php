@@ -186,3 +186,43 @@ function foopeople_sanitize_text( $key ) {
 	}
 	return null;
 }
+
+
+
+
+/**
+ * Returns all FooPeople
+ *
+ * @return PacePeople[] array of FooPeople
+ */
+function foopeople_get_people( $team = '', $excludes = false ) {
+	$args = array(
+		'post_type'     => FOOPEOPLE_CPT_PERSON,
+		'post_status'	=> array( 'publish' ),
+		'cache_results' => false,
+		'nopaging'      => true,
+		'posts_per_page' => -1,
+		'orderby' => 'title',
+
+	);
+
+	if ( is_array( $excludes ) ) {
+		$args['post__not_in'] = $excludes;
+	}
+	if ( $team ) {
+		$field = '';
+
+		if( is_string($team) ) $field = 'slug';
+		if( is_int($team) ) $field = 'term_id';
+
+		$args['tax_query'] = array(
+            array(
+                'taxonomy' => FOOPEOPLE_CT_TEAM,
+                'field' => $field,
+                'terms' => $team,
+            )
+        );
+	}
+
+	return new WP_Query($args);
+}
