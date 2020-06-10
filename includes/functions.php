@@ -193,6 +193,8 @@ function foopeople_sanitize_text( $key ) {
 /**
  * Returns all FooPeople
  *
+ * @param string|integer $team Taxonomy Team we want to show
+ * @param array $excludes People we dont like
  * @return PacePeople[] array of FooPeople
  */
 function foopeople_get_people( $team = '', $excludes = false ) {
@@ -203,7 +205,6 @@ function foopeople_get_people( $team = '', $excludes = false ) {
 		'nopaging'      => true,
 		'posts_per_page' => -1,
 		'orderby' => 'title',
-
 	);
 
 	if ( is_array( $excludes ) ) {
@@ -216,13 +217,34 @@ function foopeople_get_people( $team = '', $excludes = false ) {
 		if( is_int($team) ) $field = 'term_id';
 
 		$args['tax_query'] = array(
-            array(
-                'taxonomy' => FOOPEOPLE_CT_TEAM,
-                'field' => $field,
-                'terms' => $team,
-            )
-        );
+			array(
+				'taxonomy' => FOOPEOPLE_CT_TEAM,
+				'field' => $field,
+				'terms' => $team,
+			)
+		);
 	}
 
 	return new WP_Query($args);
 }
+
+
+
+/**
+ * Returns Taxonomy Name
+ *
+ * @param string|integer $term slug or ID of item
+ * @param string $taxonomy taxonomy we want to target
+ * @return string Name of Taxonomy
+ */
+function foopeople_get_taxonomy_name( $term = '', $taxonomy = '' ) {
+	if($term && $taxonomy) {
+		if( is_string($term) ) $field = 'slug';
+		if( is_int($term) ) $field = 'term_id';
+
+		return get_term_by($field, $term, $taxonomy )->name;
+	};
+}
+
+
+

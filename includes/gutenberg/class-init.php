@@ -154,7 +154,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 						),
 						'team' => array(
 							'type' => 'string',
-							'default' => 'andy'
+							'default' => ''
 						),
 						'team_id' => array(
 							'type' => 'number',

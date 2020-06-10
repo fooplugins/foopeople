@@ -1,4 +1,4 @@
-<?php $people = foopeople_get_people(); ?>
+<?php $people = foopeople_get_people($data['team']); ?>
 
 <div id="foopeople" class="foopeople js-foopeople">
 
@@ -8,8 +8,9 @@
 
 	<h2 class="ppl__heading">
 		<?php _e('Showing all people in ', 'foopeople'); ?>
-		<?php echo '"'.ucwords($data['team']).'"'; ?>
+		<?php echo '"'.foopeople_get_taxonomy_name( $data['team'], FOOPEOPLE_CT_TEAM ).'"';	?>
 	</h2>
+
 <?php if ( $people->have_posts() ) : ?>
 	<ol class="ppl_listing" data-ppl-columns="<?php echo get_option( 'ppl_setting', '3' )['listing_columns']; ?>">
 <?php while ( $people->have_posts() ) : $people->the_post(); ?>
