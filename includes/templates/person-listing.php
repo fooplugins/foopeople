@@ -2,9 +2,12 @@
 
 <div id="foopeople" class="foopeople js-foopeople">
 
+	<?php if($data['show_search']) : ?>
 	<div class="ppl_search-wrapper">
 		<input id="ppl__search" type="search" class="ppl_search-field js-foopeople-search" placeholder="<?php _e('Search for people by name, team or skill...', 'foopeople'); ?>">
 	</div>
+	<?php endif; ?>
+
 
 	<?php if($data['team']) : ?>
 	<h2 class="ppl__heading">

@@ -157,8 +157,11 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 							'default' => ''
 						),
 						'team_id' => array(
-							'type' => 'number',
-							'default' => 1
+							'type' => 'number'
+						),
+						'show_search' => array(
+							'type' => 'boolean',
+							'default' => true
 						),
 					),
 
