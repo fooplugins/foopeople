@@ -2,10 +2,10 @@
   "name": "foo-people",
   "description": "People & Team Management for WordPress",
   "version": "1.0.0",
-  "author": "{author}",
+  "author": "FooPlugins",
   "repository": {
     "type": "git",
-    "url": "https://github.com/path-to-your-repo"
+    "url": "https://github.com/fooplugins/foopeople"
   },
   "license": "GPLv2",
   "devDependencies": {
@@ -38,7 +38,9 @@
     "gulp-uglify": "^3.0.0",
     "gulp-uglifycss": "^1.0.6",
     "gulp-wp-pot": "^2.4.3",
-    "gulp-zip": "^5.0.0"
+    "gulp-zip": "^5.0.0",
+    "gulp-shell": "^0.8.0",
+    "run-sequence": "^2.2.1"
   },
   "scripts": {
     "start": "gulp",

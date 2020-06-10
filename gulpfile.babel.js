@@ -397,6 +397,11 @@ gulp.task( 'translate', () => {
 		.pipe( notify({ message: '\n\n✅  ===> TRANSLATE — completed!\n', onLast: true }) );
 });
 
+gulp.task('copy-vendor-scripts', function() {
+	return gulp.src('./assets/scripts/vendor/*.js')
+		.pipe(gulp.dest('./assets/js'));
+});
+
 /**
  * Watch Tasks.
  *
@@ -404,7 +409,7 @@ gulp.task( 'translate', () => {
  */
 gulp.task(
 	'default',
-	gulp.parallel( 'styles', 'scripts', 'images', browsersync, () => {
+	gulp.parallel( 'styles', 'scripts', 'copy-vendor-scripts', 'images', browsersync, () => {
 		gulp.watch( config.watchPhp, reload ); // Reload on PHP file changes.
 		gulp.watch( config.watchStyles, gulp.parallel( 'styles' ) ); // Reload on SCSS file changes.
 		gulp.watch( config.watchScripts, gulp.series( 'scripts', reload ) ); // Reload on themeJS file changes.
@@ -453,3 +458,26 @@ require( 'gulp-freemius-deploy' )( gulp, {
 	zip_path: 'dist/',
 	add_contributor: true
 });
+
+const runSequence = require('run-sequence');
+const shell = require('gulp-shell');
+
+//runs composer install for deployment
+gulp.task('composer-install-deploy', shell.task([
+	'composer install --prefer-dist --optimize-autoloader --no-dev'
+]));
+
+/**
+ * Get the plugin ready for deployment
+ *
+ * This runs the following tasks in sequence :
+ *   composer-install-deploy
+ *   translate
+ *   zip
+ *
+ * usage : gulp pre-deploy
+ *
+ */
+gulp.task('pre-deploy', function(){
+	runSequence('composer-install-deploy', 'translate', 'zip')
+})

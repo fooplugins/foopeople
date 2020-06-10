@@ -2,7 +2,7 @@
 
 namespace FooPlugins\FooPeople\Admin\Metaboxes;
 
-if ( ! class_exists( 'namespace FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
+if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 
 	class FieldRenderer {
 
