@@ -31,7 +31,7 @@ function foopeople_is_admin_screen( $custom_post_type ) {
  */
 function foopeople_render_template( $path = '', $filename, $echo = true, $data = array() ) {
 	if( $path ) {
-		$path.='/';
+		$path.'/';
 	}
 
 	ob_start();

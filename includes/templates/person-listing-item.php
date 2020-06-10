@@ -1,41 +1,34 @@
-<?php
-// var_dump($post);
-$meta = get_post_meta($post->ID);
-$search = $meta['_foopeople_person_search'][0];
-$meta = unserialize( $meta['_foopeople_person_main'][0] );
+<?php $person = new FooPlugins\FooPeople\objects\Person($post); ?>
 
-// var_dump($meta);
-?>
-
-<li class="ppl__listing-item" data-search="<?php echo $search; ?>">
+<li class="ppl__listing-item" data-search="<?php echo $person->search ?>">
 
 	<header class="ppl__card_header"></header>
 
 	<figure class="ppl__card_portrait_wrapper">
-		<?php echo get_the_post_thumbnail( $post->ID, 'thumbnail', array('class' => 'ppl__card_portrait_thumbnail') ); ?>
+		<?php echo get_the_post_thumbnail( $person->ID, 'thumbnail', array('class' => 'ppl__card_portrait_thumbnail') ); ?>
 	</figure>
 
 	<div class="ppl__card_details">
 
 		<h2 class="ppl__card_name / ppl__heading">
-			<?php echo $post->post_title; ?>
+			<?php echo $person->name; ?>
 		</h2>
 
 		<div class="ppl__card_particulars">
-			<?php if ( isset( $meta['jobtitle'] ) ) : ?>
+			<?php if ( isset( $person->main_details['jobtitle'] ) ) : ?>
 			<div class="ppl__card_work_title">
 				<i class="ppl_icon-user"></i>
-				<?php echo $meta['jobtitle']; ?>
+				<?php echo $person->main_details['jobtitle']; ?>
 			</div>
 			<?php endif; ?>
 
-			<?php if( !empty($departments) ) : ?>
+			<?php if( !empty($person->teams()) ) : ?>
 			<div class="ppl__card_work_department">
 				<i class="ppl_icon-group"></i>
 				<?php
-					foreach ($departments as $department) {
+					foreach ($person->teams() as $team) {
 						echo '<span class="ppl__item_pipe">';
-						echo ' '.$department.' ';
+						echo ' '.$team.' ';
 						echo '</span>';
 					}
 				?>
@@ -45,16 +38,14 @@ $meta = unserialize( $meta['_foopeople_person_main'][0] );
 
 
 
-
-
 		<div class="ppl__card_more-details">
 			<div class="ppl__card_particulars-wrapper">
 
-				<?php if( !empty($locations) ) : ?>
+				<?php if( !empty($person->locations()) ) : ?>
 				<div class="ppl__card_particulars">
 					<i class="ppl_icon-map-marker"></i>
 					<?php
-						foreach ($locations as $location) {
+						foreach ($person->locations() as $location) {
 							echo '<span class="ppl__card_location / ppl__item_pipe">';
 							echo ' '.$location.' ';
 							echo '</span>';
@@ -64,32 +55,32 @@ $meta = unserialize( $meta['_foopeople_person_main'][0] );
 				<?php endif; ?>
 
 				<div class="ppl__card_particulars">
-					<?php if ( isset( $meta['email'] ) ) : ?>
+					<?php if ( isset( $person->main_details['email'] ) ) : ?>
 					<span class="ppl__card_email / ppl__item_pipe">
-						<a href="mailto:<?php echo $meta['email']; ?>">
+						<a href="mailto:<?php echo $person->main_details['email']; ?>">
 							<i class="ppl_icon-envelope "></i>
-							<?php echo $meta['email']; ?>
+							<?php echo $person->main_details['email']; ?>
 						</a>
 					</span>
 					<?php endif; ?>
 
-					<?php if ( isset( $meta['phonenumber'] ) ) : ?>
+					<?php if ( isset( $person->main_details['phonenumber'] ) ) : ?>
 					<span class="ppl__card_contactnumber / ppl__item_pipe">
-						<a href="tel:<?php echo $meta['phonenumber']; ?>">
+						<a href="tel:<?php echo $person->main_details['phonenumber']; ?>">
 							<i class="ppl_icon-phone"></i>
-							<?php echo $meta['phonenumber']; ?>
+							<?php echo $person->main_details['phonenumber']; ?>
 						</a>
 					</span>
 					<?php endif; ?>
 				</div>
 
 
-				<?php if( !empty($skills) ) : ?>
+				<?php if( !empty($person->skills()) ) : ?>
 				<div class="ppl__card_skills_wrapper">
 					<div class="ppl__card_skills">
 						<i class="ppl_icon-tag"></i>
 					<?php
-						foreach ($skills as $skill) {
+						foreach ($person->skills() as $skill) {
 							echo '<span class="ppl__item_delimiter">';
 							echo ' '.$skill.' ';
 							echo '</span>';

@@ -27,6 +27,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Objects\Person' ) ) {
 				$this->author = $post->post_author;
 				$this->post_status = $post->post_status;
 				$this->main_details = get_post_meta( $this->ID, FOOPEOPLE_META_PERSON_MAIN, true );
+				$this->search = get_post_meta( $this->ID, FOOPEOPLE_META_PERSON_SEARCH, true );
 
 				do_action( 'FooPlugins\FooPeople\Objects\Person\Loaded', $this );
 			}

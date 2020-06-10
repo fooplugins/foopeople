@@ -9,10 +9,6 @@ $people = new WP_Query( array(
 	'posts_per_page' => -1,
 	'orderby' => 'title'
 ) );
-
-
-
-// Reset Post Data
 wp_reset_postdata();
 
 ?>
@@ -31,7 +27,11 @@ wp_reset_postdata();
 <?php if ( $people->have_posts() ) : ?>
 	<ol class="ppl_listing">
 <?php while ( $people->have_posts() ) : $people->the_post(); ?>
-		<?php load_template( FOOPEOPLE_PATH.'includes/templates/person-listing-item.php', false );?>
+		<?php
+		// global $post;
+		// $person = new FooPlugins\FooPeople\objects\Person($post);
+		// echo foopeople_render_template('', 'person-listing-item', false, $person );?>
+		<?php  load_template( FOOPEOPLE_PATH.'includes/templates/person-listing-item.php', false );?>
 <?php endwhile; ?>
 	</ol>
 <?php endif; ?>
