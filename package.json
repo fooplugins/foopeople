@@ -34,14 +34,13 @@
     "gulp-rename": "^1.2.0",
     "gulp-rtlcss": "^1.2.0",
     "gulp-sass": "^4.0.1",
+    "gulp-shell": "^0.8.0",
     "gulp-sort": "^2.0.0",
     "gulp-sourcemaps": "^2.6.2",
     "gulp-uglify": "^3.0.0",
     "gulp-uglifycss": "^1.0.6",
     "gulp-wp-pot": "^2.4.3",
-    "gulp-zip": "^5.0.0",
-    "gulp-shell": "^0.8.0",
-    "run-sequence": "^2.2.1"
+    "gulp-zip": "^5.0.0"
   },
   "scripts": {
     "start": "gulp",

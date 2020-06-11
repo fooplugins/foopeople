@@ -459,7 +459,6 @@ require( 'gulp-freemius-deploy' )( gulp, {
 	add_contributor: true
 });
 
-const runSequence = require('run-sequence');
 const shell = require('gulp-shell');
 
 //runs composer install for deployment
@@ -478,9 +477,7 @@ gulp.task('composer-install-deploy', shell.task([
  * usage : gulp pre-deploy
  *
  */
-gulp.task('pre-deploy', function(){
-	runSequence( 'composer-install-deploy', 'translate', 'zip')
-});
+gulp.task('pre-deploy', gulp.series('composer-install-deploy', 'translate', 'zip'));
 
 /**
  * Deploy the plugin
@@ -497,6 +494,4 @@ gulp.task('pre-deploy', function(){
  * usage : gulp deploy
  *
  */
-gulp.task('deploy', function(){
-	runSequence('styles', 'scripts', 'copy-vendor-scripts', 'images', 'pre-deploy', 'freemius-deploy')
-});
+gulp.task('deploy', gulp.series('styles', 'scripts', 'copy-vendor-scripts', 'images', 'pre-deploy', 'freemius-deploy'));
