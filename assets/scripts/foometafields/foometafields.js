@@ -1,4 +1,4 @@
-( function( FOOMETAFIELDS, $, undefined ) {
+( function( FOOMETAFIELDS, $ ) {
 
 	FOOMETAFIELDS.moveTaxonomyBoxes = function() {
 		var taxonomyBoxes = FOOMETAFIELDS.getTaxonomyMetaBoxes();
@@ -90,28 +90,6 @@
 							callback( res.results );
 						}
 					});
-				}
-			});
-		});
-	};
-
-	FOOMETAFIELDS.setupSelect2Fields = function() {
-		$( '#poststuff' ).find( 'select[data-select2-instance]' ).each( function() {
-			var $this = $( this );
-			$this.selectWoo({
-				ajax: {
-					url: window.ajaxurl,
-					data: function( params ) {
-						return {
-							q: params.term,
-							action: $this.data( 'select2-action' ),
-							nonce: $this.data( 'select2-nonce' ),
-							// eslint-disable-next-line camelcase
-							query_type: $this.data( 'select2-query-type' ),
-							// eslint-disable-next-line camelcase
-							query_data: $this.data( 'select2-query-data' )
-						};
-					}
 				}
 			});
 		});
