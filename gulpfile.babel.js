@@ -479,5 +479,24 @@ gulp.task('composer-install-deploy', shell.task([
  *
  */
 gulp.task('pre-deploy', function(){
-	runSequence('composer-install-deploy', 'translate', 'zip')
-})
+	runSequence( 'composer-install-deploy', 'translate', 'zip')
+});
+
+/**
+ * Deploy the plugin
+ *
+ * This runs the following tasks in sequence :
+ *
+ *   styles
+ *   scripts
+ *   copy-vendor-scripts
+ *   images
+ *   pre-deploy
+ *   freemius-deploy
+ *
+ * usage : gulp deploy
+ *
+ */
+gulp.task('deploy', function(){
+	runSequence('styles', 'scripts', 'copy-vendor-scripts', 'images', 'pre-deploy', 'freemius-deploy')
+});
