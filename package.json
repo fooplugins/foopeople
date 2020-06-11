@@ -46,10 +46,11 @@
     "start": "gulp",
     "styles": "gulp styles",
     "stylesRTL": "gulp stylesRTL",
-    "vendorsJS": "gulp vendorsJS",
-    "customJS": "gulp customJS",
+    "scripts": "gulp scripts",
     "images": "gulp images",
     "clearCache": "gulp clearCache",
-    "translate": "gulp translate"
+    "translate": "gulp translate",
+    "preDeploy": "gulp pre-deploy",
+    "deploy": "gulp deploy"
   }
 }
