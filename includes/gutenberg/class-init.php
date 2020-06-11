@@ -83,7 +83,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 			// WP Localized globals. Use dynamic PHP stuff in JavaScript via `foopeople` object.
 			wp_localize_script(
 				'foopeople-block-single-js',
-				'foopeople-single', // Array containing dynamic data for a JS Global.
+				'foopeopleSingle', // Array containing dynamic data for a JS Global.
 				[
 					'pluginDirPath' => plugin_dir_path( __DIR__ ),
 					'pluginDirUrl'  => plugin_dir_url( __DIR__ ),
@@ -92,7 +92,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 			);
 			wp_localize_script(
 				'foopeople-block-listing-js',
-				'foopeople-listing', // Array containing dynamic data for a JS Global.
+				'foopeopleListing', // Array containing dynamic data for a JS Global.
 				[
 					'pluginDirPath' => plugin_dir_path( __DIR__ ),
 					'pluginDirUrl'  => plugin_dir_url( __DIR__ ),
@@ -101,7 +101,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 			);
 			wp_localize_script(
 				'foopeople-block-organogram-js',
-				'foopeople-organogram', // Array containing dynamic data for a JS Global.
+				'foopeopleOrganogram', // Array containing dynamic data for a JS Global.
 				[
 					'pluginDirPath' => plugin_dir_path( __DIR__ ),
 					'pluginDirUrl'  => plugin_dir_url( __DIR__ ),
