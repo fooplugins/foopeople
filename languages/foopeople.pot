@@ -1,0 +1,860 @@
+# Copyright (C) 2020 FooPeople
+# This file is distributed under the same license as the FooPeople package.
+msgid ""
+msgstr ""
+"Project-Id-Version: FooPeople\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: Brad Vincent <brad@fooplugins.com\n"
+"Last-Translator: Brad Vincent <brad@fooplugins.com>\n"
+"Report-Msgid-Bugs-To: https://fooplugins.com\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: includes/admin/class-dashboard.php:20, includes/admin/class-dashboard.php:30
+msgid "FooPeople Dashboard"
+msgstr ""
+
+#: includes/admin/class-dashboard.php:21
+msgid "FooPeople"
+msgstr ""
+
+#: includes/admin/class-dashboard.php:31
+msgid "Dashboard"
+msgstr ""
+
+#: includes/admin/class-menu.php:30
+msgid "%s Settings"
+msgstr ""
+
+#: includes/admin/class-menu.php:31, includes/admin/class-settings.php:31
+msgid "Settings"
+msgstr ""
+
+#: includes/admin/class-menu.php:39
+msgid "%s Help"
+msgstr ""
+
+#: includes/admin/class-menu.php:40
+msgid "Help"
+msgstr ""
+
+#: includes/admin/class-menu.php:49, includes/admin/view-system-info.php:38
+msgid "%s System Information"
+msgstr ""
+
+#: includes/admin/class-menu.php:50, includes/admin/view-help.php:54
+msgid "System Info"
+msgstr ""
+
+#: includes/admin/class-menu.php:86
+msgid "%s settings updated."
+msgstr ""
+
+#: includes/admin/class-menu.php:80
+msgid "%s settings reset to defaults."
+msgstr ""
+
+#: includes/admin/class-settings.php:30
+msgid "FooPeople Settings"
+msgstr ""
+
+#. translators: user role
+#: includes/admin/helpers/class-roles.php:26
+msgctxt "User role"
+msgid "Employee"
+msgstr ""
+
+#. translators: user role
+#: includes/admin/helpers/class-roles.php:28
+msgctxt "User role"
+msgid "Line Manager"
+msgstr ""
+
+#. translators: user role
+#: includes/admin/helpers/class-roles.php:30
+msgctxt "User role"
+msgid "HR Manager"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:17
+msgid "Personal"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:22
+msgid "First Name"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:26
+msgid "The first name of the person."
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:31
+msgid "Last Name"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:35
+msgid "The last name/surname/family name of the person."
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:39
+msgid "Preferred Name"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:40
+msgid "You can override the full name for the person. Leave blank to default the full name to be \"First Name + Last Name\"."
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:44
+msgid "This could be a nickname or a shortened name"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:48
+msgid "Job Title"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:49, includes/admin/person/class-metabox-main-details.php:58
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:53
+msgid "Job title"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:57
+msgid "Line Manager"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:62
+msgid "Start typing the manager name"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:70, includes/posttypes/class-person.php:40
+msgid "Portrait"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:78
+msgid "Contact"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:83
+msgid "Email"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:90
+msgid "Phone Number"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:99, includes/taxonomies/class-team.php:17, includes/taxonomies/class-team.php:18, includes/taxonomies/class-team.php:27
+msgid "Teams"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:107, includes/taxonomies/class-skill.php:15, includes/taxonomies/class-skill.php:25
+msgid "Skills"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:115, includes/taxonomies/class-location.php:15, includes/taxonomies/class-location.php:25
+msgid "Locations"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:123
+msgid "Test"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:128
+msgid "Help Field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:129
+msgid "This tab shows all the available fields. This is a help field."
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:134
+msgid "Section Field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:135
+msgid "This desc will not be shown for a section."
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:140
+msgid "Single Column Field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:141
+msgid "A single column field can show a title and description."
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:146
+msgid "Another single column field with no title set, and a class of foometafields-single-column-icon foometafields-single-column-icon-promo"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:152
+msgid "Text Field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:153
+msgid "A test text field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:158
+msgid "Number Field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:159
+msgid "A test number field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:164
+msgid "Textarea Field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:165
+msgid "A test textarea field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:170
+msgid "Checkbox Field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:171
+msgid "A test Checkbox field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:176
+msgid "Select Field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:177
+msgid "A test select field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:180, includes/admin/person/class-metabox-main-details.php:192, includes/admin/person/class-metabox-main-details.php:204, includes/admin/person/class-metabox-main-details.php:230
+msgid "Option 1"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:181, includes/admin/person/class-metabox-main-details.php:193, includes/admin/person/class-metabox-main-details.php:205, includes/admin/person/class-metabox-main-details.php:234
+msgid "Option 2"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:182, includes/admin/person/class-metabox-main-details.php:194, includes/admin/person/class-metabox-main-details.php:206
+msgid "Option 3"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:183, includes/admin/person/class-metabox-main-details.php:195, includes/admin/person/class-metabox-main-details.php:207
+msgid "Option 4"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:188
+msgid "Radio Field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:189
+msgid "A test radio field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:200
+msgid "Checkboxlist Field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:201
+msgid "A test checkboxlist field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:212
+msgid "Color Field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:213
+msgid "A test HTML5 color input field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:218
+msgid "Colorpicker Field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:219
+msgid "A test colorpicker field using the colorpicker built into WP"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:224
+msgid "HTML List Field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:225
+msgid "A test html list field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:240
+msgid "Suggest Field (autocomplete without a key)"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:243, includes/admin/person/class-metabox-main-details.php:251
+msgid "Start typing"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:249
+msgid "selectize Field (autocomplete with a key)"
+msgstr ""
+
+#: includes/admin/view-help.php:4
+msgid "Welcome to %s %s"
+msgstr ""
+
+#: includes/admin/view-help.php:5
+msgid "Thank you for choosing %s, the most intuitive and extensible people creation and management tool ever created for WordPress!"
+msgstr ""
+
+#: includes/admin/view-help.php:6
+msgid "Visit our homepage"
+msgstr ""
+
+#: includes/admin/view-help.php:44
+msgid "Getting Started"
+msgstr ""
+
+#: includes/admin/view-help.php:47
+msgid "Extensions"
+msgstr ""
+
+#: includes/admin/view-help.php:50
+msgid "Other Plugins"
+msgstr ""
+
+#: includes/admin/view-help.php:65
+msgid "Creating Your First People"
+msgstr ""
+
+#: includes/admin/view-help.php:67
+msgid "1. <a href=\"%s\">People &rarr; Add New</a>"
+msgstr ""
+
+#: includes/admin/view-help.php:68
+msgid "To create your first people, simply click the Add New button or click the Add People link in the menu."
+msgstr ""
+
+#: includes/admin/view-help.php:70
+msgid "2. Add Media"
+msgstr ""
+
+#: includes/admin/view-help.php:71
+msgid "Click the Add Media button and choose images from the media library to include in your people."
+msgstr ""
+
+#: includes/admin/view-help.php:73
+msgid "3. Choose a Template"
+msgstr ""
+
+#: includes/admin/view-help.php:74
+msgid "We have loads of awesome built-in people templates to choose from."
+msgstr ""
+
+#: includes/admin/view-help.php:76
+msgid "4. Adjust Your Settings"
+msgstr ""
+
+#: includes/admin/view-help.php:77
+msgid "There are tons of settings to help you customize the people to suit your needs."
+msgstr ""
+
+#: includes/admin/view-help.php:88
+msgid "Show Off Your People"
+msgstr ""
+
+#: includes/admin/view-help.php:90
+msgid "The <em>[%s]</em> Short Code"
+msgstr ""
+
+#: includes/admin/view-help.php:91
+msgid "Simply copy the shortcode code from the people listing page and paste it into your posts or pages."
+msgstr ""
+
+#: includes/admin/view-help.php:93
+msgid "Visual Editor Button"
+msgstr ""
+
+#: includes/admin/view-help.php:94
+msgid "Or to make life even easier, you can insert a people using the Add %s button inside the WordPress visual editor."
+msgstr ""
+
+#: includes/admin/view-help.php:96
+msgid "Copy To Clipboard"
+msgstr ""
+
+#: includes/admin/view-help.php:97
+msgid "We make your life easy! Just click the shortcodes and they get copied to your clipboard automatically. "
+msgstr ""
+
+#: includes/admin/view-system-info.php:74, includes/admin/view-system-info.php:75
+msgid "Loaded"
+msgstr ""
+
+#: includes/admin/view-system-info.php:74, includes/admin/view-system-info.php:75, includes/admin/view-system-info.php:76, includes/admin/view-system-info.php:77
+msgid "Not found!"
+msgstr ""
+
+#: includes/admin/view-system-info.php:76, includes/admin/view-system-info.php:77
+msgid "Found"
+msgstr ""
+
+#: includes/admin/view-system-info.php:78
+msgid "None"
+msgstr ""
+
+#: includes/admin/view-system-info.php:78
+msgid "There is a protocol mismatch between your site URL and the actual URL!"
+msgstr ""
+
+#: includes/admin/view-system-info.php:82
+msgid "Nope, all good"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:93
+msgid "People Listing"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:100
+msgid "People Portraits"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:107
+msgid "People Organograms"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:124
+msgid "Columns"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:125
+msgid "How many columns for the people listing"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:129
+msgid "1 Column"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:130
+msgid "2 Columns"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:131
+msgid "3 Columns"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:132
+msgid "4 Columns"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:146, includes/customizer/class-customizer.php:152
+msgid "Rounded Corners"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:147
+msgid "Corner style on FooPeople layout"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:153
+msgid "Square Corners"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:173
+msgid "Portrait Border Color"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:190
+msgid "Portrait Border Width"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:211
+msgid "Portraits"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:212
+msgid "Corner style on FooPeople portraits"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:217
+msgid "Circle Portrait"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:218
+msgid "Round Corners Portrait"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:219
+msgid "Square Portrait"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:232, includes/customizer/class-customizer.php:238
+msgid "Shadows"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:233
+msgid "Drop Shadows on FooPeople layout"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:239
+msgid "No Shadows"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:258
+msgid "Organogram Line Color"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:275
+msgid "Organogram Expand Icon Color"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:292
+msgid "Organogram Line Width"
+msgstr ""
+
+#: includes/customizer/class-customizer.php:293
+msgid "The line width for the organogram"
+msgstr ""
+
+#: includes/posttypes/class-person.php:28, includes/posttypes/class-person.php:38, includes/posttypes/class-person.php:39
+msgid "People"
+msgstr ""
+
+#: includes/posttypes/class-person.php:29
+msgid "Person"
+msgstr ""
+
+#: includes/posttypes/class-person.php:30
+msgid "Add Person"
+msgstr ""
+
+#: includes/posttypes/class-person.php:31
+msgid "Add New Person"
+msgstr ""
+
+#: includes/posttypes/class-person.php:32
+msgid "Edit Person"
+msgstr ""
+
+#: includes/posttypes/class-person.php:33
+msgid "New People"
+msgstr ""
+
+#: includes/posttypes/class-person.php:34
+msgid "View People"
+msgstr ""
+
+#: includes/posttypes/class-person.php:35
+msgid "Search People"
+msgstr ""
+
+#: includes/posttypes/class-person.php:36
+msgid "Nobody found"
+msgstr ""
+
+#: includes/posttypes/class-person.php:37
+msgid "Nobody found in Trash"
+msgstr ""
+
+#: includes/posttypes/class-person.php:41
+msgid "Set Portrait"
+msgstr ""
+
+#: includes/posttypes/class-person.php:42
+msgctxt "foopeople"
+msgid "Remove Portrait"
+msgstr ""
+
+#: includes/posttypes/class-person.php:43
+msgctxt "foopeople"
+msgid "Use as Portrait"
+msgstr ""
+
+#: includes/posttypes/class-person.php:74, includes/posttypes/class-person.php:77
+msgid "Person updated."
+msgstr ""
+
+#: includes/posttypes/class-person.php:75
+msgid "Person custom field updated."
+msgstr ""
+
+#: includes/posttypes/class-person.php:76
+msgid "Person custom field deleted."
+msgstr ""
+
+#: includes/posttypes/class-person.php:78
+msgid "Person restored to revision from %s."
+msgstr ""
+
+#: includes/posttypes/class-person.php:79
+msgid "Person published."
+msgstr ""
+
+#: includes/posttypes/class-person.php:80
+msgid "Person saved."
+msgstr ""
+
+#: includes/posttypes/class-person.php:81
+msgid "Person submitted."
+msgstr ""
+
+#: includes/posttypes/class-person.php:82
+msgid "People scheduled for: <strong>%1$s</strong>."
+msgstr ""
+
+#: includes/posttypes/class-person.php:83
+msgid "Person draft updated."
+msgstr ""
+
+#: includes/posttypes/class-person.php:102
+msgid "%s Person updated."
+msgid_plural "%s People updated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/posttypes/class-person.php:103
+msgid "%s Person not updated, somebody is editing it."
+msgid_plural "%s People not updated, somebody is editing them."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/posttypes/class-person.php:104
+msgid "%s Person permanently deleted."
+msgid_plural "%s People permanently deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/posttypes/class-person.php:105
+msgid "%s Person moved to the Trash."
+msgid_plural "%s People moved to the Trash."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/posttypes/class-person.php:106
+msgid "%s Person restored from the Trash."
+msgid_plural "%s People restored from the Trash."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/posttypes/class-policy.php:28, includes/posttypes/class-policy.php:38, includes/posttypes/class-policy.php:39
+msgid "Policies"
+msgstr ""
+
+#: includes/posttypes/class-policy.php:29
+msgid "Policy"
+msgstr ""
+
+#: includes/posttypes/class-policy.php:30
+msgid "Add Policy"
+msgstr ""
+
+#: includes/posttypes/class-policy.php:31
+msgid "Add New Policy"
+msgstr ""
+
+#: includes/posttypes/class-policy.php:32
+msgid "Edit Policy"
+msgstr ""
+
+#: includes/posttypes/class-policy.php:33
+msgid "New Policy"
+msgstr ""
+
+#: includes/posttypes/class-policy.php:34
+msgid "View Policies"
+msgstr ""
+
+#: includes/posttypes/class-policy.php:35
+msgid "Search Policies"
+msgstr ""
+
+#: includes/posttypes/class-policy.php:36
+msgid "No Policies found"
+msgstr ""
+
+#: includes/posttypes/class-policy.php:37
+msgid "No Policies found in Trash"
+msgstr ""
+
+#: includes/posttypes/class-policy.php:71, includes/posttypes/class-policy.php:74
+msgid "Policy updated."
+msgstr ""
+
+#: includes/posttypes/class-policy.php:72
+msgid "Policy custom field updated."
+msgstr ""
+
+#: includes/posttypes/class-policy.php:73
+msgid "Policy custom field deleted."
+msgstr ""
+
+#: includes/posttypes/class-policy.php:75
+msgid "Policy restored to revision from %s."
+msgstr ""
+
+#: includes/posttypes/class-policy.php:76
+msgid "Policy published."
+msgstr ""
+
+#: includes/posttypes/class-policy.php:77
+msgid "Policy saved."
+msgstr ""
+
+#: includes/posttypes/class-policy.php:78
+msgid "Policy submitted."
+msgstr ""
+
+#: includes/posttypes/class-policy.php:79
+msgid "Policies scheduled for: <strong>%1$s</strong>."
+msgstr ""
+
+#: includes/posttypes/class-policy.php:80
+msgid "Policy draft updated."
+msgstr ""
+
+#: includes/posttypes/class-policy.php:100
+msgid "%s Policy updated."
+msgid_plural "%s Policies updated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/posttypes/class-policy.php:101
+msgid "%s Policy not updated, somebody is editing it."
+msgid_plural "%s Policies not updated, somebody is editing them."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/posttypes/class-policy.php:102
+msgid "%s Policy permanently deleted."
+msgid_plural "%s Policies permanently deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/posttypes/class-policy.php:103
+msgid "%s Policy moved to the Trash."
+msgid_plural "%s Policies moved to the Trash."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/posttypes/class-policy.php:104
+msgid "%s Policy restored from the Trash."
+msgid_plural "%s Policies restored from the Trash."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/startup-checks.php:16
+msgid "%s could not be initialized because you need to be running at least PHP version %s, and you are running version %s"
+msgstr ""
+
+#: includes/startup-checks.php:31
+msgid "%s could not be initialized because you need WordPress to be at least version %s, and you are running version %s"
+msgstr ""
+
+#: includes/startup-checks.php:32
+msgid "Update WordPress now."
+msgstr ""
+
+#: includes/taxonomies/class-location.php:16
+msgid "Location"
+msgstr ""
+
+#: includes/taxonomies/class-location.php:17
+msgid "Search Locations"
+msgstr ""
+
+#: includes/taxonomies/class-location.php:18
+msgid "All Locations"
+msgstr ""
+
+#: includes/taxonomies/class-location.php:19
+msgid "Parent Location"
+msgstr ""
+
+#: includes/taxonomies/class-location.php:20
+msgid "Parent Location:"
+msgstr ""
+
+#: includes/taxonomies/class-location.php:21
+msgid "Edit Location"
+msgstr ""
+
+#: includes/taxonomies/class-location.php:22
+msgid "Update Location"
+msgstr ""
+
+#: includes/taxonomies/class-location.php:23
+msgid "Add New Location"
+msgstr ""
+
+#: includes/taxonomies/class-skill.php:16
+msgid "Skill"
+msgstr ""
+
+#: includes/taxonomies/class-skill.php:17
+msgid "Search Skills"
+msgstr ""
+
+#: includes/taxonomies/class-skill.php:18
+msgid "All Skills"
+msgstr ""
+
+#: includes/taxonomies/class-skill.php:19
+msgid "Parent Skill"
+msgstr ""
+
+#: includes/taxonomies/class-skill.php:20
+msgid "Parent Skill:"
+msgstr ""
+
+#: includes/taxonomies/class-skill.php:21
+msgid "Edit Skill"
+msgstr ""
+
+#: includes/taxonomies/class-skill.php:22
+msgid "Update Skill"
+msgstr ""
+
+#: includes/taxonomies/class-skill.php:23
+msgid "Add New Skill"
+msgstr ""
+
+#: includes/taxonomies/class-skill.php:24
+msgid "New Skill Name"
+msgstr ""
+
+#: includes/taxonomies/class-team.php:20
+msgid "All Teams"
+msgstr ""
+
+#: includes/taxonomies/class-team.php:21
+msgid "Parent Team"
+msgstr ""
+
+#: includes/taxonomies/class-team.php:22
+msgid "Parent Team:"
+msgstr ""
+
+#: includes/taxonomies/class-team.php:23
+msgid "Edit Team"
+msgstr ""
+
+#: includes/taxonomies/class-team.php:24
+msgid "Update Team"
+msgstr ""
+
+#: includes/taxonomies/class-team.php:25
+msgid "Add New Team"
+msgstr ""
+
+#: includes/taxonomies/class-team.php:26
+msgid "New Team Name"
+msgstr ""
+
+#: includes/templates/person-listing.php:7
+msgid "Search for people by name, team or skill..."
+msgstr ""
+
+#: includes/templates/person-listing.php:14
+msgid "Showing all people in "
+msgstr ""
