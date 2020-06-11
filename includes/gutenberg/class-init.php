@@ -34,7 +34,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 			// Register block styles for both frontend + backend.
 			wp_register_style(
 				'foopeople-block-style-css', // Handle.
-				FOOPEOPLE_URL . '/assets/css/foopeople.blocks.min.css', // Block style CSS.
+				FOOPEOPLE_URL . 'assets/css/foopeople.blocks.min.css', // Block style CSS.
 				is_admin() ? array( 'wp-editor' ) : null, // Dependency to include the CSS after it.
 				null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: File modification time.
 			);
@@ -44,21 +44,22 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 			// Register block editor script for backend.
 			wp_register_script(
 				'foopeople-block-listing-js', // Handle.
-				FOOPEOPLE_URL . '/assets/js/block-listing.min.js', // Block.build.js: We register the block here. Built with Webpack.
-				array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ), // Dependencies, defined above.
+				FOOPEOPLE_URL . 'assets/js/block-listing.min.js', // Block.build.js: We register the block here. Built with Webpack.
+				array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor', 'wp-block-editor', 'wp-components',  'wp-polyfill' ), // Dependencies, defined above.
+
 				null, // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
 				true // Enqueue the script in the footer.
 			);
 			wp_register_script(
 				'foopeople-block-single-js', // Handle.
-				FOOPEOPLE_URL . '/assets/js/block-single.min.js', // Block.build.js: We register the block here. Built with Webpack.
+				FOOPEOPLE_URL . 'assets/js/block-single.min.js', // Block.build.js: We register the block here. Built with Webpack.
 				array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ), // Dependencies, defined above.
 				null, // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
 				true // Enqueue the script in the footer.
 			);
 			wp_register_script(
 				'foopeople-block-organogram-js', // Handle.
-				FOOPEOPLE_URL . '/assets/js/block-organogram.min.js', // Block.build.js: We register the block here. Built with Webpack.
+				FOOPEOPLE_URL . 'assets/js/block-organogram.min.js', // Block.build.js: We register the block here. Built with Webpack.
 				array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ), // Dependencies, defined above.
 				null, // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
 				true // Enqueue the script in the footer.
@@ -68,7 +69,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 			// Register block editor styles for backend.
 			wp_register_style(
 				'foopeople-block-editor-css', // Handle.
-				FOOPEOPLE_URL . '/assets/css/foopeople.blocks.admin.min.css', // Block editor CSS.
+				FOOPEOPLE_URL . 'assets/css/foopeople.blocks.admin.min.css', // Block editor CSS.
 				array( 'wp-edit-blocks' ), // Dependency to include the CSS after it.
 				null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: File modification time.
 			);

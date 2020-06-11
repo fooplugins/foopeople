@@ -62,8 +62,9 @@ const remember = require( 'gulp-remember' ); //  Adds all the files it has ever 
 const plumber = require( 'gulp-plumber' ); // Prevent pipe breaking caused by errors from gulp plugins.
 const beep = require( 'beepbeep' );
 const merge = require( 'merge-stream' );
-const defaults = require('lodash.defaults');
-
+const defaults = require( 'lodash.defaults' );
+const ifElse = require( 'gulp-if-else' );
+const concatutil = require( 'gulp-concat-util' );
 /**
  * Custom Error Handler.
  *
@@ -110,9 +111,9 @@ const reload = done => {
  *    6. Minifies the CSS file and generates style.min.css
  *    7. Injects CSS or reloads the browser via browserSync
  */
-function processStyle( gulpStream, processOptions = {} ) {
+function processStyle( gulpStream, processOptions = {}) {
 	processOptions = defaults( processOptions, {
-		styleDestination: config.styleDestination,
+		styleDestination: config.styleDestination
 	});
 
 	return gulpStream
@@ -154,9 +155,9 @@ function processStyle( gulpStream, processOptions = {} ) {
  *    8. Minifies the CSS file and generates style-rtl.min.css
  *    9. Injects CSS or reloads the browser via browserSync
  */
-function processStyleRTL( gulpStream, processOptions = {} ) {
+function processStyleRTL( gulpStream, processOptions = {}) {
 	processOptions = defaults( processOptions, {
-		styleDestination: config.styleDestination,
+		styleDestination: config.styleDestination
 	});
 
 	return gulpStream
@@ -279,7 +280,12 @@ gulp.task( 'scripts', ( done ) => {
 
 		return processScript(
 			gulp.src( script.scriptSRC, { allowEmpty: true }),
-			{ scriptSRC: script.scriptSRC, scriptDestination: config.scriptDestination, scriptFile: script.scriptFile }
+			{
+				scriptSRC: script.scriptSRC,
+				scriptDestination: config.scriptDestination,
+				scriptFile: script.scriptFile,
+				reactJS: script.reactJS
+			}
 		).pipe( notify({ message: '\n\n✅  ===> SCRIPTS — completed!\n', onLast: true }) );
 
 	});
@@ -287,13 +293,28 @@ gulp.task( 'scripts', ( done ) => {
 	return merge( tasks );
 });
 
-function processScript( gulpStream, processOptions = {} ) {
+function processScript( gulpStream, processOptions = {}) {
 	processOptions = defaults( processOptions, {
-		scriptDestination: config.scriptDestination,
+		scriptDestination: config.scriptDestination
 	});
+
+	const block = {
+		header: `(function (wp) {
+		  const { registerBlockType } = wp.blocks;
+		  const { RichText } = wp.editor;
+		  const { components, editor, blocks, element, i18n } = wp;
+		`,
+		footer: '})(window.wp);'
+	};
 
 	return gulpStream
 		.pipe( plumber( errorHandler ) )
+		.pipe( ifElse(
+			true === processOptions.reactJS,
+			function( ) {
+				concatutil.header( block.header );
+			}
+		) )
 		.pipe(
 			babel({
 				presets: [
@@ -302,7 +323,8 @@ function processScript( gulpStream, processOptions = {} ) {
 						{
 							targets: { browsers: config.BROWSERS_LIST } // Target browser list to support.
 						}
-					], [
+					],
+					[
 						'@babel/preset-react', // Handle React and JSX
 						{
 							targets: { browsers: config.BROWSERS_LIST } // Target browser list to support.
@@ -325,6 +347,16 @@ function processScript( gulpStream, processOptions = {} ) {
 		.pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
 		.pipe( gulp.dest( processOptions.scriptDestination ) );
 }
+
+
+// (function (wp) {
+//     const { registerBlockType } = wp.blocks;
+//     const {RichText} = wp.editor;
+// 	const {components, editor, blocks, element, i18n} = wp;
+
+
+// })(window.wp);
+
 
 /**
  * Task: `images`.
@@ -397,9 +429,9 @@ gulp.task( 'translate', () => {
 		.pipe( notify({ message: '\n\n✅  ===> TRANSLATE — completed!\n', onLast: true }) );
 });
 
-gulp.task('copy-vendor-scripts', function() {
-	return gulp.src('./assets/scripts/vendor/*.js')
-		.pipe(gulp.dest('./assets/js'));
+gulp.task( 'copy-vendor-scripts', function() {
+	return gulp.src( './assets/scripts/vendor/*.js' )
+		.pipe( gulp.dest( './assets/js' ) );
 });
 
 /**
@@ -459,12 +491,12 @@ require( 'gulp-freemius-deploy' )( gulp, {
 	add_contributor: true
 });
 
-const shell = require('gulp-shell');
+const shell = require( 'gulp-shell' );
 
 //runs composer install for deployment
-gulp.task('composer-install-deploy', shell.task([
+gulp.task( 'composer-install-deploy', shell.task([
 	'composer install --prefer-dist --optimize-autoloader --no-dev'
-]));
+]) );
 
 /**
  * Get the plugin ready for deployment
@@ -477,7 +509,7 @@ gulp.task('composer-install-deploy', shell.task([
  * usage : gulp pre-deploy
  *
  */
-gulp.task('pre-deploy', gulp.series('composer-install-deploy', 'translate', 'zip'));
+gulp.task( 'pre-deploy', gulp.series( 'composer-install-deploy', 'translate', 'zip' ) );
 
 /**
  * Deploy the plugin
@@ -494,4 +526,4 @@ gulp.task('pre-deploy', gulp.series('composer-install-deploy', 'translate', 'zip
  * usage : gulp deploy
  *
  */
-gulp.task('deploy', gulp.series('styles', 'scripts', 'copy-vendor-scripts', 'images', 'pre-deploy', 'freemius-deploy'));
+gulp.task( 'deploy', gulp.series( 'styles', 'scripts', 'copy-vendor-scripts', 'images', 'pre-deploy', 'freemius-deploy' ) );

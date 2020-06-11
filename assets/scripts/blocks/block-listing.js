@@ -5,8 +5,11 @@
  */
 
 
-const { __ } = wp.i18n; // Import __() from wp.i18n
-const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
+// import { __ } from '@wordpress/i18n';
+// import { registerBlockType } from '@wordpress/blocks';
+// import { RichText, MediaUpload } from '@wordpress/block-editor';
+// import { Button } from '@wordpress/components';
+
 
 /**
  * Register: a Gutenberg Block.
@@ -37,13 +40,16 @@ registerBlockType( 'fooplugins/foopeople-listing', {
 		multiple: true,
 		html: false
 	},
+	className: {
+		type: 'string'
+	},
 	attributes: {
+		title: {
+			type: 'string'
+		},
 		id: {
 			type: 'number',
 			default: 0
-		},
-		className: {
-			type: 'string'
 		},
 		team : {
 			type: 'string',
@@ -70,9 +76,27 @@ registerBlockType( 'fooplugins/foopeople-listing', {
 	 * @returns {Mixed} JSX Component.
 	 */
 	edit: ( props ) => {
+		const {
+			className,
+			attributes: { title, id, team, team_id, show_search },
+			setAttributes,
+		} = props;
+
+		const onChangeTitle = ( value ) => {
+			setAttributes( { title: value } );
+		};
+
 		return (
 			<div className={ props.className }>
-				This is a preview
+				<RichText
+					tagName="h2"
+					placeholder={ __(
+						'Write Recipe title…',
+						'gutenberg-examples'
+					) }
+					value={ title }
+					onChange={ onChangeTitle }
+				/>
 			</div>
 		);
 	},
@@ -95,3 +119,4 @@ registerBlockType( 'fooplugins/foopeople-listing', {
 
 
 });
+

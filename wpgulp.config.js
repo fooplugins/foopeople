@@ -54,15 +54,18 @@ module.exports = {
 		},
 		{
 			scriptSRC: './assets/scripts/blocks/block-organogram.js',
-			scriptFile: 'block-organogram'
+			scriptFile: 'block-organogram',
+			reactJS: true
 		},
 		{
 			scriptSRC: './assets/scripts/blocks/block-single.js',
-			scriptFile: 'block-single'
+			scriptFile: 'block-single',
+			reactJS: true
 		},
 		{
 			scriptSRC: './assets/scripts/blocks/block-listing.js',
-			scriptFile: 'block-listing'
+			scriptFile: 'block-listing',
+			reactJS: true
 		},
 		{
 			scriptSRC: './assets/scripts/foometafields/*.js',
