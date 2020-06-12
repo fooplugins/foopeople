@@ -26,7 +26,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 
 		function block_assets() { // phpcs:ignore
 
-			$asset_file = include( plugin_dir_path( __FILE__ ) . 'index.asset.php');
+			$asset_file = include( plugin_dir_path( __FILE__ ) . 'assets.php');
 
 			//get out quickly if no Gutenberg
 			if ( !function_exists( 'register_block_type' ) ) {
@@ -89,7 +89,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 				[
 					'pluginDirPath' => plugin_dir_path( __DIR__ ),
 					'pluginDirUrl'  => plugin_dir_url( __DIR__ ),
-					// Add more data here that you want to access from `foopeople` object.
+					// Add more data here that you want to access
 				]
 			);
 			wp_localize_script(
@@ -98,7 +98,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 				[
 					'pluginDirPath' => plugin_dir_path( __DIR__ ),
 					'pluginDirUrl'  => plugin_dir_url( __DIR__ ),
-					// Add more data here that you want to access from `foopeople` object.
+					// Add more data here that you want to access
 				]
 			);
 			wp_localize_script(
@@ -107,7 +107,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 				[
 					'pluginDirPath' => plugin_dir_path( __DIR__ ),
 					'pluginDirUrl'  => plugin_dir_url( __DIR__ ),
-					// Add more data here that you want to access from `foopeople` object.
+					// Add more data here that you want to access
 				]
 			);
 
