@@ -44,16 +44,16 @@ registerBlockType( 'fooplugins/foopeople-listing', {
 		className: {
 			type: 'string'
 		},
-		team : {
+		team: {
 			type: 'string',
 			default: ''
 		},
-		team_id : {
+		team_id: {
 			type: 'number'
 		},
-		show_search : {
+		show_search: {
 			type: 'boolean',
-			default : true
+			default: true
 		}
 	},
 
