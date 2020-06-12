@@ -26,6 +26,8 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 
 		function block_assets() { // phpcs:ignore
 
+			$asset_file = include( plugin_dir_path( __FILE__ ) . 'index.asset.php');
+
 			//get out quickly if no Gutenberg
 			if ( !function_exists( 'register_block_type' ) ) {
 				return;
@@ -33,44 +35,44 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 
 			// Register block styles for both frontend + backend.
 			wp_register_style(
-				'foopeople-block-style-css', // Handle.
-				FOOPEOPLE_URL . '/assets/css/foopeople.blocks.min.css', // Block style CSS.
-				is_admin() ? array( 'wp-editor' ) : null, // Dependency to include the CSS after it.
-				null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: File modification time.
+				'foopeople-block-style-css',
+				FOOPEOPLE_URL . '/assets/css/foopeople.blocks.min.css',
+				is_admin() ? array( 'wp-editor' ) : null,
+				FOOPEOPLE_VERSION
 			);
 
 
 
 			// Register block editor script for backend.
 			wp_register_script(
-				'foopeople-block-listing-js', // Handle.
-				FOOPEOPLE_URL . '/assets/js/block-listing.min.js', // Block.build.js: We register the block here. Built with Webpack.
-				array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ), // Dependencies, defined above.
-				null, // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
-				true // Enqueue the script in the footer.
+				'foopeople-block-listing-js',
+				FOOPEOPLE_URL . '/assets/js/block-listing.min.js',
+				$asset_file['dependencies'],
+				FOOPEOPLE_VERSION,
+				true
 			);
 			wp_register_script(
-				'foopeople-block-single-js', // Handle.
-				FOOPEOPLE_URL . '/assets/js/block-single.min.js', // Block.build.js: We register the block here. Built with Webpack.
-				array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ), // Dependencies, defined above.
-				null, // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
-				true // Enqueue the script in the footer.
+				'foopeople-block-single-js',
+				FOOPEOPLE_URL . '/assets/js/block-single.min.js',
+				$asset_file['dependencies'],
+				FOOPEOPLE_VERSION,
+				true
 			);
 			wp_register_script(
-				'foopeople-block-organogram-js', // Handle.
-				FOOPEOPLE_URL . '/assets/js/block-organogram.min.js', // Block.build.js: We register the block here. Built with Webpack.
-				array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ), // Dependencies, defined above.
-				null, // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
-				true // Enqueue the script in the footer.
+				'foopeople-block-organogram-js',
+				FOOPEOPLE_URL . '/assets/js/block-organogram.min.js',
+				$asset_file['dependencies'],
+				FOOPEOPLE_VERSION,
+				true
 			);
 
 
 			// Register block editor styles for backend.
 			wp_register_style(
-				'foopeople-block-editor-css', // Handle.
-				FOOPEOPLE_URL . '/assets/css/foopeople.blocks.admin.min.css', // Block editor CSS.
-				array( 'wp-edit-blocks' ), // Dependency to include the CSS after it.
-				null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: File modification time.
+				'foopeople-block-editor-css',
+				FOOPEOPLE_URL . '/assets/css/foopeople.blocks.admin.min.css',
+				array( 'wp-edit-blocks' ),
+				FOOPEOPLE_VERSION
 			);
 
 

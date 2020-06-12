@@ -5,8 +5,8 @@
  */
 
 
-const { __ } = wp.i18n; // Import __() from wp.i18n
-const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
+import { __ } from 'wp.i18n';
+import { registerBlockType } from 'wp.blocks';
 
 /**
  * Register: a Gutenberg Block.
