@@ -1,12 +1,13 @@
 const wplib = [
-	'components',
 	'blocks',
-	'element',
-	'data',
+	'block-editor',
+	'components',
 	'date',
+	'data',
 	'editor',
+	'element',
 	'i18n',
-	'utils'
+	'polyfill'
 ];
 
 module.exports = {
