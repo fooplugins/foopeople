@@ -53,18 +53,6 @@ module.exports = {
 			scriptFile: 'theme'
 		},
 		{
-			scriptSRC: './assets/scripts/blocks/block-organogram.js',
-			scriptFile: 'block-organogram'
-		},
-		{
-			scriptSRC: './assets/scripts/blocks/block-single.js',
-			scriptFile: 'block-single'
-		},
-		{
-			scriptSRC: './assets/scripts/blocks/block-listing.js',
-			scriptFile: 'block-listing'
-		},
-		{
 			scriptSRC: './assets/scripts/foometafields/*.js',
 			scriptFile: 'foometafields'
 		}

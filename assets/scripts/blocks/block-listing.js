@@ -4,9 +4,8 @@
  * Registering a basic FooPeople block with Gutenberg.
  */
 
-
-const { __ } = wp.i18n; // Import __() from wp.i18n
-const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
+import { __ } from 'wp.i18n';
+import { registerBlockType } from 'wp.blocks';
 
 /**
  * Register: a Gutenberg Block.
@@ -45,16 +44,16 @@ registerBlockType( 'fooplugins/foopeople-listing', {
 		className: {
 			type: 'string'
 		},
-		team : {
+		team: {
 			type: 'string',
 			default: ''
 		},
-		team_id : {
+		team_id: {
 			type: 'number'
 		},
-		show_search : {
+		show_search: {
 			type: 'boolean',
-			default : true
+			default: true
 		}
 	},
 
@@ -63,7 +62,7 @@ registerBlockType( 'fooplugins/foopeople-listing', {
 	 * This represents what the editor will render when the block is used.
 	 *
 	 * The "edit" property must be a valid function.
-	 *
+
 	 * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
 	 *
 	 * @param {Object} props Props.
@@ -88,10 +87,9 @@ registerBlockType( 'fooplugins/foopeople-listing', {
 	 * @param {Object} props Props.
 	 * @returns {Mixed} JSX Frontend HTML.
 	 */
-	save: ( props ) => {
-		// render in PHP
+	save: ( ) => {
 		return null;
-	},
+	}
 
 
 });
