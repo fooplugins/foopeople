@@ -25,15 +25,25 @@
 	};
 
 	FOOMETAFIELDS.bindTabEvents = function() {
-		$( '#poststuff' ).on( 'click', '.foometafields-tab', function( e ) {
-			var $this 		= $( this ),
-				$settings 	= $this.closest( '.foometafields-container' ),
-				name 		= $this.data( 'name' );
-
+		// eslint-disable-next-line no-unused-vars
+		$( '#poststuff' ).on( 'click', '.foometafields-tab,.foometafields-child-tab', function( e ) {
 			e.preventDefault();
+			e.stopPropagation();
 
-			$settings.find( '.foometafields-active' ).removeClass( 'foometafields-active' );
-			$settings.find( '[data-name="' + name + '"]' ).addClass( 'foometafields-active' );
+			// eslint-disable-next-line vars-on-top
+			var $this = $( this ),
+				name = $this.data( 'name' ),
+				selector = '[data-name="' + name + '"]',
+				$container 	= $this.closest( '.foometafields-container' ),
+				$content = $container.find( '.foometafields-contents' ).find( selector ),
+				$parent = $this.closest( '.foometafields-tab' ),
+				$child = $parent.find( selector );
+
+			// first remove old active classes
+			$container.find( '.foometafields-active' ).removeClass( 'foometafields-active' );
+
+			// now re-apply the active classes to the elements that need it
+			$parent.add( $child ).add( $content ).addClass( 'foometafields-active' );
 		});
 	};
 

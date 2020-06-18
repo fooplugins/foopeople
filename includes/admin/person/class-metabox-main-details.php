@@ -119,6 +119,49 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 							'taxonomy' => FOOPEOPLE_CT_LOCATION
 						),
 						array(
+							'id'     => 'nested',
+							'label'  => __( 'Parent', 'foopeople' ),
+							'icon'   => 'dashicons-universal-access',
+							'tabs' => array(
+								array(
+									'id'     => 'child1',
+									'label'  => __( 'Child 1', 'foopeople' ),
+									'fields' => array(
+										array(
+											'id'       => 'help',
+											'title'    => __( 'Help Field', 'foopeople' ),
+											'desc'     => __( 'This tab shows all the available fields. This is a help field.', 'foopeople' ),
+											'type'     => 'help',
+										),
+										array(
+											'id'       => 'section',
+											'title'    => __( 'Section Field', 'foopeople' ),
+											'desc'     => __( 'This desc will not be shown for a section.', 'foopeople' ),
+											'type'     => 'section',
+										)
+									)
+								),
+								array(
+									'id'     => 'child2',
+									'label'  => __( 'Child 2', 'foopeople' ),
+									'fields' => array(
+										array(
+											'id'       => 'help2',
+											'title'    => __( 'Help Field 2', 'foopeople' ),
+											'desc'     => __( 'This tab shows all the available fields. This is a help field.', 'foopeople' ),
+											'type'     => 'help',
+										),
+										array(
+											'id'       => 'section2',
+											'title'    => __( 'Section Field 2', 'foopeople' ),
+											'desc'     => __( 'This desc will not be shown for a section.', 'foopeople' ),
+											'type'     => 'section',
+										)
+									)
+								),
+							)
+						),
+						array(
 							'id'     => 'test',
 							'label'  => __( 'Test', 'foopeople' ),
 							'icon'   => 'dashicons-universal-access-alt',

@@ -20,9 +20,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 
 			?>
 			<style>
-				#
-				<?php echo $id; ?>
-				.inside {
+				#<?php echo $id; ?> .inside {
 					margin: 0;
 				}
 			</style>
@@ -32,23 +30,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 					<?php
 					$tab_active = 'foometafields-active';
 					foreach ( $field_group['tabs'] as $tab ) {
-						$tab_type = isset( $tab['type'] ) ? $tab['type'] : 'normal';
-						$taxonomy = '';
-						if ( $tab_type === 'taxonomy' && isset( $tab['taxonomy'] ) ) {
-							$taxonomy = ' data-taxonomy="';
-							$taxonomy .= is_taxonomy_hierarchical( $tab['taxonomy'] ) ? 'taxonomy-' : '';
-							$taxonomy .= $tab['taxonomy'];
-							$taxonomy .= '"';
-						}
-						?>
-						<div class="foometafields-tab <?php echo $tab_active; ?>"
-							 data-name="<?php echo $id . '-' . $tab['id']; ?>"
-								<?php echo $taxonomy ?>
-						>
-							<span class="dashicons <?php echo $tab['icon']; ?>"></span>
-							<span class="foometafields-tab-text"><?php echo $tab['label']; ?></span>
-						</div>
-						<?php
+						self::render_tab( $tab, $id, $tab_active );
 						$tab_active = '';
 					}
 					?>
@@ -57,57 +39,123 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 					<?php
 					$tab_active = 'foometafields-active';
 					foreach ( $field_group['tabs'] as $tab ) {
-						$featuredImage = '';
-						if ( isset( $tab['featuredImage'] ) ) :
-							$featuredImage = ' data-feature-image="true"';
-							?>
-							<style>
-								#postimagediv {
-									display: block !important;
-								}
-
-								#adv-settings label[for="postimagediv-hide"] {
-									display: none !important;
-								}
-							</style>
-						<?php endif; ?>
-
-						<div class="foometafields-content <?php echo $tab_active; ?>"
-							 data-name="<?php echo $id . '-' . $tab['id']; ?>"
-								<?php echo $featuredImage ?>
-						>
-
-							<?php if ( isset( $tab['taxonomy'] ) ) :
-								$panel = is_taxonomy_hierarchical( $tab['taxonomy'] ) ? $tab['taxonomy'] . 'div' : 'tagsdiv-' . $tab['taxonomy'];
-								?>
-								<style>
-									/* Hide taxonomy boxes in sidebar and screen options show/hide checkbox labels */
-									<?php echo '#'.$panel; ?>
-									,
-									#adv-settings label[for="<?php echo $panel ?>-hide"] {
-										display: none !important;
-									}
-
-									#taxonomy-<?php echo esc_html( $tab['taxonomy'] ); ?> .category-tabs {
-										display: none !important;
-									}
-
-									#taxonomy-<?php echo esc_html( $tab['taxonomy'] ); ?> .tabs-panel {
-										border: none !important;
-									}
-								</style>
-							<?php endif; ?>
-
-
-							<?php self::render_fields( $tab['fields'], $id, $state ); ?>
-						</div>
-						<?php
+						self::render_tab_content( $tab, $id, $tab_active, $state );
 						$tab_active = '';
 					}
 					?>
 				</div>
 			</div>
 			</div><?php
+		}
+
+		/**
+		 * Renders a tab
+		 *
+		 * @param $tab
+		 * @param $container_id
+		 * @param $tab_active
+		 * @param string $tab_class
+		 */
+		static function render_tab( $tab, $container_id, $tab_active, $tab_class = 'foometafields-tab' ) {
+			$tab_type = isset( $tab['type'] ) ? $tab['type'] : 'normal';
+			$taxonomy = '';
+			if ( $tab_type === 'taxonomy' && isset( $tab['taxonomy'] ) ) {
+				$taxonomy = ' data-taxonomy="';
+				$taxonomy .= is_taxonomy_hierarchical( $tab['taxonomy'] ) ? 'taxonomy-' : '';
+				$taxonomy .= $tab['taxonomy'];
+				$taxonomy .= '"';
+			}
+
+			$tab_id = $tab['id'];
+
+			if ( !isset( $tab['fields'] ) && isset( $tab['tabs'] ) ) {
+				//set the tab_id to be the first child tab
+				$tab_id = $tab['tabs'][0]['id'];
+			}
+			?>
+			<div class="<?php echo $tab_class; ?> <?php echo $tab_active; ?>"
+				 data-name="<?php echo $container_id . '-' . $tab_id; ?>"
+					<?php echo $taxonomy ?>
+			>
+				<?php if ( isset( $tab['icon'] ) ) { ?>
+				<span class="dashicons <?php echo $tab['icon']; ?>"></span>
+				<?php } ?>
+				<span class="foometafields-tab-text"><?php echo $tab['label']; ?></span>
+				<?php
+				if ( isset( $tab['tabs'] ) ) {
+					echo '<div class="foometafields-child-tabs">';
+					foreach ( $tab['tabs'] as $child_tab ) {
+						self::render_tab( $child_tab, $container_id, $tab_active, 'foometafields-child-tab' );
+					}
+					echo '</div>';
+				}
+				?>
+			</div>
+			<?php
+
+		}
+
+		/**
+		 * Renders the tab content
+		 *
+		 * @param $tab
+		 * @param $container_id
+		 * @param $tab_active
+		 * @param $state
+		 */
+		static function render_tab_content( $tab, $container_id, $tab_active, $state ) {
+			$featuredImage = '';
+			if ( isset( $tab['featuredImage'] ) ) {
+				$featuredImage = ' data-feature-image="true"';
+				?>
+				<style>
+					#postimagediv {
+						display: block !important;
+					}
+
+					#adv-settings label[for="postimagediv-hide"] {
+						display: none !important;
+					}
+				</style>
+			<?php } ?>
+
+			<div class="foometafields-content <?php echo $tab_active; ?>"
+				 data-name="<?php echo $container_id . '-' . $tab['id']; ?>"
+					<?php echo $featuredImage ?>
+			>
+
+				<?php if ( isset( $tab['taxonomy'] ) ) {
+					$panel = is_taxonomy_hierarchical( $tab['taxonomy'] ) ? $tab['taxonomy'] . 'div' : 'tagsdiv-' . $tab['taxonomy'];
+					?>
+					<style>
+						/* Hide taxonomy boxes in sidebar and screen options show/hide checkbox labels */
+						#<?php echo $panel; ?>,
+						#adv-settings label[for="<?php echo $panel ?>-hide"] {
+							display: none !important;
+						}
+
+						#taxonomy-<?php echo esc_html( $tab['taxonomy'] ); ?> .category-tabs {
+							display: none !important;
+						}
+
+						#taxonomy-<?php echo esc_html( $tab['taxonomy'] ); ?> .tabs-panel {
+							border: none !important;
+						}
+					</style>
+				<?php } ?>
+
+				<?php
+				if ( isset( $tab['fields'] ) ) {
+					self::render_fields( $tab['fields'], $container_id, $state );
+				}
+				?>
+			</div>
+			<?php
+			if ( isset( $tab['tabs'] ) ) {
+				foreach ( $tab['tabs'] as $tab ) {
+					self::render_tab_content( $tab, $container_id, '', $state );
+				}
+			}
 		}
 
 		/**
