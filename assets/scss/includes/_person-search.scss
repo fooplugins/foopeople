@@ -1,17 +1,17 @@
 .ppl_search-wrapper {
-    display: flex;
-    margin-bottom: $m-lg;
+	display: flex;
+	margin-bottom: $m-lg;
 
-    .ppl_search-field,
-    .ppl_search-button {
-        font-size: $h2;
+	.ppl_search-field,
+	.ppl_search-button {
+		font-size: $h2;
 
-    }    
+	}
 
-    .ppl_search-field {
-        flex: 1;
-        margin-right: $m-sm;
-    }
+	.ppl_search-field {
+		flex: 1;
+		margin-right: $m-sm;
+	}
 
-    .ppl_search-button {}
+	.ppl_search-button {}
 }

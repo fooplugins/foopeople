@@ -46,9 +46,11 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 						'use_featured_image'    => _x( 'Use as Portrait', 'foopeople' ),
 					),
 					'hierarchical'  => true,
+					'show_in_rest'  => true,
 					'public'        => true,
 					'show_ui'       => true,
 					'show_in_menu'  => true,
+					'rewrite'       => array( 'slug' => 'person' ),
 					'menu_icon'     => 'dashicons-groups',
 					'supports'      => array( 'thumbnail', 'title', 'comments' ),
 				)

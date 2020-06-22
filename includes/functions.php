@@ -236,13 +236,23 @@ function foopeople_get_people( $team = '', $excludes = false ) {
  * @return string Taxonomy terms
  */
 function foopeople_get_taxonomies( $taxonomy ) {
+	$array = [];
+
 	$terms = get_terms( array(
 		'taxonomy' => $taxonomy,
 		'hide_empty' => false,
 	) );
 
 	if( isset($terms) ) {
-		return $terms;
+		foreach ($terms as $value) {
+			$object = new stdClass;
+
+			$object->label = $value->name;
+			$object->value = $value->slug;
+
+			$array[] = $object;
+		}
+		return $array;
 	}
 }
 

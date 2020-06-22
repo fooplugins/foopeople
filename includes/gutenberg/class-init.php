@@ -13,9 +13,6 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 		private $teams;
 
 		function __construct() {
-			$this->teams = json_encode( foopeople_get_taxonomies(FOOPEOPLE_CT_TEAM) );
-
-			// var_dump($this->teams);
 			add_action( 'init',  array( $this, 'block_assets') );
 		}
 
@@ -32,6 +29,10 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 		function block_assets() { // phpcs:ignore
 
 			$asset_file = include( plugin_dir_path( __FILE__ ) . 'assets.php');
+
+
+			// $this->teams = json_encode( foopeople_get_taxonomies(FOOPEOPLE_CT_TEAM) );
+			// var_dump($this->teams);
 
 			//get out quickly if no Gutenberg
 			if ( !function_exists( 'register_block_type' ) ) {
@@ -101,7 +102,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 			wp_localize_script(
 				'foopeople-block-listing-js',
 				'foopeopleListing', // Array containing dynamic data for a JS Global.
-				$this->teams
+				json_encode( foopeople_get_taxonomies(FOOPEOPLE_CT_TEAM) )
 			);
 
 			wp_localize_script(

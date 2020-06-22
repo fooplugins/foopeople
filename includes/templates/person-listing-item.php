@@ -93,7 +93,7 @@
 				</div>
 				<?php endif; ?>
 
-				<a href="<?php echo $person->permalink ?>">
+				<a class="ppl__button" href="<?php echo $person->permalink ?>">
 					View Full profile
 				</a>
 

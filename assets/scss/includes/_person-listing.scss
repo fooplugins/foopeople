@@ -40,7 +40,7 @@ $details_delay: 500ms;
 		}
 	}
 		.ppl__card_particulars-wrapper {
-			padding: $m-sm 0;
+			padding: $m-sm;
 		}
 }
 
@@ -52,7 +52,7 @@ $details_delay: 500ms;
 	z-index: 0;
 	margin: 0 $listing_gutter/2;
 	margin-bottom: $m-md;
-	
+
 	border: solid 1px $light;
 	font-size: $font-base;
 	text-align: center;
@@ -61,20 +61,24 @@ $details_delay: 500ms;
 	background: $white;
 	transition: $item_duration all ease-in-out;
 
+	.ppl__button {
+		text-align: center;
+	}
+
 	&.is-hidden {
 		display: none;
 	}
 
-	@include media-breakpoint-up(md) { 
-		
+	@include media-breakpoint-up(md) {
+
 		&:hover {
 			.ppl__card_portrait_thumbnail {
 				transform: scale(1.2);
 			}
 		}
 		&:after {
-			@include icon(); 
-			content: $ppl_icon-close-thin; 
+			@include icon();
+			content: $ppl_icon-close-thin;
 			font-size: 30px;
 			position: absolute;
 			top: 10px;
@@ -82,7 +86,7 @@ $details_delay: 500ms;
 			opacity: 0;
 			transition: $item_duration all ease-in-out;
 		}
-		
+
 		// Active toggle
 		// --------------------------------------------------------
 		&.is-active {
@@ -119,7 +123,7 @@ $details_delay: 500ms;
 
 	.ppl__card_portrait_thumbnail {
 		margin-top: -$portrait_box/2;
-		margin-bottom: $m-sm;			
+		margin-bottom: $m-sm;
 		width: $portrait_box;
 		transition: $item_duration all ease-in-out;
 	}
@@ -133,14 +137,14 @@ $details_delay: 500ms;
 // --------------------------------------------------------
 .ppl_listing {
 	&[data-ppl-columns="1"] {
-		.ppl__listing-item { 
+		.ppl__listing-item {
 			width: 100%;
-			margin-left: 0; 
-			margin-right: 0; 
+			margin-left: 0;
+			margin-right: 0;
 		}
 	}
 	&[data-ppl-columns="2"] {
-		.ppl__listing-item { 
+		.ppl__listing-item {
 			width: calc(50% - #{$listing_gutter});
 
 			// &:nth-of-type(2n-1) {
@@ -178,7 +182,7 @@ $details_delay: 500ms;
 
 	// Mobile
 	@include media-breakpoint-down(xs) {
-		&[data-ppl-columns] .ppl__listing-item { 
+		&[data-ppl-columns] .ppl__listing-item {
 			width: 100%;
 			margin-left: 0;
 			margin-right: 0;
@@ -186,17 +190,17 @@ $details_delay: 500ms;
 	}
 
 	// Tablet Portrait
-	@include media-breakpoint-only(sm) { 
+	@include media-breakpoint-only(sm) {
 		&[data-ppl-columns="3"] .ppl__listing-item,
-		&[data-ppl-columns="4"] .ppl__listing-item { 
+		&[data-ppl-columns="4"] .ppl__listing-item {
 			width: calc(50% - #{$listing_gutter});
 		}
 	}
 
 	// Tablet Landscape
 	@include media-breakpoint-only(md) {
-		&[data-ppl-columns="4"] .ppl__listing-item { 
+		&[data-ppl-columns="4"] .ppl__listing-item {
 			width: calc(50% - #{$listing_gutter});
 		}
-	}	
+	}
 }

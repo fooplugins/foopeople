@@ -1,9 +1,4 @@
-<?php $people = foopeople_get_people($data['team']);
-
-
-// var_dump( foopeople_get_taxonomies(FOOPEOPLE_CT_TEAM) );
-
-?>
+<?php $people = foopeople_get_people($data['team']); ?>
 
 <div id="foopeople" class="foopeople js-foopeople">
 

@@ -5,7 +5,6 @@ if( is_single() ) {
 } else {
 	$post = get_post($data['person_id']);
 }
-
 $person = new FooPlugins\FooPeople\objects\Person($post);
 ?>
 
@@ -41,7 +40,7 @@ $person = new FooPlugins\FooPeople\objects\Person($post);
 				<div class="ppl__card_manager">
 					<i class="ppl_icon-user ppl_icon-spacer "></i>
 					Manager :
-					<?php echo $person->main_details['manager']['value']; ?>
+					<?php echo $person->main_details['manager']['display']; ?>
 				</div>
 			</div>
 			<?php endif; ?>
