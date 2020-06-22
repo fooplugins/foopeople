@@ -19,7 +19,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 							'fields' => array(
 								array(
 									'id'       => 'firstname',
-									'title'    => __( 'First Name', 'foopeople' ),
+									'label'    => __( 'First Name', 'foopeople' ),
 									'required' => true,
 									'type'     => 'text',
 									'default'  => '',
@@ -28,7 +28,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 								),
 								array(
 									'id'       => 'surname',
-									'title'    => __( 'Last Name', 'foopeople' ),
+									'label'    => __( 'Last Name', 'foopeople' ),
 									'required' => true,
 									'type'     => 'text',
 									'default'  => '',
@@ -36,7 +36,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 								),
 								array(
 									'id'       => 'preferred',
-									'title'    => __( 'Preferred Name', 'foopeople' ),
+									'label'    => __( 'Preferred Name', 'foopeople' ),
 									'desc'     => __( 'You can override the full name for the person. Leave blank to default the full name to be "First Name + Last Name".', 'foopeople' ),
 									'required' => false,
 									'type'     => 'text',
@@ -45,7 +45,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 								),
 								array(
 									'id'       => 'jobtitle',
-									'title'    => __( 'Job Title', 'foopeople' ),
+									'label'    => __( 'Job Title', 'foopeople' ),
 									'desc'     => __( '', 'foopeople' ),
 									'required' => true,
 									'type'     => 'text',
@@ -54,7 +54,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 								),
 								array(
 									'id'       => 'manager',
-									'title'    => __( 'Line Manager', 'foopeople' ),
+									'label'    => __( 'Line Manager', 'foopeople' ),
 									'desc'     => __( '', 'foopeople' ),
 									'required' => true,
 									'type'     => 'selectize',
@@ -80,14 +80,14 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 							'fields' => array(
 								array(
 									'id'       => 'email',
-									'title'    => __( 'Email', 'foopeople' ),
+									'label'    => __( 'Email', 'foopeople' ),
 									'required' => true,
 									'type'     => 'text',
 									'default'  => '',
 								),
 								array(
 									'id'       => 'phonenumber',
-									'title'    => __( 'Phone Number', 'foopeople' ),
+									'label'    => __( 'Phone Number', 'foopeople' ),
 									'required' => true,
 									'type'     => 'text',
 									'default'  => '',
@@ -128,14 +128,59 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 									'label'  => __( 'Child 1', 'foopeople' ),
 									'fields' => array(
 										array(
+											'id'       => 'repeater',
+											'label'    => __( 'Repeater Field', 'foopeople' ),
+											'desc'     => __( 'A repeater field', 'foopeople' ),
+											'type'     => 'repeater',
+											'button'   => __( 'Add Note', 'foopeople' ),
+											'fields'   => array(
+												array(
+													'id'       => 'text',
+													'label'    => __( 'Text Field', 'foopeople' ),
+													'desc'     => __( 'A test text field', 'foopeople' ),
+													'type'     => 'text',
+												),
+												array(
+													'id'       => 'number',
+													'label'    => __( 'Number Field', 'foopeople' ),
+													'desc'     => __( 'A test number field', 'foopeople' ),
+													'type'     => 'number',
+												),
+												array(
+													'id'       => 'textarea',
+													'label'    => __( 'Textarea Field', 'foopeople' ),
+													'desc'     => __( 'A test textarea field', 'foopeople' ),
+													'type'     => 'textarea',
+												),
+												array(
+													'id'       => 'checkbox',
+													'label'    => __( 'Checkbox Field', 'foopeople' ),
+													'desc'     => __( 'A test Checkbox field', 'foopeople' ),
+													'type'     => 'checkbox',
+												),
+												array(
+													'id'       => 'select',
+													'label'    => __( 'Select Field', 'foopeople' ),
+													'desc'     => __( 'A test select field', 'foopeople' ),
+													'type'     => 'select',
+													'choices' => array(
+														'option1' => __( 'Option 1', 'foopeople' ),
+														'option2' => __( 'Option 2', 'foopeople' ),
+														'option3' => __( 'Option 3', 'foopeople' ),
+														'option4' => __( 'Option 4', 'foopeople' ),
+													)
+												),
+											)
+										),
+										array(
 											'id'       => 'help',
-											'title'    => __( 'Help Field', 'foopeople' ),
+											'label'    => __( 'Help Field', 'foopeople' ),
 											'desc'     => __( 'This tab shows all the available fields. This is a help field.', 'foopeople' ),
 											'type'     => 'help',
 										),
 										array(
 											'id'       => 'section',
-											'title'    => __( 'Section Field', 'foopeople' ),
+											'label'    => __( 'Section Field', 'foopeople' ),
 											'desc'     => __( 'This desc will not be shown for a section.', 'foopeople' ),
 											'type'     => 'section',
 										)
@@ -147,13 +192,13 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 									'fields' => array(
 										array(
 											'id'       => 'help2',
-											'title'    => __( 'Help Field 2', 'foopeople' ),
+											'label'    => __( 'Help Field 2', 'foopeople' ),
 											'desc'     => __( 'This tab shows all the available fields. This is a help field.', 'foopeople' ),
 											'type'     => 'help',
 										),
 										array(
 											'id'       => 'section2',
-											'title'    => __( 'Section Field 2', 'foopeople' ),
+											'label'    => __( 'Section Field 2', 'foopeople' ),
 											'desc'     => __( 'This desc will not be shown for a section.', 'foopeople' ),
 											'type'     => 'section',
 										)
@@ -168,19 +213,19 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 							'fields' => array(
 								array(
 									'id'       => 'help',
-									'title'    => __( 'Help Field', 'foopeople' ),
+									'label'    => __( 'Help Field', 'foopeople' ),
 									'desc'     => __( 'This tab shows all the available fields. This is a help field.', 'foopeople' ),
 									'type'     => 'help',
 								),
 								array(
 									'id'       => 'section',
-									'title'    => __( 'Section Field', 'foopeople' ),
+									'label'    => __( 'Section Field', 'foopeople' ),
 									'desc'     => __( 'This desc will not be shown for a section.', 'foopeople' ),
 									'type'     => 'section',
 								),
 								array(
 									'id'       => 'singlecolumn',
-									'title'    => __( 'Single Column Field', 'foopeople' ),
+									'label'    => __( 'Single Column Field', 'foopeople' ),
 									'desc'     => __( 'A single column field can show a title and description.', 'foopeople' ),
 									'type'     => 'singlecolumn',
 								),
@@ -192,31 +237,31 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 								),
 								array(
 									'id'       => 'text',
-									'title'    => __( 'Text Field', 'foopeople' ),
+									'label'    => __( 'Text Field', 'foopeople' ),
 									'desc'     => __( 'A test text field', 'foopeople' ),
 									'type'     => 'text',
 								),
 								array(
 									'id'       => 'number',
-									'title'    => __( 'Number Field', 'foopeople' ),
+									'label'    => __( 'Number Field', 'foopeople' ),
 									'desc'     => __( 'A test number field', 'foopeople' ),
 									'type'     => 'number',
 								),
 								array(
 									'id'       => 'textarea',
-									'title'    => __( 'Textarea Field', 'foopeople' ),
+									'label'    => __( 'Textarea Field', 'foopeople' ),
 									'desc'     => __( 'A test textarea field', 'foopeople' ),
 									'type'     => 'textarea',
 								),
 								array(
 									'id'       => 'checkbox',
-									'title'    => __( 'Checkbox Field', 'foopeople' ),
+									'label'    => __( 'Checkbox Field', 'foopeople' ),
 									'desc'     => __( 'A test Checkbox field', 'foopeople' ),
 									'type'     => 'checkbox',
 								),
 								array(
 									'id'       => 'select',
-									'title'    => __( 'Select Field', 'foopeople' ),
+									'label'    => __( 'Select Field', 'foopeople' ),
 									'desc'     => __( 'A test select field', 'foopeople' ),
 									'type'     => 'select',
 									'choices' => array(
@@ -228,9 +273,10 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 								),
 								array(
 									'id'       => 'radio',
-									'title'    => __( 'Radio Field', 'foopeople' ),
+									'label'    => __( 'Radio Field', 'foopeople' ),
 									'desc'     => __( 'A test radio field', 'foopeople' ),
 									'type'     => 'radio',
+									'spacer'   => '<span style="padding-left:10px"></span>',
 									'choices' => array(
 										'option1' => __( 'Option 1', 'foopeople' ),
 										'option2' => __( 'Option 2', 'foopeople' ),
@@ -240,7 +286,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 								),
 								array(
 									'id'       => 'checkboxlist',
-									'title'    => __( 'Checkboxlist Field', 'foopeople' ),
+									'label'    => __( 'Checkboxlist Field', 'foopeople' ),
 									'desc'     => __( 'A test checkboxlist field', 'foopeople' ),
 									'type'     => 'checkboxlist',
 									'choices' => array(
@@ -252,25 +298,27 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 								),
 								array(
 									'id'       => 'color',
-									'title'    => __( 'Color Field', 'foopeople' ),
+									'label'    => __( 'Color Field', 'foopeople' ),
 									'desc'     => __( 'A test HTML5 color input field', 'foopeople' ),
 									'type'     => 'color',
 								),
 								array(
 									'id'       => 'colorpicker',
-									'title'    => __( 'Colorpicker Field', 'foopeople' ),
+									'label'    => __( 'Colorpicker Field', 'foopeople' ),
 									'desc'     => __( 'A test colorpicker field using the colorpicker built into WP', 'foopeople' ),
 									'type'     => 'colorpicker',
 								),
 								array(
 									'id'       => 'htmllist',
-									'title'    => __( 'HTML List Field', 'foopeople' ),
+									'label'    => __( 'HTML List Field (radio)', 'foopeople' ),
 									'desc'     => __( 'A test html list field', 'foopeople' ),
 									'type'     => 'htmllist',
+									'spacer'   => '',
 									'choices' => array(
 										'option1' => array(
 											'html' => '<img src="https://dummyimage.com/32x32/000/fff&text=1" />',
 											'label' => __( 'Option 1', 'foopeople' ),
+											'tooltip' => __( 'A tooltip for Option 1', 'foopeople' ),
 										),
 										'option2' => array(
 											'html' => '<img src="https://dummyimage.com/32x32/000/fff&text=2" />',
@@ -279,8 +327,31 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 									)
 								),
 								array(
+									'id'       => 'htmllist2',
+									'label'    => __( 'HTML List Field (checkbox)', 'foopeople' ),
+									'list-type'=> 'checkbox',
+									'desc'     => __( 'A test html list field', 'foopeople' ),
+									'type'     => 'htmllist',
+									'spacer'   => '',
+									'choices' => array(
+										'option1' => array(
+											'html' => '<img src="https://dummyimage.com/32x32/000/fff&text=1" />',
+											'label' => __( 'Option 1', 'foopeople' ),
+											'tooltip' => __( 'A tooltip for Option 1', 'foopeople' ),
+										),
+										'option2' => array(
+											'html' => '<img src="https://dummyimage.com/32x32/000/fff&text=2" />',
+											'label' => __( 'Option 2', 'foopeople' ),
+										),
+										'option3' => array(
+											'html' => '<img src="https://dummyimage.com/32x32/000/fff&text=3" />',
+											'label' => __( 'Option 3', 'foopeople' ),
+										)
+									)
+								),
+								array(
 									'id'       => 'suggest',
-									'title'    => __( 'Suggest Field (autocomplete without a key)', 'foopeople' ),
+									'label'    => __( 'Suggest Field (autocomplete without a key)', 'foopeople' ),
 									'type'     => 'suggest',
 									'default'  => '',
 									'placeholder' => __( 'Start typing', 'foopeople' ),
@@ -289,7 +360,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 								),
 								array(
 									'id'       => 'selectize',
-									'title'    => __( 'selectize Field (autocomplete with a key)', 'foopeople' ),
+									'label'    => __( 'selectize Field (autocomplete with a key)', 'foopeople' ),
 									'type'     => 'Selectize',
 									'placeholder' => __( 'Start typing', 'foopeople' ),
 									'query_type' => 'post',
