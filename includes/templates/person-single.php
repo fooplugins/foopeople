@@ -1,5 +1,11 @@
 <?php
-$post = get_post($data['person_id']);
+if( is_single() ) {
+	get_header();
+	global $post;
+} else {
+	$post = get_post($data['person_id']);
+}
+
 $person = new FooPlugins\FooPeople\objects\Person($post);
 ?>
 
@@ -106,47 +112,11 @@ $person = new FooPlugins\FooPeople\objects\Person($post);
 			<?php endif; ?>
 
 
-<!--
-			<div class="ppl__card_particulars">
-				<span class="ppl__card_work_role / ppl__item_pipe">
-					Management level 2
-				</span>
-			</div>
-
-			<div class="ppl__card_particulars">
-				<span class="ppl__card_location / ppl__item_pipe">
-					<i class="ppl_icon-map-marker"></i>
-					Durban North
-				</span>
-			</div>
-
-			<div class="ppl__card_particulars">
-				<span class="ppl__card_email / ppl__item_pipe">
-					<a href="mailto:bradvin@gmail.com">
-						<i class="ppl_icon-envelope "></i>
-						bradvin@gmail.com
-					</a>
-				</span>
-
-				<span class="ppl__card_contactnumber / ppl__item_pipe">
-					<a href="tel:07666 66 666">
-						<i class="ppl_icon-phone"></i>
-						+27 7666 66 666
-					</a>
-				</span>
-			</div>
-
-			<div class="ppl__card_skills_wrapper">
-				<i class="ppl_icon-tag "></i>
-				<div class="ppl__card_skills">
-					<span class="ppl__item_delimiter">HTML</span>
-					<span class="ppl__item_delimiter">CSS</span>
-					<span class="ppl__item_delimiter">PHP</span>
-					<span class="ppl__item_delimiter">JavaScript</span>
-				</div>
-			</div> -->
-
-
 		</div>
 	</div>
 </div>
+
+<?php
+if( is_single( ) ) {
+	get_footer();
+}

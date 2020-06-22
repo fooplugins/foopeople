@@ -1,7 +1,7 @@
 <?php $people = foopeople_get_people($data['team']);
 
 
-var_dump( foopeople_get_taxonomies(FOOPEOPLE_CT_TEAM) );
+// var_dump( foopeople_get_taxonomies(FOOPEOPLE_CT_TEAM) );
 
 ?>
 

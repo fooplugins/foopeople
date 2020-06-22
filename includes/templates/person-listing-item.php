@@ -93,6 +93,10 @@
 				</div>
 				<?php endif; ?>
 
+				<a href="<?php echo $person->permalink ?>">
+					View Full profile
+				</a>
+
 			</div>
 		</div>
 

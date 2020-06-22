@@ -15,7 +15,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 		function __construct() {
 			$this->teams = json_encode( foopeople_get_taxonomies(FOOPEOPLE_CT_TEAM) );
 
-			var_dump($this->teams);
+			// var_dump($this->teams);
 			add_action( 'init',  array( $this, 'block_assets') );
 		}
 

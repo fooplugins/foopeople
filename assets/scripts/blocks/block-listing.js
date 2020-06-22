@@ -66,9 +66,6 @@ registerBlockType( 'fooplugins/foopeople-listing', {
 	 */
 	edit: ( props ) => {
 
-		console.log(foopeopleListing);
-
-
 		const {
 			className,
 			attributes: { team, showSearch },
