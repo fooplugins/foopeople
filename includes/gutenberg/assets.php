@@ -4,6 +4,7 @@ return array(
 		'wp-blocks',
 		'wp-block-editor',
 		'wp-components',
+		'wp-compose',
 		'wp-data',
 		'wp-date',
 		'wp-editor',

@@ -10,7 +10,12 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 
 	class Init {
 
+		private $teams;
+
 		function __construct() {
+			$this->teams = json_encode( foopeople_get_taxonomies(FOOPEOPLE_CT_TEAM) );
+
+			var_dump($this->teams);
 			add_action( 'init',  array( $this, 'block_assets') );
 		}
 
@@ -92,15 +97,13 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 					// Add more data here that you want to access
 				]
 			);
+
 			wp_localize_script(
 				'foopeople-block-listing-js',
 				'foopeopleListing', // Array containing dynamic data for a JS Global.
-				[
-					'pluginDirPath' => plugin_dir_path( __DIR__ ),
-					'pluginDirUrl'  => plugin_dir_url( __DIR__ ),
-					// Add more data here that you want to access
-				]
+				$this->teams
 			);
+
 			wp_localize_script(
 				'foopeople-block-organogram-js',
 				'foopeopleOrganogram', // Array containing dynamic data for a JS Global.
@@ -155,21 +158,11 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 				'fooplugins/foopeople-listing', array(
 					'render_callback' => array( $this, 'render_block_listing' ),
 					'attributes' => array(
-						'id' => array(
-							'type' => 'number',
-							'default' => 0
-						),
-						'className' => array(
-							'type' => 'string'
-						),
 						'team' => array(
 							'type' => 'string',
 							'default' => ''
 						),
-						'team_id' => array(
-							'type' => 'number'
-						),
-						'show_search' => array(
+						'showSearch' => array(
 							'type' => 'boolean',
 							'default' => true
 						),

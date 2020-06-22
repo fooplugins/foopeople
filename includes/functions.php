@@ -229,6 +229,24 @@ function foopeople_get_people( $team = '', $excludes = false ) {
 }
 
 
+/**
+ * Returns All Terms in a given Taxonomy
+ *
+ * @param string $taxonomy taxonomy we want to target
+ * @return string Taxonomy terms
+ */
+function foopeople_get_taxonomies( $taxonomy ) {
+	$terms = get_terms( array(
+		'taxonomy' => $taxonomy,
+		'hide_empty' => false,
+	) );
+
+	if( isset($terms) ) {
+		return $terms;
+	}
+}
+
+
 
 /**
  * Returns Taxonomy Name
@@ -242,7 +260,11 @@ function foopeople_get_taxonomy_name( $term = '', $taxonomy = '' ) {
 		if( is_string($term) ) $field = 'slug';
 		if( is_int($term) ) $field = 'term_id';
 
-		return get_term_by($field, $term, $taxonomy )->name;
+		$term = get_term_by($field, $term, $taxonomy );
+
+		if( isset($term->name) ) {
+			return $term->name;
+		}
 	};
 }
 

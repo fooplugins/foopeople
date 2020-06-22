@@ -1,8 +1,13 @@
-<?php $people = foopeople_get_people($data['team']); ?>
+<?php $people = foopeople_get_people($data['team']);
+
+
+var_dump( foopeople_get_taxonomies(FOOPEOPLE_CT_TEAM) );
+
+?>
 
 <div id="foopeople" class="foopeople js-foopeople">
 
-	<?php if($data['show_search']) : ?>
+	<?php if($data['showSearch']) : ?>
 	<div class="ppl_search-wrapper">
 		<input id="ppl__search" type="search" class="ppl_search-field js-foopeople-search" placeholder="<?php _e('Search for people by name, team or skill...', 'foopeople'); ?>">
 	</div>

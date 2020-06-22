@@ -6,6 +6,9 @@
 
 import { __ } from 'wp.i18n';
 import { registerBlockType } from 'wp.blocks';
+import { TextControl, CheckboxControl } from 'wp.components';
+import { useState } from 'wp.element';
+
 
 /**
  * Register: a Gutenberg Block.
@@ -37,10 +40,6 @@ registerBlockType( 'fooplugins/foopeople-listing', {
 		html: false
 	},
 	attributes: {
-		id: {
-			type: 'number',
-			default: 0
-		},
 		className: {
 			type: 'string'
 		},
@@ -48,10 +47,7 @@ registerBlockType( 'fooplugins/foopeople-listing', {
 			type: 'string',
 			default: ''
 		},
-		team_id: {
-			type: 'number'
-		},
-		show_search: {
+		showSearch: {
 			type: 'boolean',
 			default: true
 		}
@@ -69,11 +65,48 @@ registerBlockType( 'fooplugins/foopeople-listing', {
 	 * @returns {Mixed} JSX Component.
 	 */
 	edit: ( props ) => {
+
+		console.log(foopeopleListing);
+
+
+		const {
+			className,
+			attributes: { team, showSearch },
+			setAttributes
+		} = props;
+
+		const [ isChecked, setChecked ] = useState( true );
+
+		const onChangeSearchVisibility = ( value ) => {
+			setChecked();
+			setAttributes({ showSearch: value });
+		};
+
+
 		return (
-			<div className={ props.className }>
-				This is a preview
+			<div>
+				<div class="form-field form-required term-name-wrap">
+					<label>
+						<div>
+							Team Slug or ID
+						</div>
+						<TextControl
+							className={ className }
+							value={ team }
+							onChange={ ( team ) => setAttributes({ team }) }
+						/>
+					</label>
+					<p>The Slug or ID of your team you want to show. Leave blank to show everyone.</p>
+				</div>
+
+				<CheckboxControl
+					label="Show the search box for this team"
+					checked={ isChecked }
+					onChange={ onChangeSearchVisibility }
+				/>
 			</div>
 		);
+
 	},
 
 	/**

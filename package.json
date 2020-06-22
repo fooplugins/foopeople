@@ -59,6 +59,6 @@
     "preDeploy": "gulp pre-deploy",
     "deploy": "gulp deploy",
     "reactbuild": "cross-env BABEL_ENV=default NODE_ENV=production webpack",
-    "reactdev": "cross-env BABEL_ENV=default webpack --watch"
+    "reactdev": "cross-env BABEL_ENV=default NODE_ENV=development webpack --watch"
   }
 }
