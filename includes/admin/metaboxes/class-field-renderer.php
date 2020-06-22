@@ -166,86 +166,79 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 		 * @param array $state
 		 */
 		static function render_fields( $fields, $id, $state ) {
-			?>
-			<table>
-				<tbody>
-				<?php
-				foreach ( $fields as $field ) {
-					$field['input_id']				= "fooplugins_metabox_field_{$id}_{$field['id']}";
-					$field['input_name']		 	= "{$id}[{$field['id']}]";
-					$field_type                     = isset( $field['type'] ) ? $field['type'] : 'unknown';
-					$field_single_column            = isset( $field['single_column'] ) ? $field['single_column'] : false;
-					$single_column_class            = '';
-					$field_single_column_show_title = $field_single_column_show_desc = true;
-					$field_classes                  = array();
-					$field_classes[]                = 'foometafields-field';
-					$field_classes[]                = "foometafields-field-{$field_type}";
-					$field_classes[]                = "foometafields-field-{$field['id']}";
-					if ( ! $field_single_column && isset( $field['class'] ) ) {
-						$field_classes[] = $field['class'];
+			foreach ( $fields as $field ) {
+				$field['input_id']				= "fooplugins_metabox_field_{$id}_{$field['id']}";
+				$field['input_name']		 	= "{$id}[{$field['id']}]";
+				$field_type                     = isset( $field['type'] ) ? $field['type'] : 'unknown';
+				$field_layout                   = isset( $field['layout'] ) ? $field['layout'] : 'default';
+				$field_single_column            = isset( $field['single_column'] ) ? $field['single_column'] : false;
+				$single_column_class            = '';
+				$field_single_column_show_title = $field_single_column_show_desc = true;
+				$field_classes                  = array();
+				$field_classes[]                = 'foometafields-field';
+				$field_classes[]                = "foometafields-field-{$field_type}";
+				$field_classes[]                = "foometafields-field-{$field['id']}";
+				$field_classes[]				= "foometafields-layout-{$field_layout}";
+				if ( ! $field_single_column && isset( $field['class'] ) ) {
+					$field_classes[] = $field['class'];
+				}
+				$field_row_data_html = '';
+				if ( isset( $field['row_data'] ) ) {
+					$field_row_data = array_map( 'esc_attr', $field['row_data'] );
+					foreach ( $field_row_data as $field_row_data_name => $field_row_data_value ) {
+						$field_row_data_html .= " $field_row_data_name=" . '"' . $field_row_data_value . '"';
 					}
-					$field_row_data_html = '';
-					if ( isset( $field['row_data'] ) ) {
-						$field_row_data = array_map( 'esc_attr', $field['row_data'] );
-						foreach ( $field_row_data as $field_row_data_name => $field_row_data_value ) {
-							$field_row_data_html .= " $field_row_data_name=" . '"' . $field_row_data_value . '"';
-						}
-					}
-					//get the value of the field from the state
-					if ( is_array( $state ) && array_key_exists( $field['id'], $state ) ) {
-						$field['value'] = $state[ $field['id'] ];
-					}
+				}
+				//get the value of the field from the state
+				if ( is_array( $state ) && array_key_exists( $field['id'], $state ) ) {
+					$field['value'] = $state[ $field['id'] ];
+				}
 
-					//check for any special non-editable field types
-					if ( 'help' === $field_type ) {
-						$field_single_column            = true;
-						$single_column_class            = 'foometafields-single-column-icon foometafields-single-column-icon-help';
-						$field_single_column_show_title = false;
-						$field_single_column_show_desc  = true;
-					} else if ( 'section' === $field_type ) {
-						$field_single_column            = true;
-						$field_single_column_show_title = true;
-						$field_single_column_show_desc  = false;
-					} else if ( 'singlecolumn' === $field_type ) {
-						$field_single_column = true;
-						$single_column_class = isset( $field['class'] ) ? $field['class'] : '';
-					}
-					?>
-					<tr class="<?php echo implode( ' ', $field_classes ); ?>"<?php echo $field_row_data_html; ?>>
-						<?php if ( $field_single_column ) { ?>
-							<td colspan="2" class="foometafields-single-column">
-								<?php if ( $field_single_column_show_title && isset( $field['label'] ) ) { ?>
-									<h3 class="<?php echo esc_attr( $single_column_class ); ?>">
-										<?php echo esc_html( $field['label'] ); ?>
-									</h3>
-								<?php } ?>
-								<?php if ( $field_single_column_show_desc && isset( $field['desc'] ) ) { ?>
-									<p class="<?php echo esc_attr( $single_column_class ); ?>">
-										<?php echo esc_html( $field['desc'] ); ?>
-									</p>
-								<?php } ?>
-							</td>
-						<?php } else { ?>
-							<th>
-								<label for="fooplugins_metabox_field_<?php echo $id . '_' . $field['id']; ?>"><?php echo $field['label']; ?></label>
-								<?php if ( ! empty( $field['tooltip'] ) ) { ?>
-									<span data-balloon-length="large" data-balloon-pos="right"
-										  data-balloon="<?php echo esc_attr( $field['desc'] ); ?>">
-										<i class="dashicons dashicons-editor-help"></i>
-									</span>
-								<?php } ?>
-							</th>
-							<td>
-								<?php
-								self::render_field( $field );
-								?>
-							</td>
-						<?php } ?>
-					</tr>
-				<?php } ?>
-				</tbody>
-			</table>
-			<?php
+				//check for any special non-editable field types
+				if ( 'help' === $field_type ) {
+					$field_single_column            = true;
+					$single_column_class            = 'foometafields-single-column-icon foometafields-single-column-icon-help';
+					$field_single_column_show_title = false;
+					$field_single_column_show_desc  = true;
+				} else if ( 'section' === $field_type ) {
+					$field_single_column            = true;
+					$field_single_column_show_title = true;
+					$field_single_column_show_desc  = false;
+				} else if ( 'singlecolumn' === $field_type ) {
+					$field_single_column = true;
+					$single_column_class = isset( $field['class'] ) ? $field['class'] : '';
+				}
+				?>
+				<div class="<?php echo implode( ' ', $field_classes ); ?>"<?php echo $field_row_data_html; ?>>
+					<?php if ( $field_single_column ) { ?>
+						<div class="foometafields-single-column">
+							<?php if ( $field_single_column_show_title && isset( $field['label'] ) ) { ?>
+								<h3 class="<?php echo esc_attr( $single_column_class ); ?>">
+									<?php echo esc_html( $field['label'] ); ?>
+								</h3>
+							<?php } ?>
+							<?php if ( $field_single_column_show_desc && isset( $field['desc'] ) ) { ?>
+								<p class="<?php echo esc_attr( $single_column_class ); ?>">
+									<?php echo esc_html( $field['desc'] ); ?>
+								</p>
+							<?php } ?>
+						</div>
+					<?php } else { ?>
+						<div>
+							<label for="fooplugins_metabox_field_<?php echo $id . '_' . $field['id']; ?>"><?php echo $field['label']; ?></label>
+							<?php if ( ! empty( $field['tooltip'] ) ) { ?>
+								<span data-balloon-length="large" data-balloon-pos="right"
+									  data-balloon="<?php echo esc_attr( $field['desc'] ); ?>">
+									<i class="dashicons dashicons-editor-help"></i>
+								</span>
+							<?php } ?>
+						</div>
+						<?php
+						self::render_field( $field );
+						?>
+					<?php } ?>
+				</div>
+			<?php }
 		}
 
 		/**
@@ -616,6 +609,8 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 			self::render_html_tag( 'button', array(
 					'class' => 'button foometafields-repeater-add'
 			), isset( $field['button'] ) ? $field['button'] : __('Add') );
+
+			echo '</div>';
 		}
 
 		/**
