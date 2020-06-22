@@ -36,59 +36,53 @@
 	min-height: 100px;
   }
 
-  td.foometafields-single-column {
-	h3 {
+  .foometafields-repeater table tfoot {
+	display: none;
+  }
 
+  &.foometafields-icon p {
+	position: relative;
+	display: block;
+	line-height: 19px;
+	font-size: 14px;
+	text-align: left;
+	padding: 11px 10px 11px 40px;
+	margin: 5px 0 0 2px;
+	-webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
+
+	&:before {
+	  font: 400 30px/1 dashicons !important;
+	  speak: none;
+	  display: inline-block;
+	  -webkit-font-smoothing: antialiased;
+	  -moz-osx-font-smoothing: grayscale;
+	  vertical-align: bottom;
+	  position: absolute;
+	  left: 5px;
+	  margin-top: -15px;
+	  top: 50%;
+	  height: 1em;
 	}
+  }
 
-	p {
+  &.foometafields-icon-help p {
+	background-color: #F4F4FF;
+	border-left: 4px solid #1e8cbe;
 
+	&:before {
+	  content: "\f223";
+	  color: #1e8cbe;
 	}
+  }
 
-	.foometafields-single-column-icon {
-	  position: relative;
-	  display: block;
-	  line-height: 19px;
-	  font-size: 14px;
-	  text-align: left;
-	  padding: 11px 10px 11px 40px;
-	  margin: 5px 0 0 2px;
-	  -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
-	  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
+  &.foometafields-icon-promo p {
+	background-color: #f7fff6;
+	border-left: 4px solid #31be4d;
 
-	  &:before {
-		font: 400 30px/1 dashicons !important;
-		speak: none;
-		display: inline-block;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-		vertical-align: bottom;
-		position: absolute;
-		left: 5px;
-		margin-top: -15px;
-		top: 50%;
-		height: 1em;
-	  }
-	}
-
-	.foometafields-single-column-icon-help {
-	  background-color: #F4F4FF;
-	  border-left: 4px solid #1e8cbe;
-
-	  &:before {
-		content: "\f223";
-		color: #1e8cbe;
-	  }
-	}
-
-	.foometafields-single-column-icon-promo {
-	  background-color: #f7fff6;
-	  border-left: 4px solid #31be4d;
-
-	  &:before {
-		content: "\f155"; /* star */
-		color: #31be4d;
-	  }
+	&:before {
+	  content: "\f155"; /* star */
+	  color: #31be4d;
 	}
   }
 }

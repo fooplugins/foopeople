@@ -167,19 +167,16 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 		 */
 		static function render_fields( $fields, $id, $state ) {
 			foreach ( $fields as $field ) {
-				$field['input_id']				= "fooplugins_metabox_field_{$id}_{$field['id']}";
+				$field['input_id']				= "foometafields_{$id}_{$field['id']}";
 				$field['input_name']		 	= "{$id}[{$field['id']}]";
 				$field_type                     = isset( $field['type'] ) ? $field['type'] : 'unknown';
-				$field_layout                   = isset( $field['layout'] ) ? $field['layout'] : 'default';
-				$field_single_column            = isset( $field['single_column'] ) ? $field['single_column'] : false;
-				$single_column_class            = '';
-				$field_single_column_show_title = $field_single_column_show_desc = true;
+				$field_layout                   = isset( $field['layout'] ) ? $field['layout'] : 'block';
 				$field_classes                  = array();
 				$field_classes[]                = 'foometafields-field';
-				$field_classes[]                = "foometafields-field-{$field_type}";
-				$field_classes[]                = "foometafields-field-{$field['id']}";
+				$field_classes[]                = "foometafields-type-{$field_type}";
+				$field_classes[]                = "foometafields-id-{$field['id']}";
 				$field_classes[]				= "foometafields-layout-{$field_layout}";
-				if ( ! $field_single_column && isset( $field['class'] ) ) {
+				if ( isset( $field['class'] ) ) {
 					$field_classes[] = $field['class'];
 				}
 				$field_row_data_html = '';
@@ -196,36 +193,18 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 
 				//check for any special non-editable field types
 				if ( 'help' === $field_type ) {
-					$field_single_column            = true;
-					$single_column_class            = 'foometafields-single-column-icon foometafields-single-column-icon-help';
-					$field_single_column_show_title = false;
-					$field_single_column_show_desc  = true;
-				} else if ( 'section' === $field_type ) {
-					$field_single_column            = true;
-					$field_single_column_show_title = true;
-					$field_single_column_show_desc  = false;
-				} else if ( 'singlecolumn' === $field_type ) {
-					$field_single_column = true;
-					$single_column_class = isset( $field['class'] ) ? $field['class'] : '';
+					$field['type'] = 'html';
+					$field_classes[] = 'foometafields-icon foometafields-icon-help';
+					$field['desc'] = '<p>' . esc_html( $field['desc'] ) . '</p>';
+				} else if ( 'heading' === $field_type ) {
+					$field['type'] = 'html';
+					$field['desc'] = '<h3>' . esc_html( $field['desc'] ) . '</h3>';
 				}
 				?>
 				<div class="<?php echo implode( ' ', $field_classes ); ?>"<?php echo $field_row_data_html; ?>>
-					<?php if ( $field_single_column ) { ?>
-						<div class="foometafields-single-column">
-							<?php if ( $field_single_column_show_title && isset( $field['label'] ) ) { ?>
-								<h3 class="<?php echo esc_attr( $single_column_class ); ?>">
-									<?php echo esc_html( $field['label'] ); ?>
-								</h3>
-							<?php } ?>
-							<?php if ( $field_single_column_show_desc && isset( $field['desc'] ) ) { ?>
-								<p class="<?php echo esc_attr( $single_column_class ); ?>">
-									<?php echo esc_html( $field['desc'] ); ?>
-								</p>
-							<?php } ?>
-						</div>
-					<?php } else { ?>
-						<div>
-							<label for="fooplugins_metabox_field_<?php echo $id . '_' . $field['id']; ?>"><?php echo $field['label']; ?></label>
+					<?php if ( isset( $field['label'] ) ) { ?>
+						<div class="foometafields-label">
+							<label for="foometafields_<?php echo $id . '_' . $field['id']; ?>"><?php echo esc_html( $field['label'] ); ?></label>
 							<?php if ( ! empty( $field['tooltip'] ) ) { ?>
 								<span data-balloon-length="large" data-balloon-pos="right"
 									  data-balloon="<?php echo esc_attr( $field['desc'] ); ?>">
@@ -233,10 +212,9 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 								</span>
 							<?php } ?>
 						</div>
-						<?php
+					<?php }
 						self::render_field( $field );
-						?>
-					<?php } ?>
+				 	?>
 				</div>
 			<?php }
 		}
@@ -278,8 +256,12 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 			switch ( $type ) {
 
 				case 'html':
-					echo $desc;
-					$desc = '';
+					if ( isset( $field['desc'] ) ) {
+						echo $field['desc'];
+						$field['desc'] = '';
+					} else if ( isset( $field['html'] ) ) {
+						echo $field['html'];
+					}
 					break;
 
 				case 'checkbox':

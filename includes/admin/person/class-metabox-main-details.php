@@ -129,7 +129,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 									'fields' => array(
 										array(
 											'id'       => 'repeater',
-											'label'    => __( 'Repeater Field', 'foopeople' ),
+											//'label'    => __( 'Repeater Field', 'foopeople' ),
 											'desc'     => __( 'A repeater field', 'foopeople' ),
 											'type'     => 'repeater',
 											'button'   => __( 'Add Note', 'foopeople' ),
@@ -213,32 +213,36 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 							'fields' => array(
 								array(
 									'id'       => 'help',
-									'label'    => __( 'Help Field', 'foopeople' ),
 									'desc'     => __( 'This tab shows all the available fields. This is a help field.', 'foopeople' ),
 									'type'     => 'help',
 								),
 								array(
-									'id'       => 'section',
-									'label'    => __( 'Section Field', 'foopeople' ),
-									'desc'     => __( 'This desc will not be shown for a section.', 'foopeople' ),
-									'type'     => 'section',
+									'id'       => 'heading',
+									'desc'     => __( 'Heading Field', 'foopeople' ),
+									'type'     => 'heading',
 								),
 								array(
 									'id'       => 'singlecolumn',
-									'label'    => __( 'Single Column Field', 'foopeople' ),
-									'desc'     => __( 'A single column field can show a title and description.', 'foopeople' ),
-									'type'     => 'singlecolumn',
-								),
-								array(
-									'id'       => 'singlecolumn',
-									'desc'     => __( 'Another single column field with no title set, and a class of foometafields-single-column-icon foometafields-single-column-icon-promo', 'foopeople' ),
-									'class'    => 'foometafields-single-column-icon foometafields-single-column-icon-promo',
-									'type'     => 'singlecolumn',
+									'desc'     => __( 'Another help field but with class set to foometafields-icon foometafields-icon-promo', 'foopeople' ),
+									'class'    => 'foometafields-icon-promo',
+									'type'     => 'help',
 								),
 								array(
 									'id'       => 'text',
-									'label'    => __( 'Text Field', 'foopeople' ),
-									'desc'     => __( 'A test text field', 'foopeople' ),
+									'label'    => __( 'Block Field', 'foopeople' ),
+									'desc'     => __( 'This field should have the label above the input', 'foopeople' ),
+									'type'     => 'text',
+								),
+								array(
+									'id'       => 'text1',
+									'label'    => __( 'Inline Field', 'foopeople' ),
+									'desc'     => __( 'This field should have the label next to the input', 'foopeople' ),
+									'layout'   => 'inline',
+									'type'     => 'text',
+								),
+								array(
+									'id'       => 'text2',
+									'desc'     => __( 'This field will not have a label', 'foopeople' ),
 									'type'     => 'text',
 								),
 								array(
