@@ -11,14 +11,15 @@
 	background-color: $yellow;
   }
 
-  td {
-	padding: $padding;
-  }
-  th {
+  >th {
 	width: 150px;
 	padding: $padding-th;
 	vertical-align: top;
 	text-align: right;
+
+	>td {
+	  padding: $padding;
+	}
   }
   input[type="text"],
   input[type="password"],
