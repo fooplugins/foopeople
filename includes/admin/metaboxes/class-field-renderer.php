@@ -223,25 +223,15 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 		 * Renders a single metabox field
 		 *
 		 * @param array $field
-		 * @param string $meta_key
+		 * @param array $field_attributes
 		 */
 		static function render_field( $field, $field_attributes = array() ) {
-			//only declare up front so no debug warnings are shown
-			$type = $id = $desc = $default = $placeholder = $choices = $class = $spacer = $input_id = $input_name = null;
-
-			extract( $field );
-
 			$type = sanitize_title( isset( $field['type'] ) ? $field['type'] : 'text' );
 
 			$attributes = array(
-				'id'   => $input_id,
-				'name' => $input_name
+				'id'   => $field['input_id'],
+				'name' => $field['input_name']
 			);
-
-			$field_class = empty( $class ) ? '' : ' class="' . esc_attr( $class ) . '"';
-			if ( !empty( $class ) ) {
-				$attributes['class'] = $class;
-			}
 
 			//set a default value if nothing is set
 			if ( ! isset( $field['value'] ) ) {
@@ -266,7 +256,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 
 				case 'select':
 					self::render_html_tag( 'select', $attributes, null, false );
-					foreach ( $choices as $value => $label ) {
+					foreach ( $field['choices'] as $value => $label ) {
 						$option_attributes = array(
 							'value' => $value
 						);
@@ -280,16 +270,16 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 					break;
 
 				case 'textarea':
-					if ( !empty( $placeholder ) ) {
-						$attributes['placeholder'] = $placeholder;
+					if ( isset( $field['placeholder'] ) ) {
+						$attributes['placeholder'] = $field['placeholder'];
 					}
 					self::render_html_tag( 'textarea', $attributes, esc_textarea( $field['value'] ), true, false );
 
 					break;
 
 				case 'text':
-					if ( !empty( $placeholder ) ) {
-						$attributes['placeholder'] = $placeholder;
+					if ( isset( $field['placeholder'] ) ) {
+						$attributes['placeholder'] = $field['placeholder'];
 					}
 					$attributes['type'] = 'text';
 					$attributes['value'] = $field['value'];
@@ -298,8 +288,8 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 					break;
 
 				case 'number':
-					if ( !empty( $placeholder ) ) {
-						$attributes['placeholder'] = $placeholder;
+					if ( isset( $field['placeholder'] ) ) {
+						$attributes['placeholder'] = $field['placeholder'];
 					}
 					$attributes['min'] = isset( $min ) ? $min : 0;
 					$attributes['step'] = isset( $step ) ? $step : 1;
@@ -310,25 +300,17 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 					break;
 
 				case 'color':
-
-					self::render_html_tag( 'input', array(
-						'type'  => 'color',
-						'id'    => $input_id,
-						'name'  => $input_name,
-						'value' => $field['value']
-					) );
+					$attributes['type'] = $field['color'];
+					$attributes['value'] = $field['value'];
+					self::render_html_tag( 'input', $attributes );
 
 					break;
 
 				case 'colorpicker':
-
-					self::render_html_tag( 'input', array(
-						'type'  => 'text',
-						'id'    => $input_id,
-						'name'  => $input_name,
-						'data-wp-color-picker',
-						'value' => $field['value']
-					) );
+					$attributes['type'] = $field['text'];
+					$attributes['value'] = $field['value'];
+					$attributes[] = 'data-wp-color-picker';
+					self::render_html_tag( 'input', $attributes );
 
 					break;
 
@@ -375,10 +357,10 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 
 					self::render_html_tag( 'input', array(
 						'type'                   => 'text',
-						'id'                     => $input_id,
-						'name'                   => $input_name,
+						'id'                     => $field['input_id'],
+						'name'                   => $field['input_name'],
 						'value'                  => $field['value'],
-						'placeholder'            => $placeholder,
+						'placeholder'            => isset( $field['placeholder'] ) ? $field['placeholder'] : '',
 						'data-suggest',
 						'data-suggest-query'     => $query,
 						'data-suggest-multiple'  => isset( $field['multiple'] ) ? $field['multiple'] : 'false',
@@ -397,10 +379,10 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 					$inner  = '';
 
 					self::render_html_tag( 'select', array(
-						'id'                      => $input_id,
-						'name'                    => $input_name,
+						'id'    	              => $field['input_id'],
+						'name'	                  => $field['input_name'],
 						'value'                   => $field['value'],
-						'placeholder'             => $placeholder,
+						'placeholder'             => isset( $field['placeholder'] ) ? $field['placeholder'] : '',
 						'data-select2-instance',
 						'data-select2-action'     => $action,
 						'data-select2-nonce'      => wp_create_nonce( $action ),
@@ -564,7 +546,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 						}
 						echo '<td>';
 						$child_field['input_id'] = $field['input_id'] . '_' . $child_field['id'] . '_' . $row_index;
-						$child_field['input_name'] = $field['input_name'] . '[' . $row_index . '][' . $child_field['id'] . ']';
+						$child_field['input_name'] = $field['input_name'] . '[' . $child_field['id'] . '][]';
 						self::render_field( $child_field );
 						echo '</td>';
 					}
@@ -579,7 +561,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 			foreach ( $field['fields'] as $child_field ) {
 				echo '<td>';
 				$child_field['input_id'] = $field['input_id'] . '_' . $child_field['id'];
-				$child_field['input_name'] = $field['input_name'] . '[0][' . $child_field['id'] . ']';
+				$child_field['input_name'] = $field['input_name'] . '[' . $child_field['id'] . '][]';
 				self::render_field( $child_field, array( 'disabled' => 'disabled' ) );
 				echo '</td>';
 			}
