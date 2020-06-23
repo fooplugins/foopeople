@@ -251,7 +251,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 			//merge the attributes with any that are passed in
 			$attributes = wp_parse_args( $field_attributes, $attributes );
 
-			echo '<div class="foometafields-field-input-' . esc_attr( $type ) . '">';
+			echo '<div class="foometafields-field-input foometafields-field-input-' . esc_attr( $type ) . '">';
 
 			switch ( $type ) {
 
@@ -262,16 +262,6 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 					} else if ( isset( $field['html'] ) ) {
 						echo $field['html'];
 					}
-					break;
-
-				case 'checkbox':
-					if ( 'on' === $field['value'] ) {
-						$attributes['checked'] = 'checked';
-					}
-					$attributes['value'] = 'on';
-					$attributes['type'] = 'checkbox';
-					self::render_html_tag( 'input', $attributes );
-
 					break;
 
 				case 'select':
@@ -350,11 +340,20 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 
 					break;
 
+				case 'checkbox':
+					if ( 'on' === $field['value'] ) {
+						$attributes['checked'] = 'checked';
+					}
+					$attributes['value'] = 'on';
+					$attributes['type'] = 'checkbox';
+					self::render_html_tag( 'input', $attributes );
+					break;
+
+
 				case 'checkboxlist':
 					self::render_input_list( $field, array(
 						'type' => 'checkbox'
 					) );
-
 					break;
 
 				case 'htmllist':
@@ -441,7 +440,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 		 */
 		static function render_input_list( $field, $field_attributes = array(), $use_unique_names = true ) {
 			$i      = 0;
-			$spacer = isset( $field['spacer'] ) ? $field['spacer'] : '<br />';
+			$spacer = isset( $field['spacer'] ) ? $field['spacer'] : '<div class="foometafields-spacer"></div>';
 			foreach ( $field['choices'] as $value => $item ) {
 				$label_attributes = array(
 					'for' => $field['input_id'] . $i

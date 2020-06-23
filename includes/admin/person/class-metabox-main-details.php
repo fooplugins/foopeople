@@ -257,12 +257,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 									'desc'     => __( 'A test textarea field', 'foopeople' ),
 									'type'     => 'textarea',
 								),
-								array(
-									'id'       => 'checkbox',
-									'label'    => __( 'Checkbox Field', 'foopeople' ),
-									'desc'     => __( 'A test Checkbox field', 'foopeople' ),
-									'type'     => 'checkbox',
-								),
+
 								array(
 									'id'       => 'select',
 									'label'    => __( 'Select Field', 'foopeople' ),
@@ -276,11 +271,46 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 									)
 								),
 								array(
-									'id'       => 'radio',
-									'label'    => __( 'Radio Field', 'foopeople' ),
-									'desc'     => __( 'A test radio field', 'foopeople' ),
-									'type'     => 'radio',
-									'spacer'   => '<span style="padding-left:10px"></span>',
+									'id'       => 'checkbox',
+									'label'    => __( 'Checkbox Field', 'foopeople' ),
+									'desc'     => __( 'A test Checkbox field', 'foopeople' ),
+									'type'     => 'checkbox',
+								),
+								array(
+									'id'       => 'radioinline',
+									'label'    => __( 'Radio Fields Inline', 'foopeople' ),
+									'desc'     => __( 'Radio Fields Inline', 'foopeople' ),
+									'layout'   => 'inline',
+									'type'     => 'radiolist',
+									'spacer'   => '',
+									'choices' => array(
+										'option1' => __( 'Option 1', 'foopeople' ),
+										'option2' => __( 'Option 2', 'foopeople' ),
+										'option3' => __( 'Option 3', 'foopeople' ),
+										'option4' => __( 'Option 4', 'foopeople' ),
+									)
+								),
+								array(
+									'id'       => 'checkboxlistinline',
+									'label'    => __( 'Checkboxes Inline', 'foopeople' ),
+									'desc'     => __( 'A test checkboxlist field', 'foopeople' ),
+									'layout'   => 'inline',
+									'type'     => 'checkboxlist',
+									'choices' => array(
+										'option1' => __( 'Option 1', 'foopeople' ),
+										'option2' => __( 'Option 2', 'foopeople' ),
+										'option3' => __( 'Option 3', 'foopeople' ),
+										'option4' => __( 'Option 4', 'foopeople' ),
+									)
+								),
+
+
+								array(
+									'id'       => 'radiostacked',
+									'label'    => __( 'Radio Fields Stacked', 'foopeople' ),
+									'desc'     => __( 'Radio Fields Stacked', 'foopeople' ),
+									'type'     => 'radiolist',
+									// 'spacer'   => '',
 									'choices' => array(
 										'option1' => __( 'Option 1', 'foopeople' ),
 										'option2' => __( 'Option 2', 'foopeople' ),
@@ -290,7 +320,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 								),
 								array(
 									'id'       => 'checkboxlist',
-									'label'    => __( 'Checkboxlist Field', 'foopeople' ),
+									'label'    => __( 'Checkboxlist stacked', 'foopeople' ),
 									'desc'     => __( 'A test checkboxlist field', 'foopeople' ),
 									'type'     => 'checkboxlist',
 									'choices' => array(
@@ -300,6 +330,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 										'option4' => __( 'Option 4', 'foopeople' ),
 									)
 								),
+
 								array(
 									'id'       => 'color',
 									'label'    => __( 'Color Field', 'foopeople' ),
