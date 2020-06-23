@@ -275,6 +275,8 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 						//textareas need some special attention
 						if ( 'textarea' === $type ) {
 							$value = foopeople_sanitize_textarea( $value );
+						} else if ( 'repeater' === $type ) {
+							$value = $this->get_posted_data_for_repeater( foopeople_clean( $value ) );
 						} else {
 							$value = foopeople_clean( $value );
 						}
@@ -295,6 +297,21 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 			}
 
 			return $data;
+		}
+
+		/**
+		 *
+		 * @param $sanitized_data
+		 */
+		function get_posted_data_for_repeater( $sanitized_data ) {
+			$result = array();
+			foreach ( array_keys( $sanitized_data ) as $fieldKey ) {
+				foreach ( $sanitized_data[$fieldKey] as $key => $value ) {
+					$result[$key][$fieldKey] = $value;
+				}
+			}
+
+			return $result;
 		}
 
 		/***
