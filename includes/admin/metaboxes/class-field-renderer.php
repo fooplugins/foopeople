@@ -300,14 +300,14 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 					break;
 
 				case 'color':
-					$attributes['type'] = $field['color'];
+					$attributes['type'] = 'color';
 					$attributes['value'] = $field['value'];
 					self::render_html_tag( 'input', $attributes );
 
 					break;
 
 				case 'colorpicker':
-					$attributes['type'] = $field['text'];
+					$attributes['type'] = 'colorpicker';
 					$attributes['value'] = $field['value'];
 					$attributes[] = 'data-wp-color-picker';
 					self::render_html_tag( 'input', $attributes );
