@@ -273,7 +273,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 								array(
 									'id'       => 'checkbox',
 									'label'    => __( 'Checkbox Field', 'foopeople' ),
-									'desc'     => __( 'A test Checkbox field', 'foopeople' ),
+									'layout'   => 'inline',
 									'type'     => 'checkbox',
 								),
 								array(
