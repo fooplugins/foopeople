@@ -55,10 +55,6 @@ module.exports = {
 		{
 			scriptSRC: './assets/scripts/foometafields/*.js',
 			scriptFile: 'foometafields'
-		},
-		{
-			scriptSRC: './assets/scripts/vendor/selectize.min.js',
-			scriptFile: 'selectize'
 		}
 	],
 
