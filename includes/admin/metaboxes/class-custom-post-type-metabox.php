@@ -281,8 +281,6 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 							$value = foopeople_clean( $value );
 						}
 
-						//TODO : for repeater fields, add some extra data to the records (time and user)
-
 						$data[ $field['id'] ] = $value;
 					}
 				}
@@ -310,6 +308,14 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 					$result[$key][$fieldKey] = $value;
 				}
 			}
+
+			//TODO : stored some extra info for each row
+			// check if each row has an __id field,
+			//   if not then add one, so we can figure out which row to delete later.
+			//   Also add a __created_by field and set to currently logged on user.
+			//   And also a __created field which is the UTC timestamp of when the field was created
+			// if the __id field exists, then we doing an update.
+			//   update the __updated_by field and __updated timestamp fields
 
 			return $result;
 		}
