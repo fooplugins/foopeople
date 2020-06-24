@@ -96,6 +96,7 @@
 // ------------------------------------
 .foometafields-content {
 	display: none;
+	padding: $m-sm;
 
 	&.foometafields-active {
 		display: block;
@@ -127,11 +128,6 @@
 		.attachment-post-thumbnail {
 			max-width: 250px;
 		}
-	}
-
-	// Taxonomy content boxes
-	.categorydiv {
-		padding: 0 10px;
 	}
 }
 

@@ -140,6 +140,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 
 						#taxonomy-<?php echo esc_html( $tab['taxonomy'] ); ?> .tabs-panel {
 							border: none !important;
+							padding: 0;
 						}
 					</style>
 				<?php } ?>
