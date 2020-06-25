@@ -411,6 +411,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 					'post_type'      => FOOPEOPLE_CPT_PERSON,
 					'metabox_id'     => 'details',
 					'metabox_title'  => __( 'Main Details', 'pacepeople' ),
+					'priority'       => 'high',
 					'meta_key'       => FOOPEOPLE_META_PERSON_MAIN,
 					'plugin_url'     => FOOPEOPLE_URL,
 					'plugin_version' => FOOPEOPLE_VERSION
