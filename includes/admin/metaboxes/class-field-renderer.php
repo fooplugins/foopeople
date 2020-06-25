@@ -13,7 +13,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 		 * @param string $id
 		 * @param array $state
 		 */
-		static function render_tabs( $field_group, $id, $state ) {
+		static function render_field_group( $field_group, $id, $state ) {
 
 			$classes[] = 'foometafields-container';
 			$classes[] = 'foometafields-container-' . $id;
@@ -24,27 +24,34 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 					margin: 0;
 				}
 			</style>
-		<div class="<?php echo implode( ' ', $classes ); ?>">
-			<div>
-				<div class="foometafields-tabs">
-					<?php
-					$tab_active = 'foometafields-active';
-					foreach ( $field_group['tabs'] as $tab ) {
-						self::render_tab( $tab, $id, $tab_active );
-						$tab_active = '';
-					}
-					?>
+			<div class="<?php echo implode( ' ', $classes ); ?>">
+				<div>
+				<?php if ( isset( $field_group['tabs'] ) ) { ?>
+					<div class="foometafields-tabs">
+						<?php
+						$tab_active = 'foometafields-active';
+						foreach ( $field_group['tabs'] as $tab ) {
+							self::render_tab( $tab, $id, $tab_active );
+							$tab_active = '';
+						}
+						?>
+					</div>
+					<div class="foometafields-contents">
+						<?php
+						$tab_active = 'foometafields-active';
+						foreach ( $field_group['tabs'] as $tab ) {
+							self::render_tab_content( $tab, $id, $tab_active, $state );
+							$tab_active = '';
+						}
+						?>
+					</div>
+				<?php } ?>
+				<?php if ( isset( $field_group['fields'] ) ) {
+					?><div class="foometafields-content foometafields-active"><?php
+					self::render_fields( $field_group['fields'], $id, $state );
+					?></div><?php
+				} ?>
 				</div>
-				<div class="foometafields-contents">
-					<?php
-					$tab_active = 'foometafields-active';
-					foreach ( $field_group['tabs'] as $tab ) {
-						self::render_tab_content( $tab, $id, $tab_active, $state );
-						$tab_active = '';
-					}
-					?>
-				</div>
-			</div>
 			</div><?php
 		}
 
@@ -308,7 +315,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 					break;
 
 				case 'colorpicker':
-					$attributes['type'] = 'colorpicker';
+					$attributes['type'] = 'text';
 					$attributes['value'] = $field['value'];
 					$attributes[] = 'data-wp-color-picker';
 					self::render_html_tag( 'input', $attributes );
@@ -317,9 +324,8 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 
 				case 'radio':
 				case 'radiolist':
-					self::render_input_list( $field, array(
-						'type' => 'radio'
-					), false );
+					$attributes['type'] = 'radio';
+					self::render_input_list( $field, $attributes, false );
 
 					break;
 
@@ -334,17 +340,15 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 
 
 				case 'checkboxlist':
-					self::render_input_list( $field, array(
-						'type' => 'checkbox'
-					) );
+					$attributes['type'] = 'checkbox';
+					self::render_input_list( $field, $attributes );
 					break;
 
 				case 'htmllist':
 					$type = isset( $field['list-type'] ) ? $field['list-type'] : 'radio';
-					self::render_input_list( $field, array(
-						'type' => $type,
-						'style' => 'display:none'
-					), $type !== 'radio' );
+					$attributes['type'] = $type;
+					$attributes['style'] = 'display:none';
+					self::render_input_list( $field, $attributes, $type !== 'radio' );
 					break;
 
 				case 'suggest':
@@ -356,17 +360,19 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 						'query_data' => isset( $field['query_data'] ) ? $field['query_data'] : 'page'
 					) );
 
-					self::render_html_tag( 'input', array(
-						'type'                   => 'text',
-						'id'                     => $field['input_id'],
-						'name'                   => $field['input_name'],
-						'value'                  => $field['value'],
-						'placeholder'            => isset( $field['placeholder'] ) ? $field['placeholder'] : '',
-						'data-suggest',
-						'data-suggest-query'     => $query,
-						'data-suggest-multiple'  => isset( $field['multiple'] ) ? $field['multiple'] : 'false',
-						'data-suggest-separator' => isset( $field['separator'] ) ? $field['separator'] : ','
+					$attributes = wp_parse_args( $attributes, array(
+							'type'                   => 'text',
+							'id'                     => $field['input_id'],
+							'name'                   => $field['input_name'],
+							'value'                  => $field['value'],
+							'placeholder'            => isset( $field['placeholder'] ) ? $field['placeholder'] : '',
+							'data-suggest',
+							'data-suggest-query'     => $query,
+							'data-suggest-multiple'  => isset( $field['multiple'] ) ? $field['multiple'] : 'false',
+							'data-suggest-separator' => isset( $field['separator'] ) ? $field['separator'] : ','
 					) );
+
+					self::render_html_tag( 'input', $attributes );
 
 					break;
 
@@ -395,6 +401,19 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 
 				case 'repeater':
 					self::render_repeater_field( $field );
+					break;
+
+				case 'readonly':
+					$attributes['type'] = 'hidden';
+
+					self::render_html_tag( 'input', $attributes );
+
+					$inner = $field['value'];
+					if ( isset( $field['display_function'] ) ) {
+						$inner = call_user_func( $field['display_function'], $inner );
+					}
+
+					self::render_html_tag( 'span', array(), $inner );
 					break;
 
 				default:
@@ -519,24 +538,34 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 		 * @param $field
 		 */
 		static function render_repeater_field( $field ) {
+			$has_rows = is_array( $field['value'] ) && count( $field['value'] ) > 0;
+
 			self::render_html_tag( 'div', array(
-					'class' => 'foometafields-repeater'
+				'class' => 'foometafields-repeater' . ( $has_rows ? '' : ' foometafields-repeater-empty' )
 			), null, false );
 
+			self::render_html_tag( 'p', array(
+				'class' => 'foometafields-repeater-no-data-message'
+			), isset( $field['no-data-message'] ) ? $field['no-data-message'] : __( 'Nothing found' ) );
+
 			self::render_html_tag('table', array(
-					'class' => 'wp-list-table widefat fixed striped'
+				'class' => 'wp-list-table widefat striped' . ( isset( $field['table-class'] ) ? ' ' . $field['table-class'] : '' )
 			), null, false );
 
 			//render the table column headers
 			echo '<thead><tr>';
 			foreach ( $field['fields'] as $child_field ) {
-				self::render_html_tag( 'th', array(), $child_field['label'] );
+				$column_attributes = array();
+				if ( isset( $child_field['width'] ) ) {
+					$column_attributes['width'] = $child_field['width'];
+				}
+				self::render_html_tag( 'th', $column_attributes, isset( $child_field['label'] ) ? $child_field['label'] : '' );
 			}
 			echo '</tr></thead>';
 
 			//render the repeater rows
 			echo '<tbody>';
-			if ( is_array( $field['value'] ) ) {
+			if ( $has_rows ) {
 				$row_index = 0;
 				foreach( $field['value'] as $row ) {
 					$row_index++;
@@ -545,10 +574,25 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 						if ( array_key_exists( $child_field['id'], $row ) ) {
 							$child_field['value'] = $row[ $child_field['id'] ];
 						}
+						if ( 'index' === $child_field['type'] ) {
+							$child_field['type'] = 'html';
+							$child_field['html'] = $row_index;
+						}
 						echo '<td>';
-						$child_field['input_id'] = $field['input_id'] . '_' . $child_field['id'] . '_' . $row_index;
-						$child_field['input_name'] = $field['input_name'] . '[' . $child_field['id'] . '][]';
-						self::render_field( $child_field );
+						if ( 'manage' === $child_field['type'] ) {
+							self::render_html_tag( 'a', array(
+								'class' => 'foometafields-repeater-delete',
+								'data-confirm' => isset( $child_field['delete-confirmation-message'] ) ? $child_field['delete-confirmation-message'] : __( 'Are you sure?' ),
+								'href' => '#delete',
+								'title' => __('Delete Row')
+							), null, false );
+							self::render_html_tag('span', array( 'class' => 'dashicons dashicons-trash' ) );
+							echo '</a>';
+						} else {
+							$child_field['input_id']   = $field['input_id'] . '_' . $child_field['id'] . '_' . $row_index;
+							$child_field['input_name'] = $field['input_name'] . '[' . $child_field['id'] . '][]';
+							self::render_field( $child_field );
+						}
 						echo '</td>';
 					}
 					echo '</tr>';
