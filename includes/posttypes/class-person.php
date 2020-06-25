@@ -24,6 +24,16 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 		}
 
 		function register() {
+			$people_issues = 0;
+			$person_menu_name = __( 'People', 'foopeople' );
+			if ( $people_issues > 0 ) {
+				//TODO : change the menu. 2 options:
+				//  - https://wordpress.stackexchange.com/questions/89028/put-update-like-notification-bubble-on-multiple-cpts-menus-for-pending-items
+				//  - https://wordpress.stackexchange.com/questions/113235/add-number-new-posts-post-status-pending-to-administration-menu
+				//  - https://wisdmlabs.com/blog/display-dashboard-notifications-custom-post-types-menus/
+				$person_menu_name .= sprintf( ' <span class="awaiting-mod">%d</span>', $people_issues );
+			}
+
 			//allow extensions to override the people post type
 			$args = apply_filters( 'FooPlugins\FooPeople\PostTypes\Person\RegisterArgs',
 				array(
@@ -38,7 +48,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 						'search_items'       => __( 'Search People', 'foopeople' ),
 						'not_found'          => __( 'Nobody found', 'foopeople' ),
 						'not_found_in_trash' => __( 'Nobody found in Trash', 'foopeople' ),
-						'menu_name'          => __( 'People', 'foopeople' ),
+						'menu_name'          => $person_menu_name,
 						'all_items'          => __( 'People', 'foopeople' ),
 						'featured_image'        => __( 'Portrait', 'foopeople' ),
 						'set_featured_image'    => __( 'Set Portrait', 'foopeople' ),
@@ -52,7 +62,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 					'show_in_menu'  => true,
 					'rewrite'       => array( 'slug' => 'person' ),
 					'menu_icon'     => 'dashicons-groups',
-					'supports'      => array( 'thumbnail', 'title', 'comments' ),
+					'supports'      => array( 'thumbnail', 'title' ),
 				)
 			);
 

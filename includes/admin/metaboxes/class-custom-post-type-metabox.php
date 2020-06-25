@@ -239,12 +239,29 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 
 			$sanitized_data = foopeople_safe_get_from_post( $full_id, array(), false );
 
+			$data = $this->get_posted_data_recursive( $this->field_group , $sanitized_data );
+
+			$filter = 'FooPlugins\FooPeople\Admin\Metaboxes\\' . $this->metabox['post_type'] . '\\' . $this->metabox['metabox_id'] . '\GetPostedData';
+
+			$data = apply_filters( $filter, $data, $this, $post_id );
+
+			return $data;
+		}
+
+		/**
+		 * Recursively extract data from a sanitized data source
+		 *
+		 * @param $source
+		 * @param $sanitized_data
+		 *
+		 * @return array
+		 */
+		function get_posted_data_recursive( $source, $sanitized_data ) {
 			$data = array();
 
-			//for some fields, we need to do special sanitization
-			foreach ( $this->field_group['tabs'] as $tab ) {
-				foreach ( $tab['fields'] as $field ) {
-
+			//first, check if we have fields
+			if ( isset( $source['fields'] ) ) {
+				foreach ( $source['fields'] as $field ) {
 					if ( ! array_key_exists( $field['id'], $sanitized_data ) ) {
 						//the field had no posted value, check for a default
 						if ( isset( $field['default'] ) ) {
@@ -258,20 +275,43 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 						//textareas need some special attention
 						if ( 'textarea' === $type ) {
 							$value = foopeople_sanitize_textarea( $value );
+						} else if ( 'repeater' === $type ) {
+							$value = $this->get_posted_data_for_repeater( foopeople_clean( $value ) );
 						} else {
 							$value = foopeople_clean( $value );
 						}
+
+						//TODO : for repeater fields, add some extra data to the records (time and user)
 
 						$data[ $field['id'] ] = $value;
 					}
 				}
 			}
 
-			$filter = 'FooPlugins\FooPeople\Admin\Metaboxes\\' . $this->metabox['post_type'] . '\\' . $this->metabox['metabox_id'] . '\GetPostedData';
-
-			$data = apply_filters( $filter, $data, $this, $post_id );
+			//then check if we have tabs and loop through the tabs
+			if ( isset( $source['tabs'] ) ) {
+				foreach ( $source['tabs'] as $tab ) {
+					$tab_data = $this->get_posted_data_recursive( $tab, $sanitized_data );
+					$data = array_merge( $data, $tab_data );
+				}
+			}
 
 			return $data;
+		}
+
+		/**
+		 *
+		 * @param $sanitized_data
+		 */
+		function get_posted_data_for_repeater( $sanitized_data ) {
+			$result = array();
+			foreach ( array_keys( $sanitized_data ) as $fieldKey ) {
+				foreach ( $sanitized_data[$fieldKey] as $key => $value ) {
+					$result[$key][$fieldKey] = $value;
+				}
+			}
+
+			return $result;
 		}
 
 		/***

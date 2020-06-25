@@ -140,6 +140,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 
 						#taxonomy-<?php echo esc_html( $tab['taxonomy'] ); ?> .tabs-panel {
 							border: none !important;
+							padding: 0;
 						}
 					</style>
 				<?php } ?>
@@ -166,220 +167,211 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 		 * @param array $state
 		 */
 		static function render_fields( $fields, $id, $state ) {
-			?>
-			<table>
-				<tbody>
-				<?php
-				foreach ( $fields as $field ) {
-					$field_type                     = isset( $field['type'] ) ? $field['type'] : 'unknown';
-					$field_single_column            = isset( $field['single_column'] ) ? $field['single_column'] : false;
-					$single_column_class            = '';
-					$field_single_column_show_title = $field_single_column_show_desc = true;
-					$field_classes                  = array();
-					$field_classes[]                = 'foometafields-field';
-					$field_classes[]                = "foometafields-field-{$field_type}";
-					$field_classes[]                = "foometafields-field-{$field['id']}";
-					if ( ! $field_single_column && isset( $field['class'] ) ) {
-						$field_classes[] = $field['class'];
+			foreach ( $fields as $field ) {
+				$field['input_id']				= "foometafields_{$id}_{$field['id']}";
+				$field['input_name']		 	= "{$id}[{$field['id']}]";
+				$field_type                     = isset( $field['type'] ) ? $field['type'] : 'unknown';
+				$field_layout                   = isset( $field['layout'] ) ? $field['layout'] : 'block';
+				$field_classes                  = array();
+				$field_classes[]                = 'foometafields-field';
+				$field_classes[]                = "foometafields-type-{$field_type}";
+				$field_classes[]                = "foometafields-id-{$field['id']}";
+				$field_classes[]				= "foometafields-layout-{$field_layout}";
+				if ( isset( $field['class'] ) ) {
+					$field_classes[] = $field['class'];
+				}
+				$field_row_data_html = '';
+				if ( isset( $field['row_data'] ) ) {
+					$field_row_data = array_map( 'esc_attr', $field['row_data'] );
+					foreach ( $field_row_data as $field_row_data_name => $field_row_data_value ) {
+						$field_row_data_html .= " $field_row_data_name=" . '"' . $field_row_data_value . '"';
 					}
-					$field_row_data_html = '';
-					if ( isset( $field['row_data'] ) ) {
-						$field_row_data = array_map( 'esc_attr', $field['row_data'] );
-						foreach ( $field_row_data as $field_row_data_name => $field_row_data_value ) {
-							$field_row_data_html .= " $field_row_data_name=" . '"' . $field_row_data_value . '"';
-						}
-					}
-					//get the value of the field from the state
-					if ( is_array( $state ) && array_key_exists( $field['id'], $state ) ) {
-						$field['value'] = $state[ $field['id'] ];
-					}
+				}
+				//get the value of the field from the state
+				if ( is_array( $state ) && array_key_exists( $field['id'], $state ) ) {
+					$field['value'] = $state[ $field['id'] ];
+				}
 
-					//check for any special non-editable field types
-					if ( 'help' === $field_type ) {
-						$field_single_column            = true;
-						$single_column_class            = 'foometafields-single-column-icon foometafields-single-column-icon-help';
-						$field_single_column_show_title = false;
-						$field_single_column_show_desc  = true;
-					} else if ( 'section' === $field_type ) {
-						$field_single_column            = true;
-						$field_single_column_show_title = true;
-						$field_single_column_show_desc  = false;
-					} else if ( 'singlecolumn' === $field_type ) {
-						$field_single_column = true;
-						$single_column_class = isset( $field['class'] ) ? $field['class'] : '';
-					}
-					?>
-					<tr class="<?php echo implode( ' ', $field_classes ); ?>"<?php echo $field_row_data_html; ?>>
-						<?php if ( $field_single_column ) { ?>
-							<td colspan="2" class="foometafields-single-column">
-								<?php if ( $field_single_column_show_title && isset( $field['title'] ) ) { ?>
-									<h3 class="<?php echo esc_attr( $single_column_class ); ?>">
-										<?php echo esc_html( $field['title'] ); ?>
-									</h3>
-								<?php } ?>
-								<?php if ( $field_single_column_show_desc && isset( $field['desc'] ) ) { ?>
-									<p class="<?php echo esc_attr( $single_column_class ); ?>">
-										<?php echo esc_html( $field['desc'] ); ?>
-									</p>
-								<?php } ?>
-							</td>
-						<?php } else { ?>
-							<th>
-								<label for="fooplugins_metabox_field_<?php echo $id . '_' . $field['id']; ?>"><?php echo $field['title']; ?></label>
-								<?php if ( ! empty( $field['tooltip'] ) ) { ?>
-									<span data-balloon-length="large" data-balloon-pos="right"
-										  data-balloon="<?php echo esc_attr( $field['desc'] ); ?>">
-										<i class="dashicons dashicons-editor-help"></i>
-									</span>
-								<?php } ?>
-							</th>
-							<td>
-								<?php self::render_field( $field, $id ); ?>
-							</td>
-						<?php } ?>
-					</tr>
-				<?php } ?>
-				</tbody>
-			</table>
-			<?php
+				//check for any special non-editable field types
+				if ( 'help' === $field_type ) {
+					$field['type'] = 'html';
+					$field_classes[] = 'foometafields-icon foometafields-icon-help';
+					$field['desc'] = '<p>' . esc_html( $field['desc'] ) . '</p>';
+				} else if ( 'heading' === $field_type ) {
+					$field['type'] = 'html';
+					$field['desc'] = '<h3>' . esc_html( $field['desc'] ) . '</h3>';
+				}
+				?>
+				<div class="<?php echo implode( ' ', $field_classes ); ?>"<?php echo $field_row_data_html; ?>>
+					<?php if ( isset( $field['label'] ) ) { ?>
+						<div class="foometafields-label">
+							<label for="foometafields_<?php echo $id . '_' . $field['id']; ?>"><?php echo esc_html( $field['label'] ); ?></label>
+							<?php if ( ! empty( $field['tooltip'] ) ) { ?>
+								<span data-balloon-length="large" data-balloon-pos="right"
+									  data-balloon="<?php echo esc_attr( $field['desc'] ); ?>">
+									<i class="dashicons dashicons-editor-help"></i>
+								</span>
+							<?php } ?>
+						</div>
+					<?php }
+						self::render_field( $field );
+				 	?>
+				</div>
+			<?php }
 		}
 
 		/**
 		 * Renders a single metabox field
 		 *
 		 * @param array $field
-		 * @param string $meta_key
+		 * @param array $field_attributes
 		 */
-		static function render_field( $field, $meta_key ) {
-			//only declare up front so no debug warnings are shown
-			$type = $id = $desc = $default = $placeholder = $choices = $class = $spacer = null;
-
-			extract( $field );
-
+		static function render_field( $field, $field_attributes = array() ) {
 			$type = sanitize_title( isset( $field['type'] ) ? $field['type'] : 'text' );
 
-			$field_class = empty( $class ) ? '' : ' class="' . esc_attr( $class ) . '"';
+			$attributes = array(
+				'id'   => $field['input_id'],
+				'name' => $field['input_name']
+			);
 
+			//set a default value if nothing is set
 			if ( ! isset( $field['value'] ) ) {
 				$field['value'] = '';
 			}
 
-			$input_id   = 'fooplugins_metabox_field_' . $meta_key . '_' . $id;
-			$input_name = $meta_key . '[' . $id . ']';
+			//merge the attributes with any that are passed in
+			$attributes = wp_parse_args( $field_attributes, $attributes );
 
-			echo '<div class="foometafields-field-input-' . esc_attr( $type ) . '">';
+			echo '<div class="foometafields-field-input foometafields-field-input-' . esc_attr( $type ) . '">';
 
 			switch ( $type ) {
 
 				case 'html':
-					echo $desc;
-					$desc = '';
-					break;
-
-				case 'checkbox':
-
-					$checked = 'on' === $field['value'] ? ' checked="checked"' : '';
-					echo '<input' . $field_class . ' type="checkbox" id="' . esc_attr( $input_id ) . '" name="' . esc_attr( $input_name ) . '" value="on"' . $checked . ' />';
+					if ( isset( $field['desc'] ) ) {
+						echo $field['desc'];
+						$field['desc'] = '';
+					} else if ( isset( $field['html'] ) ) {
+						echo $field['html'];
+					}
 					break;
 
 				case 'select':
-					echo '<select' . $field_class . ' id="' . esc_attr( $input_id ) . '" name="' . esc_attr( $input_name ) . '">';
-					foreach ( $choices as $value => $label ) {
-						$selected = '';
+					self::render_html_tag( 'select', $attributes, null, false );
+					foreach ( $field['choices'] as $value => $label ) {
+						$option_attributes = array(
+							'value' => $value
+						);
 						if ( $field['value'] == $value ) {
-							$selected = ' selected="selected"';
+							$option_attributes['selected'] = 'selected';
 						}
-						echo '<option ' . $selected . ' value="' . esc_attr( $value ) . '">' . esc_html( $label ) . '</option>';
+						self::render_html_tag( 'option', $option_attributes, $label );
 					}
-
 					echo '</select>';
-					break;
 
-				case 'radio':
-					$i      = 0;
-					$spacer = isset( $spacer ) ? $spacer : '<br />';
-					foreach ( $choices as $value => $label ) {
-						$selected = '';
-						if ( $field['value'] == $value ) {
-							$selected = ' checked="checked"';
-						}
-						echo '<input' . $field_class . $selected . ' type="radio" name="' . esc_attr( $input_name ) . '"  id="' . esc_attr( $input_id . $i ) . '" value="' . esc_attr( $value ) . '"> <label for="' . esc_attr( $input_id . $i ) . '">' . esc_html( $label ) . '</label>';
-						if ( $i < count( $choices ) - 1 ) {
-							echo $spacer;
-						}
-						$i ++;
-					}
 					break;
 
 				case 'textarea':
-					echo '<textarea' . $field_class . ' id="' . esc_attr( $input_id ) . '" name="' . esc_attr( $input_name ) . '" placeholder="' . esc_attr( $placeholder ) . '">' . esc_textarea( $field['value'] ) . '</textarea>';
+					if ( isset( $field['placeholder'] ) ) {
+						$attributes['placeholder'] = $field['placeholder'];
+					}
+					self::render_html_tag( 'textarea', $attributes, esc_textarea( $field['value'] ), true, false );
 
 					break;
 
 				case 'text':
-					echo '<input' . $field_class . ' type="text" id="' . esc_attr( $input_id ) . '" name="' . esc_attr( $input_name ) . '" value="' . esc_attr( $field['value'] ) . '" placeholder="' . esc_attr( $placeholder ) . '"/>';
+					if ( isset( $field['placeholder'] ) ) {
+						$attributes['placeholder'] = $field['placeholder'];
+					}
+					$attributes['type'] = 'text';
+					$attributes['value'] = $field['value'];
+					self::render_html_tag( 'input', $attributes );
 
+					break;
+
+				case 'number':
+					if ( isset( $field['placeholder'] ) ) {
+						$attributes['placeholder'] = $field['placeholder'];
+					}
+					$attributes['min'] = isset( $min ) ? $min : 0;
+					$attributes['step'] = isset( $step ) ? $step : 1;
+					$attributes['type'] = 'number';
+					$attributes['value'] = $field['value'];
+					self::render_html_tag( 'input', $attributes );
+
+					break;
+
+				case 'color':
+					$attributes['type'] = 'color';
+					$attributes['value'] = $field['value'];
+					self::render_html_tag( 'input', $attributes );
+
+					break;
+
+				case 'colorpicker':
+					$attributes['type'] = 'colorpicker';
+					$attributes['value'] = $field['value'];
+					$attributes[] = 'data-wp-color-picker';
+					self::render_html_tag( 'input', $attributes );
+
+					break;
+
+				case 'radio':
+				case 'radiolist':
+					self::render_input_list( $field, array(
+						'type' => 'radio'
+					), false );
+
+					break;
+
+				case 'checkbox':
+					if ( 'on' === $field['value'] ) {
+						$attributes['checked'] = 'checked';
+					}
+					$attributes['value'] = 'on';
+					$attributes['type'] = 'checkbox';
+					self::render_html_tag( 'input', $attributes );
+					break;
+
+
+				case 'checkboxlist':
+					self::render_input_list( $field, array(
+						'type' => 'checkbox'
+					) );
+					break;
+
+				case 'htmllist':
+					$type = isset( $field['list-type'] ) ? $field['list-type'] : 'radio';
+					self::render_input_list( $field, array(
+						'type' => $type,
+						'style' => 'display:none'
+					), $type !== 'radio' );
 					break;
 
 				case 'suggest':
 					$action = isset( $field['action'] ) ? $field['action'] : 'foometafield_suggest';
 					$query  = build_query( array(
-							'action'     => $action,
-							'nonce'      => wp_create_nonce( $action ),
-							'query_type' => isset( $field['query_type'] ) ? $field['query_type'] : 'post',
-							'query_data' => isset( $field['query_data'] ) ? $field['query_data'] : 'page'
+						'action'     => $action,
+						'nonce'      => wp_create_nonce( $action ),
+						'query_type' => isset( $field['query_type'] ) ? $field['query_type'] : 'post',
+						'query_data' => isset( $field['query_data'] ) ? $field['query_data'] : 'page'
 					) );
 
 					self::render_html_tag( 'input', array(
-							'type'                   => 'text',
-							'id'                     => $input_id,
-							'name'                   => $input_name,
-							'value'                  => $field['value'],
-							'placeholder'            => $placeholder,
-							'data-suggest',
-							'data-suggest-query'     => $query,
-							'data-suggest-multiple'  => isset( $field['multiple'] ) ? $field['multiple'] : 'false',
-							'data-suggest-separator' => isset( $field['separator'] ) ? $field['separator'] : ','
+						'type'                   => 'text',
+						'id'                     => $field['input_id'],
+						'name'                   => $field['input_name'],
+						'value'                  => $field['value'],
+						'placeholder'            => isset( $field['placeholder'] ) ? $field['placeholder'] : '',
+						'data-suggest',
+						'data-suggest-query'     => $query,
+						'data-suggest-multiple'  => isset( $field['multiple'] ) ? $field['multiple'] : 'false',
+						'data-suggest-separator' => isset( $field['separator'] ) ? $field['separator'] : ','
 					) );
 
 					break;
 
 				case 'selectize':
-					$action = isset( $field['action'] ) ? $field['action'] : 'foometafield_selectize';
-					$query  = build_query( array(
-							'action'     => $action,
-							'nonce'      => wp_create_nonce( $action ),
-							'query_type' => isset( $field['query_type'] ) ? $field['query_type'] : 'post',
-							'query_data' => isset( $field['query_data'] ) ? $field['query_data'] : 'page'
-					) );
-
-					$value = ( isset( $field['value'] ) && is_array( $field['value'] ) ) ? $field['value'] : array(
-							'value'   => '',
-							'display' => ''
-					);
-
-					self::render_html_tag( 'input', array(
-							'type'  => 'hidden',
-							'id'    => $input_id . '_display',
-							'name'  => $input_name . '[display]',
-							'value' => $value['display']
-					) );
-
-					$inner = '';
-
-					if ( isset( $value['value'] ) ) {
-						$inner = '<option value="' . esc_attr( $value['value'] ) . '" selected="selected">' . esc_html( $value['display'] ) . '</option>';
-					}
-
-					self::render_html_tag( 'select', array(
-							'id'                     => $input_id,
-							'name'                   => $input_name . '[value]',
-							'value'                  => $value['value'],
-							'placeholder'            => $placeholder,
-							'data-selectize-instance',
-							'data-selectize-query'   => $query,
-							'data-selectize-display' => $input_id . '_display'
-					), $inner, true, false );
+					self::render_selectize_field( $field );
 
 					break;
 
@@ -388,98 +380,201 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 					$inner  = '';
 
 					self::render_html_tag( 'select', array(
-							'id'                      => $input_id,
-							'name'                    => $input_name,
-							'value'                   => $field['value'],
-							'placeholder'             => $placeholder,
-							'data-select2-instance',
-							'data-select2-action'     => $action,
-							'data-select2-nonce'      => wp_create_nonce( $action ),
-							'data-select2-query-type' => isset( $field['query_type'] ) ? $field['query_type'] : 'post',
-							'data-select2-query-data' => isset( $field['query_data'] ) ? $field['query_data'] : 'page',
+						'id'    	              => $field['input_id'],
+						'name'	                  => $field['input_name'],
+						'value'                   => $field['value'],
+						'placeholder'             => isset( $field['placeholder'] ) ? $field['placeholder'] : '',
+						'data-select2-instance',
+						'data-select2-action'     => $action,
+						'data-select2-nonce'      => wp_create_nonce( $action ),
+						'data-select2-query-type' => isset( $field['query_type'] ) ? $field['query_type'] : 'post',
+						'data-select2-query-data' => isset( $field['query_data'] ) ? $field['query_data'] : 'page',
 					), $inner );
 
 					break;
 
-				case 'color':
-
-					self::render_html_tag( 'input', array(
-							'type'  => 'color',
-							'id'    => $input_id,
-							'name'  => $input_name,
-							'value' => $field['value']
-					) );
-
-					break;
-
-				case 'colorpicker':
-
-					self::render_html_tag( 'input', array(
-							'type'  => 'text',
-							'id'    => $input_id,
-							'name'  => $input_name,
-							'data-wp-color-picker',
-							'value' => $field['value']
-					) );
-
-					break;
-
-
-				case 'number':
-					$min  = isset( $min ) ? $min : 0;
-					$step = isset( $step ) ? $step : 1;
-					echo '<input class="regular-text ' . esc_attr( $class ) . '" type="number" step="' . esc_attr( $step ) . '" min="' . esc_attr( $min ) . '" id="' . esc_attr( $input_id ) . '" name="' . esc_attr( $input_name ) . '" placeholder="' . esc_attr( $placeholder ) . '" value="' . esc_attr( $field['value'] ) . '" />';
-
-					break;
-
-				case 'checkboxlist':
-					$i = 0;
-					foreach ( $choices as $value => $label ) {
-
-						$checked = '';
-						if ( isset( $field['value'][ $value ] ) && $field['value'][ $value ] == $value ) {
-							$checked = 'checked="checked"';
-						}
-
-						echo '<input' . $field_class . ' ' . $checked . ' type="checkbox" name="' . esc_attr( $input_name ) . '[' . esc_attr( $value ) . ']" id="' . esc_attr( $input_id . $i ) . '" value="' . esc_attr( $value ) . '" data-value="' . esc_attr( $value ) . '"> <label for="' . esc_attr( $input_id . $i ) . '">' . esc_html( $label ) . '</label>';
-						if ( $i < count( $choices ) - 1 ) {
-							echo '<br />';
-						}
-						$i ++;
-					}
-
-					break;
-
-				case 'htmllist':
-					$i          = 0;
-					$input_name = $meta_key . '[' . $id . ']';
-					$icon_html  = '';
-					foreach ( $choices as $value => $item ) {
-						$selected  = ( $field['value'] == $value ) ? ' checked="checked"' : '';
-						$icon_html .= '<input style="display:none" name="' . esc_attr( $input_name ) . '" id="' . esc_attr( $input_id . $i ) . '" ' . $selected . ' type="radio" value="' . esc_attr( $value ) . '" tabindex="' . $i . '"/>';
-						$title     = $item['label'];
-						$html      = wp_kses_post( $item['html'] );
-						$icon_html .= '<label for="' . esc_attr( $input_id . $i ) . '" data-balloon-length="small" data-balloon-pos="down" data-balloon="' . esc_attr( $title ) . '">' . $html . '</label>';
-						$i ++;
-					}
-					echo $icon_html;
+				case 'repeater':
+					self::render_repeater_field( $field );
 					break;
 
 				default:
 					//the field type is not natively supported
 					if ( isset( $field['function'] ) ) {
-						call_user_func( $field['function'], $field, $meta_key );
+						call_user_func( $field['function'], $field );
 					}
 					break;
 			}
-
-			echo '</div>';
 
 			if ( ! empty( $field['desc'] ) ) {
 				self::render_html_tag( 'span', array(
 						'class' => 'foometafields-field-description'
 				), $field['desc'] );
 			}
+
+			echo '</div>';
+		}
+
+		/**
+		 * Render an input list field
+		 *
+		 * @param $field
+		 * @param array $field_attributes
+		 * @param bool $use_unique_names
+		 */
+		static function render_input_list( $field, $field_attributes = array(), $use_unique_names = true ) {
+			$i      = 0;
+			$spacer = isset( $field['spacer'] ) ? $field['spacer'] : '<div class="foometafields-spacer"></div>';
+			foreach ( $field['choices'] as $value => $item ) {
+				$label_attributes = array(
+					'for' => $field['input_id'] . $i
+				);
+				$encode = true;
+				if ( is_array( $item ) ) {
+					$label = $item['label'];
+					if ( isset( $item['tooltip'] ) ) {
+						$label_attributes['data-balloon'] = $item['tooltip'];
+						$label_attributes['data-balloon-length'] = isset( $item['tooltip-length'] ) ? $item['tooltip-length'] : 'small';
+						$label_attributes['data-balloon-pos'] = isset( $item['tooltip-position'] ) ? $item['tooltip-position'] : 'down';
+					}
+					if ( isset( $item['html'] ) ) {
+						$label = wp_kses_post( $item['html'] );
+						$encode = false;
+					}
+				} else {
+					$label = $item;
+				}
+				$input_attributes = array(
+					'name' => $field['input_name'],
+					'id' => $field['input_id'] . $i,
+					'value' => $value,
+					'tabindex' => $i
+				);
+				if ( $use_unique_names ) {
+					$input_attributes['name'] = $field['input_name'] . '[' . $value . ']';
+					if ( isset( $field['value'] ) && isset( $field['value'][$value] ) ) {
+						$input_attributes['checked'] = 'checked';
+					}
+				} else {
+					if ( $field['value'] === $value ) {
+						$input_attributes['checked'] = 'checked';
+					}
+				}
+				$input_attributes = wp_parse_args( $field_attributes, $input_attributes );
+
+				self::render_html_tag( 'input', $input_attributes );
+				self::render_html_tag( 'label', $label_attributes, $label, true, $encode );
+				if ( $i < count( $field['choices'] ) - 1 ) {
+					echo $spacer;
+				}
+				$i ++;
+			}
+		}
+
+
+		/**
+		 * Render the HTML needed for a selectize control
+		 *
+		 * @param $field
+		 */
+		static function render_selectize_field( $field ) {
+			$action = isset( $field['action'] ) ? $field['action'] : 'foometafield_selectize';
+			$query  = build_query( array(
+					'action'     => $action,
+					'nonce'      => wp_create_nonce( $action ),
+					'query_type' => isset( $field['query_type'] ) ? $field['query_type'] : 'post',
+					'query_data' => isset( $field['query_data'] ) ? $field['query_data'] : 'page'
+			) );
+
+			$value = ( isset( $field['value'] ) && is_array( $field['value'] ) ) ? $field['value'] : array(
+					'value'   => '',
+					'display' => ''
+			);
+
+			self::render_html_tag( 'input', array(
+					'type'  => 'hidden',
+					'id'    => $field['input_id'] . '_display',
+					'name'  => $field['input_name'] . '[display]',
+					'value' => $value['display']
+			) );
+
+			$inner = '';
+
+			if ( isset( $value['value'] ) ) {
+				$inner = '<option value="' . esc_attr( $value['value'] ) . '" selected="selected">' . esc_html( $value['display'] ) . '</option>';
+			}
+
+			self::render_html_tag( 'select', array(
+					'id'                     => $field['input_id'],
+					'name'                   => $field['input_name'] . '[value]',
+					'value'                  => $value['value'],
+					'placeholder'            => $field['placeholder'],
+					'data-selectize-instance',
+					'data-selectize-query'   => $query,
+					'data-selectize-display' => $field['input_id'] . '_display'
+			), $inner, true, false );
+		}
+		/**
+		 * Render a nested repeater field
+		 *
+		 * @param $field
+		 */
+		static function render_repeater_field( $field ) {
+			self::render_html_tag( 'div', array(
+					'class' => 'foometafields-repeater'
+			), null, false );
+
+			self::render_html_tag('table', array(
+					'class' => 'wp-list-table widefat fixed striped'
+			), null, false );
+
+			//render the table column headers
+			echo '<thead><tr>';
+			foreach ( $field['fields'] as $child_field ) {
+				self::render_html_tag( 'th', array(), $child_field['label'] );
+			}
+			echo '</tr></thead>';
+
+			//render the repeater rows
+			echo '<tbody>';
+			if ( is_array( $field['value'] ) ) {
+				$row_index = 0;
+				foreach( $field['value'] as $row ) {
+					$row_index++;
+					echo '<tr>';
+					foreach ( $field['fields'] as $child_field ) {
+						if ( array_key_exists( $child_field['id'], $row ) ) {
+							$child_field['value'] = $row[ $child_field['id'] ];
+						}
+						echo '<td>';
+						$child_field['input_id'] = $field['input_id'] . '_' . $child_field['id'] . '_' . $row_index;
+						$child_field['input_name'] = $field['input_name'] . '[' . $child_field['id'] . '][]';
+						self::render_field( $child_field );
+						echo '</td>';
+					}
+					echo '</tr>';
+				}
+			}
+			echo '</tbody>';
+
+			//render the repeater footer for adding
+			echo '<tfoot><tr>';
+
+			foreach ( $field['fields'] as $child_field ) {
+				echo '<td>';
+				$child_field['input_id'] = $field['input_id'] . '_' . $child_field['id'];
+				$child_field['input_name'] = $field['input_name'] . '[' . $child_field['id'] . '][]';
+				self::render_field( $child_field, array( 'disabled' => 'disabled' ) );
+				echo '</td>';
+			}
+
+			echo '</tr></tfoot>';
+			echo '</table>';
+
+			self::render_html_tag( 'button', array(
+					'class' => 'button foometafields-repeater-add'
+			), isset( $field['button'] ) ? $field['button'] : __('Add') );
+
+			echo '</div>';
 		}
 
 		/**
@@ -491,7 +586,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 		 * @param bool $close
 		 * @param bool $escape_inner
 		 */
-		static function render_html_tag( $tag, $attributes, $inner = '', $close = true, $escape_inner = true ) {
+		static function render_html_tag( $tag, $attributes, $inner = null, $close = true, $escape_inner = true ) {
 			echo '<' . $tag . ' ';
 			//make sure all attributes are escaped
 			$attributes     = array_map( 'esc_attr', $attributes );
@@ -505,16 +600,22 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 				}
 			}
 			echo implode( ' ', $attributePairs );
-			echo '>';
 			if ( isset( $inner ) ) {
+				echo '>';
 				if ( $escape_inner ) {
 					echo esc_html( $inner );
 				} else {
 					echo $inner;
 				}
-			}
-			if ( $close ) {
-				echo '</' . $tag . '>';
+				if ( $close ) {
+					echo '</' . $tag . '>';
+				}
+			} else {
+				if ( $close ) {
+					echo ' />';
+				} else {
+					echo '>';
+				}
 			}
 		}
 	}

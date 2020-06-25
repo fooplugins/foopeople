@@ -133,7 +133,7 @@ msgstr ""
 msgid "Start typing the manager name"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:70, includes/posttypes/class-person.php:40
+#: includes/admin/person/class-metabox-main-details.php:70, includes/posttypes/class-person.php:50
 msgid "Portrait"
 msgstr ""
 
@@ -162,142 +162,198 @@ msgid "Locations"
 msgstr ""
 
 #: includes/admin/person/class-metabox-main-details.php:123
-msgid "Test"
+msgid "Parent"
 msgstr ""
 
 #: includes/admin/person/class-metabox-main-details.php:128
-msgid "Help Field"
+msgid "Child 1"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:129
-msgid "This tab shows all the available fields. This is a help field."
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:134
-msgid "Section Field"
+#: includes/admin/person/class-metabox-main-details.php:133
+msgid "A repeater field"
 msgstr ""
 
 #: includes/admin/person/class-metabox-main-details.php:135
-msgid "This desc will not be shown for a section."
+msgid "Add Note"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:140
-msgid "Single Column Field"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:141
-msgid "A single column field can show a title and description."
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:146
-msgid "Another single column field with no title set, and a class of foometafields-single-column-icon foometafields-single-column-icon-promo"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:152
+#: includes/admin/person/class-metabox-main-details.php:139
 msgid "Text Field"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:153
+#: includes/admin/person/class-metabox-main-details.php:140
 msgid "A test text field"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:158
+#: includes/admin/person/class-metabox-main-details.php:145, includes/admin/person/class-metabox-main-details.php:250
 msgid "Number Field"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:159
+#: includes/admin/person/class-metabox-main-details.php:146, includes/admin/person/class-metabox-main-details.php:251
 msgid "A test number field"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:164
+#: includes/admin/person/class-metabox-main-details.php:151, includes/admin/person/class-metabox-main-details.php:256
 msgid "Textarea Field"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:165
+#: includes/admin/person/class-metabox-main-details.php:152, includes/admin/person/class-metabox-main-details.php:257
 msgid "A test textarea field"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:170
+#: includes/admin/person/class-metabox-main-details.php:157, includes/admin/person/class-metabox-main-details.php:275
 msgid "Checkbox Field"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:171
+#: includes/admin/person/class-metabox-main-details.php:158, includes/admin/person/class-metabox-main-details.php:276
 msgid "A test Checkbox field"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:176
+#: includes/admin/person/class-metabox-main-details.php:163, includes/admin/person/class-metabox-main-details.php:263
 msgid "Select Field"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:177
+#: includes/admin/person/class-metabox-main-details.php:164, includes/admin/person/class-metabox-main-details.php:264
 msgid "A test select field"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:180, includes/admin/person/class-metabox-main-details.php:192, includes/admin/person/class-metabox-main-details.php:204, includes/admin/person/class-metabox-main-details.php:230
+#: includes/admin/person/class-metabox-main-details.php:167, includes/admin/person/class-metabox-main-details.php:267, includes/admin/person/class-metabox-main-details.php:287, includes/admin/person/class-metabox-main-details.php:300, includes/admin/person/class-metabox-main-details.php:315, includes/admin/person/class-metabox-main-details.php:327, includes/admin/person/class-metabox-main-details.php:355, includes/admin/person/class-metabox-main-details.php:374
 msgid "Option 1"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:181, includes/admin/person/class-metabox-main-details.php:193, includes/admin/person/class-metabox-main-details.php:205, includes/admin/person/class-metabox-main-details.php:234
+#: includes/admin/person/class-metabox-main-details.php:168, includes/admin/person/class-metabox-main-details.php:268, includes/admin/person/class-metabox-main-details.php:288, includes/admin/person/class-metabox-main-details.php:301, includes/admin/person/class-metabox-main-details.php:316, includes/admin/person/class-metabox-main-details.php:328, includes/admin/person/class-metabox-main-details.php:360, includes/admin/person/class-metabox-main-details.php:379
 msgid "Option 2"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:182, includes/admin/person/class-metabox-main-details.php:194, includes/admin/person/class-metabox-main-details.php:206
+#: includes/admin/person/class-metabox-main-details.php:169, includes/admin/person/class-metabox-main-details.php:269, includes/admin/person/class-metabox-main-details.php:289, includes/admin/person/class-metabox-main-details.php:302, includes/admin/person/class-metabox-main-details.php:317, includes/admin/person/class-metabox-main-details.php:329, includes/admin/person/class-metabox-main-details.php:383
 msgid "Option 3"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:183, includes/admin/person/class-metabox-main-details.php:195, includes/admin/person/class-metabox-main-details.php:207
+#: includes/admin/person/class-metabox-main-details.php:170, includes/admin/person/class-metabox-main-details.php:270, includes/admin/person/class-metabox-main-details.php:290, includes/admin/person/class-metabox-main-details.php:303, includes/admin/person/class-metabox-main-details.php:318, includes/admin/person/class-metabox-main-details.php:330
 msgid "Option 4"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:188
-msgid "Radio Field"
+#: includes/admin/person/class-metabox-main-details.php:177
+msgid "Help Field"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:189
-msgid "A test radio field"
+#: includes/admin/person/class-metabox-main-details.php:178, includes/admin/person/class-metabox-main-details.php:196, includes/admin/person/class-metabox-main-details.php:216
+msgid "This tab shows all the available fields. This is a help field."
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:200
-msgid "Checkboxlist Field"
+#: includes/admin/person/class-metabox-main-details.php:183
+msgid "Section Field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:184, includes/admin/person/class-metabox-main-details.php:202
+msgid "This desc will not be shown for a section."
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:191
+msgid "Child 2"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:195
+msgid "Help Field 2"
 msgstr ""
 
 #: includes/admin/person/class-metabox-main-details.php:201
+msgid "Section Field 2"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:211
+msgid "Test"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:221
+msgid "Heading Field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:226
+msgid "Another help field but with class set to foometafields-icon foometafields-icon-promo"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:232
+msgid "Block Field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:233
+msgid "This field should have the label above the input"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:238
+msgid "Inline Field"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:239
+msgid "This field should have the label next to the input"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:245
+msgid "This field will not have a label"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:281, includes/admin/person/class-metabox-main-details.php:282
+msgid "Radio Fields Inline"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:295
+msgid "Checkboxes Inline"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:296, includes/admin/person/class-metabox-main-details.php:324
 msgid "A test checkboxlist field"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:212
+#: includes/admin/person/class-metabox-main-details.php:310, includes/admin/person/class-metabox-main-details.php:311
+msgid "Radio Fields Stacked"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:323
+msgid "Checkboxlist stacked"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:336
 msgid "Color Field"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:213
+#: includes/admin/person/class-metabox-main-details.php:337
 msgid "A test HTML5 color input field"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:218
+#: includes/admin/person/class-metabox-main-details.php:342
 msgid "Colorpicker Field"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:219
+#: includes/admin/person/class-metabox-main-details.php:343
 msgid "A test colorpicker field using the colorpicker built into WP"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:224
-msgid "HTML List Field"
+#: includes/admin/person/class-metabox-main-details.php:348
+msgid "HTML List Field (radio)"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:225
+#: includes/admin/person/class-metabox-main-details.php:349, includes/admin/person/class-metabox-main-details.php:368
 msgid "A test html list field"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:240
+#: includes/admin/person/class-metabox-main-details.php:356, includes/admin/person/class-metabox-main-details.php:375
+msgid "A tooltip for Option 1"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:366
+msgid "HTML List Field (checkbox)"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:389
 msgid "Suggest Field (autocomplete without a key)"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:243, includes/admin/person/class-metabox-main-details.php:251
+#: includes/admin/person/class-metabox-main-details.php:392, includes/admin/person/class-metabox-main-details.php:400
 msgid "Start typing"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:249
+#: includes/admin/person/class-metabox-main-details.php:398
 msgid "selectize Field (autocomplete with a key)"
 msgstr ""
 
@@ -517,121 +573,121 @@ msgstr ""
 msgid "The line width for the organogram"
 msgstr ""
 
-#: includes/posttypes/class-person.php:28, includes/posttypes/class-person.php:38, includes/posttypes/class-person.php:39
+#: includes/posttypes/class-person.php:25, includes/posttypes/class-person.php:38, includes/posttypes/class-person.php:49
 msgid "People"
 msgstr ""
 
-#: includes/posttypes/class-person.php:29
+#: includes/posttypes/class-person.php:39
 msgid "Person"
 msgstr ""
 
-#: includes/posttypes/class-person.php:30
+#: includes/posttypes/class-person.php:40
 msgid "Add Person"
 msgstr ""
 
-#: includes/posttypes/class-person.php:31
+#: includes/posttypes/class-person.php:41
 msgid "Add New Person"
 msgstr ""
 
-#: includes/posttypes/class-person.php:32
+#: includes/posttypes/class-person.php:42
 msgid "Edit Person"
 msgstr ""
 
-#: includes/posttypes/class-person.php:33
+#: includes/posttypes/class-person.php:43
 msgid "New People"
 msgstr ""
 
-#: includes/posttypes/class-person.php:34
+#: includes/posttypes/class-person.php:44
 msgid "View People"
 msgstr ""
 
-#: includes/posttypes/class-person.php:35
+#: includes/posttypes/class-person.php:45
 msgid "Search People"
 msgstr ""
 
-#: includes/posttypes/class-person.php:36
+#: includes/posttypes/class-person.php:46
 msgid "Nobody found"
 msgstr ""
 
-#: includes/posttypes/class-person.php:37
+#: includes/posttypes/class-person.php:47
 msgid "Nobody found in Trash"
 msgstr ""
 
-#: includes/posttypes/class-person.php:41
+#: includes/posttypes/class-person.php:51
 msgid "Set Portrait"
 msgstr ""
 
-#: includes/posttypes/class-person.php:42
+#: includes/posttypes/class-person.php:52
 msgctxt "foopeople"
 msgid "Remove Portrait"
 msgstr ""
 
-#: includes/posttypes/class-person.php:43
+#: includes/posttypes/class-person.php:53
 msgctxt "foopeople"
 msgid "Use as Portrait"
 msgstr ""
 
-#: includes/posttypes/class-person.php:74, includes/posttypes/class-person.php:77
+#: includes/posttypes/class-person.php:84, includes/posttypes/class-person.php:87
 msgid "Person updated."
 msgstr ""
 
-#: includes/posttypes/class-person.php:75
+#: includes/posttypes/class-person.php:85
 msgid "Person custom field updated."
 msgstr ""
 
-#: includes/posttypes/class-person.php:76
+#: includes/posttypes/class-person.php:86
 msgid "Person custom field deleted."
 msgstr ""
 
-#: includes/posttypes/class-person.php:78
+#: includes/posttypes/class-person.php:88
 msgid "Person restored to revision from %s."
 msgstr ""
 
-#: includes/posttypes/class-person.php:79
+#: includes/posttypes/class-person.php:89
 msgid "Person published."
 msgstr ""
 
-#: includes/posttypes/class-person.php:80
+#: includes/posttypes/class-person.php:90
 msgid "Person saved."
 msgstr ""
 
-#: includes/posttypes/class-person.php:81
+#: includes/posttypes/class-person.php:91
 msgid "Person submitted."
 msgstr ""
 
-#: includes/posttypes/class-person.php:82
+#: includes/posttypes/class-person.php:92
 msgid "People scheduled for: <strong>%1$s</strong>."
 msgstr ""
 
-#: includes/posttypes/class-person.php:83
+#: includes/posttypes/class-person.php:93
 msgid "Person draft updated."
 msgstr ""
 
-#: includes/posttypes/class-person.php:102
+#: includes/posttypes/class-person.php:112
 msgid "%s Person updated."
 msgid_plural "%s People updated."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/posttypes/class-person.php:103
+#: includes/posttypes/class-person.php:113
 msgid "%s Person not updated, somebody is editing it."
 msgid_plural "%s People not updated, somebody is editing them."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/posttypes/class-person.php:104
+#: includes/posttypes/class-person.php:114
 msgid "%s Person permanently deleted."
 msgid_plural "%s People permanently deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/posttypes/class-person.php:105
+#: includes/posttypes/class-person.php:115
 msgid "%s Person moved to the Trash."
 msgid_plural "%s People moved to the Trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/posttypes/class-person.php:106
+#: includes/posttypes/class-person.php:116
 msgid "%s Person restored from the Trash."
 msgid_plural "%s People restored from the Trash."
 msgstr[0] ""

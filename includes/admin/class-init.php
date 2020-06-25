@@ -25,9 +25,15 @@ if ( !class_exists( 'FooPlugins\FooPeople\Admin\Init' ) ) {
 			new namespace\Person\MetaboxPersonPreview();
 		}
 
-		function enqueue() {
-			wp_enqueue_style( 'foopeople_preview_styles', FOOPEOPLE_URL . '/assets/css/foopeople.admin.min.css', array(), FOOPEOPLE_VERSION );
-			wp_enqueue_script( 'foopeople_preview_scripts', FOOPEOPLE_URL . '/assets/js/admin.min.js', array( 'jquery' ), FOOPEOPLE_VERSION, true );
+		function enqueue( $hook_suffix ) {
+			if ( in_array( $hook_suffix, array( 'post.php', 'post-new.php' ) ) ) {
+				$screen = get_current_screen();
+
+				if ( is_object( $screen ) && FOOPEOPLE_CPT_PERSON == $screen->post_type ) {
+					wp_enqueue_style( 'foopeople_preview_styles', FOOPEOPLE_URL . 'assets/css/foopeople.admin.min.css', array(), FOOPEOPLE_VERSION );
+					wp_enqueue_script( 'foopeople_preview_scripts', FOOPEOPLE_URL . 'assets/js/admin.min.js', array( 'jquery' ), FOOPEOPLE_VERSION, true );
+				}
+			}
 		}
 	}
 }

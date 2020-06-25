@@ -109,6 +109,22 @@
 		$( '#poststuff input[data-wp-color-picker]' ).wpColorPicker();
 	};
 
+	FOOMETAFIELDS.setupRepeaterFields = function() {
+		$( '#poststuff .foometafields-repeater-add' ).click( function( e ) {
+
+			e.preventDefault();
+			e.stopPropagation();
+
+			var $this = $( this ),
+				$table = $this.parents( '.foometafields-repeater:first' ).find( 'table:first' ),
+				addRow = $table.find( 'tfoot tr' ).clone();
+
+			addRow.find( ':input' ).removeAttr( 'disabled' );
+
+			$table.find( 'tbody' ).append( addRow );
+		});
+	};
+
 	$( function() { //wait for ready
 		FOOMETAFIELDS.moveTaxonomyBoxes();
 		FOOMETAFIELDS.movePortraitBox();
@@ -116,6 +132,7 @@
 		FOOMETAFIELDS.setupAutoSuggestFields();
 		FOOMETAFIELDS.setupSelectizeFields();
 		FOOMETAFIELDS.setupColorpickerFields();
+		FOOMETAFIELDS.setupRepeaterFields();
 	});
 
 }( window.FOOMETAFIELDS = window.FOOMETAFIELDS || {}, jQuery ) );
