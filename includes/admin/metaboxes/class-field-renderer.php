@@ -360,7 +360,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 						'query_data' => isset( $field['query_data'] ) ? $field['query_data'] : 'page'
 					) );
 
-					$attributes = wp_parse_args( $attributes, array(
+					$attributes = wp_parse_args( array(
 							'type'                   => 'text',
 							'id'                     => $field['input_id'],
 							'name'                   => $field['input_name'],
@@ -370,7 +370,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 							'data-suggest-query'     => $query,
 							'data-suggest-multiple'  => isset( $field['multiple'] ) ? $field['multiple'] : 'false',
 							'data-suggest-separator' => isset( $field['separator'] ) ? $field['separator'] : ','
-					) );
+					), $attributes );
 
 					self::render_html_tag( 'input', $attributes );
 
@@ -478,7 +478,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 						$input_attributes['checked'] = 'checked';
 					}
 				}
-				$input_attributes = wp_parse_args( $field_attributes, $input_attributes );
+				$input_attributes = wp_parse_args( $input_attributes, $field_attributes );
 
 				self::render_html_tag( 'input', $input_attributes );
 				self::render_html_tag( 'label', $label_attributes, $label, true, $encode );
