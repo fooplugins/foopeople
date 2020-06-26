@@ -79,6 +79,23 @@
 		vertical-align: middle;
 		margin: 0 3px 3px 8px;
 	}
+
+  	.foometafields-tab-error {
+		display: inline-block;
+		vertical-align: top;
+		box-sizing: border-box;
+		margin: 1px 0 -1px 2px;
+		padding: 0 5px;
+		min-width: 18px;
+		height: 18px;
+		border-radius: 9px;
+		background-color: #ca4a1f;
+		color: #fff;
+		font-size: 11px;
+		line-height: 1.6;
+		text-align: center;
+		z-index: 26;
+	}
 }
 
 // Content panel wrapper

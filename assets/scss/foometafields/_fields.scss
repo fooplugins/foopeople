@@ -79,6 +79,9 @@
 	}
   }
 
+  &.foometafields-error {
+	background-color: #fde6e6;
+  }
 
   input[type="text"],
   input[type="password"],
@@ -179,6 +182,16 @@
 	&:before {
 	  content: "\f155"; /* star */
 	  color: #31be4d;
+	}
+  }
+
+  &.foometafields-icon-error p {
+	background-color: #fde6e6;
+	border-left: 4px solid #bb2f2f;
+
+	&:before {
+	  content: "\f534"; /* warning */
+	  color: #bb2f2f;
 	}
   }
 }

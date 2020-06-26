@@ -56,7 +56,6 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 									'id'       => 'manager',
 									'label'    => __( 'Line Manager', 'foopeople' ),
 									'desc'     => __( '', 'foopeople' ),
-									'required' => true,
 									'type'     => 'selectize',
 									'default'  => '',
 									'placeholder' => __( 'Start typing the manager name', 'foopeople' ),
