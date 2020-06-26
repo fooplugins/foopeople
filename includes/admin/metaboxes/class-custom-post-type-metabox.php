@@ -2,6 +2,7 @@
 
 namespace FooPlugins\FooPeople\Admin\Metaboxes;
 
+use FooPlugins\FooPeople\PostTypes\Person;
 use WP_User;
 
 if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox' ) ) {
@@ -283,6 +284,18 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 							$value = foopeople_clean( $value );
 						}
 
+						//we have no value set, so check required
+						if ( empty( $value) ) {
+							if ( isset( $field['required'] ) && $field['required'] ) {
+								if ( !isset( $data[ '__errors' ] ) ) {
+									$data[ '__errors' ] = array();
+								}
+								$data[ '__errors' ][ $field['id'] ] = array(
+										'message' => sprintf( __('%s is required!'), $field['label'] )
+								);
+							}
+						}
+
 						$data[ $field['id'] ] = $value;
 					}
 				}
@@ -292,7 +305,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 			if ( isset( $source['tabs'] ) ) {
 				foreach ( $source['tabs'] as $tab ) {
 					$tab_data = $this->get_posted_data_recursive( $tab, $sanitized_data );
-					$data = array_merge( $data, $tab_data );
+					$data = array_merge_recursive( $data, $tab_data );
 				}
 			}
 

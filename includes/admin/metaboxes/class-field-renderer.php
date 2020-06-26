@@ -18,6 +18,9 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 			$classes[] = 'foometafields-container';
 			$classes[] = 'foometafields-container-' . $id;
 
+			//process the field_group based on the state and make any changes if needed
+			self::process_field_group( $field_group, $state );
+
 			?>
 			<style>
 				#<?php echo $id; ?> .inside {
@@ -56,6 +59,68 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 		}
 
 		/**
+		 * Process the fields based on the state
+		 *
+		 * @param $parent_array
+		 * @param $state
+		 * @param string $tab_id
+		 */
+		static function process_field_group( &$parent_array, $state, $tab_id = 'no_tab' ) {
+			if ( isset( $parent_array['tabs'] ) ) {
+				foreach ( $parent_array['tabs'] as &$tab ) {
+					self::process_field_group( $tab, $state, $tab['id'] );
+				}
+			}
+
+			if ( isset( $parent_array['fields'] ) ) {
+				$errors = self::process_errors( $parent_array['fields'], $state, $tab_id );
+
+				if ( $errors > 0 ) {
+					$parent_array['errors'] = $errors;
+				}
+			}
+		}
+
+		/**
+		 * Process the array of fields for errors
+		 *
+		 * @param $fields
+		 * @param $state
+		 * @param $tab_id
+		 *
+		 * @return int
+		 */
+		static function process_errors( &$fields, $state, $tab_id ) {
+			//check if there are any errors
+			if ( isset( $state['__errors'] ) ) {
+				$errors = array();
+
+				foreach ( $fields as $field ) {
+					if ( array_key_exists( $field['id'], $state['__errors'] ) ) {
+						$errors[] = esc_html( $state['__errors'][$field['id']]['message'] );
+						$field['error'] = true;
+					}
+				}
+
+				if ( count( $errors ) > 0 ) {
+					$error_message = '<p><strong>' . esc_html( __( 'The following errors were found:' ) ) . '</strong><br />';
+					$error_message .= implode( '<br />', $errors ) . '</p>';
+
+					$error_field = array(
+							'id' => $tab_id . '_errors',
+							'type' => 'error',
+							'desc' => $error_message
+					);
+
+					array_unshift($fields, $error_field );
+
+					return count( $errors );
+				}
+			}
+			return 0;
+		}
+
+		/**
 		 * Renders a tab
 		 *
 		 * @param $tab
@@ -89,6 +154,13 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 				<?php } ?>
 				<span class="foometafields-tab-text"><?php echo $tab['label']; ?></span>
 				<?php
+				if ( isset( $tab['errors'] ) ) {
+					self::render_html_tag( 'span', array(
+							'class' => 'foometafields-tab-error',
+							'title' => sprintf( _n( 'There is an error. Click to see more info.', 'There are %s errors. Click to see more info.', $tab['errors'] ), $tab['errors'] )
+					), $tab['errors'] );
+				}
+
 				if ( isset( $tab['tabs'] ) ) {
 					echo '<div class="foometafields-child-tabs">';
 					foreach ( $tab['tabs'] as $child_tab ) {
@@ -187,6 +259,9 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 				if ( isset( $field['class'] ) ) {
 					$field_classes[] = $field['class'];
 				}
+				if ( isset( $field['error'] ) && $field['error'] ) {
+					$field_classes[] = 'foometafields-error';
+				}
 				$field_row_data_html = '';
 				if ( isset( $field['row_data'] ) ) {
 					$field_row_data = array_map( 'esc_attr', $field['row_data'] );
@@ -201,9 +276,12 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 
 				//check for any special non-editable field types
 				if ( 'help' === $field_type ) {
-					$field['type'] = 'html';
+					$field['type']   = 'html';
 					$field_classes[] = 'foometafields-icon foometafields-icon-help';
-					$field['desc'] = '<p>' . esc_html( $field['desc'] ) . '</p>';
+					$field['desc']   = '<p>' . esc_html( $field['desc'] ) . '</p>';
+				} else if ( 'error' === $field_type ) {
+					$field['type'] = 'html';
+					$field_classes[] = 'foometafields-icon foometafields-icon-error';
 				} else if ( 'heading' === $field_type ) {
 					$field['type'] = 'html';
 					$field['desc'] = '<h3>' . esc_html( $field['desc'] ) . '</h3>';
@@ -212,6 +290,9 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 				<div class="<?php echo implode( ' ', $field_classes ); ?>"<?php echo $field_row_data_html; ?>>
 					<?php if ( isset( $field['label'] ) ) { ?>
 						<div class="foometafields-label">
+							<?php if ( isset( $field['required'] ) && $field['required'] ) {
+								$field['label'] .= ' *';
+							}?>
 							<label for="foometafields_<?php echo $id . '_' . $field['id']; ?>"><?php echo esc_html( $field['label'] ); ?></label>
 							<?php if ( ! empty( $field['tooltip'] ) ) { ?>
 								<span data-balloon-length="large" data-balloon-pos="right"
