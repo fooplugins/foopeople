@@ -11,7 +11,9 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 
 		function __construct() {
 			//register the post types
-			add_action( 'init', array( $this, 'register' ) );
+			add_action( 'init', array( $this, 'register_post_type' ) );
+
+			add_action( 'init', array( $this, 'register_post_statuses' ), 9 );
 
 			//update post type messages
 			add_filter( 'post_updated_messages', array( $this, 'update_messages' ) );
@@ -20,7 +22,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 			add_filter( 'bulk_post_updated_messages', array( $this, 'update_bulk_messages' ), 10, 2 );
 		}
 
-		function register() {
+		function register_post_type() {
 			$people_issues = 0;
 			$person_menu_name = __( 'People', 'foopeople' );
 			if ( $people_issues > 0 ) {
@@ -62,6 +64,58 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 			);
 
 			register_post_type( FOOPEOPLE_CPT_PERSON, $args );
+		}
+
+		function register_post_statuses() {
+			$statuses = apply_filters(
+				'FooPlugins\FooPeople\PostTypes\Person\Statuses',
+				array(
+					'onbaording'    => array(
+						'label'                     => _x( 'Onboarding', 'Person status', 'fooepeople' ),
+						'public'                    => false,
+						'exclude_from_search'       => false,
+						'show_in_admin_all_list'    => true,
+						'show_in_admin_status_list' => true,
+						'label_count'               => _n_noop( 'Onboarding <span class="count">(%s)</span>', 'Onboarding <span class="count">(%s)</span>', 'fooepeople' ),
+					),
+					'active'    => array(
+						'label'                     => _x( 'Active', 'Person status', 'fooepeople' ),
+						'public'                    => false,
+						'exclude_from_search'       => false,
+						'show_in_admin_all_list'    => true,
+						'show_in_admin_status_list' => true,
+						'label_count'               => _n_noop( 'Active <span class="count">(%s)</span>', 'Active <span class="count">(%s)</span>', 'fooepeople' ),
+					),
+					'terminated' => array(
+						'label'                     => _x( 'Terminated', 'Person status', 'fooepeople' ),
+						'public'                    => false,
+						'exclude_from_search'       => false,
+						'show_in_admin_all_list'    => true,
+						'show_in_admin_status_list' => true,
+						'label_count'               => _n_noop( 'Terminated <span class="count">(%s)</span>', 'Terminated <span class="count">(%s)</span>', 'fooepeople' ),
+					),
+					'deceased'    => array(
+						'label'                     => _x( 'Deceased', 'Person status', 'fooepeople' ),
+						'public'                    => false,
+						'exclude_from_search'       => false,
+						'show_in_admin_all_list'    => true,
+						'show_in_admin_status_list' => true,
+						'label_count'               => _n_noop( 'Deceased <span class="count">(%s)</span>', 'Deceased <span class="count">(%s)</span>', 'fooepeople' ),
+					),
+					'resigned'  => array(
+						'label'                     => _x( 'Resigned', 'Person status', 'fooepeople' ),
+						'public'                    => false,
+						'exclude_from_search'       => false,
+						'show_in_admin_all_list'    => true,
+						'show_in_admin_status_list' => true,
+						'label_count'               => _n_noop( 'Resigned <span class="count">(%s)</span>', 'Resigned <span class="count">(%s)</span>', 'fooepeople' ),
+					),
+				)
+			);
+
+			foreach ( $statuses as $status => $args ) {
+				register_post_status( $status, $args );
+			}
 		}
 
 		/**
