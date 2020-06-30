@@ -2,6 +2,9 @@
 
 namespace FooPlugins\FooPeople\Admin\Metaboxes;
 
+use FooPlugins\FooPeople\PostTypes\Person;
+use WP_User;
+
 if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox' ) ) {
 
 	abstract class CustomPostTypeMetabox {
@@ -150,12 +153,12 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 		 */
 		function add_meta_boxes( $post ) {
 			add_meta_box(
-					$this->build_id(),
-					$this->metabox['metabox_title'],
-					array( $this, 'render_metabox' ),
-					$this->metabox['post_type'],
-					isset( $this->metabox['context'] ) ? $this->metabox['context'] : 'normal',
-					isset( $this->metabox['priority'] ) ? $this->metabox['priority'] : 'high'
+				$this->build_id(),
+				$this->metabox['metabox_title'],
+				array( $this, 'render_metabox' ),
+				$this->metabox['post_type'],
+				isset( $this->metabox['context'] ) ? $this->metabox['context'] : 'normal',
+				isset( $this->metabox['priority'] ) ? $this->metabox['priority'] : 'default'
 			);
 		}
 
@@ -184,7 +187,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 					 value="<?php echo wp_create_nonce( $full_id ); ?>"/><?php
 
 			//render the tab field group
-			FieldRenderer::render_tabs( $this->field_group, $full_id, $state );
+			FieldRenderer::render_field_group( $this->field_group, $full_id, $state );
 		}
 
 		/**
@@ -281,7 +284,17 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 							$value = foopeople_clean( $value );
 						}
 
-						//TODO : for repeater fields, add some extra data to the records (time and user)
+						//we have no value set, so check required
+						if ( empty( $value) ) {
+							if ( isset( $field['required'] ) && $field['required'] ) {
+								if ( !isset( $data[ '__errors' ] ) ) {
+									$data[ '__errors' ] = array();
+								}
+								$data[ '__errors' ][ $field['id'] ] = array(
+										'message' => sprintf( __('%s is required!'), $field['label'] )
+								);
+							}
+						}
 
 						$data[ $field['id'] ] = $value;
 					}
@@ -292,7 +305,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 			if ( isset( $source['tabs'] ) ) {
 				foreach ( $source['tabs'] as $tab ) {
 					$tab_data = $this->get_posted_data_recursive( $tab, $sanitized_data );
-					$data = array_merge( $data, $tab_data );
+					$data = array_merge_recursive( $data, $tab_data );
 				}
 			}
 
@@ -304,14 +317,38 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 		 * @param $sanitized_data
 		 */
 		function get_posted_data_for_repeater( $sanitized_data ) {
-			$result = array();
+			$results = array();
 			foreach ( array_keys( $sanitized_data ) as $fieldKey ) {
 				foreach ( $sanitized_data[$fieldKey] as $key => $value ) {
-					$result[$key][$fieldKey] = $value;
+					$results[$key][$fieldKey] = $value;
 				}
 			}
 
-			return $result;
+			$current_username = 'unknown';
+			$current_user = wp_get_current_user();
+			if ( $current_user instanceof WP_User ) {
+				$current_username = $current_user->user_login;
+			}
+
+			// stored some extra info for each row
+			// check if each row has an __id field,
+			//   if not then add one, so we can figure out which row to delete later.
+			//   Also add a __created_by field and set to currently logged on user.
+			//   And also a __created field which is the UTC timestamp of when the field was created
+			// if the __id field exists, then we doing an update.
+			//   update the __updated_by field and __updated timestamp fields
+			foreach ( $results as &$result ) {
+				if ( !isset($result['__id'] ) ) {
+					$result['__id'] = wp_generate_password( 10, false, false );
+					$result['__created'] = time();
+					$result['__created_by'] = $current_username;
+				} else {
+					$result['__updated'] = time();
+					$result['__updated_by'] = $current_username;
+				}
+			}
+
+			return $results;
 		}
 
 		/***

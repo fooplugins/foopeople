@@ -21,6 +21,7 @@ define ( 'FOOPEOPLE_CT_SKILL', 'foopeople-skill' );
 
 // post meta
 define ( 'FOOPEOPLE_META_PERSON_MAIN', '_foopeople_person_main' );
+define ( 'FOOPEOPLE_META_PERSON_NOTES', '_foopeople_person_notes' );
 define ( 'FOOPEOPLE_META_PERSON_SEARCH', '_foopeople_person_search' );
 
 // Customizer

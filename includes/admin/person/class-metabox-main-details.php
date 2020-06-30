@@ -56,7 +56,6 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 									'id'       => 'manager',
 									'label'    => __( 'Line Manager', 'foopeople' ),
 									'desc'     => __( '', 'foopeople' ),
-									'required' => true,
 									'type'     => 'selectize',
 									'default'  => '',
 									'placeholder' => __( 'Start typing the manager name', 'foopeople' ),
@@ -273,7 +272,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 								array(
 									'id'       => 'checkbox',
 									'label'    => __( 'Checkbox Field', 'foopeople' ),
-									'desc'     => __( 'A test Checkbox field', 'foopeople' ),
+									'layout'   => 'inline',
 									'type'     => 'checkbox',
 								),
 								array(
@@ -411,6 +410,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 					'post_type'      => FOOPEOPLE_CPT_PERSON,
 					'metabox_id'     => 'details',
 					'metabox_title'  => __( 'Main Details', 'pacepeople' ),
+					'priority'       => 'high',
 					'meta_key'       => FOOPEOPLE_META_PERSON_MAIN,
 					'plugin_url'     => FOOPEOPLE_URL,
 					'plugin_version' => FOOPEOPLE_VERSION

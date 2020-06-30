@@ -111,17 +111,35 @@
 
 	FOOMETAFIELDS.setupRepeaterFields = function() {
 		$( '#poststuff .foometafields-repeater-add' ).click( function( e ) {
+			var $this = $( this ),
+				$container = $this.parents( '.foometafields-repeater:first' ),
+				$table = $container.find( 'table:first' ),
+				addRow = $table.find( 'tfoot tr' ).clone();
 
 			e.preventDefault();
 			e.stopPropagation();
 
-			var $this = $( this ),
-				$table = $this.parents( '.foometafields-repeater:first' ).find( 'table:first' ),
-				addRow = $table.find( 'tfoot tr' ).clone();
-
+			//make sure the inputs are not disabled
 			addRow.find( ':input' ).removeAttr( 'disabled' );
 
+			//add the new row to the table
 			$table.find( 'tbody' ).append( addRow );
+
+			//ensure the no-data message is hidden, and the table is shown
+			$container.removeClass( 'foometafields-repeater-empty' );
+		});
+
+		$( '#poststuff .foometafields-repeater' ).on( 'click', '.foometafields-repeater-delete', function( e ) {
+			var $this = $( this ),
+				confirmMessage = $this.data( 'confirm' ),
+				$row = $this.parents( 'tr:first' );
+
+			e.preventDefault();
+			e.stopPropagation();
+
+			if ( confirmMessage && confirm( confirmMessage ) ) {
+				$row.remove();
+			}
 		});
 	};
 

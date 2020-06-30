@@ -79,6 +79,23 @@
 		vertical-align: middle;
 		margin: 0 3px 3px 8px;
 	}
+
+  	.foometafields-tab-error {
+		display: inline-block;
+		vertical-align: top;
+		box-sizing: border-box;
+		margin: 1px 0 -1px 2px;
+		padding: 0 5px;
+		min-width: 18px;
+		height: 18px;
+		border-radius: 9px;
+		background-color: #ca4a1f;
+		color: #fff;
+		font-size: 11px;
+		line-height: 1.6;
+		text-align: center;
+		z-index: 26;
+	}
 }
 
 // Content panel wrapper
@@ -89,49 +106,41 @@
 	width: calc(100% - 150px);
 	background-color: $white;
 	min-height: 400px;
-}
 
-
-// Content panel
-// ------------------------------------
-.foometafields-content {
+  // Content panel
+  // ------------------------------------
+  .foometafields-content {
 	display: none;
 	padding: $m-sm;
 
 	&.foometafields-active {
-		display: block;
-	}
-
-	table {
-		width: 100%;
-		margin: 10px 0;
+	  display: block;
 	}
 
 	img {
-		max-width: 100%;
-		height: auto;
+	  max-width: 100%;
+	  height: auto;
 	}
 
 	// Reset Wordpress panel styling when we move the meta boxes into a FooMetaField
 	.handlediv,
 	h2.ui-sortable-handle {
-		display: none !important;
+	  display: none !important;
 	}
 	.postbox {
-		border: none;
-		box-shadow: none;
-		background: transparent;
+	  border: none;
+	  box-shadow: none;
+	  background: transparent;
 	}
 
 	// Reset featured thumbnail styling
 	#set-post-thumbnail {
-		.attachment-post-thumbnail {
-			max-width: 250px;
-		}
+	  .attachment-post-thumbnail {
+		max-width: 250px;
+	  }
 	}
+  }
 }
-
-
 
 
 // Child tabs
