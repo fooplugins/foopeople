@@ -45,6 +45,10 @@ registerBlockType( 'fooplugins/foopeople-listing', {
 			type: 'string',
 			default: ''
 		},
+		allTeams: {
+			type: 'array',
+			default: JSON.parse( foopeopleListing )
+		},
 		showSearch: {
 			type: 'boolean',
 			default: true
