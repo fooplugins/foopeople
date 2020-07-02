@@ -1,7 +1,6 @@
 import { CheckboxControl, SelectControl } from 'wp.components';
-import { useState, Component } from 'wp.element';
+import { Component } from 'wp.element';
 import { __ } from 'wp.i18n';
-import { withState } from 'wp.compose';
 
 export default class FooPeopleListingEdit extends Component {
 
@@ -14,9 +13,7 @@ export default class FooPeopleListingEdit extends Component {
 	}
 
 	onChangeSearchVisibility( value )  {
-		// this.setChecked();
-		// this.setState({ showSearch: value });
-		// this.setAttributes({ showSearch: value });
+		this.props.setAttributes({ showSearch: value });
 	}
 
 	onChangeTeam( value ) {
@@ -26,15 +23,24 @@ export default class FooPeopleListingEdit extends Component {
 	render( ) {
 
 		return (
-			<div class="form-field form-required term-name-wrap">
-				<label>
-					<SelectControl
-						value={ this.props.attributes.team }
-						label={ __( 'Choose a team' ) }
-						onChange={ this.onChangeTeam  }
-						options={ this.props.attributes.allTeams }
-					/>
-				</label>
+			<div>
+				<div class="form-field form-required term-name-wrap">
+					<label>
+						<SelectControl
+							value={ this.props.attributes.team }
+							label={ __( 'Choose a team' ) }
+							onChange={ this.onChangeTeam  }
+							options={ this.props.attributes.allTeams }
+						/>
+					</label>
+				</div>
+
+				<CheckboxControl
+					label="Show the search box for this team"
+					checked={ this.props.attributes.showSearch }
+					onChange={ this.onChangeSearchVisibility }
+				/>
+
 			</div>
 		);
 
