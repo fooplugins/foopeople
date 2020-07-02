@@ -6,10 +6,7 @@
 
 import { __ } from 'wp.i18n';
 import { registerBlockType } from 'wp.blocks';
-import { TextControl, CheckboxControl, SelectControl } from 'wp.components';
-import { useState } from 'wp.element';
-import { withState } from 'wp.compose';
-
+import FooPeopleListingEdit from './includes/listing.edit';
 
 /**
  * Register: a Gutenberg Block.
@@ -66,59 +63,10 @@ registerBlockType( 'fooplugins/foopeople-listing', {
 	 * @returns {Mixed} JSX Component.
 	 */
 	edit: ( props ) => {
-		const data = JSON.parse(foopeopleListing);
-		const teams = [];
-
-		// for ( let index = 0; index < data.length; index++ ) {
-		// 	teams.push(
-		// 		<p> {data[index].name} / {data[index].slug} </p>
-		// 	);
-		// }
-
-		const {
-			className,
-			attributes: { team, showSearch },
-			setAttributes
-		} = props;
-
-		const [ isChecked, setChecked ] = useState( true );
-
-		const onChangeSearchVisibility = ( value ) => {
-			setChecked();
-			setAttributes({ showSearch: value });
-		};
-
-		const onChangeTeam = ( value ) => {
-			// setState();
-			setState( { value } );
-			setAttributes({ team: value });
-		};
-
 
 		return (
-			<div>
-				<div class="form-field form-required term-name-wrap">
-					<label>
-						<div>
-							Team Slug or ID
-						</div>
-						<SelectControl
-							label={ __( 'Choose a team' ) }
-							onChange={ onChangeTeam  }
-							options={ data }
-						/>
-					</label>
-					<p>The Slug or ID of your team you want to show. Leave blank to show everyone.</p>
-				</div>
-
-				<CheckboxControl
-					label="Show the search box for this team"
-					checked={ isChecked }
-					onChange={ onChangeSearchVisibility }
-				/>
-			</div>
+			<FooPeopleListingEdit {...props}/>
 		);
-
 	},
 
 	/**
