@@ -30,6 +30,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Objects\Person' ) ) {
 				$this->search = get_post_meta( $this->ID, FOOPEOPLE_META_PERSON_SEARCH, true );
 
 				$this->manager_id = intval( foopeople_safe_get_from_array( 'value', $this->get_main_detail( 'manager' ), 0 ) );
+				$this->permalink = get_the_permalink( $this->_post );
 				do_action( 'FooPlugins\FooPeople\Objects\Person\Loaded', $this );
 			}
 		}

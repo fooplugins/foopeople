@@ -28,9 +28,6 @@ if ( !class_exists( 'FooPlugins\FooPeople\Init' ) ) {
 				new namespace\Admin\Init();
 			}
 
-			// Kick off the 'ol Gutenberg stuffs ekse
-			new namespace\Gutenberg\Init();
-
 			//register WP Customizer stuff
 			require_once( FOOPEOPLE_PATH . 'includes/customizer/class-customizer.php' );
 			new \Customizer();
@@ -43,6 +40,9 @@ if ( !class_exists( 'FooPlugins\FooPeople\Init' ) ) {
 			new namespace\Taxonomies\Team();
 			new namespace\Taxonomies\Location();
 			new namespace\Taxonomies\Skill();
+
+			// Kick off the 'ol Gutenberg stuffs ekse
+			new namespace\Gutenberg\Init();
 
 			//Check if the PRO version of FooPeople is running and run the PRO code
 			if ( foopeople_fs()->is__premium_only() ) {

@@ -1,6 +1,7 @@
 .ppl__single-person {
 	$portrait_box: 150px;
 	position: relative;
+	margin-bottom: $m-lg;
 
 	.ppl__card_header {
 		min-height: $portrait_box;

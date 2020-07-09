@@ -2,6 +2,7 @@ const wplib = [
 	'blocks',
 	'block-editor',
 	'components',
+	'compose',
 	'date',
 	'data',
 	'editor',
@@ -22,6 +23,8 @@ module.exports = {
 		library: [ 'wp', '[name]' ],
 		libraryTarget: 'window'
 	},
+
+	// mode: 'development', // DO NOT Enable this, files do not compile
 	externals: wplib.reduce( ( externals, lib ) => {
 		externals[`wp.${lib}`] = {
 			window: [ 'wp', lib ]

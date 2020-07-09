@@ -20,6 +20,9 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 
 			//update post bulk messages
 			add_filter( 'bulk_post_updated_messages', array( $this, 'update_bulk_messages' ), 10, 2 );
+
+			// Add single person page template
+			add_filter('single_template', array( $this,'load_single_person_template' ) );
 		}
 
 		function register_post_type() {
@@ -55,9 +58,11 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 						'use_featured_image'    => _x( 'Use as Portrait', 'foopeople' ),
 					),
 					'hierarchical'  => true,
-					'public'        => false,
+					'show_in_rest'  => true,
+					'public'        => true,
 					'show_ui'       => true,
 					'show_in_menu'  => true,
+					'rewrite'       => array( 'slug' => 'person' ),
 					'menu_icon'     => 'dashicons-groups',
 					'supports'      => array( 'thumbnail', 'title' ),
 				)
@@ -65,6 +70,30 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 
 			register_post_type( FOOPEOPLE_CPT_PERSON, $args );
 		}
+
+
+		/**
+		 * Load the single person template
+		 *
+		 * @global object $post     The current post object.
+		 *
+		 * @param array   $template Which template we are using
+		 *
+		 * @return array $template Adjusted page template to use
+		 */
+		public function load_single_person_template($template) {
+			global $post;
+			/* Checks for single template by post type */
+			if ( $post->post_type == FOOPEOPLE_CPT_PERSON ) {
+				if ( file_exists( FOOPEOPLE_PATH.'includes/templates/person-single.php' ) ) {
+					return FOOPEOPLE_PATH.'includes/templates/person-single.php';
+				}
+			}
+			return $template;
+		}
+
+
+
 
 		function register_post_statuses() {
 			$statuses = apply_filters(

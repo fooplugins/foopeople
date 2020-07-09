@@ -6,6 +6,8 @@
 
 import { __ } from 'wp.i18n';
 import { registerBlockType } from 'wp.blocks';
+import { data, select, withSelect } from 'wp.data';
+import FooPeopleListingEdit from './includes/listing.edit';
 
 /**
  * Register: a Gutenberg Block.
@@ -37,10 +39,6 @@ registerBlockType( 'fooplugins/foopeople-listing', {
 		html: false
 	},
 	attributes: {
-		id: {
-			type: 'number',
-			default: 0
-		},
 		className: {
 			type: 'string'
 		},
@@ -48,10 +46,11 @@ registerBlockType( 'fooplugins/foopeople-listing', {
 			type: 'string',
 			default: ''
 		},
-		team_id: {
-			type: 'number'
+		allTeams: {
+			type: 'array',
+			default: []
 		},
-		show_search: {
+		showSearch: {
 			type: 'boolean',
 			default: true
 		}
@@ -68,13 +67,29 @@ registerBlockType( 'fooplugins/foopeople-listing', {
 	 * @param {Object} props Props.
 	 * @returns {Mixed} JSX Component.
 	 */
-	edit: ( props ) => {
+	edit: withSelect( ( select ) => {
+		const teamsData = select( 'core' ).getEntityRecords( 'taxonomy', 'foopeople-team', { per_page: -1 });
+		let teams = [];
+
+		if ( teamsData ) {
+			teamsData.forEach( element => {
+				teams.push({ 'label': element.name, 'value': element.slug});
+			});
+		}
+
+		return {
+			teams
+		};
+
+	})( props => {
+		const { teams } = props;
+		props.attributes.allTeams = teams;
+
 		return (
-			<div className={ props.className }>
-				This is a preview
-			</div>
+			<FooPeopleListingEdit {...props }/>
 		);
-	},
+
+	}),
 
 	/**
 	 * The save function defines the way in which the different attributes should be combined
@@ -90,6 +105,4 @@ registerBlockType( 'fooplugins/foopeople-listing', {
 	save: ( ) => {
 		return null;
 	}
-
-
 });

@@ -10,6 +10,8 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 
 	class Init {
 
+		private $teams;
+
 		function __construct() {
 			add_action( 'init',  array( $this, 'block_assets') );
 		}
@@ -27,6 +29,10 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 		function block_assets() { // phpcs:ignore
 
 			$asset_file = include( plugin_dir_path( __FILE__ ) . 'assets.php');
+
+
+			// $this->teams = json_encode( foopeople_get_taxonomies(FOOPEOPLE_CT_TEAM) );
+			// var_dump($this->teams);
 
 			//get out quickly if no Gutenberg
 			if ( !function_exists( 'register_block_type' ) ) {
@@ -58,13 +64,15 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 				FOOPEOPLE_VERSION,
 				true
 			);
-			wp_register_script(
-				'foopeople-block-organogram-js',
-				FOOPEOPLE_URL . '/assets/js/block-organogram.min.js',
-				$asset_file['dependencies'],
-				FOOPEOPLE_VERSION,
-				true
-			);
+
+			// TODO : move to premium
+			// wp_register_script(
+			// 	'foopeople-block-organogram-js',
+			// 	FOOPEOPLE_URL . '/assets/js/block-organogram.min.js',
+			// 	$asset_file['dependencies'],
+			// 	FOOPEOPLE_VERSION,
+			// 	true
+			// );
 
 
 			// Register block editor styles for backend.
@@ -79,37 +87,6 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 
 			// Register Front End Script
 			wp_enqueue_script( 'foopeople_front_scripts', FOOPEOPLE_URL . '/assets/js/theme.min.js', array( 'jquery' ), FOOPEOPLE_VERSION, true );
-
-
-
-			// WP Localized globals. Use dynamic PHP stuff in JavaScript via `foopeople` object.
-			wp_localize_script(
-				'foopeople-block-single-js',
-				'foopeopleSingle', // Array containing dynamic data for a JS Global.
-				[
-					'pluginDirPath' => plugin_dir_path( __DIR__ ),
-					'pluginDirUrl'  => plugin_dir_url( __DIR__ ),
-					// Add more data here that you want to access
-				]
-			);
-			wp_localize_script(
-				'foopeople-block-listing-js',
-				'foopeopleListing', // Array containing dynamic data for a JS Global.
-				[
-					'pluginDirPath' => plugin_dir_path( __DIR__ ),
-					'pluginDirUrl'  => plugin_dir_url( __DIR__ ),
-					// Add more data here that you want to access
-				]
-			);
-			wp_localize_script(
-				'foopeople-block-organogram-js',
-				'foopeopleOrganogram', // Array containing dynamic data for a JS Global.
-				[
-					'pluginDirPath' => plugin_dir_path( __DIR__ ),
-					'pluginDirUrl'  => plugin_dir_url( __DIR__ ),
-					// Add more data here that you want to access
-				]
-			);
 
 			/**
 			 * Register Gutenberg block on server-side.
@@ -133,13 +110,9 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 							'type' => 'string'
 						),
 						'person' => array(
-							'type' => 'string',
-							'default' => ''
-						),
-						'person_id' => array(
 							'type' => 'number',
-							'default' => 98
-						),
+							'default' => 0
+						)
 					),
 
 					// Enqueue on both frontend & backend.
@@ -166,10 +139,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 							'type' => 'string',
 							'default' => ''
 						),
-						'team_id' => array(
-							'type' => 'number'
-						),
-						'show_search' => array(
+						'showSearch' => array(
 							'type' => 'boolean',
 							'default' => true
 						),
@@ -184,27 +154,28 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 				)
 			);
 
-			register_block_type(
-				'fooplugins/foopeople-organogram', array(
-					'render_callback' => array( $this, 'render_block_organogram' ),
-					'attributes' => array(
-						'id' => array(
-							'type' => 'number',
-							'default' => 0
-						),
-						'className' => array(
-							'type' => 'string'
-						)
-					),
+			// TODO : move to premium
+			// register_block_type(
+			// 	'fooplugins/foopeople-organogram', array(
+			// 		'render_callback' => array( $this, 'render_block_organogram' ),
+			// 		'attributes' => array(
+			// 			'id' => array(
+			// 				'type' => 'number',
+			// 				'default' => 0
+			// 			),
+			// 			'className' => array(
+			// 				'type' => 'string'
+			// 			)
+			// 		),
 
-					// Enqueue on both frontend & backend.
-					'style'         => 'foopeople-block-style-css',
-					// Enqueue in the editor only.
-					'editor_script' => 'foopeople-block-organogram-js',
-					// Enqueue in the editor only.
-					'editor_style'  => 'foopeople-block-editor-css',
-				)
-			);
+			// 		// Enqueue on both frontend & backend.
+			// 		'style'         => 'foopeople-block-style-css',
+			// 		// Enqueue in the editor only.
+			// 		'editor_script' => 'foopeople-block-organogram-js',
+			// 		// Enqueue in the editor only.
+			// 		'editor_style'  => 'foopeople-block-editor-css',
+			// 	)
+			// );
 
 		}
 
