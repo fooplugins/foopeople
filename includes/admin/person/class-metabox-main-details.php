@@ -2,11 +2,11 @@
 
 namespace FooPlugins\FooPeople\Admin\Person;
 
-use FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox;
+use FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetaboxFieldGroup;
 
 if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) {
 
-	class MetaboxMainDetails extends CustomPostTypeMetabox {
+	class MetaboxMainDetails extends CustomPostTypeMetaboxFieldGroup {
 
 		function __construct() {
 			$field_group = apply_filters( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails\FieldGroup',
