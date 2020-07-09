@@ -59,6 +59,9 @@ registerBlockType( 'fooplugins/foopeople-single', {
 	 * @returns {Mixed} JSX Component.
 	 */
 	edit: ( props ) => {
+
+		const peopleData = select('core').getEntityRecords('postType', 'foopeople-person', { per_page: -1 });
+
 		return (
 			<div className={ props.className }>
 				This is a preview

@@ -28,6 +28,7 @@ if( ! class_exists( 'FooPlugins\FooPeople\Taxonomies\Team' ) ) {
 					),
 					'hierarchical' 		=> true,
 					'show_ui'           => true,
+					'show_in_rest'  	=> true,
 					'show_admin_column' => true,
 					'query_var'         => true,
 					'rewrite'           => array( 'slug' => FOOPEOPLE_CT_TEAM ),

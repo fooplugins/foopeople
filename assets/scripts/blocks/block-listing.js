@@ -6,6 +6,7 @@
 
 import { __ } from 'wp.i18n';
 import { registerBlockType } from 'wp.blocks';
+import { data, select, withSelect } from 'wp.data';
 import FooPeopleListingEdit from './includes/listing.edit';
 
 /**
@@ -47,7 +48,7 @@ registerBlockType( 'fooplugins/foopeople-listing', {
 		},
 		allTeams: {
 			type: 'array',
-			default: JSON.parse( foopeopleListing )
+			default: []
 		},
 		showSearch: {
 			type: 'boolean',
@@ -66,12 +67,29 @@ registerBlockType( 'fooplugins/foopeople-listing', {
 	 * @param {Object} props Props.
 	 * @returns {Mixed} JSX Component.
 	 */
-	edit: ( props ) => {
+	edit: withSelect( ( select ) => {
+		const teamsData = select('core').getEntityRecords('taxonomy', 'foopeople-team', { per_page: -1 });
+		let teams = [];
+
+		if ( teamsData ) {
+			teamsData.forEach(element => {
+				teams.push({ 'label': element.name, 'value': element.slug});
+			});
+		}
+
+		return {
+			teams
+		};
+
+	})( props => {
+		const { teams } = props;
+		props.attributes.allTeams = teams;
 
 		return (
-			<FooPeopleListingEdit {...props}/>
+			<FooPeopleListingEdit {...props }/>
 		);
-	},
+
+	}),
 
 	/**
 	 * The save function defines the way in which the different attributes should be combined
