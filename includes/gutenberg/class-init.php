@@ -110,13 +110,9 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 							'type' => 'string'
 						),
 						'person' => array(
-							'type' => 'string',
-							'default' => ''
-						),
-						'person_id' => array(
 							'type' => 'number',
-							'default' => 98
-						),
+							'default' => 0
+						)
 					),
 
 					// Enqueue on both frontend & backend.
@@ -132,6 +128,13 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 				'fooplugins/foopeople-listing', array(
 					'render_callback' => array( $this, 'render_block_listing' ),
 					'attributes' => array(
+						'id' => array(
+							'type' => 'number',
+							'default' => 0
+						),
+						'className' => array(
+							'type' => 'string'
+						),
 						'team' => array(
 							'type' => 'string',
 							'default' => ''

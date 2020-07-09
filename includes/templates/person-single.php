@@ -3,7 +3,7 @@ if( is_single() ) {
 	get_header();
 	global $post;
 } else {
-	$post = get_post($data['person_id']);
+	$post = get_post($data['person']);
 }
 $person = new FooPlugins\FooPeople\objects\Person($post);
 ?>

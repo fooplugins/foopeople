@@ -7,6 +7,8 @@
 
 import { __ } from 'wp.i18n';
 import { registerBlockType } from 'wp.blocks';
+import { data, select, withSelect } from 'wp.data';
+import FooPeopleSingleEdit from './includes/single.edit';
 
 /**
  * Register: a Gutenberg Block.
@@ -44,6 +46,14 @@ registerBlockType( 'fooplugins/foopeople-single', {
 		},
 		className: {
 			type: 'string'
+		},
+		person: {
+			type: 'string',
+			default: ''
+		},
+		allPeople: {
+			type: 'array',
+			default: []
 		}
 	},
 
@@ -58,16 +68,29 @@ registerBlockType( 'fooplugins/foopeople-single', {
 	 * @param {Object} props Props.
 	 * @returns {Mixed} JSX Component.
 	 */
-	edit: ( props ) => {
+	edit: withSelect( ( select ) => {
+		const peopleData = select( 'core' ).getEntityRecords( 'postType', 'foopeople-person', { per_page: -1 });
+		let people = [];
 
-		const peopleData = select('core').getEntityRecords('postType', 'foopeople-person', { per_page: -1 });
+		if ( peopleData ) {
+			peopleData.forEach( element => {
+				people.push({ 'label': element.title.rendered, 'value': element.id});
+			});
+		}
+
+		return {
+			people
+		};
+
+	}) ( props => {
+		const { people } = props;
+		props.attributes.allPeople = people;
 
 		return (
-			<div className={ props.className }>
-				This is a preview
-			</div>
+			<FooPeopleSingleEdit {...props }/>
 		);
-	},
+
+	}),
 
 	/**
 	 * The save function defines the way in which the different attributes should be combined
@@ -80,10 +103,7 @@ registerBlockType( 'fooplugins/foopeople-single', {
 	 * @param {Object} props Props.
 	 * @returns {Mixed} JSX Frontend HTML.
 	 */
-	save: ( props ) => {
-		// render in PHP
+	save: ( ) => {
 		return null;
-	},
-
-
+	}
 });

@@ -68,11 +68,11 @@ registerBlockType( 'fooplugins/foopeople-listing', {
 	 * @returns {Mixed} JSX Component.
 	 */
 	edit: withSelect( ( select ) => {
-		const teamsData = select('core').getEntityRecords('taxonomy', 'foopeople-team', { per_page: -1 });
+		const teamsData = select( 'core' ).getEntityRecords( 'taxonomy', 'foopeople-team', { per_page: -1 });
 		let teams = [];
 
 		if ( teamsData ) {
-			teamsData.forEach(element => {
+			teamsData.forEach( element => {
 				teams.push({ 'label': element.name, 'value': element.slug});
 			});
 		}
@@ -105,6 +105,4 @@ registerBlockType( 'fooplugins/foopeople-listing', {
 	save: ( ) => {
 		return null;
 	}
-
-
 });
