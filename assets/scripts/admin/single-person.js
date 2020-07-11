@@ -4,6 +4,8 @@
 	FOOPEOPLE.updateCache = function() {
 		FOOPEOPLE.cache = {
 			$checkboxes: $( '#poststuff input[name^=\'tax_input\']' ),
+			$tags: $( '#poststuff #foopeople-skill li' ),
+			$skillswrapper: $( '#foopeople-skill' ),
 			$textFields: $( '#foopeople-person-details input[name^=\'foopeople-person-details\']' ),
 			$nodes: $( '[data-pace-people-value]' ),
 			$portrait: $( '#set-post-thumbnail' ),
@@ -19,11 +21,23 @@
 		}
 	};
 
+	FOOPEOPLE.updateTagValues = function() {
+
+		FOOPEOPLE.taxonomyFields.skills = [];
+
+		FOOPEOPLE.cache.$tags.each( function() {
+			var $el = $( this ),
+				value = $el.contents()[2].data;
+
+			FOOPEOPLE.taxonomyFields.skills.push( value );
+		});
+	};
+
+
 	FOOPEOPLE.updateCheckboxValues = function() {
 		FOOPEOPLE.taxonomyFields = {
 			team: [],
-			location: [],
-			skills: []
+			location: []
 		};
 
 		FOOPEOPLE.cache.$checkboxes.each( function() {
@@ -43,13 +57,11 @@
 				case 'tax_input[foopeople-location][]':
 					FOOPEOPLE.taxonomyFields.location.push( value );
 					break;
-				case 'tax_input[foopeople-skill][]':
-					FOOPEOPLE.taxonomyFields.skills.push( value );
-					break;
 				}
 			}
 		});
 	};
+
 	FOOPEOPLE.updateTextboxValues = function() {
 		FOOPEOPLE.textFields = {
 			firstname: [],
@@ -162,6 +174,7 @@
 
 		FOOPEOPLE.updateCheckboxValues();
 		FOOPEOPLE.updateTextboxValues();
+		FOOPEOPLE.updateTagValues();
 
 		FOOPEOPLE.updateHTMLValues( FOOPEOPLE.taxonomyFields );
 		FOOPEOPLE.updateHTMLValues( FOOPEOPLE.textFields );
