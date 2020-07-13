@@ -2,19 +2,14 @@
 
 namespace FooPlugins\FooPeople\Admin\Metaboxes;
 
-use FooPlugins\FooPeople\PostTypes\Person;
-use WP_User;
-
 if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox' ) ) {
 
 	abstract class CustomPostTypeMetabox {
 
-		private $metabox;
-		private $field_group;
+		protected $metabox;
 
-		function __construct( $metabox, $field_group ) {
-			$this->metabox     = $metabox;
-			$this->field_group = $field_group;
+		function __construct( $metabox ) {
+			$this->metabox = $metabox;
 
 			//add the metaboxes for a person
 			add_action( 'add_meta_boxes_' . $metabox['post_type'], array( $this, 'add_meta_boxes' ) );
@@ -22,128 +17,8 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 			//save extra post data for a person
 			add_action( 'save_post', array( $this, 'save_post' ) );
 
-			//enqueue assets needed for field groups
+			//enqueue assets needed for this metabox
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
-
-			//handle ajax auto suggest fields
-			add_action( 'wp_ajax_foometafield_suggest', array( $this, 'ajax_handle_autosuggest' ) );
-
-			//handle ajax selectize fields
-			add_action( 'wp_ajax_foometafield_selectize', array( $this, 'ajax_handle_selectize' ) );
-		}
-
-		/**
-		 * Ajax handler for selectize fields
-		 */
-		function ajax_handle_selectize() {
-			if ( wp_verify_nonce( foopeople_sanitize_key( 'nonce' ), 'foometafield_selectize' ) ) {
-				$s     = foopeople_sanitize_text( 'q' );
-				$s = trim( $s );
-
-				$results = array();
-
-				$query_type = foopeople_sanitize_key( 'query_type' );
-				$query_data = foopeople_sanitize_key( 'query_data' );
-
-				if ( 'post' === $query_type ) {
-
-					$posts = get_posts(
-							array(
-									's'              => $s,
-									'posts_per_page' => 5,
-									'post_type'      => $query_data
-							)
-					);
-
-					foreach ( $posts as $post ) {
-						$results[] = array(
-								'id' => $post->ID,
-								'text' => $post->post_title
-						);
-					}
-
-				} else if ( 'taxonomy' == $query_type ) {
-
-					$terms = get_terms(
-							array(
-									'search'         => $s,
-									'taxonomy'       => $query_data,
-									'hide_empty'     => false
-							)
-					);
-
-					foreach ( $terms as $term ) {
-						$results[] = array(
-								'id' => $term->ID,
-								'text' => $term->name
-						);
-					}
-				}
-
-				wp_send_json( array(
-						'results' => $results
-				) );
-
-				return;
-			}
-
-			wp_die();
-		}
-
-		/**
-		 * Ajax handler for suggest fields
-		 */
-		function ajax_handle_autosuggest() {
-			if ( wp_verify_nonce( foopeople_sanitize_key( 'nonce' ), 'foometafield_suggest' ) ) {
-				$s     = foopeople_sanitize_text( 'q' );
-				$comma = _x( ',', 'page delimiter' );
-				if ( ',' !== $comma ) {
-					$s = str_replace( $comma, ',', $s );
-				}
-				if ( false !== strpos( $s, ',' ) ) {
-					$s = explode( ',', $s );
-					$s = $s[ count( $s ) - 1 ];
-				}
-				$s = trim( $s );
-
-				$results = array();
-
-				$query_type = foopeople_sanitize_key( 'query_type' );
-				$query_data = foopeople_sanitize_key( 'query_data' );
-
-				if ( 'post' === $query_type ) {
-
-					$posts = get_posts(
-							array(
-									's'              => $s,
-									'posts_per_page' => 5,
-									'post_type'      => $query_data
-							)
-					);
-
-					foreach ( $posts as $post ) {
-						$results[] = $post->post_title;
-					}
-
-				} else if ( 'taxonomy' == $query_type ) {
-
-					$terms = get_terms(
-							array(
-									'search'         => $s,
-									'taxonomy'       => $query_data,
-									'hide_empty'     => false
-							)
-					);
-
-					foreach ( $terms as $term ) {
-						$results[] = $term->name;
-					}
-				}
-
-				echo join( $results, "\n" );
-			}
-
-			wp_die();
 		}
 
 		/**
@@ -153,9 +28,9 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 		 */
 		function add_meta_boxes( $post ) {
 			add_meta_box(
-				$this->build_id(),
+				$this->metabox_id(),
 				$this->metabox['metabox_title'],
-				array( $this, 'render_metabox' ),
+				$this->metabox['metabox_render_function'],
 				$this->metabox['post_type'],
 				isset( $this->metabox['context'] ) ? $this->metabox['context'] : 'normal',
 				isset( $this->metabox['priority'] ) ? $this->metabox['priority'] : 'default'
@@ -166,8 +41,12 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 		 * Builds up an identifier from post_type and metabox_id
 		 * @return string
 		 */
-		private function build_id() {
+		protected function metabox_id() {
 			return $this->metabox['post_type'] . '-' . $this->metabox['metabox_id'];
+		}
+
+		protected function metabox_hook_prefix() {
+			return __NAMESPACE__ . '\\' . $this->metabox['post_type'] . '\\' . $this->metabox['metabox_id'] . '\\';
 		}
 
 		/**
@@ -176,18 +55,14 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 		 * @param $post
 		 */
 		public function render_metabox( $post ) {
-			$full_id = $this->build_id();
-
-			//get the state from the post meta
-			$state = get_post_meta( $post->ID, $this->metabox['meta_key'], true );
+			$full_id = $this->metabox_id();
 
 			//render the nonce used to validate when saving the metabox fields
 			?><input type="hidden" name="<?php echo $full_id; ?>_nonce"
-					 id="<?php echo $full_id; ?>_nonce"
-					 value="<?php echo wp_create_nonce( $full_id ); ?>"/><?php
+			         id="<?php echo $full_id; ?>_nonce"
+			         value="<?php echo wp_create_nonce( $full_id ); ?>"/><?php
 
-			//render the tab field group
-			FieldRenderer::render_field_group( $this->field_group, $full_id, $state );
+			do_action( $this->metabox_hook_prefix() . 'Render', $post );
 		}
 
 		/**
@@ -203,156 +78,26 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 				return $post_id;
 			}
 
-			$full_id = $this->build_id();
+			$full_id = $this->metabox_id();
 
 			// verify nonce
 			if ( array_key_exists( $full_id . '_nonce', $_POST ) &&
-				 wp_verify_nonce( $_POST[ $full_id . '_nonce' ], $full_id ) ) {
+			     wp_verify_nonce( $_POST[ $full_id . '_nonce' ], $full_id ) ) {
 
-				//if we get here, we are dealing with the metabox fields
-
-				$action = 'FooPlugins\FooPeople\Admin\Metaboxes\\' . $this->metabox['post_type'] . '\\' . $this->metabox['metabox_id'] . '\\';
-
-				do_action( $action . 'PreSave', $post_id, $_POST );
-
-				//build up the state
-				$state = $this->get_posted_data( $post_id );
-
-				update_post_meta( $post_id, $this->metabox['meta_key'], $state );
+				//if we get here, we are dealing with the correct metabox
 
 				// unhook this function so it doesn't loop infinitely
 				remove_action( 'save_post', array( $this, 'save_post' ) );
 
-				do_action( $action . 'PostSave', $post_id, $_POST, $state );
+				do_action( $this->metabox_hook_prefix() . 'Save', $post_id );
 
 				// re-hook this function
 				add_action( 'save_post', array( $this, 'save_post' ) );
 			}
 		}
 
-		/**
-		 * Get the sanitized posted data for the metabox
-		 *
-		 * @param $post_id
-		 *
-		 * @return mixed|void
-		 */
-		private function get_posted_data( $post_id ) {
-			$full_id = $this->build_id();
-
-			$sanitized_data = foopeople_safe_get_from_post( $full_id, array(), false );
-
-			$data = $this->get_posted_data_recursive( $this->field_group , $sanitized_data );
-
-			$filter = 'FooPlugins\FooPeople\Admin\Metaboxes\\' . $this->metabox['post_type'] . '\\' . $this->metabox['metabox_id'] . '\GetPostedData';
-
-			$data = apply_filters( $filter, $data, $this, $post_id );
-
-			return $data;
-		}
-
-		/**
-		 * Recursively extract data from a sanitized data source
-		 *
-		 * @param $source
-		 * @param $sanitized_data
-		 *
-		 * @return array
-		 */
-		function get_posted_data_recursive( $source, $sanitized_data ) {
-			$data = array();
-
-			//first, check if we have fields
-			if ( isset( $source['fields'] ) ) {
-				foreach ( $source['fields'] as $field ) {
-					if ( ! array_key_exists( $field['id'], $sanitized_data ) ) {
-						//the field had no posted value, check for a default
-						if ( isset( $field['default'] ) ) {
-							$data[ $field['id'] ] = $field['default'];
-						}
-					} else {
-						$value = $sanitized_data[ $field['id'] ];
-
-						$type = sanitize_title( isset( $field['type'] ) ? $field['type'] : 'text' );
-
-						//textareas need some special attention
-						if ( 'textarea' === $type ) {
-							$value = foopeople_sanitize_textarea( $value );
-						} else if ( 'repeater' === $type ) {
-							$value = $this->get_posted_data_for_repeater( foopeople_clean( $value ) );
-						} else {
-							$value = foopeople_clean( $value );
-						}
-
-						//we have no value set, so check required
-						if ( empty( $value) ) {
-							if ( isset( $field['required'] ) && $field['required'] ) {
-								if ( !isset( $data[ '__errors' ] ) ) {
-									$data[ '__errors' ] = array();
-								}
-								$data[ '__errors' ][ $field['id'] ] = array(
-										'message' => sprintf( __('%s is required!'), $field['label'] )
-								);
-							}
-						}
-
-						$data[ $field['id'] ] = $value;
-					}
-				}
-			}
-
-			//then check if we have tabs and loop through the tabs
-			if ( isset( $source['tabs'] ) ) {
-				foreach ( $source['tabs'] as $tab ) {
-					$tab_data = $this->get_posted_data_recursive( $tab, $sanitized_data );
-					$data = array_merge_recursive( $data, $tab_data );
-				}
-			}
-
-			return $data;
-		}
-
-		/**
-		 *
-		 * @param $sanitized_data
-		 */
-		function get_posted_data_for_repeater( $sanitized_data ) {
-			$results = array();
-			foreach ( array_keys( $sanitized_data ) as $fieldKey ) {
-				foreach ( $sanitized_data[$fieldKey] as $key => $value ) {
-					$results[$key][$fieldKey] = $value;
-				}
-			}
-
-			$current_username = 'unknown';
-			$current_user = wp_get_current_user();
-			if ( $current_user instanceof WP_User ) {
-				$current_username = $current_user->user_login;
-			}
-
-			// stored some extra info for each row
-			// check if each row has an __id field,
-			//   if not then add one, so we can figure out which row to delete later.
-			//   Also add a __created_by field and set to currently logged on user.
-			//   And also a __created field which is the UTC timestamp of when the field was created
-			// if the __id field exists, then we doing an update.
-			//   update the __updated_by field and __updated timestamp fields
-			foreach ( $results as &$result ) {
-				if ( !isset($result['__id'] ) ) {
-					$result['__id'] = wp_generate_password( 10, false, false );
-					$result['__created'] = time();
-					$result['__created_by'] = $current_username;
-				} else {
-					$result['__updated'] = time();
-					$result['__updated_by'] = $current_username;
-				}
-			}
-
-			return $results;
-		}
-
 		/***
-		 * Enqueue the assets needed by the settings
+		 * Enqueue the assets needed by the metabox
 		 *
 		 * @param $hook_suffix
 		 */
@@ -362,16 +107,20 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetabox
 
 				if ( is_object( $screen ) && $this->metabox['post_type'] == $screen->post_type ) {
 					// Register, enqueue scripts and styles here
-					wp_enqueue_script( 'selectize', $this->metabox['plugin_url'] . 'assets/js/selectize.min.js', array('jquery'), $this->metabox['plugin_version'] );
-					wp_enqueue_script( 'foometafields', $this->metabox['plugin_url'] . 'assets/js/foometafields.min.js', array(
-						'jquery',
-						'suggest',
-						'wp-color-picker',
-						'selectize'
-					), $this->metabox['plugin_version'] );
-					wp_enqueue_style( 'foometafields', $this->metabox['plugin_url'] . 'assets/css/foometafields.min.css', array(
-						'wp-color-picker'
-					), $this->metabox['plugin_version'] );
+
+					do_action( $this->metabox_hook_prefix() . 'EnqueueAssets' );
+
+					if ( isset( $this->metabox['scripts'] ) ) {
+						foreach ( $this->metabox['scripts'] as $script ) {
+							wp_enqueue_script( $script['handle'], $script['src'], $script['deps'], $script['ver'], isset( $script['in_footer'] ) ? $script['in_footer'] : false );
+						}
+					}
+
+					if ( isset( $this->metabox['styles'] ) ) {
+						foreach ( $this->metabox['styles'] as $style ) {
+							wp_enqueue_style( $style['handle'], $style['src'], $style['deps'], $style['ver'], isset( $style['media'] ) ? $style['media'] : 'all' );
+						}
+					}
 				}
 			}
 		}

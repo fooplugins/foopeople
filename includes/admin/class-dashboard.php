@@ -37,7 +37,7 @@ if ( !class_exists( 'FooPlugins\FooPeople\Admin\Dashboard' ) ) {
 		}
 
 		/**
-		 * Renders the contents for the settings page
+		 * Renders the contents for the dashboard page
 		 */
 		public function render_dashboard_page() {
 			require_once FOOPEOPLE_PATH . 'includes/admin/views/dashboard.php';

@@ -14,8 +14,7 @@ const wplib = [
 module.exports = {
 	entry: {
 		listing: './assets/scripts/blocks/block-listing.js',
-		single: './assets/scripts/blocks/block-single.js',
-		organogram: './assets/scripts/blocks/block-organogram.js'
+		single: './assets/scripts/blocks/block-single.js'
 	},
 	output: {
 		path: __dirname + '/assets/js',
