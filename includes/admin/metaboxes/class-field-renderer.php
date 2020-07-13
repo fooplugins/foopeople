@@ -345,6 +345,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 
 				case 'select':
 					self::render_html_tag( 'select', $attributes, null, false );
+					echo '<option> Choose an option... </option>';
 					foreach ( $field['choices'] as $value => $label ) {
 						$option_attributes = array(
 							'value' => $value

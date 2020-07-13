@@ -96,6 +96,13 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 									'placeholder' => __( '', 'foopeople' )
 								),
 								array(
+									'id'       => 'idnumber',
+									'label'    => __( 'ID Number / Social Security Number', 'foopeople' ),
+									'desc'     => __( '', 'foopeople' ),
+									'type'     => 'text',
+									'default'  => '',
+								),
+								array(
 									'id'       => 'timezone',
 									'label'    => __( 'Timezone', 'foopeople' ),
 									'desc'     => __( '', 'foopeople' ),
@@ -362,6 +369,53 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 										'Zambia' => __( 'Zambia', 'foopeople' ),
 										'Zimbabwe' => __( 'Zimbabwe', 'foopeople' ),
 									)
+								)
+							)
+						),
+						array(
+							'id'     => 'professional',
+							'label'  => __( 'Professional', 'foopeople' ),
+							'icon'   => 'dashicons-businesswoman',
+							'fields' => array(
+								array(
+									'id'       => 'employeenumber',
+									'label'    => __( 'Employee Number', 'foopeople' ),
+									'desc'     => __( '', 'foopeople' ),
+									'type'     => 'text',
+									'default'  => '',
+								),
+								array(
+									'id'       => 'employmenttype',
+									'label'    => __( 'Employment Type', 'foopeople' ),
+									'desc'     => __( '', 'foopeople' ),
+									'type'     => 'select',
+									'choices' => array(
+										'fulltime' => __( 'Fulltime', 'foopeople' ),
+										'parttime' => __( 'Part Time', 'foopeople' ),
+										'contractor' => __( 'Contractor', 'foopeople' ),
+										'temporary' => __( 'Temporary', 'foopeople' ),
+										'trainee' => __( 'Trainee', 'foopeople' ),
+										'intern' => __( 'Intern', 'foopeople' ),
+
+									)
+								),
+								array(
+									'id'       => 'datejoined',
+									'label'    => __( 'Date Joined', 'foopeople' ),
+									'desc'     => __( '', 'foopeople' ),
+									'required' => true,
+									'type'     => 'date',
+									'min'     => '1950-01-01',
+									'max'     => date("Y-m-d"),
+									'default'  => '',
+									'placeholder' => __( '', 'foopeople' )
+								),
+								array(
+									'id'       => 'salary',
+									'label'    => __( 'Salary', 'foopeople' ),
+									'desc'     => __( '', 'foopeople' ),
+									'type'     => 'number',
+									'default'  => '',
 								),
 								array(
 									'id'       => 'jobtitle',
