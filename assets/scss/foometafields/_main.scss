@@ -111,10 +111,17 @@
   // ------------------------------------
   .foometafields-content {
 	display: none;
-	padding: $m-sm;
+	padding: $foofield-gutter;
 
 	&.foometafields-active {
-	  display: block;
+	display: block;
+
+	@media only screen and (min-width: 800px) {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		margin: 0 #{-$foofield-gutter};
+	  }
 	}
 
 	img {

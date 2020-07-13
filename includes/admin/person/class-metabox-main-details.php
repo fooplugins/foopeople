@@ -44,6 +44,14 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 									'placeholder' => __( 'This could be a nickname or a shortened name', 'foopeople' ),
 								),
 								array(
+									'id'       => 'ethnicity',
+									'label'    => __( 'Ethnicity', 'foopeople' ),
+									'desc'     => __( '', 'foopeople' ),
+									'required' => false,
+									'type'     => 'text',
+									'default'  => ''
+								),
+								array(
 									'id'       => 'gender',
 									'required' => true,
 									'label'    => __( 'Gender', 'foopeople' ),
@@ -68,13 +76,16 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 										'widowed' => __( 'Widowed', 'foopeople' ),
 									)
 								),
+
 								array(
-									'id'       => 'ethnicity',
-									'label'    => __( 'Ethnicity', 'foopeople' ),
-									'desc'     => __( '', 'foopeople' ),
-									'required' => false,
-									'type'     => 'text',
-									'default'  => ''
+									'id'       => 'postaladdress',
+									'label'    => __( 'Postal Address', 'foopeople' ),
+									'type'     => 'textarea',
+								),
+								array(
+									'id'       => 'residentialaddress',
+									'label'    => __( 'Residential Address', 'foopeople' ),
+									'type'     => 'textarea',
 								),
 								array(
 									'id'       => 'religion',
@@ -82,7 +93,6 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 									'desc'     => __( '', 'foopeople' ),
 									'required' => false,
 									'type'     => 'text',
-									'default'  => ''
 								),
 								array(
 									'id'       => 'dob',
@@ -92,8 +102,6 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 									'type'     => 'date',
 									'min'     => '1950-01-01',
 									'max'     => date("Y-m-d"),
-									'default'  => '',
-									'placeholder' => __( '', 'foopeople' )
 								),
 								array(
 									'id'       => 'idnumber',
@@ -478,6 +486,11 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 									'type'     => 'textarea',
 								),
 								array(
+									'id'       => 'doctordetails',
+									'label'    => __( 'Doctors details (name, contact details)', 'foopeople' ),
+									'type'     => 'textarea',
+								),
+								array(
 									'id'       => 'bloodtype',
 									'label'    => __( 'Blood Type', 'foopeople' ),
 									'type'     => 'select',
@@ -495,11 +508,6 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 								array(
 									'id'       => 'allergies',
 									'label'    => __( 'Allergies', 'foopeople' ),
-									'type'     => 'textarea',
-								),
-								array(
-									'id'       => 'doctordetails',
-									'label'    => __( 'Doctors details (name, contact details)', 'foopeople' ),
 									'type'     => 'textarea',
 								),
 							)

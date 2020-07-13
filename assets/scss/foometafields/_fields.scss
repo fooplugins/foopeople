@@ -6,6 +6,12 @@
   display: flex;
   margin-bottom: $m-md;
 
+  @media only screen and (min-width: 800px) {
+	flex: 1;
+	min-width: calc(50% - #{ 2* $foofield-gutter });
+	padding: 0 $foofield-gutter;
+  }
+
   &:last-child {
 	margin-bottom: 0;
   }
