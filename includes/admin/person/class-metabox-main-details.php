@@ -49,6 +49,8 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 									'desc'     => __( '', 'foopeople' ),
 									'required' => true,
 									'type'     => 'date',
+									'min'     => '1950-01-01',
+									'max'     => date("Y-m-d"),
 									'default'  => '',
 									'placeholder' => __( '', 'foopeople' )
 								),

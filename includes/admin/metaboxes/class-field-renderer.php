@@ -394,7 +394,8 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 						$attributes['placeholder'] = $field['placeholder'];
 					}
 					$attributes['type'] = 'date';
-					$attributes['max'] = date("Y-m-d");
+					$attributes['min'] = isset( $field['min'] ) ? $field['min'] : '1900-01-01';
+					$attributes['max'] = isset( $field['max'] ) ? $field['max'] : '';
 					self::render_html_tag( 'input', $attributes );
 
 					break;
