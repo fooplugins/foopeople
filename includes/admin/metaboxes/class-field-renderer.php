@@ -386,6 +386,17 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Metaboxes\FieldRenderer' ) ) {
 					$attributes['value'] = $field['value'];
 					self::render_html_tag( 'input', $attributes );
 
+
+				break;
+
+				case 'date':
+					if ( isset( $field['placeholder'] ) ) {
+						$attributes['placeholder'] = $field['placeholder'];
+					}
+					$attributes['type'] = 'date';
+					$attributes['max'] = date("Y-m-d");
+					self::render_html_tag( 'input', $attributes );
+
 					break;
 
 				case 'color':
