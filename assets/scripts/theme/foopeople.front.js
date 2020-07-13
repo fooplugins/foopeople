@@ -49,14 +49,8 @@
 	};
 
 	$( function() { //wait for ready
-
 		FOOPEOPLE.updateCache();
 		FOOPEOPLE.bindEvents();
-
-		$( '#ppl__org-chart' ).jOrgChart({
-			chartElement: '#chart'
-		});
-
 	});
 
 }( window.FOOPEOPLE = window.FOOPEOPLE || {}, jQuery ) );
