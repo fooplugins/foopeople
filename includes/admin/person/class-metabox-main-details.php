@@ -468,6 +468,43 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 							)
 						),
 						array(
+							'id'     => 'emergencies',
+							'label'  => __( 'Emergencies', 'foopeople' ),
+							'icon'   => 'dashicons-megaphone',
+							'fields' => array(
+								array(
+									'id'       => 'nextofkin',
+									'label'    => __( 'Next of Kins details (name, contact details)', 'foopeople' ),
+									'type'     => 'textarea',
+								),
+								array(
+									'id'       => 'bloodtype',
+									'label'    => __( 'Blood Type', 'foopeople' ),
+									'type'     => 'select',
+									'choices' => array(
+										'A+' => __( 'A+', 'foopeople' ),
+										'A-' => __( 'A-', 'foopeople' ),
+										'B+' => __( 'B+', 'foopeople' ),
+										'B-' => __( 'B-', 'foopeople' ),
+										'O+' => __( 'O+', 'foopeople' ),
+										'O-' => __( 'O-', 'foopeople' ),
+										'AB+' => __( 'AB+', 'foopeople' ),
+										'AB-' => __( 'AB-', 'foopeople' ),
+									)
+								),
+								array(
+									'id'       => 'allergies',
+									'label'    => __( 'Allergies', 'foopeople' ),
+									'type'     => 'textarea',
+								),
+								array(
+									'id'       => 'doctordetails',
+									'label'    => __( 'Doctors details (name, contact details)', 'foopeople' ),
+									'type'     => 'textarea',
+								),
+							)
+						),
+						array(
 							'id'     => 'teams',
 							'label'  => __( 'Teams', 'foopeople' ),
 							'icon'   => 'dashicons-groups',
