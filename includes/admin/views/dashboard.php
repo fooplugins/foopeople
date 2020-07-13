@@ -4,4 +4,3 @@
  */
 
 ?>
-Your FooPeople Dashboard go here!
