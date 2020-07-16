@@ -232,6 +232,11 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 				if ( 1 == $i++ ) {
 					$columns['portrait'] = 'Portrait';
 				}
+				if ( 4 == $i++ ) {
+					$columns['jobtitle'] = 'Job Title';
+					$columns['workemail'] = 'Email';
+					$columns['employeenumber'] = 'Employee Number';
+				}
 			}
 			return $columns;
 		}
@@ -246,8 +251,31 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 		 *
 		 */
 		function show_portrait_column($column_name, $post_id) {
-			if ($column_name == 'portrait') {
-				echo get_the_post_thumbnail($post_id, 'thumbnail');
+			$postmeta = get_post_meta( $post_id, FOOPEOPLE_META_PERSON_MAIN, true );
+
+			switch ($column_name) {
+				case 'portrait':
+					echo get_the_post_thumbnail($post_id, 'thumbnail');
+				break;
+				case 'jobtitle':
+					if ( isset( $postmeta['jobtitle'] ) ) :
+						echo $postmeta['jobtitle'];
+					endif;
+				break;
+				case 'workemail':
+					if ( isset( $postmeta['workemail'] ) ) :
+						echo '<a target="_blank" href="mailto:';
+						echo $postmeta['workemail'];
+						echo '">';
+						echo $postmeta['workemail'];
+						echo '</a>';
+					endif;
+				break;
+				case 'employeenumber':
+					if ( isset( $postmeta['employeenumber'] ) ) :
+						echo $postmeta['employeenumber'];
+					endif;
+				break;
 			}
 		}
 
