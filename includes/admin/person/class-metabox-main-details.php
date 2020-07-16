@@ -386,6 +386,12 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 							'icon'   => 'dashicons-businesswoman',
 							'fields' => array(
 								array(
+									'id'       => 'workemail',
+									'label'    => __( 'Email', 'foopeople' ),
+									'required' => true,
+									'type'     => 'text',
+								),
+								array(
 									'id'       => 'employeenumber',
 									'label'    => __( 'Employee Number', 'foopeople' ),
 									'desc'     => __( '', 'foopeople' ),
@@ -455,30 +461,109 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 							'featuredImage' => true
 						),
 						array(
-							'id'     => 'contact',
-							'label'  => __( 'Contact', 'foopeople' ),
+							'id'     => 'contactwork',
+							'label'  => __( 'Work Contact', 'foopeople' ),
 							'icon'   => 'dashicons-phone',
 							'fields' => array(
 								array(
-									'id'       => 'email',
-									'label'    => __( 'Email', 'foopeople' ),
-									'required' => true,
+									'id'       => 'workmobile',
+									'label'    => __( 'Mobile Number', 'foopeople' ),
 									'type'     => 'text',
-									'default'  => '',
 								),
 								array(
-									'id'       => 'phonenumber',
-									'label'    => __( 'Phone Number', 'foopeople' ),
-									'required' => true,
+									'id'       => 'worklandline',
+									'label'    => __( 'Landline', 'foopeople' ),
 									'type'     => 'text',
-									'default'  => '',
+								),
+								array(
+									'id'       => 'workslack',
+									'label'    => __( 'Slack', 'foopeople' ),
+									'type'     => 'text',
+									'placeholder'  => 'name.slack.com',
+								),
+								array(
+									'id'       => 'workteams',
+									'label'    => __( 'Teams', 'foopeople' ),
+									'type'     => 'text',
+									'placeholder'  => 'teams.microsoft.com/name',
+								),
+								array(
+									'id'       => 'workskype',
+									'label'    => __( 'Skype', 'foopeople' ),
+									'type'     => 'text',
+									'placeholder'  => '@name',
+								),
+								array(
+									'id'       => 'worktwitter',
+									'label'    => __( 'Twitter', 'foopeople' ),
+									'type'     => 'text',
+									'placeholder'  => '@name',
+								),
+								array(
+									'id'       => 'workfacebook',
+									'label'    => __( 'Facebook', 'foopeople' ),
+									'type'     => 'text',
+									'placeholder'  => 'facebook.com/name',
 								),
 							)
 						),
 						array(
-							'id'     => 'emergencies',
-							'label'  => __( 'Emergencies', 'foopeople' ),
-							'icon'   => 'dashicons-megaphone',
+							'id'     => 'contactpersonal',
+							'label'  => __( 'Personal Contact', 'foopeople' ),
+							'icon'   => 'dashicons-phone',
+							'fields' => array(
+								array(
+									'id'       => 'personalemail',
+									'label'    => __( 'Email', 'foopeople' ),
+									'type'     => 'text',
+								),
+								array(
+									'id'       => 'personalphonenumber',
+									'label'    => __( 'Phone Number', 'foopeople' ),
+									'type'     => 'text',
+								),
+								array(
+									'id'       => 'personalslack',
+									'label'    => __( 'Slack', 'foopeople' ),
+									'type'     => 'text',
+									'placeholder'  => 'name.slack.com',
+								),
+								array(
+									'id'       => 'personalteams',
+									'label'    => __( 'Teams', 'foopeople' ),
+									'type'     => 'text',
+									'placeholder'  => 'teams.microsoft.com/name',
+								),
+								array(
+									'id'       => 'personalskype',
+									'label'    => __( 'Skype', 'foopeople' ),
+									'type'     => 'text',
+									'placeholder'  => '@name',
+								),
+								array(
+									'id'       => 'personaltwitter',
+									'label'    => __( 'Twitter', 'foopeople' ),
+									'type'     => 'text',
+									'placeholder'  => '@name',
+								),
+								array(
+									'id'       => 'personalfacebook',
+									'label'    => __( 'Facebook', 'foopeople' ),
+									'type'     => 'text',
+									'placeholder'  => 'facebook.com/name',
+								),
+								array(
+									'id'       => 'personallinkedin',
+									'label'    => __( 'LinkedIn', 'foopeople' ),
+									'type'     => 'text',
+									'placeholder'  => 'linkedin.com/in/name',
+								),
+							)
+						),
+						array(
+							'id'     => 'medical',
+							'label'  => __( 'Medical', 'foopeople' ),
+							'icon'   => 'dashicons-plus',
 							'fields' => array(
 								array(
 									'id'       => 'nextofkin',

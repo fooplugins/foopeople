@@ -12,6 +12,10 @@
 	padding: 0 $foofield-gutter;
   }
 
+  @media only screen and (min-width: 1441px) {
+	min-width: calc(33.333% - #{ 2* $foofield-gutter });
+  }
+
   &:last-child {
 	margin-bottom: 0;
   }
