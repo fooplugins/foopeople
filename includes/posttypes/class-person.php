@@ -9,6 +9,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 
 	class Person {
 
+
 		function __construct() {
 			//register the post types
 			add_action( 'init', array( $this, 'register_post_type' ) );
@@ -23,7 +24,16 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 
 			// Add single person page template
 			add_filter('single_template', array( $this,'load_single_person_template' ) );
+
+			// Add a column for the person portrait
+			add_filter('manage_foopeople-person_posts_columns', array( $this, 'add_portrait_column') );
+
+			// Add the portrait to the column we created
+			add_action('manage_foopeople-person_posts_custom_column', array( $this, 'show_portrait_column' ), 10, 2);
+
+			add_action('admin_head', array( $this, 'people_dashboard_styles' ) );
 		}
+
 
 		function register_post_type() {
 			$people_issues = 0;
@@ -202,5 +212,70 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 
 			return $bulk_messages;
 		}
+
+
+		/**
+		 * Add a column to the people dashboard
+		 *
+		 * @global object $post     The current post object.
+		 *
+		 * @param array   $defaults The current columns in place
+		 *
+		 * @return array $column Adjusted columns to use
+		 */
+		function add_portrait_column($defaults) {
+
+			$i = 1;
+			$columns = array();
+			foreach( $defaults as $key => $value ) {
+				$columns[$key] = $value;
+				if ( 1 == $i++ ) {
+					$columns['portrait'] = 'Portrait';
+				}
+			}
+			return $columns;
+		}
+
+		/**
+		 * Add a portrait to our new column in the people dashboard
+		 *
+		 * @global object $post   The current post object.
+		 *
+		 * @param array   $column_name The column name
+		 * @param array   $post_id The current post
+		 *
+		 */
+		function show_portrait_column($column_name, $post_id) {
+			if ($column_name == 'portrait') {
+				echo get_the_post_thumbnail($post_id, 'thumbnail');
+			}
+		}
+
+
+		/**
+		 * Add custom styling to the people dashboard
+		 *
+		 * @return string
+		 *
+		 */
+		function people_dashboard_styles() {
+			echo '<style>
+				body.post-type-foopeople-person table.fixed {
+					table-layout: auto;
+				}
+				body.post-type-foopeople-person td.portrait.column-portrait,
+				body.post-type-foopeople-person td.portrait.column-portrait img  {
+					width: 50px;
+					height: auto;
+				}
+
+				body.post-type-foopeople-person .subsubsub li.publish {
+					display: none;
+				}
+			</style>';
+		}
+
+
+
 	}
 }
