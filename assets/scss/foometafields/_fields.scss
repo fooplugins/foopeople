@@ -1,3 +1,4 @@
+
 // Input field wrapper
 // ------------------------------------
 .foometafields-field {
@@ -14,6 +15,10 @@
 
   @media only screen and (min-width: 1441px) {
 	min-width: calc(33.333% - #{ 2* $foofield-gutter });
+  }
+
+  &.foometafields-type-error {
+	min-width: calc(100% - #{ 2* $foofield-gutter });
   }
 
   &:last-child {

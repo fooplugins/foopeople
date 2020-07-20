@@ -78,10 +78,10 @@
 			case 'foopeople-person-details[jobtitle]':
 				FOOPEOPLE.textFields.jobtitle.push( value );
 				break;
-			case 'foopeople-person-details[phonenumber]':
+			case 'foopeople-person-details[workmobile]':
 				FOOPEOPLE.textFields.phonenumber.push( value );
 				break;
-			case 'foopeople-person-details[email]':
+			case 'foopeople-person-details[workemail]':
 				FOOPEOPLE.textFields.email.push( value );
 				break;
 			}
