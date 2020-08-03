@@ -12,9 +12,9 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\PostSave' ) ) {
 	class PostSave {
 		function __construct() {
 			$cpt = FOOPEOPLE_CPT_PERSON;
-			add_action( "FooPlugins\FooPeople\Admin\Metaboxes\\$cpt\details\PostSave", array( $this, 'post_save_person' ), 10, 3 );
+			//add_action( "FooPlugins\FooPeople\Admin\Metaboxes\\$cpt\\details\PostSave", array( $this, 'post_save_person' ), 10, 3 );
 
-			add_filter( "FooPlugins\FooPeople\Admin\Metaboxes\\$cpt\\details\GetPostedData", array( $this, 'validate_posted_data' ), 10, 3 );
+			//add_filter( "FooPlugins\FooPeople\Admin\Metaboxes\\$cpt\\details\GetPostedData", array( $this, 'validate_posted_data' ), 10, 3 );
 		}
 
 		/**

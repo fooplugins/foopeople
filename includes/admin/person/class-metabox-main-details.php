@@ -2,11 +2,11 @@
 
 namespace FooPlugins\FooPeople\Admin\Person;
 
-use FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetaboxFieldGroup;
+use FooPlugins\FooPeople\Admin\FooFields\Metabox;
 
 if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) {
 
-	class MetaboxMainDetails extends CustomPostTypeMetaboxFieldGroup {
+	class MetaboxMainDetails extends Metabox {
 
 		function __construct() {
 			$field_group = apply_filters( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails\FieldGroup',
@@ -628,13 +628,13 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 				array(
 					'post_type'      => FOOPEOPLE_CPT_PERSON,
 					'metabox_id'     => 'details',
-					'metabox_title'  => __( 'Main Details', 'pacepeople' ),
+					'metabox_title'  => __( 'Main Details', 'foopeople' ),
 					'priority'       => 'high',
 					'meta_key'       => FOOPEOPLE_META_PERSON_MAIN,
 					'plugin_url'     => FOOPEOPLE_URL,
-					'plugin_version' => FOOPEOPLE_VERSION
-				),
-				$field_group
+					'plugin_version' => FOOPEOPLE_VERSION,
+					'fields'         => $field_group
+				)
 			);
 		}
 	}
