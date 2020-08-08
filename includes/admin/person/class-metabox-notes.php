@@ -2,14 +2,14 @@
 
 namespace FooPlugins\FooPeople\Admin\Person;
 
-use FooPlugins\FooPeople\Admin\Metaboxes\CustomPostTypeMetaboxFieldGroup;
+use FooPlugins\FooPeople\Admin\FooFields\Metabox;
 
 if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxNotes' ) ) {
 
-	class MetaboxNotes extends CustomPostTypeMetaboxFieldGroup {
+	class MetaboxNotes extends Metabox {
 
 		function __construct() {
-			$field_group = apply_filters( 'FooPlugins\FooPeople\Admin\Person\MetaboxNotes\FieldGroup',
+			$fields = apply_filters( 'FooPlugins\FooPeople\Admin\Person\MetaboxNotes\Fields',
 				array(
 					'fields' => array(
 						array(
@@ -22,7 +22,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxNotes' ) ) {
 								array(
 									'id'       => 'index',
 									'label'    => __( '#', 'foopeople' ),
-									'type'     => 'index',
+									'type'     => 'repeater-index',
 									'width'    => '2%'
 								),
 								array(
@@ -46,7 +46,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxNotes' ) ) {
 								),
 								array(
 									'id'       => 'manage',
-									'type'     => 'manage',
+									'type'     => 'repeater-delete',
 									'width'    => '3%',
 									'delete-confirmation-message' => __( 'Are you sure you want to remove this note?', 'foopeople' ),
 								),
@@ -56,17 +56,17 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxNotes' ) ) {
 				)
 			);
 
-
 			parent::__construct(
 				array(
 					'post_type'      => FOOPEOPLE_CPT_PERSON,
 					'metabox_id'     => 'notes',
-					'metabox_title'  => __( 'Notes', 'pacepeople' ),
+					'metabox_title'  => __( 'Notes', 'foopeople' ),
+					'text_domain'    => FOOPEOPLE_SLUG,
 					'meta_key'       => FOOPEOPLE_META_PERSON_NOTES,
 					'plugin_url'     => FOOPEOPLE_URL,
-					'plugin_version' => FOOPEOPLE_VERSION
-				),
-				$field_group
+					'plugin_version' => FOOPEOPLE_VERSION,
+					'fields'         => $fields
+				)
 			);
 		}
 

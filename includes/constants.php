@@ -13,6 +13,7 @@ define( 'FOOPEOPLE_TRANSIENT_ACTIVATION_REDIRECT', 'foopeople_redirect' );
 //custom post types
 define ( 'FOOPEOPLE_CPT_PERSON', 'foopeople-person' );
 define ( 'FOOPEOPLE_CPT_POLICY', 'foopeople-policy' );
+define ( 'FOOPEOPLE_CPT_ROLE', 'foopeople-role' );
 
 //custom taxonomies
 define ( 'FOOPEOPLE_CT_TEAM', 'foopeople-team' );

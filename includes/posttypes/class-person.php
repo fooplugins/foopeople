@@ -73,7 +73,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 					'show_ui'       => true,
 					'show_in_menu'  => true,
 					'rewrite'       => array( 'slug' => 'person' ),
-					'menu_icon'     => 'dashicons-groups',
+					'menu_icon'     => 'dashicons-universal-access-alt',
 					'supports'      => array( 'thumbnail', 'title' ),
 				)
 			);
@@ -106,6 +106,8 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 
 
 		function register_post_statuses() {
+			//TODO : https://wordpress.stackexchange.com/a/314236/17769
+
 			$statuses = apply_filters(
 				'FooPlugins\FooPeople\PostTypes\Person\Statuses',
 				array(
