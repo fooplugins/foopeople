@@ -23,7 +23,7 @@ if ( !class_exists( 'FooPlugins\FooPeople\Admin\Init' ) ) {
 			//new namespace\Person\PostSave();
 			new namespace\Person\MetaboxMainDetails();
 			new namespace\Person\MetaboxNotes();
-			//new namespace\Person\MetaboxPersonPreview();
+			new namespace\Person\MetaboxPersonPreview();
 		}
 
 		function enqueue( $hook_suffix ) {

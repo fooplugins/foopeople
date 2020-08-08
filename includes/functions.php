@@ -296,3 +296,7 @@ function foopeople_get_setting( $option, $default = '' ) {
 		return $default;
 	}
 }
+
+function foopeople_admin_menu_parent_slug() {
+	return 'foopeople';
+}

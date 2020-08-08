@@ -34,6 +34,7 @@ if ( !class_exists( 'FooPlugins\FooPeople\Init' ) ) {
 
 			//register custom post types
 			new namespace\PostTypes\Person();
+			new namespace\PostTypes\Role();
 			// new namespace\PostTypes\Policy();
 
 			//register custom taxonomies

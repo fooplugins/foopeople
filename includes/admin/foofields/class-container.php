@@ -607,7 +607,8 @@ if ( ! class_exists( __NAMESPACE__ . '\Container' ) ) {
 					$error_field_config = array(
 						'id' => 'errors_' . $parent_id,
 						'type' => 'error',
-						'text' => $error_message
+						'text' => $error_message,
+						'class' => 'foofields-colspan-4'
 					);
 
 					$error_field_object = $this->create_field_instance( 'error', $error_field_config, $parent_id );

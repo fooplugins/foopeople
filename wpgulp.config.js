@@ -38,9 +38,6 @@ module.exports = {
 		},
 		{
 			styleSRC: './assets/scss/foopeople.theme.scss'
-		},
-		{
-			styleSRC: './assets/scss/foometafields.scss'
 		}
 	],
 	scripts: [
