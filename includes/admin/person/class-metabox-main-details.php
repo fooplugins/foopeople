@@ -898,6 +898,5 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 				)
 			);
 		}
-
 	}
 }

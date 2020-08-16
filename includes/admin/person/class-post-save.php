@@ -10,11 +10,17 @@ use FooPlugins\FooPeople\Objects\Person;
 if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\PostSave' ) ) {
 
 	class PostSave {
-		function __construct() {
-			$cpt = FOOPEOPLE_CPT_PERSON;
-			//add_action( "FooPlugins\FooPeople\Admin\Metaboxes\\$cpt\\details\PostSave", array( $this, 'post_save_person' ), 10, 3 );
 
-			//add_filter( "FooPlugins\FooPeople\Admin\Metaboxes\\$cpt\\details\GetPostedData", array( $this, 'validate_posted_data' ), 10, 3 );
+		function __construct() {
+			add_action( 'foopeople_admin_person_metaboxmaindetails_aftersavepostmeta', array(
+				$this,
+				'post_save_person'
+			), 10, 2 );
+
+			add_filter( 'foopeople_admin_person_metaboxmaindetails_getposteddata', array(
+				$this,
+				'validate_posted_data'
+			), 10, 2 );
 		}
 
 		/**
@@ -22,13 +28,14 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\PostSave' ) ) {
 		 *
 		 * @param $data
 		 * @param $metabox
-		 * @param $post_id
 		 *
 		 * @return mixed
 		 */
-		public function validate_posted_data( $data, $metabox, $post_id ) {
+		public function validate_posted_data( $data, $metabox ) {
 			//get the line manager and make sure it is not the same
 			$manager_id = intval( foopeople_safe_get_from_array( 'value', foopeople_safe_get_from_array( 'manager', $data, array() ), 0 ) );
+
+			$post_id = $metabox->get_post_id();
 
 			if ( $post_id === $manager_id ) {
 				//TODO : set an error message for the person
@@ -44,12 +51,13 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\PostSave' ) ) {
 		 * - Updates the person parent relationship based on the line manager
 		 *
 		 * @param $post_id
-		 * @param $post
 		 * @param $state
 		 */
-		public function post_save_person( $post_id, $post, $state ) {
+		public function post_save_person( $post_id, $state ) {
 			//get the person object from the database
 			$person = Person::get_by_id( $post_id );
+
+			$manager_id = $person->manager_id;
 
 			//make sure we do not set the parent to itself
 			if ( $post_id === $person->manager_id ) {

@@ -41,7 +41,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxNotes' ) ) {
 									'id'       => '__created',
 									'label'    => __( 'Date Captured', 'foopeople' ),
 									'type'     => 'readonly',
-									'display_function' => array( $this, 'format_timestamp' ),
+									'render' => array( $this, 'format_timestamp' ),
 									'width'    => '12%'
 								),
 								array(
@@ -73,12 +73,14 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxNotes' ) ) {
 		/**
 		 * Format a timestamp
 		 *
-		 * @param $timestamp
+		 * @param $field
 		 *
 		 * @return string
 		 */
-		function format_timestamp( $timestamp ) {
+		function format_timestamp( $field ) {
 			$format = __( 'Y/m/d g:i:s a' );
+
+			$timestamp = $field->value();
 
 			if ( function_exists( 'wp_date' ) ) {
 				return wp_date( $format, $timestamp );
