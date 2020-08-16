@@ -377,17 +377,19 @@ if ( ! class_exists( __NAMESPACE__ . '\Field' ) ) {
 					self::render_html_tag( 'input', $attributes );
 
 					$inner = $field_value;
-					if ( isset( $this->config['display_function'] ) ) {
-						$inner = call_user_func( $this->config['display_function'], $inner );
+
+					if ( isset( $this->config['render'] ) && is_callable( $this->config['render'] ) ) {
+						call_user_func( $this->config['render'], $this );
+					} else {
+						self::render_html_tag( 'span', array(), $inner );
 					}
 
-					self::render_html_tag( 'span', array(), $inner );
 					break;
 
 				default:
 					//the field type is not natively supported
-					if ( isset( $this->config['function'] ) ) {
-						call_user_func( $this->config['function'], $this );
+					if ( isset( $this->config['render'] ) && is_callable( $this->config['render'] ) ) {
+						call_user_func( $this->config['render'], $this );
 					}
 					break;
 			}
