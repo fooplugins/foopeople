@@ -37,7 +37,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Person' ) ) {
 
 		function register_post_type() {
 			$people_issues = 0;
-			$person_menu_name = __( 'People', 'foopeople' );
+			$person_menu_name = __( 'Foo People', 'foopeople' );
 			if ( $people_issues > 0 ) {
 				//TODO : change the menu. 2 options:
 				//  - https://wordpress.stackexchange.com/questions/89028/put-update-like-notification-bubble-on-multiple-cpts-menus-for-pending-items

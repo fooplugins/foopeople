@@ -18,7 +18,7 @@ if ( ! class_exists( 'PacePeople_Admin_Menu' ) ) {
 		 */
 		function register_menu_items() {
 			//we rely on the register_post_type call to add our main menu items
-			$parent_slug = foopeople_admin_menu_parent_slug();
+			$parent_slug = foopeople_admin_menu_cpt_slug();
 
 			//allow extensions to add their own menu items beforehand
 			do_action( 'pacepeople_admin_menu_before' );

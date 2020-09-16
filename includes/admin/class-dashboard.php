@@ -16,17 +16,19 @@ if ( !class_exists( 'FooPlugins\FooPeople\Admin\Dashboard' ) ) {
 		 * Add top level menu
 		 */
 		public function add_menu() {
-			add_menu_page(
-				__( 'FooPeople Dashboard' , 'foopeople' ),
-				__( 'FooPeople' , 'foopeople' ),
-				'manage_options',
-				'foopeople',
-				null,
-				'dashicons-universal-access-alt'
-			);
+
+			// We dont need a seperate menu item, as we place all sub menus udner the Custom Post Type Menu
+			// add_menu_page(
+			// 	__( 'FooPeople Dashboard' , 'foopeople' ),
+			// 	__( 'FooPeople' , 'foopeople' ),
+			// 	'manage_options',
+			// 	'foopeople',
+			// 	null,
+			// 	'dashicons-universal-access-alt'
+			// );
 
 			add_submenu_page(
-				'foopeople',
+				foopeople_admin_menu_cpt_slug(),
 				__( 'FooPeople Dashboard' , 'foopeople' ),
 				__( 'Dashboard' , 'foopeople' ),
 				'manage_options',

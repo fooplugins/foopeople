@@ -34,7 +34,7 @@ if ( ! function_exists( 'foopeople_fs' ) ) {
 				),
 				'has_affiliation'     => 'selected',
 				'menu'                => array(
-					'slug'           => 'foopeople',
+					'slug'           => foopeople_admin_menu_cpt_slug(),
 				)
 			) );
 		}

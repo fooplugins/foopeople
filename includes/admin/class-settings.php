@@ -25,8 +25,9 @@ if ( !class_exists( 'FooPlugins\FooPeople\Admin\Settings' ) ) {
 		 * Add menu to the tools menu
 		 */
 		public function add_menu() {
+
 			add_submenu_page(
-				'foopeople',
+				foopeople_admin_menu_cpt_slug(),
 				__( 'FooPeople Settings', 'foopeople' ),
 				__( 'Settings', 'foopeople' ),
 				'manage_options',

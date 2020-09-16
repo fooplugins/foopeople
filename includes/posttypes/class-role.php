@@ -47,8 +47,9 @@ if ( ! class_exists( 'FooPlugins\FooPeople\PostTypes\Role' ) ) {
 		}
 
 		function register_menu_items() {
+
 			add_submenu_page(
-				foopeople_admin_menu_parent_slug(),
+				foopeople_admin_menu_cpt_slug(),
 				__( 'Job Roles', 'foopeople' ),
 				__( 'Job Roles', 'foopeople' ),
 				'manage_options',

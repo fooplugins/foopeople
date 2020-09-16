@@ -300,3 +300,9 @@ function foopeople_get_setting( $option, $default = '' ) {
 function foopeople_admin_menu_parent_slug() {
 	return 'foopeople';
 }
+
+function foopeople_admin_menu_cpt_slug() {
+	return 'edit.php?post_type='.FOOPEOPLE_CPT_PERSON;
+}
+
+
