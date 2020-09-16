@@ -3,40 +3,20 @@
 	display: none;
 }
 
-// Person Preview
-.ppl__card_wrapper {
-	background: white;
-	margin: auto;
-
-	.ppl__card_details,
-	.ppl__card_portrait_wrapper {
-		transition: 500ms linear all;
-	}
-
-	.ppl__card_portrait_wrapper {
-		transform: translateY(0);
-	}
-
-	&.js-ppl__loading {
-		.ppl__card_details,
-		.ppl__card_portrait_wrapper {
-			opacity: 0;
-		}
-
-		.ppl__card_portrait_wrapper {
-			transform: translateY(-40px);
-		}
-	}
+// Remove margin at top of content editor
+#post-body-content  {
+    margin-bottom: 0;
+}
 
 
-	// Style the preview
-	.ppl__card_portrait_wrapper  {
-		position: absolute;
-		top: 90px;
-		left: 20px;
-	}
-	.ppl__card_details-preview {
-		padding-left: 70px + $portrait_box;
-		padding-bottom: 20px;
-	}
+// Remove margins from person listing item
+#post-ppl-preview {
+	margin: 0;
+}
+
+// Some layout tweak to the preview item icons
+.ppl__card_particulars {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

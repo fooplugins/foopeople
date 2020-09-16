@@ -8,13 +8,16 @@ if( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxPersonPreview' ) )
  	class MetaboxPersonPreview {
 
 		function __construct() {
-			add_action( 'edit_form_after_title', array( $this, 'person_preview') );
+			add_action( 'add_meta_boxes', array( $this, 'create_preview_metabox') );
+		}
+
+		function create_preview_metabox() {
+			add_meta_box( 'post-ppl-preview-metabox', __( 'Person Preview', 'textdomain' ), array( $this, 'person_preview'), FOOPEOPLE_CPT_PERSON,  'side');
 		}
 
 		function person_preview() {
-			if ( foopeople_is_admin_screen( FOOPEOPLE_CPT_PERSON ) ) {
-				foopeople_render_template( 'admin', 'person-preview' );
-			}
+			foopeople_render_template( 'admin', 'person-preview' );
 		}
+
 	}
 }
