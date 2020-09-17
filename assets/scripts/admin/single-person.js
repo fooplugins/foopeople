@@ -47,9 +47,6 @@
 				break;
 			}
 		});
-
-		console.log( FOOPEOPLE.selectFields );
-
 	};
 
 
@@ -95,20 +92,24 @@
 
 	FOOPEOPLE.updateHTMLValues = function( values ) {
 		$.each( values, function( key, array ) {
-			var text = '';
+			var text = '',
+				$field = $( '[data-pace-people-value="' + key + '"]' );
 
 			if ( 0 !== array.length ) {
 				$( array ).each( function( index, property ) {
+					console.log( key, property );
+
 					if ( 'preferred' === key &&  0 < property.length ) { // Add Brackets for preferred name / nickname
 						property = '(' + property + ')';
 					}
 					text += '<span class="ppl__item_delimiter">' + property + '</span> ';
+
 				});
 			} else {
 				text = '<span class="ppl__item_delimiter ppl_text_captitalize">' + key + '</span> ';
 			}
 
-			$( '[data-pace-people-value="' + key + '"]' ).html( text );
+			$field.html( text );
 
 		});
 	};

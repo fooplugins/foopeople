@@ -21,59 +21,57 @@
 
 		<div class="ppl__card_particulars">
 			<i class="ppl_icon-user ppl__item_spacer"></i>
-			<span data-pace-people-value="jobtitle">
-				Work title
+			<span class="ppl_field-label">
+				Job title :&nbsp;
 			</span>
+			<span data-pace-people-value="jobtitle"></span>
 		</div>
 
 		<div class="ppl__card_particulars">
 			<i class="ppl_icon-group ppl__item_spacer"></i>
-			<span data-pace-people-value="team">
-				Team
+			<span class="ppl_field-label">
+				Team :&nbsp;
 			</span>
+			<span data-pace-people-value="team"></span>
 		</div>
 		<div class="ppl__card_particulars">
 			<i class="ppl_icon-group ppl__item_spacer"></i>
+			<span class="ppl_field-label">
+				Role :&nbsp;
+			</span>
 			<span data-pace-people-value="role">
-				Role
+
 			</span>
 		</div>
 
 		<div class="ppl__card_particulars">
 			<i class="ppl_icon-map-marker ppl__item_spacer"></i>
-			<span data-pace-people-value="locations">
-				LOCATION
+			<span class="ppl_field-label">
+				Location :&nbsp;
 			</span>
+			<span data-pace-people-value="locations"></span>
 		</div>
 
 
 		<div class="ppl__card_particulars">
 			<span class="ppl__card_email">
 				<i class="ppl_icon-envelope ppl__item_spacer"></i>
-				<span data-pace-people-value="email">
-					Email
+				<span class="ppl_field-label">
+					Email :&nbsp;
 				</span>
+				<span data-pace-people-value="email"></span>
 			</span>
 		</div>
 
 		<div class="ppl__card_particulars">
 			<span class="ppl__card_contactnumber">
 				<i class="ppl_icon-phone ppl__item_spacer"></i>
-				<span data-pace-people-value="phonenumber">
-					Contact Number
+				<span class="ppl_field-label">
+					Phone Number :&nbsp;
 				</span>
+				<span data-pace-people-value="phonenumber"></span>
 			</span>
 		</div>
-
-		<div class="ppl__card_skills_wrapper">
-			<div class="ppl__card_skills">
-				<i class="ppl_icon-tag ppl__item_spacer"></i>
-				<span class="ppl__card_skills" data-pace-people-value="skills">
-				Skills
-				</span>
-			</div>
-		</div>
-
 
 
 	</div>
