@@ -12,6 +12,15 @@
 // Remove margins from person listing item
 #post-ppl-preview {
 	margin: 0;
+
+	&.js-ppl__loading {
+		opacity: 0;
+	}
+}
+
+#set-post-thumbnail,
+#remove-post-thumbnail {
+	@include wordpressbutton();
 }
 
 // Some layout tweak to the preview item icons

@@ -1,4 +1,4 @@
-<div id="post-ppl-preview" class="ppl__listing-item">
+<div id="post-ppl-preview" class="ppl__listing-item js-ppl__loading">
 
 
 	<header class="ppl__card_header"></header>
@@ -32,10 +32,16 @@
 				Team
 			</span>
 		</div>
+		<div class="ppl__card_particulars">
+			<i class="ppl_icon-group ppl__item_spacer"></i>
+			<span data-pace-people-value="role">
+				Role
+			</span>
+		</div>
 
 		<div class="ppl__card_particulars">
 			<i class="ppl_icon-map-marker ppl__item_spacer"></i>
-			<span data-pace-people-value="location">
+			<span data-pace-people-value="locations">
 				LOCATION
 			</span>
 		</div>

@@ -3,8 +3,8 @@
 
 	FOOPEOPLE.updateCache = function() {
 		FOOPEOPLE.cache = {
-			$checkboxes: $( '#poststuff input[name^=\'tax_input\']' ),
 			$textFields: $( '#foopeople-person-details input[name^=\'foopeople-person-details\']' ),
+			$selectFields: $( '#foopeople-person-details select[name^=\'foopeople-person-details\']' ),
 			$nodes: $( '[data-pace-people-value]' ),
 			$portrait: $( '#set-post-thumbnail' ),
 			$removePortrait: $( '#remove-post-thumbnail' ),
@@ -19,37 +19,40 @@
 		}
 	};
 
-	FOOPEOPLE.updateCheckboxValues = function() {
-		FOOPEOPLE.taxonomyFields = {
+	FOOPEOPLE.updateSelectValues = function() {
+		FOOPEOPLE.selectFields = {
+			locations: [],
 			team: [],
-			location: [],
-			skills: []
+			role: []
 		};
+		FOOPEOPLE.cache.$selectFields.each( function() {
+			var $el 	= $( this ),
+				name 	= $el.attr( 'name' ),
+				value 	= $el.val(),
+				textValues = '';
 
-		FOOPEOPLE.cache.$checkboxes.each( function() {
-			var $el = $( this ),
-				value = '',
-				name = '';
+			$el.find( 'option:selected' ).each( function() {
+				textValues += $( this ).text() + ' ';
+			});
 
-			if ( $el.is( ':checked' ) ) {
-
-				value = $el[0].nextSibling.nodeValue;
-				name = $el[0].name;
-
-				switch ( name ) {
-				case 'tax_input[foopeople-team][]':
-					FOOPEOPLE.taxonomyFields.team.push( value );
-					break;
-				case 'tax_input[foopeople-location][]':
-					FOOPEOPLE.taxonomyFields.location.push( value );
-					break;
-				case 'tax_input[foopeople-skill][]':
-					FOOPEOPLE.taxonomyFields.skills.push( value );
-					break;
-				}
+			switch ( name ) {
+			case 'foopeople-person-details[locations][]':
+				FOOPEOPLE.selectFields.locations.push( textValues );
+				break;
+			case 'foopeople-person-details[role][]':
+				FOOPEOPLE.selectFields.role.push( textValues );
+				break;
+			case 'foopeople-person-details[team][]':
+				FOOPEOPLE.selectFields.team.push( textValues );
+				break;
 			}
 		});
+
+		console.log( FOOPEOPLE.selectFields );
+
 	};
+
+
 	FOOPEOPLE.updateTextboxValues = function() {
 		FOOPEOPLE.textFields = {
 			firstname: [],
@@ -138,9 +141,9 @@
 			$( '#ppl__portrait_thumbnail' ).attr( 'src', FOOPEOPLE.cache.portraitDefault );
 		});
 
-		FOOPEOPLE.cache.$checkboxes.on( 'change', function() {
-			FOOPEOPLE.updateCheckboxValues();
-			FOOPEOPLE.updateHTMLValues( FOOPEOPLE.taxonomyFields );
+		FOOPEOPLE.cache.$selectFields.on( 'change', function() {
+			FOOPEOPLE.updateSelectValues();
+			FOOPEOPLE.updateHTMLValues( FOOPEOPLE.selectFields );
 		});
 
 		FOOPEOPLE.cache.$textFields.on( 'input', function() {
@@ -148,27 +151,30 @@
 			FOOPEOPLE.updateHTMLValues( FOOPEOPLE.textFields );
 		});
 
+
 		$( document ).ajaxComplete( function( event, xhr, settings ) {
 			FOOPEOPLE.setThumbnailFromAjax( event, xhr, settings );
 		});
 
 	};
 
-	$( function() { //wait for ready
+	$( function( ) { //wait for ready
+
 		FOOPEOPLE.updateCache();
 		FOOPEOPLE.updatePortrait();
 
 		FOOPEOPLE.bindEvents();
 
-		FOOPEOPLE.updateCheckboxValues();
 		FOOPEOPLE.updateTextboxValues();
+		FOOPEOPLE.updateSelectValues();
 
-		FOOPEOPLE.updateHTMLValues( FOOPEOPLE.taxonomyFields );
 		FOOPEOPLE.updateHTMLValues( FOOPEOPLE.textFields );
+		FOOPEOPLE.updateHTMLValues( FOOPEOPLE.selectFields );
 
 		FOOPEOPLE.updateTitleValue();
 
 		FOOPEOPLE.showPreview();
+
 
 	});
 

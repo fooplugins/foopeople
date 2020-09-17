@@ -297,12 +297,17 @@ function foopeople_get_setting( $option, $default = '' ) {
 	}
 }
 
-function foopeople_admin_menu_parent_slug() {
-	return 'foopeople';
-}
 
+/**
+ * Returns a FooPeople admin menu slug
+ *
+ * @return string Slug for menu
+ */
 function foopeople_admin_menu_cpt_slug() {
 	return 'edit.php?post_type='.FOOPEOPLE_CPT_PERSON;
 }
 
-
+// Not using this admin menu slug anymore
+function foopeople_admin_menu_parent_slug() {
+	return 'foopeople';
+}
