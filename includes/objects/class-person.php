@@ -101,6 +101,24 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Objects\Person' ) ) {
 			return array();
 		}
 
+
+		/**
+		 * Gets all roles for the person
+
+		 * @return array
+		 */
+		public function roles() {
+			$roles = $this->main_details['role'];
+			$role_ids = array();
+
+			foreach ($roles as $key => $value) {
+				array_push($role_ids, $value);
+			}
+
+			return foopeople_get_roles($role_ids);
+
+		}
+
 		/**
 		 * Gets all skills for the person
 

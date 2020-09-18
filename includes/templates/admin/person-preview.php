@@ -34,6 +34,7 @@
 			</span>
 			<span data-pace-people-value="team"></span>
 		</div>
+
 		<div class="ppl__card_particulars">
 			<i class="ppl_icon-group ppl__item_spacer"></i>
 			<span class="ppl_field-label">

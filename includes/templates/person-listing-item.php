@@ -1,4 +1,7 @@
-<?php $person = new FooPlugins\FooPeople\objects\Person($post); ?>
+<?php $person = new FooPlugins\FooPeople\objects\Person($post);
+
+// var_dump($person);
+?>
 
 <li class="ppl__listing-item" data-search="<?php echo $person->search ?>">
 
@@ -17,28 +20,42 @@
 			<?php endif; ?>
 		</h2>
 
+		<?php if ( isset( $person->main_details['jobtitle'] ) ) : ?>
 		<div class="ppl__card_particulars">
-			<?php if ( isset( $person->main_details['jobtitle'] ) ) : ?>
 			<div class="ppl__card_work_title">
 				<i class="ppl_icon-user"></i>
 				<?php echo $person->main_details['jobtitle']; ?>
 			</div>
-			<?php endif; ?>
-
-			<?php if( !empty($person->teams()) ) : ?>
-			<div class="ppl__card_work_team">
-				<i class="ppl_icon-group"></i>
-				<?php
-					foreach ($person->teams() as $team) {
-						echo '<span class="ppl__item_pipe">';
-						echo ' '.$team.' ';
-						echo '</span>';
-					}
-				?>
-			</div>
-			<?php endif; ?>
 		</div>
+		<?php endif; ?>
 
+
+		<?php if( !empty($person->teams()) ) : ?>
+		<div class="ppl__card_particulars">
+			<i class="ppl_icon-group"></i>
+			<?php
+				foreach ($person->teams() as $team) {
+					echo '<span class="ppl__item_pipe">';
+					echo ' '.$team.' ';
+					echo '</span>';
+				}
+			?>
+		</div>
+		<?php endif; ?>
+
+
+		<?php if ( isset( $person->main_details['role'] ) ) : ?>
+		<div class="ppl__card_particulars">
+			<i class="ppl_icon-user"></i>
+			<?php
+			foreach ($person->roles() as $role) {
+				echo '<span class="ppl__item_pipe">';
+				echo ' '.$role.' ';
+				echo '</span>';
+			}
+			?>
+		</div>
+		<?php endif; ?>
 
 
 		<div class="ppl__card_more-details">
@@ -57,41 +74,25 @@
 				</div>
 				<?php endif; ?>
 
-				<div class="ppl__card_particulars">
-					<?php if ( isset( $person->main_details['email'] ) ) : ?>
-					<span class="ppl__card_email / ppl__item_pipe">
-						<a href="mailto:<?php echo $person->main_details['email']; ?>">
-							<i class="ppl_icon-envelope "></i>
-							<?php echo $person->main_details['email']; ?>
-						</a>
-					</span>
-					<?php endif; ?>
 
-					<?php if ( isset( $person->main_details['phonenumber'] ) ) : ?>
-					<span class="ppl__card_contactnumber / ppl__item_pipe">
-						<a href="tel:<?php echo $person->main_details['phonenumber']; ?>">
-							<i class="ppl_icon-phone"></i>
-							<?php echo $person->main_details['phonenumber']; ?>
-						</a>
-					</span>
-					<?php endif; ?>
-				</div>
-
-
-				<?php if( !empty($person->skills()) ) : ?>
-				<div class="ppl__card_skills_wrapper">
-					<div class="ppl__card_skills">
-						<i class="ppl_icon-tag"></i>
-					<?php
-						foreach ($person->skills() as $skill) {
-							echo '<span class="ppl__item_delimiter">';
-							echo ' '.$skill.' ';
-							echo '</span>';
-						}
-					?>
-					</div>
+				<?php if ( isset( $person->main_details['workemail'] ) ) : ?>
+				<div class="ppl__card_particulars ppl__card_email">
+					<a href="mailto:<?php echo $person->main_details['workemail']; ?>">
+						<i class="ppl_icon-envelope "></i>
+						<?php echo $person->main_details['workemail']; ?>
+					</a>
 				</div>
 				<?php endif; ?>
+
+				<?php if ( isset( $person->main_details['workmobile'] ) ) : ?>
+				<div class="ppl__card_particulars ppl__card_contactnumber">
+					<a href="tel:<?php echo $person->main_details['workmobile']; ?>">
+						<i class="ppl_icon-phone"></i>
+						<?php echo $person->main_details['workmobile']; ?>
+					</a>
+				</div>
+				<?php endif; ?>
+
 
 				<a class="ppl__button" href="<?php echo $person->permalink ?>">
 					View Full profile

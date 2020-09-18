@@ -28,19 +28,13 @@
 	.ppl__card_particulars {
 		line-height: 1;
 		margin-bottom: $m-xs;
+		text-align: center;
 	}
 		.ppl__card_name {
 			font-size: $h2;
 			margin-bottom: $m-xs;
 			line-height: 1;
 		}
-
-	.ppl__card_work_title {
-		margin-bottom: $m-xs;
-	}
-	.ppl__card_work_department {
-	}
-
 
 	.ppl__card_location {
 		font-weight: bold;

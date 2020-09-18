@@ -195,7 +195,7 @@ function foopeople_sanitize_text( $key ) {
  *
  * @param string|integer $team Taxonomy Team we want to show
  * @param array $excludes People we dont like
- * @return FooePeople[] array of FooPeople
+ * @return FooPeople[] array of FooPeople
  */
 function foopeople_get_people( $team = '', $excludes = false ) {
 	$args = array(
@@ -226,6 +226,34 @@ function foopeople_get_people( $team = '', $excludes = false ) {
 	}
 
 	return new WP_Query($args);
+}
+
+/**
+ * Returns all FooPeople role titles for a Foo Person
+ *
+ * @param array $ids Array of ID's we want to use
+ * @return $roles[] array of Roles for a Person
+ */
+function foopeople_get_roles( $ids = [] ) {
+	$roles = [];
+
+	$args = array(
+		'post__in' => $ids,
+		'post_type' => FOOPEOPLE_CPT_ROLE,
+		'posts_per_page' => -1,
+		'orderby' => 'title',
+		'cache_results' => false,
+	);
+
+	$the_query = new WP_Query($args);
+
+	if ( $the_query->have_posts() ) :
+		while ( $the_query->have_posts() ) : $the_query->the_post();
+			array_push( $roles, get_the_title( ) );
+		endwhile;
+	endif;
+
+	return $roles;
 }
 
 
