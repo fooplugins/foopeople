@@ -12,12 +12,12 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\PostSave' ) ) {
 	class PostSave {
 
 		function __construct() {
-			add_action( 'foopeople_admin_person_metaboxmaindetails_aftersavepostmeta', array(
+			add_action( 'foopeople_admin_person_metaboxmaindetails_after_save_post_meta', array(
 				$this,
 				'post_save_person'
 			), 10, 2 );
 
-			add_filter( 'foopeople_admin_person_metaboxmaindetails_getposteddata', array(
+			add_filter( 'foopeople_admin_person_metaboxmaindetails_get_posted_data', array(
 				$this,
 				'validate_posted_data'
 			), 10, 2 );
