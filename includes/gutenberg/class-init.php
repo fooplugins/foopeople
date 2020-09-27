@@ -42,7 +42,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 			// Register block styles for both frontend + backend.
 			wp_register_style(
 				'foopeople-block-style-css',
-				FOOPEOPLE_URL . '/assets/css/foopeople.blocks.min.css',
+				FOOPEOPLE_URL . 'assets/css/foopeople.blocks.min.css',
 				is_admin() ? array( 'wp-editor' ) : null,
 				FOOPEOPLE_VERSION
 			);
@@ -52,14 +52,14 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 			// Register block editor script for backend.
 			wp_register_script(
 				'foopeople-block-listing-js',
-				FOOPEOPLE_URL . '/assets/js/block-listing.min.js',
+				FOOPEOPLE_URL . 'assets/js/block-listing.min.js',
 				$asset_file['dependencies'],
 				FOOPEOPLE_VERSION,
 				true
 			);
 			wp_register_script(
 				'foopeople-block-single-js',
-				FOOPEOPLE_URL . '/assets/js/block-single.min.js',
+				FOOPEOPLE_URL . 'assets/js/block-single.min.js',
 				$asset_file['dependencies'],
 				FOOPEOPLE_VERSION,
 				true
@@ -68,7 +68,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 			// TODO : move to premium
 			// wp_register_script(
 			// 	'foopeople-block-organogram-js',
-			// 	FOOPEOPLE_URL . '/assets/js/block-organogram.min.js',
+			// 	FOOPEOPLE_URL . 'assets/js/block-organogram.min.js',
 			// 	$asset_file['dependencies'],
 			// 	FOOPEOPLE_VERSION,
 			// 	true
@@ -78,7 +78,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 			// Register block editor styles for backend.
 			wp_register_style(
 				'foopeople-block-editor-css',
-				FOOPEOPLE_URL . '/assets/css/foopeople.blocks.admin.min.css',
+				FOOPEOPLE_URL . 'assets/css/foopeople.blocks.admin.min.css',
 				array( 'wp-edit-blocks' ),
 				FOOPEOPLE_VERSION
 			);
@@ -86,7 +86,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Gutenberg\Init' ) ) {
 
 
 			// Register Front End Script
-			wp_enqueue_script( 'foopeople_front_scripts', FOOPEOPLE_URL . '/assets/js/theme.min.js', array( 'jquery' ), FOOPEOPLE_VERSION, true );
+			wp_enqueue_script( 'foopeople_front_scripts', FOOPEOPLE_URL . 'assets/js/theme.min.js', array( 'jquery' ), FOOPEOPLE_VERSION, true );
 
 			/**
 			 * Register Gutenberg block on server-side.
