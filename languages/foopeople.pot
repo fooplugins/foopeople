@@ -16,15 +16,11 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: includes/admin/class-dashboard.php:20, includes/admin/class-dashboard.php:30
+#: includes/admin/class-dashboard.php:32
 msgid "FooPeople Dashboard"
 msgstr ""
 
-#: includes/admin/class-dashboard.php:21
-msgid "FooPeople"
-msgstr ""
-
-#: includes/admin/class-dashboard.php:31
+#: includes/admin/class-dashboard.php:33
 msgid "Dashboard"
 msgstr ""
 
@@ -32,7 +28,7 @@ msgstr ""
 msgid "%s Settings"
 msgstr ""
 
-#: includes/admin/class-menu.php:31, includes/admin/class-settings.php:31
+#: includes/admin/class-menu.php:31, includes/admin/class-settings.php:32
 msgid "Settings"
 msgstr ""
 
@@ -60,7 +56,7 @@ msgstr ""
 msgid "%s settings reset to defaults."
 msgstr ""
 
-#: includes/admin/class-settings.php:30
+#: includes/admin/class-settings.php:31
 msgid "FooPeople Settings"
 msgstr ""
 
@@ -82,1287 +78,1395 @@ msgctxt "User role"
 msgid "HR Manager"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:17
-msgid "Personal"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:22
-msgid "First Name"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:26
-msgid "The first name of the person."
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:31
-msgid "Last Name"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:35
-msgid "The last name/surname/family name of the person."
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:39
-msgid "Preferred Name"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:40
-msgid "You can override the full name for the person. Leave blank to default the full name to be \"First Name + Last Name\"."
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:44
-msgid "This could be a nickname or a shortened name"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:48
-msgid "Ethnicity"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:49, includes/admin/person/class-metabox-main-details.php:58, includes/admin/person/class-metabox-main-details.php:70, includes/admin/person/class-metabox-main-details.php:93, includes/admin/person/class-metabox-main-details.php:100, includes/admin/person/class-metabox-main-details.php:109, includes/admin/person/class-metabox-main-details.php:116, includes/admin/person/class-metabox-main-details.php:180, includes/admin/person/class-metabox-main-details.php:397, includes/admin/person/class-metabox-main-details.php:404, includes/admin/person/class-metabox-main-details.php:419, includes/admin/person/class-metabox-main-details.php:425, includes/admin/person/class-metabox-main-details.php:430, includes/admin/person/class-metabox-main-details.php:437, includes/admin/person/class-metabox-main-details.php:446
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:57
-msgid "Gender"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:61
-msgid "Male"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:62
-msgid "Female"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:63
-msgid "Other"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:69
-msgid "Marital Status"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:73
-msgid "Single"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:74
-msgid "Married"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:75
-msgid "Divorced"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:76
-msgid "Widowed"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:82
-msgid "Postal Address"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:87
-msgid "Residential Address"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:92
-msgid "Religion"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:99
-msgid "Date of Birth"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:108
-msgid "ID Number / Social Security Number"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:115
-msgid "Timezone"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:119
-msgid "GMT"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:120
-msgid "UTC-12"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:121
-msgid "UTC-11:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:122
-msgid "UTC-11"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:123
-msgid "UTC-10:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:124
-msgid "UTC-10"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:125
-msgid "UTC-9:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:126
-msgid "UTC-9"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:127
-msgid "UTC-8:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:128
-msgid "UTC-8"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:129
-msgid "UTC-7:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:130
-msgid "UTC-7"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:131
-msgid "UTC-6:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:132
-msgid "UTC-6"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:133
-msgid "UTC-5:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:134
-msgid "UTC-5"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:135
-msgid "UTC-4:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:136
-msgid "UTC-4"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:137
-msgid "UTC-3:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:138
-msgid "UTC-3"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:139
-msgid "UTC-2:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:140
-msgid "UTC-2"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:141
-msgid "UTC-1:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:142
-msgid "UTC-1"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:143
-msgid "UTC-0:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:144
-msgid "UTC+0"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:145
-msgid "UTC+0:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:146
-msgid "UTC+1"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:147
-msgid "UTC+1:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:148
-msgid "UTC+2"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:149
-msgid "UTC+2:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:150
-msgid "UTC+3"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:151
-msgid "UTC+3:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:152
-msgid "UTC+4"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:153
-msgid "UTC+4:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:154
-msgid "UTC+5"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:155
-msgid "UTC+5:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:156
-msgid "UTC+5:45"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:157
-msgid "UTC+6"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:158
-msgid "UTC+6:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:159
-msgid "UTC+7"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:160
-msgid "UTC+7:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:161
-msgid "UTC+8"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:162
-msgid "UTC+8:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:163
-msgid "UTC+8:45"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:164
-msgid "UTC+9"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:165
-msgid "UTC+9:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:166
-msgid "UTC+10"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:167
-msgid "UTC+10:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:168
-msgid "UTC+11"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:169
-msgid "UTC+11:30"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:170
-msgid "UTC+12"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:171
-msgid "UTC+12:45"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:172
-msgid "UTC+13"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:173
-msgid "UTC+13:45"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:174
-msgid "UTC+14"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:179
-msgid "Nationality"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:183
-msgid "Afghanistan"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:184
-msgid "Albania"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:185
-msgid "Algeria"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:186
-msgid "Andorra"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:187
-msgid "Angola"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:188
-msgid "Antigua & Deps"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:189
-msgid "Argentina"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:190
-msgid "Armenia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:191
-msgid "Australia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:192
-msgid "Austria"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:193
-msgid "Azerbaijan"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:194
-msgid "Bahamas"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:195
-msgid "Bahrain"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:196
-msgid "Bangladesh"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:197
-msgid "Barbados"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:198
-msgid "Belarus"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:199
-msgid "Belgium"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:200
-msgid "Belize"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:201
-msgid "Benin"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:202
-msgid "Bhutan"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:203
-msgid "Bolivia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:204
-msgid "Bosnia Herzegovina"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:205
-msgid "Botswana"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:206
-msgid "Brazil"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:207
-msgid "Brunei"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:208
-msgid "Bulgaria"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:209
-msgid "Burkina"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:210
-msgid "Burundi"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:211
-msgid "Cambodia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:212
-msgid "Cameroon"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:213
-msgid "Canada"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:214
-msgid "Cape Verde"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:215
-msgid "Central African Rep"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:216
-msgid "Chad"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:217
-msgid "Chile"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:218
-msgid "China"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:219
-msgid "Colombia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:220
-msgid "Comoros"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:221
-msgid "Congo"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:222
-msgid "Congo {Democratic Rep}"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:223
-msgid "Costa Rica"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:224
-msgid "Croatia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:225
-msgid "Cuba"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:226
-msgid "Cyprus"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:227
-msgid "Czech Republic"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:228
-msgid "Denmark"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:229
-msgid "Djibouti"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:230
-msgid "Dominica"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:231
-msgid "Dominican Republic"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:232
-msgid "East Timor"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:233
-msgid "Ecuador"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:234
-msgid "Egypt"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:235
-msgid "El Salvador"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:236
-msgid "Equatorial Guinea"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:237
-msgid "Eritrea"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:238
-msgid "Estonia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:239
-msgid "Ethiopia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:240
-msgid "Fiji"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:241
-msgid "Finland"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:242
-msgid "France"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:243
-msgid "Gabon"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:244
-msgid "Gambia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:245
-msgid "Georgia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:246
-msgid "Germany"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:247
-msgid "Ghana"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:248
-msgid "Greece"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:249
-msgid "Grenada"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:250
-msgid "Guatemala"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:251
-msgid "Guinea"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:252
-msgid "Guinea-Bissau"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:253
-msgid "Guyana"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:254
-msgid "Haiti"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:255
-msgid "Honduras"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:256
-msgid "Hungary"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:257
-msgid "Iceland"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:258
-msgid "India"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:259
-msgid "Indonesia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:260
-msgid "Iran"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:261
-msgid "Iraq"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:262
-msgid "Ireland {Republic}"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:263
-msgid "Israel"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:264
-msgid "Italy"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:265
-msgid "Ivory Coast"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:266
-msgid "Jamaica"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:267
-msgid "Japan"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:268
-msgid "Jordan"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:269
-msgid "Kazakhstan"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:270
-msgid "Kenya"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:271
-msgid "Kiribati"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:272
-msgid "Korea North"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:273
-msgid "Korea South"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:274
-msgid "Kosovo"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:275
-msgid "Kuwait"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:276
-msgid "Kyrgyzstan"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:277
-msgid "Laos"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:278
-msgid "Latvia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:279
-msgid "Lebanon"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:280
-msgid "Lesotho"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:281
-msgid "Liberia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:282
-msgid "Libya"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:283
-msgid "Liechtenstein"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:284
-msgid "Lithuania"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:285
-msgid "Luxembourg"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:286
-msgid "Macedonia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:287
-msgid "Madagascar"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:288
-msgid "Malawi"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:289
-msgid "Malaysia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:290
-msgid "Maldives"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:291
-msgid "Mali"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:292
-msgid "Malta"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:293
-msgid "Marshall Islands"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:294
-msgid "Mauritania"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:295
-msgid "Mauritius"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:296
-msgid "Mexico"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:297
-msgid "Micronesia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:298
-msgid "Moldova"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:299
-msgid "Monaco"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:300
-msgid "Mongolia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:301
-msgid "Montenegro"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:302
-msgid "Morocco"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:303
-msgid "Mozambique"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:304
-msgid "Myanmar, {Burma}"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:305
-msgid "Namibia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:306
-msgid "Nauru"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:307
-msgid "Nepal"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:308
-msgid "Netherlands"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:309
-msgid "New Zealand"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:310
-msgid "Nicaragua"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:311
-msgid "Niger"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:312
-msgid "Nigeria"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:313
-msgid "Norway"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:314
-msgid "Oman"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:315
-msgid "Pakistan"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:316
-msgid "Palau"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:317
-msgid "Panama"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:318
-msgid "Papua New Guinea"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:319
-msgid "Paraguay"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:320
-msgid "Peru"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:321
-msgid "Philippines"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:322
-msgid "Poland"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:323
-msgid "Portugal"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:324
-msgid "Qatar"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:325
-msgid "Romania"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:326
-msgid "Russian Federation"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:327
-msgid "Rwanda"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:328
-msgid "St Kitts & Nevis"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:329
-msgid "St Lucia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:330
-msgid "Saint Vincent & the Grenadines"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:331
-msgid "Samoa"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:332
-msgid "San Marino"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:333
-msgid "Sao Tome & Principe"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:334
-msgid "Saudi Arabia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:335
-msgid "Senegal"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:336
-msgid "Serbia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:337
-msgid "Seychelles"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:338
-msgid "Sierra Leone"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:339
-msgid "Singapore"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:340
-msgid "Slovakia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:341
-msgid "Slovenia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:342
-msgid "Solomon Islands"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:343
-msgid "Somalia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:344
-msgid "South Africa"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:345
-msgid "South Sudan"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:346
-msgid "Spain"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:347
-msgid "Sri Lanka"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:348
-msgid "Sudan"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:349
-msgid "Suriname"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:350
-msgid "Swaziland"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:351
-msgid "Sweden"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:352
-msgid "Switzerland"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:353
-msgid "Syria"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:354
-msgid "Taiwan"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:355
-msgid "Tajikistan"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:356
-msgid "Tanzania"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:357
-msgid "Thailand"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:358
-msgid "Togo"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:359
-msgid "Tonga"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:360
-msgid "Trinidad & Tobago"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:361
-msgid "Tunisia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:362
-msgid "Turkey"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:363
-msgid "Turkmenistan"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:364
-msgid "Tuvalu"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:365
-msgid "Uganda"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:366
-msgid "Ukraine"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:367
-msgid "United Arab Emirates"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:368
-msgid "United Kingdom"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:369
-msgid "United States"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:370
-msgid "Uruguay"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:371
-msgid "Uzbekistan"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:372
-msgid "Vanuatu"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:373
-msgid "Vatican City"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:374
-msgid "Venezuela"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:375
-msgid "Vietnam"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:376
-msgid "Yemen"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:377
-msgid "Zambia"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:378
-msgid "Zimbabwe"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:385
-msgid "Professional"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:390, includes/admin/person/class-metabox-main-details.php:517
-msgid "Email"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:396
-msgid "Employee Number"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:403
-msgid "Employment Type"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:407
+#: includes/admin/person/class-metabox-main-details.php:13
 msgid "Fulltime"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:408
+#: includes/admin/person/class-metabox-main-details.php:14
 msgid "Part Time"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:409
+#: includes/admin/person/class-metabox-main-details.php:15
 msgid "Contractor"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:410
+#: includes/admin/person/class-metabox-main-details.php:16
 msgid "Temporary"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:411
+#: includes/admin/person/class-metabox-main-details.php:17
 msgid "Trainee"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:412
+#: includes/admin/person/class-metabox-main-details.php:18
 msgid "Intern"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:418
-msgid "Date Joined"
+#: includes/admin/person/class-metabox-main-details.php:26
+msgid "Work"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:429
-msgid "Salary"
+#: includes/admin/person/class-metabox-main-details.php:31, includes/admin/person/class-metabox-main-details.php:376
+msgid "General"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:436
+#: includes/admin/person/class-metabox-main-details.php:36
+msgid "First Name"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:40
+msgid "The first name of the person."
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:46
+msgid "Last Name"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:50
+msgid "The last name/surname/family name of the person."
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:57, includes/admin/person/class-metabox-main-details.php:721
+msgid "Email"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:58
+msgid "The company email address for the person."
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:64
+msgid "Mobile"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:70
+msgid "Employee Number"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:71
+msgid "A unique number that identifies the person in the company."
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:77
+msgid "Employment Type"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:78, includes/admin/person/class-metabox-main-details.php:400, includes/admin/person/class-metabox-main-details.php:411, includes/admin/person/class-metabox-main-details.php:420, includes/admin/person/class-metabox-main-details.php:432, includes/admin/person/class-metabox-main-details.php:440, includes/admin/person/class-metabox-main-details.php:504, includes/admin/person/class-metabox-main-details.php:709
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:85
+msgid "Joined Date"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:86
+msgid "The date the person joined the company. This is used to calculate length of service."
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:101
+msgid "%d years, %d months"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:108
 msgid "Job Title"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:441
+#: includes/admin/person/class-metabox-main-details.php:109
+msgid "The job title specific to this person. It could be the same as the Job Role, or you can customise it for this person."
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:113
 msgid "Job title"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:445
+#: includes/admin/person/class-metabox-main-details.php:117, includes/posttypes/class-role.php:25
+msgid "Job Role"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:118
+msgid "A Job Role is a grouping of job titles, e.g. Developer, Executive, Engineer."
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:122
+msgid "Start typing the name of the role"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:133, includes/taxonomies/class-location.php:15, includes/taxonomies/class-location.php:25
+msgid "Locations"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:145
+msgid "Team"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:147
+msgid "Select which team does the person belongs to. You can also add a team if it does not exist."
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:160
 msgid "Line Manager"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:449
+#: includes/admin/person/class-metabox-main-details.php:161
+msgid "Who does this person report to?"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:164
 msgid "Start typing the manager name"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:457, includes/posttypes/class-person.php:65
-msgid "Portrait"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:465
-msgid "Work Contact"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:470
-msgid "Mobile Number"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:475
-msgid "Landline"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:480, includes/admin/person/class-metabox-main-details.php:527
-msgid "Slack"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:486, includes/admin/person/class-metabox-main-details.php:533, includes/admin/person/class-metabox-main-details.php:602, includes/taxonomies/class-team.php:17, includes/taxonomies/class-team.php:18, includes/taxonomies/class-team.php:27
-msgid "Teams"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:492, includes/admin/person/class-metabox-main-details.php:539
-msgid "Skype"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:498, includes/admin/person/class-metabox-main-details.php:545
-msgid "Twitter"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:504, includes/admin/person/class-metabox-main-details.php:551
-msgid "Facebook"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:512
-msgid "Personal Contact"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:522
-msgid "Phone Number"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:557
-msgid "LinkedIn"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:565
-msgid "Medical"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:570
-msgid "Next of Kins details (name, contact details)"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:575
-msgid "Doctors details (name, contact details)"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:580
-msgid "Blood Type"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:583
-msgid "A+"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:584
-msgid "A-"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:585
-msgid "B+"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:586
-msgid "B-"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:587
-msgid "O+"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:588
-msgid "O-"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:589
-msgid "AB+"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:590
-msgid "AB-"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:595
-msgid "Allergies"
-msgstr ""
-
-#: includes/admin/person/class-metabox-main-details.php:610, includes/taxonomies/class-skill.php:15, includes/taxonomies/class-skill.php:25
+#: includes/admin/person/class-metabox-main-details.php:174, includes/admin/person/class-metabox-main-details.php:178, includes/taxonomies/class-skill.php:15, includes/taxonomies/class-skill.php:25
 msgid "Skills"
 msgstr ""
 
-#: includes/admin/person/class-metabox-main-details.php:618, includes/taxonomies/class-location.php:15, includes/taxonomies/class-location.php:25
-msgid "Locations"
+#: includes/admin/person/class-metabox-main-details.php:191
+msgid "Compensation"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:196
+msgid "Currency"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:319
+msgid "Salary"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:327, includes/admin/person/class-metabox-main-details.php:717
+msgid "Contact Details"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:331
+msgid "Landline"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:336
+msgid "Slack"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:342, includes/taxonomies/class-team.php:17, includes/taxonomies/class-team.php:18, includes/taxonomies/class-team.php:27
+msgid "Teams"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:348, includes/admin/person/class-metabox-main-details.php:731
+msgid "Skype"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:354, includes/admin/person/class-metabox-main-details.php:737
+msgid "Twitter"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:360, includes/admin/person/class-metabox-main-details.php:743
+msgid "Facebook"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:371
+msgid "Personal"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:381
+msgid "Date of Birth"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:389
+msgid "Preferred Name"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:390
+msgid "You can override the first name for the person. This could be a nickname or a shortened name."
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:394
+msgid "This could be a nickname or a shortened name"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:399
+msgid "Gender"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:403
+msgid "Male"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:404
+msgid "Female"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:405, includes/admin/person/class-metabox-main-details.php:858
+msgid "Other"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:410
+msgid "Ethnicity"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:419
+msgid "Marital Status"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:423
+msgid "Single"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:424
+msgid "Married"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:425
+msgid "Divorced"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:426
+msgid "Widowed"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:431
+msgid "Religion"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:439
+msgid "Timezone"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:443
+msgid "GMT"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:444
+msgid "UTC-12"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:445
+msgid "UTC-11:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:446
+msgid "UTC-11"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:447
+msgid "UTC-10:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:448
+msgid "UTC-10"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:449
+msgid "UTC-9:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:450
+msgid "UTC-9"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:451
+msgid "UTC-8:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:452
+msgid "UTC-8"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:453
+msgid "UTC-7:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:454
+msgid "UTC-7"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:455
+msgid "UTC-6:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:456
+msgid "UTC-6"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:457
+msgid "UTC-5:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:458
+msgid "UTC-5"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:459
+msgid "UTC-4:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:460
+msgid "UTC-4"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:461
+msgid "UTC-3:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:462
+msgid "UTC-3"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:463
+msgid "UTC-2:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:464
+msgid "UTC-2"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:465
+msgid "UTC-1:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:466
+msgid "UTC-1"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:467
+msgid "UTC-0:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:468
+msgid "UTC+0"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:469
+msgid "UTC+0:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:470
+msgid "UTC+1"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:471
+msgid "UTC+1:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:472
+msgid "UTC+2"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:473
+msgid "UTC+2:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:474
+msgid "UTC+3"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:475
+msgid "UTC+3:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:476
+msgid "UTC+4"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:477
+msgid "UTC+4:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:478
+msgid "UTC+5"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:479
+msgid "UTC+5:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:480
+msgid "UTC+5:45"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:481
+msgid "UTC+6"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:482
+msgid "UTC+6:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:483
+msgid "UTC+7"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:484
+msgid "UTC+7:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:485
+msgid "UTC+8"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:486
+msgid "UTC+8:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:487
+msgid "UTC+8:45"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:488
+msgid "UTC+9"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:489
+msgid "UTC+9:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:490
+msgid "UTC+10"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:491
+msgid "UTC+10:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:492
+msgid "UTC+11"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:493
+msgid "UTC+11:30"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:494
+msgid "UTC+12"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:495
+msgid "UTC+12:45"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:496
+msgid "UTC+13"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:497
+msgid "UTC+13:45"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:498
+msgid "UTC+14"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:503
+msgid "Nationality"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:507
+msgid "Afghanistan"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:508
+msgid "Albania"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:509
+msgid "Algeria"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:510
+msgid "Andorra"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:511
+msgid "Angola"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:512
+msgid "Antigua & Deps"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:513
+msgid "Argentina"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:514
+msgid "Armenia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:515
+msgid "Australia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:516
+msgid "Austria"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:517
+msgid "Azerbaijan"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:518
+msgid "Bahamas"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:519
+msgid "Bahrain"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:520
+msgid "Bangladesh"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:521
+msgid "Barbados"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:522
+msgid "Belarus"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:523
+msgid "Belgium"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:524
+msgid "Belize"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:525
+msgid "Benin"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:526
+msgid "Bhutan"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:527
+msgid "Bolivia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:528
+msgid "Bosnia Herzegovina"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:529
+msgid "Botswana"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:530
+msgid "Brazil"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:531
+msgid "Brunei"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:532
+msgid "Bulgaria"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:533
+msgid "Burkina"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:534
+msgid "Burundi"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:535
+msgid "Cambodia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:536
+msgid "Cameroon"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:537
+msgid "Canada"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:538
+msgid "Cape Verde"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:539
+msgid "Central African Rep"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:540
+msgid "Chad"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:541
+msgid "Chile"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:542
+msgid "China"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:543
+msgid "Colombia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:544
+msgid "Comoros"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:545
+msgid "Congo"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:546
+msgid "Congo {Democratic Rep}"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:547
+msgid "Costa Rica"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:548
+msgid "Croatia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:549
+msgid "Cuba"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:550
+msgid "Cyprus"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:551
+msgid "Czech Republic"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:552
+msgid "Denmark"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:553
+msgid "Djibouti"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:554
+msgid "Dominica"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:555
+msgid "Dominican Republic"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:556
+msgid "East Timor"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:557
+msgid "Ecuador"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:558
+msgid "Egypt"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:559
+msgid "El Salvador"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:560
+msgid "Equatorial Guinea"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:561
+msgid "Eritrea"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:562
+msgid "Estonia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:563
+msgid "Ethiopia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:564
+msgid "Fiji"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:565
+msgid "Finland"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:566
+msgid "France"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:567
+msgid "Gabon"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:568
+msgid "Gambia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:569
+msgid "Georgia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:570
+msgid "Germany"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:571
+msgid "Ghana"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:572
+msgid "Greece"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:573
+msgid "Grenada"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:574
+msgid "Guatemala"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:575
+msgid "Guinea"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:576
+msgid "Guinea-Bissau"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:577
+msgid "Guyana"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:578
+msgid "Haiti"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:579
+msgid "Honduras"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:580
+msgid "Hungary"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:581
+msgid "Iceland"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:582
+msgid "India"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:583
+msgid "Indonesia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:584
+msgid "Iran"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:585
+msgid "Iraq"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:586
+msgid "Ireland {Republic}"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:587
+msgid "Israel"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:588
+msgid "Italy"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:589
+msgid "Ivory Coast"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:590
+msgid "Jamaica"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:591
+msgid "Japan"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:592
+msgid "Jordan"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:593
+msgid "Kazakhstan"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:594
+msgid "Kenya"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:595
+msgid "Kiribati"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:596
+msgid "Korea North"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:597
+msgid "Korea South"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:598
+msgid "Kosovo"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:599
+msgid "Kuwait"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:600
+msgid "Kyrgyzstan"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:601
+msgid "Laos"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:602
+msgid "Latvia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:603
+msgid "Lebanon"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:604
+msgid "Lesotho"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:605
+msgid "Liberia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:606
+msgid "Libya"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:607
+msgid "Liechtenstein"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:608
+msgid "Lithuania"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:609
+msgid "Luxembourg"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:610
+msgid "Macedonia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:611
+msgid "Madagascar"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:612
+msgid "Malawi"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:613
+msgid "Malaysia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:614
+msgid "Maldives"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:615
+msgid "Mali"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:616
+msgid "Malta"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:617
+msgid "Marshall Islands"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:618
+msgid "Mauritania"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:619
+msgid "Mauritius"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:620
+msgid "Mexico"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:621
+msgid "Micronesia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:622
+msgid "Moldova"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:623
+msgid "Monaco"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:624
+msgid "Mongolia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:625
+msgid "Montenegro"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:626
+msgid "Morocco"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:627
+msgid "Mozambique"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:628
+msgid "Myanmar, {Burma}"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:629
+msgid "Namibia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:630
+msgid "Nauru"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:631
+msgid "Nepal"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:632
+msgid "Netherlands"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:633
+msgid "New Zealand"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:634
+msgid "Nicaragua"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:635
+msgid "Niger"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:636
+msgid "Nigeria"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:637
+msgid "Norway"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:638
+msgid "Oman"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:639
+msgid "Pakistan"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:640
+msgid "Palau"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:641
+msgid "Panama"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:642
+msgid "Papua New Guinea"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:643
+msgid "Paraguay"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:644
+msgid "Peru"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:645
+msgid "Philippines"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:646
+msgid "Poland"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:647
+msgid "Portugal"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:648
+msgid "Qatar"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:649
+msgid "Romania"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:650
+msgid "Russian Federation"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:651
+msgid "Rwanda"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:652
+msgid "St Kitts & Nevis"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:653
+msgid "St Lucia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:654
+msgid "Saint Vincent & the Grenadines"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:655
+msgid "Samoa"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:656
+msgid "San Marino"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:657
+msgid "Sao Tome & Principe"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:658
+msgid "Saudi Arabia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:659
+msgid "Senegal"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:660
+msgid "Serbia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:661
+msgid "Seychelles"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:662
+msgid "Sierra Leone"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:663
+msgid "Singapore"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:664
+msgid "Slovakia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:665
+msgid "Slovenia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:666
+msgid "Solomon Islands"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:667
+msgid "Somalia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:668
+msgid "South Africa"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:669
+msgid "South Sudan"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:670
+msgid "Spain"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:671
+msgid "Sri Lanka"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:672
+msgid "Sudan"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:673
+msgid "Suriname"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:674
+msgid "Swaziland"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:675
+msgid "Sweden"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:676
+msgid "Switzerland"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:677
+msgid "Syria"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:678
+msgid "Taiwan"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:679
+msgid "Tajikistan"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:680
+msgid "Tanzania"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:681
+msgid "Thailand"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:682
+msgid "Togo"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:683
+msgid "Tonga"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:684
+msgid "Trinidad & Tobago"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:685
+msgid "Tunisia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:686
+msgid "Turkey"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:687
+msgid "Turkmenistan"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:688
+msgid "Tuvalu"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:689
+msgid "Uganda"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:690
+msgid "Ukraine"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:691
+msgid "United Arab Emirates"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:692
+msgid "United Kingdom"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:693
+msgid "United States"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:694
+msgid "Uruguay"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:695
+msgid "Uzbekistan"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:696
+msgid "Vanuatu"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:697
+msgid "Vatican City"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:698
+msgid "Venezuela"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:699
+msgid "Vietnam"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:700
+msgid "Yemen"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:701
+msgid "Zambia"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:702
+msgid "Zimbabwe"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:708
+msgid "ID Number / Social Security Number"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:726
+msgid "Mobile Number"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:749
+msgid "LinkedIn"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:757
+msgid "Addresses"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:762
+msgid "Add Address"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:770
+msgid "Address"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:775
+msgid "Post Code"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:780
+msgid "Type"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:783
+msgid "Postal"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:784
+msgid "Residential"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:797
+msgid "Medical"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:801
+msgid "Next of Kin details (name, contact details)"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:806
+msgid "Doctors details (name, contact details)"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:811
+msgid "Blood Type"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:814
+msgid "A+"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:815
+msgid "A-"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:816
+msgid "B+"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:817
+msgid "B-"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:818
+msgid "O+"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:819
+msgid "O-"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:820
+msgid "AB+"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:821
+msgid "AB-"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:826
+msgid "Allergies"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:833
+msgid "Dependants"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:838
+msgid "Add Dependant"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:846
+msgid "Full Name"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:851
+msgid "Relationship"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:854
+msgid "Spouse"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:855
+msgid "Child"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:856
+msgid "Father"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:857
+msgid "Mother"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:875, includes/posttypes/class-person.php:65
+msgid "Portrait"
+msgstr ""
+
+#: includes/admin/person/class-metabox-main-details.php:892
+msgid "Main Details"
 msgstr ""
 
 #: includes/admin/person/class-metabox-notes.php:17
@@ -1391,6 +1495,10 @@ msgstr ""
 
 #: includes/admin/person/class-metabox-notes.php:51
 msgid "Are you sure you want to remove this note?"
+msgstr ""
+
+#: includes/admin/person/class-metabox-notes.php:63
+msgid "Notes"
 msgstr ""
 
 #: includes/admin/view-help.php:4
@@ -1609,7 +1717,11 @@ msgstr ""
 msgid "The line width for the organogram"
 msgstr ""
 
-#: includes/posttypes/class-person.php:40, includes/posttypes/class-person.php:53, includes/posttypes/class-person.php:64
+#: includes/posttypes/class-person.php:40
+msgid "FooPeople"
+msgstr ""
+
+#: includes/posttypes/class-person.php:53, includes/posttypes/class-person.php:64
 msgid "People"
 msgstr ""
 
@@ -1663,67 +1775,67 @@ msgctxt "foopeople"
 msgid "Use as Portrait"
 msgstr ""
 
-#: includes/posttypes/class-person.php:177, includes/posttypes/class-person.php:180
+#: includes/posttypes/class-person.php:179, includes/posttypes/class-person.php:182
 msgid "Person updated."
 msgstr ""
 
-#: includes/posttypes/class-person.php:178
+#: includes/posttypes/class-person.php:180
 msgid "Person custom field updated."
 msgstr ""
 
-#: includes/posttypes/class-person.php:179
+#: includes/posttypes/class-person.php:181
 msgid "Person custom field deleted."
 msgstr ""
 
-#: includes/posttypes/class-person.php:181
+#: includes/posttypes/class-person.php:183
 msgid "Person restored to revision from %s."
 msgstr ""
 
-#: includes/posttypes/class-person.php:182
+#: includes/posttypes/class-person.php:184
 msgid "Person published."
 msgstr ""
 
-#: includes/posttypes/class-person.php:183
+#: includes/posttypes/class-person.php:185
 msgid "Person saved."
 msgstr ""
 
-#: includes/posttypes/class-person.php:184
+#: includes/posttypes/class-person.php:186
 msgid "Person submitted."
 msgstr ""
 
-#: includes/posttypes/class-person.php:185
+#: includes/posttypes/class-person.php:187
 msgid "People scheduled for: <strong>%1$s</strong>."
 msgstr ""
 
-#: includes/posttypes/class-person.php:186
+#: includes/posttypes/class-person.php:188
 msgid "Person draft updated."
 msgstr ""
 
-#: includes/posttypes/class-person.php:205
+#: includes/posttypes/class-person.php:207
 msgid "%s Person updated."
 msgid_plural "%s People updated."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/posttypes/class-person.php:206
+#: includes/posttypes/class-person.php:208
 msgid "%s Person not updated, somebody is editing it."
 msgid_plural "%s People not updated, somebody is editing them."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/posttypes/class-person.php:207
+#: includes/posttypes/class-person.php:209
 msgid "%s Person permanently deleted."
 msgid_plural "%s People permanently deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/posttypes/class-person.php:208
+#: includes/posttypes/class-person.php:210
 msgid "%s Person moved to the Trash."
 msgid_plural "%s People moved to the Trash."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/posttypes/class-person.php:209
+#: includes/posttypes/class-person.php:211
 msgid "%s Person restored from the Trash."
 msgid_plural "%s People restored from the Trash."
 msgstr[0] ""
@@ -1834,6 +1946,42 @@ msgid "%s Policy restored from the Trash."
 msgid_plural "%s Policies restored from the Trash."
 msgstr[0] ""
 msgstr[1] ""
+
+#: includes/posttypes/class-role.php:24, includes/posttypes/class-role.php:34, includes/posttypes/class-role.php:35, includes/posttypes/class-role.php:53, includes/posttypes/class-role.php:54
+msgid "Job Roles"
+msgstr ""
+
+#: includes/posttypes/class-role.php:26
+msgid "Add Job Role"
+msgstr ""
+
+#: includes/posttypes/class-role.php:27
+msgid "Add New Job Role"
+msgstr ""
+
+#: includes/posttypes/class-role.php:28
+msgid "Edit Job Role"
+msgstr ""
+
+#: includes/posttypes/class-role.php:29
+msgid "New Job Role"
+msgstr ""
+
+#: includes/posttypes/class-role.php:30
+msgid "View Job Role"
+msgstr ""
+
+#: includes/posttypes/class-role.php:31
+msgid "Search Job Roles"
+msgstr ""
+
+#: includes/posttypes/class-role.php:32
+msgid "No job roles found"
+msgstr ""
+
+#: includes/posttypes/class-role.php:33
+msgid "No job roles found in Trash"
+msgstr ""
 
 #: includes/startup-checks.php:16
 msgid "%s could not be initialized because you need to be running at least PHP version %s, and you are running version %s"
