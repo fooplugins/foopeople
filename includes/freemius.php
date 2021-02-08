@@ -25,14 +25,14 @@ if ( ! function_exists( 'foopeople_fs' ) ) {
 				'is_premium'          => true,
 				'premium_suffix'      => 'Pro',
 				// If your plugin is a serviceware, set this option to false.
-				'has_premium_version' => true,
+				'has_premium_version' => false,
 				'has_addons'          => false,
-				'has_paid_plans'      => true,
-				'trial'               => array(
-					'days'               => 7,
-					'is_require_payment' => true,
-				),
-				'has_affiliation'     => 'selected',
+				'has_paid_plans'      => false,
+//				'trial'               => array(
+//					'days'               => 7,
+//					'is_require_payment' => true,
+//				),
+//				'has_affiliation'     => 'selected',
 				'menu'                => array(
 					'slug'           => foopeople_admin_menu_cpt_slug(),
 				)

@@ -17,6 +17,9 @@ if ( !class_exists( 'FooPlugins\FooPeople\Admin\Init' ) ) {
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
 
 			new namespace\Updates();
+
+			new namespace\ContainerManager();
+
 			// new namespace\Dashboard();
 			// new namespace\Settings();
 

@@ -58,6 +58,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxNotes' ) ) {
 
 			parent::__construct(
 				array(
+					'manager'        => FOOPEOPLE_SLUG,
 					'post_type'      => FOOPEOPLE_CPT_PERSON,
 					'metabox_id'     => 'notes',
 					'metabox_title'  => __( 'Notes', 'foopeople' ),

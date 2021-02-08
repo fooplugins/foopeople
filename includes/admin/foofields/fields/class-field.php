@@ -69,6 +69,8 @@ if ( ! class_exists( __NAMESPACE__ . '\Field' ) ) {
 
 		protected $choices;
 
+		protected $groups;
+
 		protected $default;
 
 		protected $placeholder;
@@ -93,22 +95,25 @@ if ( ! class_exists( __NAMESPACE__ . '\Field' ) ) {
 			$this->container = $container;
 			$this->type = $type;
 			$this->config = $field_config;
-
+			if ( !isset( $field_config['id'] ) ) {
+				$field_config['id'] = 'unknown';
+			}
 			$this->id          = $field_config['id'];
 			$this->unique_id   = $container->get_unique_id( $field_config );
 			$this->name        = $container->get_field_name( $field_config );
-			$this->layout      = isset( $field_config['layout'] ) ? $field_config['layout'] : 'inline';
+			$this->layout      = isset( $field_config['layout'] ) ? $field_config['layout'] : 'auto';
 			$this->label       = isset( $field_config['label'] ) ? $field_config['label'] : null;
 			$this->description = isset( $field_config['desc'] ) ? $field_config['desc'] : null;
 			$this->required    = isset( $field_config['required'] ) ? $field_config['required'] : null;
 			$this->tooltip     = isset( $field_config['tooltip'] ) ? $field_config['tooltip'] : null;
 			$this->choices     = isset( $field_config['choices'] ) ? $field_config['choices'] : array();
+			$this->groups      = isset( $field_config['groups'] ) ? $field_config['groups'] : array();
 			$this->default     = isset( $field_config['default'] ) ? $field_config['default'] : null;
 			$this->placeholder = isset( $field_config['placeholder'] ) ? $field_config['placeholder'] : null;
 
 			$this->classes[] = 'foofields-field';
 			if ( isset( $field_config['class'] ) ) {
-				$this->classes[] = $field_config['class'];
+				$this->classes = array_merge( $this->classes, explode( ' ', $field_config['class'] ) );
 			}
 		}
 
@@ -181,8 +186,9 @@ if ( ! class_exists( __NAMESPACE__ . '\Field' ) ) {
 				if ( isset( $this->required ) && $this->required === true ) {
 					$label .= ' *';
 				}
-				self::render_html_tag( 'label', array( 'for' => $this->unique_id ), $label );
+				self::render_html_tag( 'label', array( 'for' => $this->unique_id ), $label, false );
 				$this->render_tooltip();
+				echo '</label>';
 				echo '</div>';
 			}
 		}
@@ -193,7 +199,7 @@ if ( ! class_exists( __NAMESPACE__ . '\Field' ) ) {
 		function render_tooltip() {
 			if ( isset( $this->tooltip ) ) {
 				$icon = 'dashicons-editor-help';
-				$tooltip_attributes = $this->get_tooltip_attributes( $this->tooltip, 'right', 'large' );
+				$tooltip_attributes = $this->get_tooltip_attributes( $this->tooltip );
 				if ( is_array( $this->tooltip ) ) {
 					if ( isset( $this->tooltip['icon'] ) ) {
 						$icon = $this->tooltip['icon'];
@@ -214,7 +220,7 @@ if ( ! class_exists( __NAMESPACE__ . '\Field' ) ) {
 		 *
 		 * @return array
 		 */
-		function get_tooltip_attributes( $tooltip_config, $default_position = 'down', $default_length = 'small' ) {
+		function get_tooltip_attributes( $tooltip_config, $default_position = 'down', $default_length = 'medium' ) {
 			$tooltip = $tooltip_config;
 			$position = $default_position;
 			$length = $default_length;
@@ -299,15 +305,7 @@ if ( ! class_exists( __NAMESPACE__ . '\Field' ) ) {
 
 				case 'select':
 					self::render_html_tag( 'select', $attributes, null, false );
-					foreach ( $this->choices as $value => $label ) {
-						$option_attributes = array(
-							'value' => $value
-						);
-						if ( $field_value == $value ) {
-							$option_attributes['selected'] = 'selected';
-						}
-						self::render_html_tag( 'option', $option_attributes, $label );
-					}
+					$this->render_select_options( $field_value );
 					echo '</select>';
 
 					break;
@@ -326,8 +324,11 @@ if ( ! class_exists( __NAMESPACE__ . '\Field' ) ) {
 					if ( isset( $this->config['placeholder'] ) ) {
 						$attributes['placeholder'] = $this->config['placeholder'];
 					}
-					$attributes['min'] = isset( $min ) ? $min : 0;
-					$attributes['step'] = isset( $step ) ? $step : 1;
+					$attributes['min'] = isset( $this->config['min'] ) ? $this->config['min'] : 0;
+					if ( isset( $this->config['max'] ) ) {
+						$attributes['max'] = $this->config['max'];
+					}
+					$attributes['step'] = isset( $this->config['step'] ) ? $this->config['step'] : 1;
 					$attributes['type'] = 'number';
 					$attributes['value'] = $field_value;
 					self::render_html_tag( 'input', $attributes );
@@ -339,7 +340,7 @@ if ( ! class_exists( __NAMESPACE__ . '\Field' ) ) {
 						$attributes['placeholder'] = $this->config['placeholder'];
 					}
 					$attributes['type'] = 'date';
-					$attributes['min'] = isset( $this->config['min'] ) ? $this->config['min'] : '1900-01-01';
+					$attributes['min'] = isset( $this->config['min'] ) ? $this->config['min'] : '1970-01-01';
 					$attributes['max'] = isset( $this->config['max'] ) ? $this->config['max'] : '';
 					$attributes['value'] = $field_value;
 					self::render_html_tag( 'input', $attributes );
@@ -356,7 +357,12 @@ if ( ! class_exists( __NAMESPACE__ . '\Field' ) ) {
 				case 'colorpicker':
 					$attributes['type'] = 'text';
 					$attributes['value'] = $field_value;
-					$attributes[] = 'data-wp-color-picker';
+					if ( isset( $this->config['alpha'] ) ){
+						$attributes['data-alpha-enabled'] = 'true';
+					}
+					if ( isset( $this->config['default'] ) ){
+						$attributes['data-default-color'] = $this->config['default'];
+					}
 					self::render_html_tag( 'input', $attributes );
 
 					break;
@@ -400,11 +406,19 @@ if ( ! class_exists( __NAMESPACE__ . '\Field' ) ) {
 		 * @return mixed|string
 		 */
 		function value() {
+			$return_value = null;
+
 			if ( isset( $this->override_value_function ) && is_callable( $this->override_value_function ) ) {
-				return call_user_func( $this->override_value_function, $this->config );
+				$return_value = call_user_func( $this->override_value_function, $this->config );
+			} else {
+				$return_value = $this->container->get_state_value( $this->config );
 			}
 
-			return $this->container->get_state_value( $this->config );
+			if ( isset( $this->config['value_decoder'] ) && is_callable( $this->config['value_decoder'] ) ) {
+				$return_value = call_user_func( $this->config['value_decoder'], $return_value );
+			}
+
+			return $return_value;
 		}
 
 		/**
@@ -416,7 +430,7 @@ if ( ! class_exists( __NAMESPACE__ . '\Field' ) ) {
 			$nonce = $this->sanitize_key( 'nonce' );
 
 			if ( null !== $nonce ) {
-				return wp_verify_nonce( $nonce, $this->unique_id );
+				return wp_verify_nonce( $nonce, $this->unique_id_for_action() );
 			}
 			return false;
 		}
@@ -427,7 +441,7 @@ if ( ! class_exists( __NAMESPACE__ . '\Field' ) ) {
 		 * @return false|string
 		 */
 		protected function create_nonce() {
-			return wp_create_nonce( $this->unique_id );
+			return wp_create_nonce( $this->unique_id_for_action() );
 		}
 
 		/**
@@ -437,18 +451,24 @@ if ( ! class_exists( __NAMESPACE__ . '\Field' ) ) {
 		 * @return mixed
 		 */
 		public function get_posted_value( $sanitized_form_data ) {
+			$return_value = null;
 			if ( isset( $sanitized_form_data ) && is_array( $sanitized_form_data ) ) {
 
 				if ( ! array_key_exists( $this->id, $sanitized_form_data ) ) {
 					//the field had no posted value, check for a default
 					if ( isset( $this->default ) ) {
-						return $this->default;
+						$return_value = $this->default;
 					}
 				} else {
-					return $this->process_posted_value( $sanitized_form_data[ $this->id ] );
+					$return_value = $this->process_posted_value( $sanitized_form_data[ $this->id ] );
 				}
 			}
-			return null;
+
+			if ( isset( $this->config['value_encoder'] ) && is_callable( $this->config['value_encoder'] ) ) {
+				$return_value = call_user_func( $this->config['value_encoder'], $return_value );
+			}
+
+			return $return_value;
 		}
 
 		/**
@@ -481,29 +501,30 @@ if ( ! class_exists( __NAMESPACE__ . '\Field' ) ) {
 
 			//check for required fields
 			if ( isset( $this->required ) ) {
+				$text_domain = $this->container->manager->text_domain;
 				if ( true === $this->required && empty( $posted_value) ) {
-					$this->error = sprintf( __( '%s is required!', $this->container->text_domain ), $this->label );
+					$this->error = sprintf( __( '%s is required!', $text_domain ), $this->label );
 				} else if ( is_array( $this->required ) ) {
 					//check for more advanced required rules
 					if ( isset( $this->required['minimum'] ) && intval( $this->required['minimum'] ) > 0 ) {
-						$message = isset( $this->required['message'] ) ? $this->required['message'] : __( 'Please select a minimum of %d item(s) for %s!', $this->container->text_domain );
+						$message = isset( $this->required['message'] ) ? $this->required['message'] : __( 'Please select a minimum of %d item(s) for %s!', $text_domain );
 						if ( !isset( $posted_value ) || ( is_array( $posted_value ) && count( $posted_value ) < intval( $this->required['minimum'] ) ) ) {
 							$this->error = sprintf( $message, intval( $this->required['minimum'] ), $this->label );
 						}
 					} else if ( isset( $this->required['maximum'] ) && intval( $this->required['maximum'] ) > 0 ) {
-						$message = isset( $this->required['message'] ) ? $this->required['message'] : __( 'Please select a maximum of %d item(s) for %s!', $this->container->text_domain );
+						$message = isset( $this->required['message'] ) ? $this->required['message'] : __( 'Please select a maximum of %d item(s) for %s!', $text_domain );
 						if ( is_array( $posted_value ) && count( $posted_value ) > intval( $this->required['maximum'] ) ) {
 							$this->error = sprintf( $message, intval( $this->required['maximum'] ), $this->label );
 						}
 					} else if ( isset( $this->required['exact'] ) && intval( $this->required['exact'] ) > 0 ) {
-						$message = isset( $this->required['message'] ) ? $this->required['message'] : __( 'Please select exactly %d item(s) for %s!', $this->container->text_domain );
+						$message = isset( $this->required['message'] ) ? $this->required['message'] : __( 'Please select exactly %d item(s) for %s!', $text_domain );
 						if ( !isset( $posted_value ) || ( is_array( $posted_value ) && count( $posted_value ) !== intval( $this->required['exact'] ) ) ) {
 							$this->error = sprintf( $message, intval( $this->required['exact'] ), $this->label );
 						}
 					} else if ( isset( $this->required['validation_function'] ) ) {
 						$validation_result = call_user_func( $this->required['validation_function'], $posted_value, $this );
 						if ( $validation_result === false ) {
-							$message = isset( $this->required['message'] ) ? $this->required['message'] : __( 'Custom validation failed for %s!', $this->container->text_domain );
+							$message = isset( $this->required['message'] ) ? $this->required['message'] : __( 'Custom validation failed for %s!', $text_domain );
 							$this->error = sprintf( $message, $this->label );
 						}
 					}
@@ -539,7 +560,21 @@ if ( ! class_exists( __NAMESPACE__ . '\Field' ) ) {
 		 * @return string
 		 */
 		function field_action_name() {
-			return 'foofields_' . $this->unique_id . '-field';
+			return 'foofields_' . $this->unique_id_for_action() . '-field';
+		}
+
+		/**
+		 * Returns the unique id that will be used for ajax actions
+		 * @return mixed|string
+		 */
+		function unique_id_for_action() {
+			$unique_id = $this->unique_id;
+
+			if ( isset( $this->config['override_id_for_action_name'] ) ) {
+				$unique_id = $this->config['override_id_for_action_name'];
+			}
+
+			return $unique_id;
 		}
 
 		/**
@@ -548,6 +583,49 @@ if ( ! class_exists( __NAMESPACE__ . '\Field' ) ) {
 		 */
 		function visible() {
 			return $this->container->show_rule_is_visible( $this->unique_id, 'fields' );
+		}
+
+		/**
+		 * Renders the select options and optgroups if they are provided
+		 *
+		 * @param $field_value
+		 * @param null $options
+		 */
+		protected function render_select_options( $field_value, $options = null ) {
+			if ( isset( $options ) && is_array( $options ) ) {
+				foreach ( $options as $value => $option ) {
+					$option_attributes = array(
+						'value' => $value
+					);
+					if ( $field_value == $value ) {
+						$option_attributes['selected'] = 'selected';
+					}
+					$label = $option;
+					if ( is_array( $option ) ) {
+						if ( isset( $option['label'] ) ) {
+							$label = $option['label'];
+						}
+						if ( isset( $option['data'] ) ) {
+							$option_attributes += $this->container->process_data_attributes( $option['data'] );
+						}
+					}
+					self::render_html_tag( 'option', $option_attributes, $label );
+				}
+			} else if ( count( $this->groups ) > 0 ) {
+				foreach ( $this->groups as $group ) {
+					self::render_html_tag( 'optgroup', array( 'label' => $group['label'] ), null, false );
+					$options = isset( $group['choices'] ) ? $group['choices'] : false;
+					if ( $options === false) {
+						$options = isset( $group['options'] ) ? $group['options'] : array();
+					}
+
+					$this->render_select_options( $field_value, $options );
+
+					echo '</optgroup>';
+				}
+			} else if ( count( $this->choices ) > 0 ) {
+				$this->render_select_options( $field_value, $this->choices );
+			}
 		}
 	}
 }
