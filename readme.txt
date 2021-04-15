@@ -1,6 +1,6 @@
 === The People and Teams Management tool for WordPress  - FooPeople ===
 Contributors: bradvin, ferile, fooplugins
-Tags: people, hr, teams, groups, organisations
+Tags: human resources, hr, teams, people, organisations
 Requires at least: 5.0
 Tested up to: 5.7
 Requires PHP: 5.6
@@ -8,30 +8,31 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Create and manage your teams of people using the power of WordPress
+Easy to use human resource management system within WordPress
 
 == Description ==
 
-FooPeople allows you to manage your team from within WordPress. Designed to be a simple HR tool, you can add work colleagues to teams and
-capture all of their personal information in an easy to use and familiar WordPress dashboard. Extend your WordPress based website with
-teams and people, and showcase their skills and abilities using Gutenberg blocks on your website pages or posts.
+FooPeople allows you to manage your team from within WordPress. Designed to be a simple human resources management (HRM) tool for small businesses.
+Add employee records and capture all of their work and  personal information in an easy to use and familiar WordPress user interface.
+Showcase your employee skills and abilities using Gutenberg blocks on your website pages or posts.
 
-[Visit the FooPeople Homepage](https://fooplugins.com)
+**Why Use FooPeople?**
 
-**Why Create FooPeople teams and individuals?**
-
+*	Easily capture all employee records for all your staff members
 *	Showcase all of your team members, colleagues or employees
 *	Match your current website look and feel easily using customizer options
-*	Display a team of people, or an individual anywhere  on your website using Gutenberg blocks
+*	Display a team of people, or an individual anywhere on your website using Gutenberg blocks
 
 **Technical Features**
 
-*   Create unlimited people, teams, locations, skills and job roles
+*   Capture unlimited employee records (we call these People)
+*	Capture your business's department hierarchy (we call these Teams)
+*	Capture unlimited locations, skills and job roles. Then assign them to your people.
 *	Add portraits for each person, so your teams can easily identify who they work with
 *	A full set of personal and professional fields for your workforce
 *   Appearance settings to help you match FooPeople with your theme
 *	SEO friendly
-*	Compatible with PHP 7.4
+*	Compatible with PHP 8
 
 **Appearance Settings**
 
@@ -88,5 +89,5 @@ Create a [new ticket](https://wordpress.org/support/plugin/FooPeople/#new-post) 
 
 == Changelog ==
 
-= 1.0 =
+= 1.0.2 =
 * Initial Release. First version.
