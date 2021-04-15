@@ -413,7 +413,7 @@ gulp.task(
 );
 
 const zip = require( 'gulp-zip' ),
-	buildInclude = [ '**/*', '!package*.json', '!./{node_modules,node_modules/**/*}', '!./{dist,dist/**/*}', '!./{assets/css,assets/scss/**/*}', '!./{assets/js,assets/js/**/*}' ],
+	buildInclude = [ '**/*', '!package*.json', '!./{node_modules,node_modules/**/*}', '!./{dist,dist/**/*}' ],
 	packageJSON = require( './package.json' ),
 	fileName = packageJSON.name,
 	fileVersion = packageJSON.version;
