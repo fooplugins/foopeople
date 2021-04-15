@@ -46,6 +46,14 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 								'class'  => 'foofields-cols-2',
 								'fields' => array(
 									array(
+										//'order' => 1,
+										'id'       => 'work-general-main-heading',
+										'label'    => __( 'Main Details', 'foopeople' ),
+										'type'     => 'heading',
+										'class'    => 'foofields-full-width',
+									),
+									array(
+										//'order' => 2,
 										'id'       => 'firstname',
 										'label'    => __( 'First Name', 'foopeople' ),
 										'required' => true,
@@ -56,6 +64,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 										'search_index' => true,
 									), //firstname
 									array(
+										//'order' => 3,
 										'id'       => 'surname',
 										'label'    => __( 'Last Name', 'foopeople' ),
 										'required' => true,
@@ -67,19 +76,46 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 									), //surname
 
 									array(
+										//'order' => 4,
 										'id'       => 'workemail',
-										'label'    => __( 'Email', 'foopeople' ),
-										'desc'     => __( 'The company email address for the person.', 'foopeople' ),
+										'label'    => __( 'Work Email', 'foopeople' ),
 										'required' => true,
 										'type'     => 'text',
+										'class' => 'foofields-colspan-1',
 									), //workemail
 									array(
+										//'order' => 5,
 										'id'       => 'workmobile',
-										'label'    => __( 'Mobile', 'foopeople' ),
+										'label'    => __( 'Work Mobile', 'foopeople' ),
 										'type'     => 'text',
+										'class' => 'foofields-colspan-1',
 									), //workmobile
+									array(
+										//'order' => 6,
+										'id'       => 'location',
+										'label'    => __( 'Location', 'foopeople' ),
+										'desc'     => __( 'Select the location that the person is based in. You can also add a location if it does not exist.', 'foopeople' ),
+										'type'     => 'selectize-multi',
+										'create'   => true,
+										'class' => 'foofields-colspan-1',
+										'close_after_select' => true,
+										'max_items' => 1,
+										'binding' => array(
+											'type' => 'taxonomy',
+											'taxonomy' => FOOPEOPLE_CT_LOCATION,
+											'sync_with_post' => true
+										)
+									), //locations
 
 									array(
+										//'order' => 7,
+										'id'       => 'work-general-employment-heading',
+										'label'    => __( 'Employment Details', 'foopeople' ),
+										'type'     => 'heading',
+										'class'    => 'foofields-full-width',
+									),
+									array(
+										//'order' => 8,
 										'id'       => 'employeenumber',
 										'label'    => __( 'Employee Number', 'foopeople' ),
 										'desc'     => __( 'A unique number that identifies the person in the company.', 'foopeople' ),
@@ -87,14 +123,18 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 										'default'  => '',
 									), //employeenumber
 									array(
+										//'order' => 8,
 										'id'       => 'employmenttype',
+
 										'label'    => __( 'Employment Type', 'foopeople' ),
 										'desc'     => __( '', 'foopeople' ),
 										'type'     => 'select',
-										'choices' => $employment_types
+										'choices' => $employment_types,
+										'default'  => 'fulltime',
 									), //employmenttype
 
 									array(
+										//'order' => 9,
 										'id'       => 'datejoined',
 										'label'    => __( 'Joined Date', 'foopeople' ),
 										'desc'     => __( 'The date the person joined the company. This is used to calculate length of service.', 'foopeople' ),
@@ -118,6 +158,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 									), //datejoined
 
 									array(
+										//'order' => 10,
 										'id'       => 'jobtitle',
 										'label'    => __( 'Job Title', 'foopeople' ),
 										'desc'     => __( 'The job title specific to this person. It could be the same as the Job Role, or you can customise it for this person.', 'foopeople' ),
@@ -127,6 +168,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 										'placeholder' => __( 'Job title', 'foopeople' ),
 									), //jobtitle
 									array(
+										//'order' => 11,
 										'id'       => 'role',
 										'label'    => __( 'Job Role', 'foopeople' ),
 										'desc'     => __( 'A Job Role is a grouping of job titles, e.g. Developer, Executive, Engineer.', 'foopeople' ),
@@ -143,18 +185,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 									), //role
 
 									array(
-										'id'       => 'locations',
-										'label'    => __( 'Locations', 'foopeople' ),
-										'type'     => 'selectize-multi',
-										'create'   => true,
-										'close_after_select' => true,
-										'binding' => array(
-											'type' => 'taxonomy',
-											'taxonomy' => FOOPEOPLE_CT_LOCATION,
-											'sync_with_post' => true
-										)
-									), //locations
-									array(
+										//'order' => 12,
 										'id'       => 'team',
 										'label'    => __( 'Team', 'foopeople' ),
 										'type'     => 'selectize-multi',
@@ -168,8 +199,8 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 											'sync_with_post' => true
 										)
 									), //team
-
 									array(
+										//'order' => 13,
 										'id'       => 'manager',
 										'label'    => __( 'Line Manager', 'foopeople' ),
 										'desc'     => __( 'Who does this person report to?', 'foopeople' ),
@@ -181,25 +212,52 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 											'data' => FOOPEOPLE_CPT_PERSON
 										)
 									), //manager
-								)
-							), //work general
-							array(
-								'id'     => 'skills',
-								'label'  => __( 'Skills', 'foopeople' ),
-								'fields' => array(
 									array(
+										//'order' => 14,
+										'id'       => 'work-general-skills-heading',
+										'label'    => __( 'Skills', 'foopeople' ),
+										'desc'     => __( 'Capture all the technical skills that you know this person has. For example C# or Javascript for a developer, or Business Management for a director.', 'foopeople' ),
+										'type'     => 'heading',
+										'class'    => 'foofields-full-width',
+									),
+									array(
+										//'order' => 15,
 										'id'       => 'skills',
 										'label'    => __( 'Skills', 'foopeople' ),
 										'type'     => 'selectize-multi',
 										'create'   => true,
+										'class'    => 'foofields-full-width',
 										'binding' => array(
 											'type' => 'taxonomy',
 											'taxonomy' => FOOPEOPLE_CT_SKILL,
 											'sync_with_post' => true
 										)
 									),
+
+									array(
+										'id'       => 'work-general-users-heading',
+										//'order' => 16,
+										'label'    => __( 'WordPress User', 'foopeople' ),
+										'desc'     => __( 'You can link a WordPress user to this person.', 'foopeople' ),
+										'type'     => 'heading',
+										'class'    => 'foofields-full-width',
+									),
+									array(
+										'id'       => 'user',
+										//'order' => 17,
+										'label'    => __( 'User', 'foopeople' ),
+										'type'     => 'selectize',
+										'placeholder' => __( 'Start typing the user name or email', 'foopeople' ),
+										'query' => array(
+											'type' => 'user'
+										),
+										'class'    => 'foofields-colspan-1',
+										'binding' => array(
+											'type' => 'taxonomy',
+										)
+									),
 								)
-							), //work skills
+							), //work general
 							array(
 								'id'     => 'work-compensation',
 								'label'  => __( 'Compensation', 'foopeople' ),
