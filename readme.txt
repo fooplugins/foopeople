@@ -36,7 +36,8 @@ teams and people, and showcase their skills and abilities using Gutenberg blocks
 **Appearance Settings**
 
 *	Customize the appearance of people listings and a person's portrait
-*
+*	Change the visual style of the person's portrait
+*	Change the column layout of the people listing
 
 == Installation ==
 
@@ -60,34 +61,30 @@ Update now to get all the latest features, bug fixes and improvements!
 
 == Frequently Asked Questions ==
 
-= How many notifications can I create? =
+= How many people, teams, locations, skills and job roles can I create? =
 
 Unlimited! There is no limit
 
-= My bar is NOT showing on my website! Why? =
+= My teams or people are NOT showing on my website! Why? =
 
-There are 2 ways to show your message bar:
+Once you have added your people and assigned them to teams, you can then add Gutenberg blocks to your pages or posts to show them.
 
-You can show the bar on all pages, by setting the display rules to "Always Show", when editing the notification.
-Or you can insert the shortcode for a bar on a specific page or post
+Simply edit or create a new page or post, and using the Gutenberg blocks editor, search for 'FooPeople Person' or 'FooPeople Team Listing'.
+You can then choose the person or team that you want to insert into the page.
 
-= I have set the correct settings, and my bar is still NOT showing up!! Why? =
+= I inserted a FooPeople Gutenberg block, and my person or team is still NOT showing up!! Why? =
 
 There could be a conflict with your theme or another plugin.
 Open a support ticket with a link to your site and we can take a look.
 
-= My announcement bar does not look right. Why? =
+= My person or team listing does not look right. Why? =
 
 There could be a conflict with your theme or another plugin's stylesheet.
 Open a support ticket with a link to your site and we can take a look.
 
-= Can I show An announcement at the bottom of the screen? =
-
-Yes. When editing a notification, click on the Visibility settings tab, and then set the Position to "Bottom"
-
 = I need more features. How can I request features? =
 
-Create a [new ticket](https://wordpress.org/support/plugin/FooPeople-notifications-lite/#new-post) on the support forum, or [contact us](https://fooplugins.com/support/?utm_source=FooPeople_wordpress_org)
+Create a [new ticket](https://wordpress.org/support/plugin/FooPeople/#new-post) on the support forum, or [contact us](https://fooplugins.com/support/?utm_source=FooPeople_wordpress_org)
 
 == Changelog ==
 
