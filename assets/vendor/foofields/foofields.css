@@ -209,7 +209,7 @@ span[data-balloon] { display: inline-block; width: 20px; height: 20px; vertical-
 
 .foofields-field.foofields-error { background-color: #fde6e6; }
 
-.foofields-field input[type="text"], .foofields-field input[type="time"], .foofields-field input[type="date"], .foofields-field input[type="password"], .foofields-field input[type="number"], .foofields-field input[type="search"], .foofields-field input[type="email"], .foofields-field input[type="url"], .foofields-field select, .foofields-field textarea { max-width: 100%; border-color: #a0a0a0; }
+.foofields-field input[type="text"], .foofields-field input[type="time"], .foofields-field input[type="date"], .foofields-field input[type="password"], .foofields-field input[type="number"], .foofields-field input[type="search"], .foofields-field input[type="email"], .foofields-field input[type="url"], .foofields-field select, .foofields-field textarea { max-width: 100%; border-color: #a0a0a0; width: 100%; }
 
 .foofields-field input[type="text"], .foofields-field input[type="password"], .foofields-field input[type="search"], .foofields-field input[type="email"], .foofields-field input[type="url"], .foofields-field textarea { width: 100%; padding: 2px 8px; }
 
