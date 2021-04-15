@@ -19,7 +19,7 @@
 		 *
 		 * @url http://stackoverflow.com/questions/3233991/jquery-watch-div/3234646#3234646
 		 *
-		 * @param foopeople callback
+		 * @param {function} callback
 		 *
 		 * @returns {object[]}
 		 */
