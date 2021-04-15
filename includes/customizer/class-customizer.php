@@ -102,12 +102,12 @@ if ( ! class_exists( 'Customizer' ) ) {
                 'panel' => 'ppl_panel',
             ) );
 
-            $wp_customize->add_section( 'ppl_section_organogram', array(
-                'priority' => 30,
-                'title' => __('People Organograms', 'foopeople'),
-                'description' => '',
-                'panel' => 'ppl_panel',
-            ) );
+            // $wp_customize->add_section( 'ppl_section_organogram', array(
+            //     'priority' => 30,
+            //     'title' => __('People Organograms', 'foopeople'),
+            //     'description' => '',
+            //     'panel' => 'ppl_panel',
+            // ) );
 
 
 
