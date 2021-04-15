@@ -49,10 +49,6 @@ module.exports = {
 			scriptSRC: './assets/scripts/theme/*.js',
 			scriptFile: 'theme'
 		},
-		{
-			scriptSRC: './assets/scripts/foometafields/*.js',
-			scriptFile: 'foometafields'
-		}
 	],
 
 	// Images options.
