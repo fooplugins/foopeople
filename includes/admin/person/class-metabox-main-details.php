@@ -24,13 +24,21 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 		}
 
 		function get_tabs() {
-			$employment_types = apply_filters( 'FooPlugins\FooPeople\Admin\Person\MainDetails\EmploymentTypes', array(
+			$employment_type_choices = apply_filters( 'FooPlugins\FooPeople\Admin\Person\MainDetails\EmploymentTypes', array(
 				'fulltime' => __( 'Fulltime', 'foopeople' ),
 				'parttime' => __( 'Part Time', 'foopeople' ),
 				'contractor' => __( 'Contractor', 'foopeople' ),
 				'temporary' => __( 'Temporary', 'foopeople' ),
 				'trainee' => __( 'Trainee', 'foopeople' ),
 				'intern' => __( 'Intern', 'foopeople' ),
+			) );
+
+			$salary_frequency_choices = apply_filters( 'FooPlugins\FooPeople\Admin\Person\MainDetails\SalaryFrequency', array(
+				'yearly' => __( 'Yearly', 'foopeople' ),
+				'monthly' => __( 'Monthly', 'foopeople' ),
+				'weekly' => __( 'Weekly', 'foopeople' ),
+				'daily' => __( 'Daily', 'foopeople' ),
+				'other' => __( 'Other', 'foopeople' )
 			) );
 
 			return apply_filters( 'FooPlugins\FooPeople\Admin\Person\MainDetails\Fields',
@@ -129,7 +137,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 										'label'    => __( 'Employment Type', 'foopeople' ),
 										'desc'     => __( '', 'foopeople' ),
 										'type'     => 'select',
-										'choices' => $employment_types,
+										'choices' => $employment_type_choices,
 										'default'  => 'fulltime',
 									), //employmenttype
 
@@ -261,7 +269,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 							array(
 								'id'     => 'work-compensation',
 								'label'  => __( 'Compensation', 'foopeople' ),
-								'class'  => 'foofields-cols-2',
+								'class'  => 'foofields-cols-3',
 								'fields' => array(
 									array(
 										'id'       => 'salary_currency',
@@ -392,6 +400,13 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 										'type'     => 'number',
 										'default'  => '',
 									), //salary
+									array(
+										'id'       => 'salary_frequency',
+										'desc'     => __( '', 'foopeople' ),
+										'type'     => 'select',
+										'choices' => $salary_frequency_choices,
+										'default'  => 'fulltime',
+									), //employmenttype
 								)
 							), //work compensation
 							array(
@@ -512,6 +527,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 										'desc'     => __( '', 'foopeople' ),
 										'type'     => 'select',
 										'choices' => array(
+											''          => '',
 											'GMT'		=> __( 'GMT' , 'foopeople' ),
 											'UTC-12'	=> __( 'UTC-12' , 'foopeople' ),
 											'UTC-11.5'	=> __( 'UTC-11:30' , 'foopeople' ),
@@ -576,6 +592,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 										'desc'     => __( '', 'foopeople' ),
 										'type'     => 'select',
 										'choices' => array(
+											''          => '',
 											'Afghanistan' => __( 'Afghanistan', 'foopeople' ),
 											'Albania' => __( 'Albania', 'foopeople' ),
 											'Algeria' => __( 'Algeria', 'foopeople' ),
@@ -883,6 +900,7 @@ if ( ! class_exists( 'FooPlugins\FooPeople\Admin\Person\MetaboxMainDetails' ) ) 
 										'label'    => __( 'Blood Type', 'foopeople' ),
 										'type'     => 'select',
 										'choices' => array(
+											''   => '',
 											'A+' => __( 'A+', 'foopeople' ),
 											'A-' => __( 'A-', 'foopeople' ),
 											'B+' => __( 'B+', 'foopeople' ),
