@@ -1,0 +1,49 @@
+// Shared styles for listing and single person views
+// ================================================================================
+
+// Person Header
+.ppl__card_header {
+	background-color: $cover_photo_bg_color;
+	background-repeat: no-repeat;
+	background-size: cover;
+	min-height: $cover_photo_height;
+	box-shadow: inset 0px -40px 100px rgba(0, 0, 0, 0.1);
+}
+
+.ppl__card_portrait_wrapper {
+	margin: 0;
+}
+
+	.ppl__card_portrait_thumbnail {
+		max-width: 100%;
+		display: block;
+		margin: 0 auto;
+		border: solid 1px $white;
+
+	}
+
+.ppl__card_details {
+	padding: $m-xs;
+}
+	.ppl__card_particulars {
+		line-height: 1;
+		margin-bottom: $m-xs;
+		text-align: center;
+	}
+		.ppl__card_name {
+			font-size: $h2;
+			margin-bottom: $m-xs;
+			line-height: 1;
+		}
+
+	.ppl__card_location {
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+
+	.ppl__card_skills_wrapper {
+
+	}
+		.ppl__card_skills {
+			display: inline-block;
+		}

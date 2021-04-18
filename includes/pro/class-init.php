@@ -1,11 +1,11 @@
 <?php
-namespace FooPlugins\\FooPeople\Pro;
+namespace FooPlugins\FooPeople\Pro;
 
 /**
  * FooPeople Pro Init Class
  */
 
-if ( !class_exists( 'FooPlugins\\FooPeople\Pro\Init' ) ) {
+if ( !class_exists( 'FooPlugins\FooPeople\Pro\Init' ) ) {
 
 	class Init {
 

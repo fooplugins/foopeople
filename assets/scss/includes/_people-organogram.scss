@@ -1,0 +1,127 @@
+@include media-breakpoint-up(md) {
+
+    .jOrgChart {
+        $line-color: $light;
+        $line-color: $orange;
+        $line-width: 3px;
+        $expander: 28px;
+
+        overflow: hidden;
+        overflow-x: auto;
+        width: 100%;
+
+        > table {
+            transform: scale(1); // handles the scaling for wide organograms
+            transform-origin: top left;
+                th, td, tr {
+                    border-color: transparent;
+                }
+        }
+
+        .line {
+            height : $expander;
+        }
+        div.line {
+            width: $line-width;
+        }
+            
+        .down {
+            background-color : $line-color;	
+            margin : 0px auto;
+        }
+
+        .top, .left, .right {
+            border: 0 solid $line-color;
+        }
+        
+        .top {
+            border-top-width : $line-width;
+        }
+        
+        .left {
+            border-right-width : $line-width;
+        }
+        
+        .right {
+            border-left-width : $line-width;
+        }
+
+        td {
+            text-align : center;
+            vertical-align : top;
+            padding : 0;
+            border: none;
+        }
+        
+        .ppl__node {
+            position: relative;        
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: $expander/2;
+            min-width: 200px;
+
+            .ppl__card_portrait_thumbnail {
+                width: 100px;
+                border: solid $line-width $line-color;
+            }
+
+            .ppl__card_details {
+                border-bottom: solid $line-width $line-color;
+            }
+
+            .ppl__card_name {				
+                font-size: $h4;		
+            }	        
+        }
+
+        .ppl__expand-up,
+        .ppl__expand-down {
+            &:after {
+                @include icon();
+                display: block;
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                margin-left: -$expander/2;
+                color: $line-color;
+                width: $expander;
+                border-radius: 50%;
+                // line-height: $expander;
+                font-size: $expander;
+                background: white;
+            }
+        }
+
+
+        .ppl__expand-up {
+            .ppl__card_portrait_thumbnail {
+                cursor: n-resize;
+            }
+            &:after {
+                content: $ppl_icon-minus-circle;
+            }
+        }
+
+        .ppl__expand-down {
+            .ppl__card_portrait_thumbnail {
+                cursor: s-resize;
+            }
+            &:after {
+                content: $ppl_icon-plus-circle;
+            }
+        }
+    }
+
+    .ppl__hidden {
+        visibility: hidden !important;
+        .ppl__node {
+            opacity: 0;
+        }    
+    }
+
+    .ppl__node {
+        transition: all 200ms $transition;
+    }
+
+}

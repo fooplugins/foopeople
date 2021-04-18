@@ -1,0 +1,21 @@
+// Pace People styles
+// ---------------------------------------
+@import "includes/variables";
+@import "includes/breakpoints";
+@import "includes/icons";
+
+.foopeople {
+	box-sizing: border-box;
+	* {
+		box-sizing: border-box;
+	}
+	@import "includes/utilities";
+	@import "includes/buttons";
+	@import "includes/person-item";
+	@import "includes/person-listing";
+	@import "includes/person-single";
+	@import "includes/person-search";
+	@import "includes/people-organogram";
+}
+
+@import "includes/theme-options";

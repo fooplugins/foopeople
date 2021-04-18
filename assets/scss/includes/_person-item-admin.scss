@@ -1,0 +1,32 @@
+// Hide the default title meta box
+#titlediv {
+	display: none;
+}
+
+// Remove margin at top of content editor
+#post-body-content  {
+    margin-bottom: 0;
+}
+
+
+
+// Remove margins from person listing item
+#post-ppl-preview {
+	margin: 0;
+
+	&.js-ppl__loading {
+		opacity: 0;
+	}
+}
+
+#set-post-thumbnail,
+#remove-post-thumbnail {
+	@include wordpressbutton();
+}
+
+// Some layout tweak to the preview item icons
+.ppl__card_particulars {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

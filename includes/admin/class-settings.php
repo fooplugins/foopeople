@@ -1,11 +1,11 @@
 <?php
-namespace FooPlugins\\FooPeople\Admin;
+namespace FooPlugins\FooPeople\Admin;
 
 /**
  * FooPeople Admin Settings Class
  */
 
-if ( !class_exists( 'FooPlugins\\FooPeople\Admin\Settings' ) ) {
+if ( !class_exists( 'FooPlugins\FooPeople\Admin\Settings' ) ) {
 
 	class Settings {
 
@@ -25,9 +25,11 @@ if ( !class_exists( 'FooPlugins\\FooPeople\Admin\Settings' ) ) {
 		 * Add menu to the tools menu
 		 */
 		public function add_menu() {
-			add_options_page(
-				__( 'FooPeople' , 'foopeople' ),
-				__( 'FooPeople' , 'foopeople' ),
+
+			add_submenu_page(
+				foopeople_admin_menu_cpt_slug(),
+				__( 'FooPeople Settings', 'foopeople' ),
+				__( 'Settings', 'foopeople' ),
 				'manage_options',
 				'foopeople-settings',
 				array( $this, 'render_settings_page' )

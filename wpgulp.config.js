@@ -10,36 +10,54 @@
 module.exports = {
 
 	// Project options.
-	projectURL: 'https://fooplugins.com', // Local project URL of your already running WordPress site. Could be something like wpgulp.local or localhost:3000 depending upon your local WordPress setup.
+	projectURL: 'http://127.0.0.1/', // Local project URL of your already running WordPress site. Could be something like wpgulp.local or localhost:3000 depending upon your local WordPress setup.
 	productURL: './', // Theme/Plugin URL. Leave it like it is, since our gulpfile.js lives in the root folder.
 	browserAutoOpen: false,
 	injectChanges: true,
 
 	// Style options.
-	styleSRC: './assets/css/style.scss', // Path to main .scss file.
-	styleDestination: './', // Path to place the compiled CSS file. Default set to root folder.
+	styleSRC: './assets/scss/*.scss', // Path to main .scss file.
+	styleDestination: './assets/css', // Path to place the compiled CSS file. Default set to root folder.
+	scriptDestination: './assets/js/',
 	outputStyle: 'compact', // Available options → 'compact' or 'compressed' or 'nested' or 'expanded'
 	errLogToConsole: true,
 	precision: 10,
 
-	// JS Vendor options.
-	jsVendorSRC: './assets/js/vendor/*.js', // Path to JS vendor folder.
-	jsVendorDestination: './assets/js/', // Path to place the compiled JS vendors file.
-	jsVendorFile: 'vendor', // Compiled JS vendors file name. Default set to vendors i.e. vendors.js.
-
-	// JS Custom options.
-	jsCustomSRC: './assets/js/custom/*.js', // Path to JS custom scripts folder.
-	jsCustomDestination: './assets/js/', // Path to place the compiled JS custom scripts file.
-	jsCustomFile: 'custom', // Compiled JS custom file name. Default set to custom i.e. custom.js.
+	styles: [
+		{
+			styleSRC: './assets/scss/foopeople.admin.scss'
+		},
+		{
+			styleSRC: './assets/scss/foopeople.blocks.scss'
+		},
+		{
+			styleSRC: './assets/scss/foopeople.blocks.admin.scss'
+		},
+		{
+			styleSRC: './assets/scss/foopeople.customizer.scss'
+		},
+		{
+			styleSRC: './assets/scss/foopeople.theme.scss'
+		}
+	],
+	scripts: [
+		{
+			scriptSRC: './assets/scripts/admin/*.js',
+			scriptFile: 'admin'
+		},
+		{
+			scriptSRC: './assets/scripts/theme/*.js',
+			scriptFile: 'theme'
+		},
+	],
 
 	// Images options.
 	imgSRC: './assets/img/raw/**/*', // Source folder of images which should be optimized and watched. You can also specify types e.g. raw/**.{png,jpg,gif} in the glob.
 	imgDST: './assets/img/', // Destination folder of optimized images. Must be different from the imagesSRC folder.
 
 	// Watch files paths.
-	watchStyles: './assets/css/**/*.scss', // Path to all *.scss files inside css folder and inside them.
-	watchJsVendor: './assets/js/vendor/*.js', // Path to all vendor JS files.
-	watchJsCustom: './assets/js/custom/*.js', // Path to all custom JS files.
+	watchStyles: './assets/scss/**/*.scss', // Path to all *.scss files inside css folder and inside them.
+	watchScripts: './assets/scripts/**/*.js', // Path to all *.js files inside scripts folder and inside them.
 	watchPhp: './**/*.php', // Path to all PHP files.
 
 	// Translation options.

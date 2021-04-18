@@ -1,10 +1,13 @@
 {
-    "name": "{slug}",
-    "description": "{desc}",
+    "name": "foo-plugins/foo-people",
+    "description": "People & Team Management for WordPress",
     "type": "library",
     "require": {
-        "composer/installers": "v1.0.12"
+	  	"composer/installers": "v1.0.12"
     },
+	"require-dev": {
+	  	"squizlabs/php_codesniffer": "3.5.5"
+	},
     "autoload"    : {
         "psr-4" : {
             "{namespace}\\" : "includes"
@@ -18,7 +21,8 @@
     "license": "GPL 3.0",
     "authors": [
         {
-            "name": "{author}"
+            "name": "Foo Plugins",
+            "email": "brad@fooplugins.com"
         }
     ]
 }
