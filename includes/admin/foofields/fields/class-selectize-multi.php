@@ -262,7 +262,7 @@ if ( ! class_exists( __NAMESPACE__ . '\SelectizeMulti' ) ) {
 		function ajax_handle_selectize_multi_add() {
 			if ( $this->verify_nonce() ) {
 
-				$thing_to_add = $this->sanitize_text( 'add' );
+				$thing_to_add = sanitize_text_field( wp_unslash( $_REQUEST[ 'add' ] ) );
 
 				if ( !empty( $thing_to_add ) ) {
 
