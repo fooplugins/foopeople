@@ -29,8 +29,8 @@ function foopeople_is_admin_screen( $custom_post_type ) {
  *
  * @return string|void
  */
-function foopeople_render_template( $path = '', $filename, $echo = true, $data = array() ) {
-	if( $path ) {
+function foopeople_render_template( $path, $filename, $echo = true, $data = array() ) {
+	if ( $path ) {
 		$path = $path.'/';
 	}
 
