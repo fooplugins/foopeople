@@ -18,7 +18,7 @@ if ( ! class_exists( __NAMESPACE__ . '\Base' ) ) {
 		 * @return string|array
 		 */
 		protected function sanitize( $var ) {
-			if ( !isset( $var ) ) {
+			if ( ! isset( $var ) ) {
 				return $var;
 			} else if ( is_array( $var ) ) {
 				return array_map( array( $this, 'sanitize' ), $var );
@@ -41,34 +41,38 @@ if ( ! class_exists( __NAMESPACE__ . '\Base' ) ) {
 		/**
 		 * Safely renders an HTML tag
 		 *
-		 * @param $tag
-		 * @param $attributes
+		 * @param        $tag
+		 * @param        $attributes
 		 * @param string $inner
-		 * @param bool $close
-		 * @param bool $escape_inner
+		 * @param bool   $close
+		 * @param bool   $escape_inner
 		 */
 		static function render_html_tag( $tag, $attributes, $inner = null, $close = true, $escape_inner = true ) {
+
 			echo '<' . $tag . ' ';
-			//make sure all attributes are escaped
-			$attributes     = array_map( 'esc_attr', $attributes );
-			$attributePairs = [];
+
+			// make sure all attributes are escaped.
+			$attributes      = array_map( 'esc_attr', $attributes );
+			$attribute_pairs = array();
 			foreach ( $attributes as $key => $val ) {
 				if ( is_null( $val ) ) {
 					continue;
-				} else if ( is_int( $key ) ) {
-					$attributePairs[] = esc_attr( $val );
+				} elseif ( is_int( $key ) ) {
+					$attribute_pairs[] = esc_attr( $val );
 				} else {
-					$val              = esc_attr( $val );
-					$attributePairs[] = "{$key}=\"{$val}\"";
+					$val               = esc_attr( $val );
+					$attribute_pairs[] = "{$key}=\"{$val}\"";
 				}
 			}
-			echo implode( ' ', $attributePairs );
+			echo implode( ' ', $attribute_pairs );
 
-			if ( in_array( $tag, array( 'img', 'input', 'br', 'hr', 'meta', 'etc' ) ) ) {
+			if ( in_array( $tag, array( 'img', 'input', 'br', 'hr', 'meta', 'etc' ), true ) ) {
 				echo ' />';
 				return;
 			}
+
 			echo '>';
+
 			if ( isset( $inner ) ) {
 				if ( $escape_inner ) {
 					echo esc_html( $inner );
