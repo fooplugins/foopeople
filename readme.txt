@@ -52,9 +52,6 @@ Showcase your employee skills and abilities using Gutenberg blocks on your websi
 2.
 3.
 4.
-5.
-6.
-7.
 
 == Upgrade Notice ==
 
