@@ -85,15 +85,15 @@ if ( ! class_exists( __NAMESPACE__ . '\Metabox' ) ) {
 		public function render_metabox( $post ) {
 			$full_id = $this->container_id();
 
-			//render the nonce used to validate when saving the metabox fields
+			// render the nonce used to validate when saving the metabox fields.
 			?><input type="hidden" name="<?php echo $full_id; ?>_nonce"
 					 id="<?php echo $full_id; ?>_nonce"
 					 value="<?php echo wp_create_nonce( $full_id ); ?>"/><?php
 
-			//allow custom metabox rendering
+			// allow custom metabox rendering.
 			$this->do_action( 'render', $post );
 
-			//render any fields
+			// render any fields.
 			$this->render_container();
 		}
 
@@ -108,7 +108,7 @@ if ( ! class_exists( __NAMESPACE__ . '\Metabox' ) ) {
 				$state = array();
 
 				if ( isset( $this->config['meta_key'] ) ) {
-					//get the state from the post meta
+					// get the state from the post meta.
 					$state = get_post_meta( $this->post->ID, $this->config['meta_key'], true );
 				}
 
@@ -132,44 +132,49 @@ if ( ! class_exists( __NAMESPACE__ . '\Metabox' ) ) {
 		 * @return mixed
 		 */
 		public function save_post( $post_id ) {
-			// check autosave first
+			// check autosave first.
 			if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 				return $post_id;
 			}
 
-			$this->post_id = $post_id;
+			$this->post_id = $post_id;  // why do we set this?
 
 			$full_id = $this->container_id();
 
-			// verify nonce
-			if ( array_key_exists( $full_id . '_nonce', $_POST ) &&
-				 wp_verify_nonce( $_POST[ $full_id . '_nonce' ], $full_id ) ) {
+			// check we have a nonce.
+			if ( isset( $_POST[ $full_id . '_nonce' ] ) ) {
 
-				//if we get here, we are dealing with the correct metabox
+				$nonce = sanitize_key( wp_unslash( $_POST[ $full_id . '_nonce' ] ) );
 
-				// unhook this function so it doesn't loop infinitely
-				remove_action( 'save_post', array( $this, 'save_post' ) );
+				// verify nonce.
+				if ( wp_verify_nonce( $nonce, $full_id ) ) {
 
-				//fire an action
-				$this->do_action( 'save', $post_id );
+					// if we get here, we are dealing with the correct metabox.
 
-				//if we have fields, then we can save that data
-				if ( $this->has_fields() && $this->apply_filters( 'can_save', true, $this ) ) {
+					// unhook this function so it doesn't loop infinitely.
+					remove_action( 'save_post', array( $this, 'save_post' ) );
 
-					//get the current state of the posted form
-					$state = $this->get_posted_data();
+					// fire the save action.
+					$this->do_action( 'save', $post_id );
 
-					$this->do_action( 'before_save_post_meta', $post_id, $state );
+					// if we have fields, then we can save that data.
+					if ( $this->has_fields() && $this->apply_filters( 'can_save', true, $this ) ) {
 
-					if ( isset( $this->config['meta_key'] ) ) {
-						update_post_meta( $post_id, $this->config['meta_key'], $state );
+						// get the current state of the posted form.
+						$state = $this->get_posted_data();
+
+						$this->do_action( 'before_save_post_meta', $post_id, $state );
+
+						if ( isset( $this->config['meta_key'] ) ) {
+							update_post_meta( $post_id, $this->config['meta_key'], $state );
+						}
+
+						$this->do_action( 'after_save_post_meta', $post_id, $state );
 					}
 
-					$this->do_action( 'after_save_post_meta', $post_id, $state );
+					// re-hook this function.
+					add_action( 'save_post', array( $this, 'save_post' ) );
 				}
-
-				// re-hook this function
-				add_action( 'save_post', array( $this, 'save_post' ) );
 			}
 		}
 

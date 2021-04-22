@@ -1,4 +1,5 @@
 <?php
+
 namespace FooPlugins\FooPeople\Admin\FooFields\Fields;
 
 if ( ! class_exists( __NAMESPACE__ . '\AjaxButton' ) ) {

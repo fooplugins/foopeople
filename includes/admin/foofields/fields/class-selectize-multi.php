@@ -11,12 +11,12 @@ if ( ! class_exists( __NAMESPACE__ . '\SelectizeMulti' ) ) {
 		function __construct( $container, $type, $field_config ) {
 			parent::__construct( $container, $type, $field_config );
 
-			$hook = $this->container->build_hook_tag( 'aftersavepostmeta' );
+			$hook = $this->container->build_hook_tag( 'after_save_post_meta' );
 
-			//save taxonomy mappings for selectize-multi fields
+			// save taxonomy mappings for selectize-multi fields.
 			add_action( $hook, array( $this, 'save_taxonomy_mapping' ), 10, 2 );
 
-			//handle ajax selectize multiple add
+			// handle ajax selectize multiple add.
 			add_action( $this->field_ajax_action_name(), array( $this, 'ajax_handle_selectize_multi_add' ) );
 		}
 
@@ -196,11 +196,11 @@ if ( ! class_exists( __NAMESPACE__ . '\SelectizeMulti' ) ) {
 
 				if ( empty( $value ) ) {
 
-					//remove all relationships between the object and any terms in a particular taxonomy
+					// remove all relationships between the object and any terms in a particular taxonomy.
 					wp_delete_object_term_relationships( $post_id, $taxonomy );
 
 				} else {
-					$result = wp_set_object_terms( $post_id, array_map('intval', $value ), $taxonomy, false );
+					$result = wp_set_object_terms( $post_id, array_map( 'intval', $value ), $taxonomy, false );
 
 					if ( is_wp_error( $result ) ) {
 						//$state = $this->metabox_field_group->set_field_error( $state, $this->config, sprintf( __('Could not save mappings for taxonomy : %s' ), $taxonomy ) );
