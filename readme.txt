@@ -4,7 +4,7 @@ Tags: human resource management, hrm, human resources, hr, people management
 Requires at least: 5.0
 Tested up to: 5.7
 Requires PHP: 5.6
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -88,6 +88,9 @@ Open a support ticket with a link to your site and we can take a look.
 Create a [new ticket](https://wordpress.org/support/plugin/FooPeople/#new-post) on the support forum, or [contact us](https://fooplugins.com/support/?utm_source=FooPeople_wordpress_org)
 
 == Changelog ==
+
+= 1.0.4 =
+* Fix for bound taxonomy fields not saving for person CPT
 
 = 1.0.3 =
 * Fixes for plugin submission
