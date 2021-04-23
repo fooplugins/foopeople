@@ -36,7 +36,7 @@
 			});
 
 			switch ( name ) {
-			case 'foopeople-person-details[locations][]':
+			case 'foopeople-person-details[location][]':
 				FOOPEOPLE.selectFields.locations.push( textValues );
 				break;
 			case 'foopeople-person-details[role][]':
