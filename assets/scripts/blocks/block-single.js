@@ -85,6 +85,9 @@ registerBlockType( 'fooplugins/foopeople-single', {
 	}) ( props => {
 		const { people } = props;
 		props.attributes.allPeople = people;
+		props.attributes.allPeople.unshift(
+			{label: "Choose a person...", value: ""}
+		);
 
 		return (
 			<FooPeopleSingleEdit {...props }/>
