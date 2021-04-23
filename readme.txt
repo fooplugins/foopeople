@@ -48,10 +48,13 @@ Showcase your employee skills and abilities using Gutenberg blocks on your websi
 
 == Screenshots ==
 
-1.
-2.
-3.
-4.
+1. List all of your people in the WordPress dashboard you know and love. See people's managers and organisational chain
+2. Edit your people's details easily with a wide range of fields, and see a quick preview of your employee
+3. Capture all of your details with a broad set of fields
+4. Add new teams and organise your workforce simply
+5. FooPeople comes with great looking templates that will fit any theme with out customizer options
+6. Create a teams page quickly with our Gutenberg blocks
+7. Create a page with a single person's details with our Gutenberg blocks
 
 == Upgrade Notice ==
 
