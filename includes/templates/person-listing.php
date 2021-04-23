@@ -1,4 +1,7 @@
-<?php $people = foopeople_get_people($data['team']); ?>
+<?php
+if($data['team']) :
+$people = foopeople_get_people($data['team']);
+?>
 
 <div id="foopeople" class="foopeople js-foopeople">
 
@@ -26,3 +29,10 @@
 wp_reset_postdata();
 ?>
 </div>
+
+
+<?php else : ?>
+<p>
+	<?php _e('No team has been selected! Choose a team in the editor block and publish your changes.', 'foopeople'); ?>
+</p>
+<?php endif;
