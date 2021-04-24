@@ -1,7 +1,7 @@
 {
   "name": "foopeople",
   "description": "People & Team Management for WordPress",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "FooPlugins",
   "repository": {
     "type": "git",

@@ -17,8 +17,6 @@ export default class FooPeopleSingleEdit extends Component {
 
 	render( ) {
 
-		console.log(this.props.attributes.person);
-
 		return (
 			<div>
 				<div class="form-field form-required term-name-wrap">
