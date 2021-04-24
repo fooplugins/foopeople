@@ -84,6 +84,9 @@ registerBlockType( 'fooplugins/foopeople-listing', {
 	})( props => {
 		const { teams } = props;
 		props.attributes.allTeams = teams;
+		props.attributes.allTeams.unshift(
+			{label: "Choose a team...", value: ""}
+		);
 
 		return (
 			<FooPeopleListingEdit {...props }/>

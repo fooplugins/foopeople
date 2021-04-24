@@ -1,10 +1,13 @@
 <?php
+global $post;
+
 if( is_single() ) {
 	get_header();
-	global $post;
 } else {
 	$post = get_post($data['person']);
 }
+
+if($data['person'] !== 0) :
 $person = new FooPlugins\FooPeople\objects\Person($post);
 ?>
 
@@ -115,7 +118,12 @@ $person = new FooPlugins\FooPeople\objects\Person($post);
 	</div>
 </div>
 
+<?php else : ?>
+<p>
+	<?php _e('No person has been selected! Choose a person in the editor block and publish your changes.', 'foopeople'); ?>
+</p>
 <?php
+endif;
 if( is_single( ) ) {
 	get_footer();
 }
