@@ -7,7 +7,6 @@ node_modules/
 # Front End assets #
 ############
 assets/css/
-assets/js/
 
 # Packages #
 ############
