@@ -45,7 +45,7 @@
     "gulp-uglifycss": "^1.0.6",
     "gulp-wp-pot": "^2.4.3",
     "gulp-zip": "^5.0.0",
-    "webpack": "^4.43.0",
+    "webpack": "^5.94.0",
     "webpack-cli": "^3.3.11"
   },
   "scripts": {
